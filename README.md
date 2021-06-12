@@ -11,16 +11,18 @@ It's the data that's unique, not the models.
 ---
 
 ## Contributing
-Make a pull request if you want to add resources. We want to grow this list beyond what we 
-think is interesting, so we're always open to suggestions & improvements.
+We want this resource to grow with contributions from readers and data enthusiasts.
+Make a pull request if you want to add resources.
 
+---
 
 # Emerging Directions
 
 ## Embeddings
 Widespread use: shift in how information is represented.
+- The take over of Word2Vec and BERT
 - Epoxy
-- Influence functions
+- Replacing influence functions via NN
 - Hidden Stratification + GEORGE
 - VLDB Tutorial [upcoming]
 
@@ -32,13 +34,22 @@ Widespread use: shift in how information is represented.
 - Robustness Gym
 - Mandoline
 
+## Data Representations (model more closely represents data)
+- LSSLSLSLSSSL (Albert)
+- Hyperbolics (??)
+
 
 ## Universal Models
-- GPT-X
+- GPT-X/BERT-X/T-87/Chinese model
+- MLPs everywhere
+- Shift towards data curation
+- These models have issues
+- But companies don't seem to care (Anthropic, OpenAI, ...)
+- The Stanford class
 
-
-### Worries
-
+## Model Guidability/Shaping: like coding with metadata and data
+- Data shaping
+- Bootleg
 
 # Successes in Data-Centric AI
 
@@ -46,8 +57,7 @@ Widespread use: shift in how information is represented.
 - GMail
 - Google Ads
 - Tesla Data Engine
-- Instacart
-
+- Instacart/all the blog posts of turning to logs for embedding pretraining
 
 
 ## Industry
@@ -57,23 +67,29 @@ Widespread use: shift in how information is represented.
 - Karpathy's Blog(s)
 
 
-
 # Tools
 
 ## Monitoring
 - Weights & Biases
-- 
 
 ## Feature Stores
 - Uber Michelangelo
 - Feast + Tecton
 
-
-## Industry
+## Data Collection
 - Snorkel
+- Crowdsourcing stuff
+
+## Zero Code ML
+- Ludwig
+- Overton
 
 
 # History
+
+## Feature Engineering [Alex + Snorkel folks]
+
+## Success of Self-Supervision
 
 ## Large Datasets
 - ImageNet
@@ -82,11 +98,8 @@ Widespread use: shift in how information is represented.
 
 ## Data Programming & Weak Supervision [Alex + Snorkel folks]
 
-
-## Feature Engineering [Alex + Snorkel folks]
-
-
 ## Data Labeling & Crowdsourcing [Alex + Snorkel folks]
+
 
 
 
