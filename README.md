@@ -17,21 +17,78 @@ think is interesting, so we're always open to suggestions & improvements.
 
 # Emerging Directions
 
-## Fine-Grained Evaluation & Measurement
+## Embeddings
+Widespread use: shift in how information is represented.
+- Epoxy
+- Influence functions
+- Hidden Stratification + GEORGE
+- VLDB Tutorial [upcoming]
 
+## Interactive Machine Learning
+- Forager
+- Mosaic DataPanels
+
+## Fine-Grained Evaluation & Measurement
+- Robustness Gym
+- Mandoline
+
+
+## Universal Models
+- GPT-X
+
+
+### Worries
 
 
 # Successes in Data-Centric AI
+
+## Stories
+- GMail
+- Google Ads
+- Tesla Data Engine
+- Instacart
+
+
+
+## Industry
+- Snorkel
+- Ludwig
+- DataRobot
+- Karpathy's Blog(s)
 
 
 
 # Tools
 
+## Monitoring
+- Weights & Biases
+- 
+
+## Feature Stores
+- Uber Michelangelo
+- Feast + Tecton
+
+
+## Industry
+- Snorkel
+
+
 # History
 
-## Data Programming & Weak Supervision
+## Large Datasets
+- ImageNet
+- MS Coco
+- Language Modeling Datasets (GPT, Pile)
 
-## 
+## Data Programming & Weak Supervision [Alex + Snorkel folks]
+
+
+## Feature Engineering [Alex + Snorkel folks]
+
+
+## Data Labeling & Crowdsourcing [Alex + Snorkel folks]
+
+
 
 
 
