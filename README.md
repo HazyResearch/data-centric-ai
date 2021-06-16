@@ -15,6 +15,7 @@ We want this resource to grow with contributions from readers and data enthusias
 Make a pull request if you want to add resources.
 
 Instructions for adding resources:
+
 0. Add potential emoji to section header (syntax `:emoji:`). 
    The emoji can be made up and may not exist (yet).
 1. Write a sentence summarizing the content of the section you're writing. 
