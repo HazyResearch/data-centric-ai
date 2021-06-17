@@ -67,11 +67,22 @@ Widespread use: shift in how information is represented.
 - Forager [Fait]
 - Mosaic DataPanels
 
-## Fine-Grained Evaluation & Measurement [Karan, Mayee]
+## :sleeping: Fine-Grained Evaluation & Measurement [Karan]
 
-- Robustness Gym 
-- Mandoline
-- Active Validation [Vishnu]
+To better understand how models perform when deployed in real-world settings, tools for fine-grained analysis and efficient methods for handling unlabeled validation/test data are needed in evaluation.
+
+### Robustness Gym
+
+### Mandoline: Model Evaluation under Distribution Shift
+
+Distribution shift between labeled source data and unlabeled target data can be addressed with importance weighting, but this method works poorly when the supports of the source and target do not overlap and when data is high-dimensional. Mandoline addresses this by reweighting based on user/model-defined ``slices'' that intend to capture relevant axes of distribution shift.
+
+- [Density Ratio Estimation for Machine Learning](https://www.cambridge.org/core/books/density-ratio-estimation-in-machine-learning/BCBEA6AEAADD66569B1E85DDDEAA7648) explains the different approaches to estimate density ratios, a key technical step in computing importance weights.
+- [CS329D at Stanford: ML Under Distribution Shifts](https://thashim.github.io/cs329D-spring2021/) covers current research in distribution shift, ranging from covariate shift to adversarial robustness.
+- [Propensity Scores](https://academic.oup.com/biomet/article/70/1/41/240879) are used in observational studies for correcting disparities when evaluating treatment on a target population given that the treatment was applied to a set of potentially biased subjects. 
+- [Learning Bounds on Importance Weighting](https://papers.nips.cc/paper/2010/file/59c33016884a62116be975a9bb8257e3-Paper.pdf): how well importance weighting corrects for distribution shift can be attributed to the variance of the weights, or alternatively the R\'enyi divergence between source and target. 
+
+### Active Validation [Vishnu]
 
 ## Data-Driven Inductive Bias in Model Representations [Albert, Ines]
 When you don't have enough data, inductive biases can make models much more efficient. 
@@ -154,9 +165,24 @@ Shift towards one-model-to-rule-them-all paradigm.
 
 ## Theoretical Foundations
 
-### Contrastive Learning [Mayee]
+### Contrastive Learning
 
-### Weak Supervision [Mayee, Fred]
+Contrastive learning works by optimizing a typically unsupervised loss function that pulls together similar points (``positive'' pairs) and pushes apart dissimilar points (``negative'' pairs). A theoretical understanding is lacking on what sort of representations are learned under contrastive loss, and what these representations guarantee on downstream tasks.
+
+- [Representations induced on the hypersphere](https://arxiv.org/pdf/2005.10242.pdf): assuming that the representations to learn are constrained to a hypersphere, the contrastive loss function is closely connected to optimizing for ``alignment'' (positive pairs map to the same representation) and ``uniformity'' (representations are ``spread out'' as much as possible on the hypersphere to maintain as much as information as possible).
+- [Downstream performance](https://arxiv.org/pdf/1902.09229.pdf): suppose that similar pairs belong to the same latent subclass, and that the downstream task aims to classify among some of these latent subclasses. Then, downstream loss of a linear classifier constructed using mean representations can be expressed in terms of the contrastive loss.
+- [Debiasing contrastive learning](https://arxiv.org/pdf/2007.00224.pdf) and [using hard negative samples](https://openreview.net/pdf?id=CR1XOQ0UTh-): in unsupervised settings, negative pairs are constructed by selecting two points at random i.i.d. This can result in the two points actually belonging to the same latent subclass, but this can be corrected via importance weighting. Moreover, even within different latent subclasses, some negative samples can be ``harder'' than others and enforce better representations. 
+ 
+
+### Weak Supervision
+
+The theory behind weak supervision and data programming relies on latent variable estimation in graphical models.
+
+- [Wainwright and Jordan textbook](https://people.eecs.berkeley.edu/~wainwrig/Papers/WaiJor08_FTML.pdf): provides an overview of graphical models
+- [Structured inverse covariance matrices](https://arxiv.org/pdf/1212.0478.pdf): the (augmented) inverse covariance matrix of a graphical model will have 0s in locations where the row and column indices are independent conditional on all other random variables. Under sufficient sparsity of the graphical model, this property can be used in weak supervision to learn the correlations between latent variables (i.e. the unobserved ground-truth label). 
+- Beyond using the inverse covariance matrix, certain families of graphical models can use method-of-moments---computing correlations among triplets of conditional independent variables---to estimate latent parameters. In the scalar setting, [FlyingSquid](https://arxiv.org/pdf/2002.11955.pdf) applies this method to weak supervision, and more generally [tensor decomposition](https://www.jmlr.org/papers/volume15/anandkumar14b/anandkumar14b.pdf) can be used in latent variable estimation.
+- In most weak supervision settings, labeling functions are assumed to be conditionally independent, or the dependencies are known. However, when they are not, [robust PCA](https://arxiv.org/pdf/1903.05844.pdf) can be applied to recover the structure.
+- [Comparing labeled versus unlabeled data](https://arxiv.org/pdf/2103.02761.pdf): generative classifiers based on graphical models (e.g. in weak supervision) can accept both labeled and unlabeled data, but unlabeled input is linearly more susceptible to misspecification of the dependency structure. However, this can be corrected using a general median-of-means estimator on top of method-of-moments.  
 
 ### Data Augmentation [Tri, Hongyang, Sen]
 - Sharon's Blog Post Series
