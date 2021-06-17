@@ -3,10 +3,9 @@
 We're collecting (an admittedly opinionated) list of resources and progress made 
 in data-centric AI, with exciting directions from our own lab and collaborators.
 
-AI has been too focused on the models, while in reality, the experience of those who put 
-models into production or use them in real applications is that data matters most. 
-
-It's the data that's unique, not the models. 
+AI has been pretty focused on models, while in reality, the experience of those who put 
+models into production or use them in real applications is that data matters a lot (maybe even more!). 
+Often, it's the data (which is unique to you) that can make or break model performance.
 
 ---
 
@@ -42,30 +41,42 @@ _Themes_:
 - how does data influence the learned representations?
 
 ## Embeddings
+How data is represented and transferred
 
-Widespread use: shift in how information is represented.
-- The take over of Word2Vec and BERT
+### "Atoms" of an embedding
+- Patches for images
+- Subword tokens, BPE, No tokens
+
+### Knowledge Transfer
+- BERTology
+- Bootleg
+- Omniprescence in industrial ecosystems
+
+### Continuous (Fuzzy??) Distances
 - Epoxy [Dan]
-- Replacing influence functions via NN
-- Hidden Stratification + GEORGE
-- VLDB Tutorial [upcoming]
 
-### Stability [Megan]
+### :lotus_position: Stability and Compression [Megan, Simran]
+Stability describes the sensitivity of machine learning models (e.g. embeddings) to changes in their input. In production settings, machine learning models may be constantly retrained on up-to-date data ([sometimes every hour](https://research.fb.com/wp-content/uploads/2017/12/hpca-2018-facebook.pdf)!), making it critical to understand their stability. Recent works have shown that word embeddings can suffer from instability: 
 
-### Compression [Simran]
+- [Factors Influencing the Surprising Instability of Word Embeddings](https://www.aclweb.org/anthology/N18-1190.pdf) evaluates the impact of word properties (e.g. part of speech), data properties (e.g. word frequencies), and algorithms ([PPMI](https://link.springer.com/content/pdf/10.3758/BF03193020.pdf), [GloVe](https://www.aclweb.org/anthology/D14-1162.pdf), [word2vec](https://papers.nips.cc/paper/2013/file/9aa42b31882ec039965f3c4923ce901b-Paper.pdf)) on word embedding stability. 
+- [Evaluating the Stability of Embedding-based Word Similarities](https://www.aclweb.org/anthology/Q18-1008.pdf) shows that small changes in the training data, such as including specific documents, causes the nearest neighbors of word embeddings to vary significantly.
+- [Understanding the Downstream Instability of Word Embeddings](https://arxiv.org/abs/2003.04983) demonstrates that instability can propagate to the downstream models that use word embeddings and introduces a theoretically-motivated measure to help select embeddings to minimize downstream instability.  
+  
+### Embedding Patching [Laurel]
+- Goodwill Hunting
+- Model Patching
 
-### Embedding Updates [Laurel]
+## :joystick: Interactive Machine Learning [Karan, Sabri, Arjun, Laurel]
 
-### Label Propagation [Dan]
-- Epoxy
-
-### Hidden Stratification [Jared]
-- Hidden Stratification + GEORGE
-
-## Interactive Machine Learning [Karan, Sabri, Arjun, Laurel]
-
-- Forager [Fait]
-- Mosaic DataPanels
+- **Forager** [Fait]
+- **[Mosaic](https://github.com/robustness-gym/mosaic)** makes it easier for ML practitioners to interact with high-dimensional, multi-modal data. It provides simple abstractions for data inspection, model evaluation and model training supported by efficient and robust IO under the hood. Mosaic's core contribution is the DataPanel, a simple columnar data abstraction. The Mosaic DataPanel can house columns of arbitrary type – from integers and strings to complex, high-dimensional objects like videos, images, medical volumes and graphs.
+   - [Introducing Mosaic](https://www.notion.so/Introducing-Mosaic-64891aca2c584f1889eb0129bb747863) (blog post)
+   - [Working with Images in Mosaic](https://drive.google.com/file/d/15kPD6Kym0MOpICafHgO1pCt8T2N_xevM/view?usp=sharing) (Google Colab)
+   - [Working with Medical Images in Mosaic](https://colab.research.google.com/drive/1UexpPqyXdKp6ydBf87TW7LtGIoU5z6Jy?usp=sharing) (Google Colab)
+- **Explanatory interactive learning** Can we, by interacting with models during training, encourage their explanations to line up with our priors on what parts of the input are relevant?
+   - [Right for the Right Reasons: Training Differentiable Models by Constraining their Explanations](https://arxiv.org/pdf/1703.03717.pdf)
+   - [Explanatory Interactive Machine Learning](https://ml-research.github.io/papers/teso2019aies_XIML.pdf)
+   - [Making deep neural networks right for the right scientific reasons by interacting with their explanations](https://www.nature.com/articles/s42256-020-0212-3)
 
 ## :sleeping: Fine-Grained Evaluation & Measurement [Karan]
 
@@ -75,8 +86,8 @@ To better understand how models perform when deployed in real-world settings, to
 
 ### Mandoline: Model Evaluation under Distribution Shift
 
-Models are often deployed on an unlabeled target dataset different from the labeled source data they were trained and validated on. To efficiently check how the model performs on the target dataset, importance weighting by the distributions' density ratio is used to correct for distribution shift. However, this method works poorly when the supports of the source and target do not overlap and when data is high-dimensional. [Mandoline](https://mayeechen.github.io/files/mandoline.pdf) addresses this by reweighting based on user-guided "slices" that intend to capture relevant axes of distribution shift. Slices are often readily available as subpopulations identified by the practitioner, but can also be based on things like metadata and the trained model's scores. Below are some resources on distribution shift, importance weighting, and density ratio estimation:
 
+Models are often deployed on an unlabeled target dataset different from the labeled source data they were trained and validated on. To efficiently check how the model performs on the target dataset, importance weighting by the distributions' density ratio is used to correct for distribution shift. However, this method works poorly when the supports of the source and target do not overlap and when data is high-dimensional. [Mandoline](https://mayeechen.github.io/files/mandoline.pdf) addresses this by reweighting based on user-guided "slices" that intend to capture relevant axes of distribution shift. Slices are often readily available as subpopulations identified by the practitioner, but can also be based on things like metadata and the trained model's scores. Below are some resources on distribution shift, importance weighting, and density ratio estimation:
 - [CS329D at Stanford: ML Under Distribution Shifts](https://thashim.github.io/cs329D-spring2021/) covers current research in distribution shift, ranging from covariate shift to adversarial robustness.
 - [Art Owen's notes on importance sampling](https://statweb.stanford.edu/~owen/mc/Ch-var-is.pdf) provides an overview of importance weighting with connections to Monte Carlo theory.
 - [Propensity Scores](https://academic.oup.com/biomet/article/70/1/41/240879) are used in observational studies for correcting disparities when evaluating treatment on a target population given that the treatment was applied to a set of potentially biased subjects. 
@@ -96,12 +107,30 @@ When you don't have enough data, inductive biases can make models much more effi
 
 
 ## Learning with Auxiliary Information
+Shift towards guiding and coding models with (latent) metadata
 
-### Higher-Level Signals [Laurel, Maya, Megan]
+### Learning with Structured Data [Laurel, Maya, Megan]
+
+Structured data, such as the types associated with an entity, can provide useful signals for training models, alongside unstructured text corpora.  
+
+- [Bootleg](https://hazyresearch.stanford.edu/bootleg/) is a system that leverages structured data in the form of type and knowledge graph relations to improve named entity disambiguation over 40 F1 points for rare entities. 
+- This [blog]([README.md](https://hazyresearch.stanford.edu/bootleg_blog)) describes how Bootleg uses both structured and unstructured data to learn reasoning patterns, such as certain words should be associated with a type.  
 
 ### Data Shaping [Simran]
+Standard language models struggle to reason over the long-tail of entity-based knowledge and significant recent work tackles this challenge by providing the model with external knowledge signals. Prior methods modify the model architecture and/or algorithms to introduce the knowledge. In contrast, data shaping involves introduces external knowledge to the raw data inputted to a language model. While it may be difficult to efficiently deploy the specialized and sophisticated models as proposed in prior work, data shaping simply uses the standard language model with no modifications whatsoever to achieve competitive performance.
+- Recent work on knowledge-aware language modeling, involving a modified architecture and/or learning algorithm: [E-BERT](https://arxiv.org/abs/1911.03681) (Poerner, 2020), [K-Adapter](https://arxiv.org/abs/2002.01808) (Wang, 2020), [KGLM](https://arxiv.org/abs/1906.07241) (Logan, 2019), [KnowBERT](https://arxiv.org/abs/1909.04164) (Peters, 2019), [LUKE](https://www.aclweb.org/anthology/2020.emnlp-main.523.pdf) (Yamada, 2020), [ERNIE](https://arxiv.org/abs/1905.07129) (Zhang, 2019)
+- Examples demonstrating how to introduce inductive biases through the data for knowledge-based reasoning: [TEK](https://arxiv.org/pdf/2004.12006.pdf) (Joshi 2020),  [Data Noising](https://arxiv.org/pdf/1703.02573.pdf) (Xie, 2017), [DeepType](https://arxiv.org/abs/1802.01021) (Raiman, 2018)
+- Recent theoretical analyses of LM generalization reason about the data distributions. Information theory is an important foundataional topic here: [Information Theory and Statistics](http://web.stanford.edu/class/stats311/) (Stanford STAT 311)
 
 ### Subgroup Information [Michael]
+Similar to observations brought up with hidden stratification, a data subset or "subgroup" may carry spurious correlations between its features and labels that do not hold for datapoints outside of the subgroup. When certain subgroups are larger than others, models trained to minimize average error are susceptible to learning these spurious correlations and performing poorly on the minority subgroups. To obtain good performance on *all* subgroups, in addition to the ground-truth labels we can bring in subgroup information during training. 
+- [Group Distributionally Robust Optimization (Group DRO)](https://arxiv.org/abs/1911.08731) assumes knowledge of which subgroup each training sample belongs to, and proposes a training algorithm that reweights the loss objective to focus on subgroups with higher error.  
+- [Model Patching](https://arxiv.org/abs/2008.06775) uses a generative model to synthesize samples from certain subgroups as if they belonged to another. These augmentations can then correct for subgroup imbalance, such that training on the new dataset mitigates learning correlations that only hold for the original majority subgroups.
+
+Subgroup information also does not need to be explicitly annotated or known. Several recent works aim to first infer subgroups before using a robust training method to obtain good performance on all subgroups. A frequent heuristic is to use the above observation that models trained with empirical risk minimization (ERM) and that minimize average error may still perform poorly on minority subgroups; one can then infer minority or majority subgroups depending on if the trained ERM model correctly predicts the datapoints.  
+- [Learning from Failure (LfF](https://arxiv.org/abs/2007.02561) trains two models in tandem. Each model trains on the same data batches, where for each batch, datapoints that the first model gets incorrect are upweighted in the loss objective for the second model. 
+- [Just Train Twice (JTT)]() trains an initial ERM model for a few epochs, identifies the datapoints this model gets incorrect after training, and trains a new model with ERM on the same dataset but with the incorrect points upsampled.  
+- [Correct-N-Contrast (CNC)]() also trains an initial ERM model, but uses supervised contrastive learning to train a new model to learn similar representations for datapoints with the same class but different trained ERM model predictions.
 
 ### Observational Supervision [Khaled]
 
@@ -110,21 +139,37 @@ When you don't have enough data, inductive biases can make models much more effi
 
 ### Named Entity Linking [Laurel, Maya, Megan]
 
+Named entity linking (NEL) is the task of linking ambiguous mentions in text to entities in a knowledge base. NEL is a core preprocessing step in downstream applications, including search and question answering. 
+
+- [Shift towards simple Transformer models for NEL with bi-encoders and cross-encoders](https://arxiv.org/abs/1911.03814): recent state-of-the-art models such as BLINK rely on a simple two-stage architecture for NEL. First a bi-encoder retrieves candidate entitites by embedding the query and entities. Then a cross-encoder re-ranks the candidate entities.  
+- [Data-driven improvements in NEL through weak labeling](https://arxiv.org/pdf/2010.10363.pdf): Bootleg uses weak labeling of the training data to noisily assign entity links to mentions, increasing performance over rare entities. 
+
 ### Video [Dan]
 
 ### Medical Imaging [Sarah, Arjun]
 
 ### Image Segmentation [Sarah]
 
-### Computational Biology [Sabri, Maya]
+### :dna: Computational Biology [Sabri, Maya]
+- :pill: Collecting the right data for training and evalution can require wetlab work – especially in computational drug discovery. 
+   - [A Deep Learning Approach to Antibiotic Discovery](https://www.cell.com/cell/pdf/S0092-8674(20)30102-1.pdf))
+   - [Network medicine framework for identifying drug-repurposing opportunities for COVID-19](https://www.pnas.org/content/118/19/e2025581118))
+   
+- :jigsaw: Non-standard data modalities are common in computational biology. 
+   - Biological Interaction Networks (_e.g._ [Network-based in silico drug efficacy screening](https://www.nature.com/articles/ncomms10331), [Identification of disease treatment mechanisms through the multiscale interactome](https://www.nature.com/articles/s41467-021-21770-8))
+   - Chemical Graphs (_e.g._ [Strategies for pre-training graph neural networks](https://arxiv.org/pdf/1905.12265.pdf))
+   - DNA, RNA and Amino Acid sequences (_e.g._[Sequential regulatory activity prediction across chromosomes with convolutional neural networks](https://genome.cshlp.org/content/28/5/739.short))
+   - 3D structures (_e.g._ [Learning from protein structure with geometric vector perceptrons](https://openreview.net/pdf?id=1YLJDvSx6J4))
 
-
-## :frodo-monstertruck-sauron: Universal Models [Karan, Laurel]
-Shift towards one-model-to-rule-them-all paradigm.
-
+- In order to facilitate the extraction of relevant signal from large biological datasets, methods have been designed to prune irrelevant features and integrate knowledge across datasets.  
+   - [AMELIE](https://stm.sciencemag.org/content/scitransmed/12/544/eaau9113.full.pdf) helps improve diagnosis of Mendelian disorders by integrating information from a patient’s phenotype and genotype and automatically identifying relevant references to literature.
+   - [This](https://journals.plos.org/plosgenetics/article?id=10.1371/journal.pgen.1004754) article discusses the importance of creating effective feature selection methods to filter irrelevant features from large whole genome datasets. Other works (such as [this one](https://bmcbioinformatics.biomedcentral.com/articles/10.1186/s12859-020-03693-1) and [this one](https://www.worldscientific.com/doi/abs/10.1142/9789813279827_0024)) discuss approaches for identifying putative genetic variants by incorporating information from interaction networks or utilizing independent control datasets.
+   - Approaches for extracting biological information from medical literature (such as [chemical-disease relation extraction](https://link.springer.com/article/10.1186/s13321-016-0165-z) and [genotype-phenotype association extraction](https://www.nature.com/articles/s41467-019-11026-x)) have benefitted from data programming techniques as well as the incorporation of weakly labeled data. 
 
 ## Benchmarking [Avanika]
 
+## :frodo-monstertruck-sauron: Universal Models [Karan, Laurel]
+Shift towards one-model-to-rule-them-all paradigm.
 
 ### Emphasis on Scale
 
@@ -173,7 +218,6 @@ Contrastive learning works by optimizing a loss function that pulls together sim
 - [Representations induced on the hypersphere](https://arxiv.org/pdf/2005.10242.pdf): assuming that the representations to learn are constrained to a hypersphere, the contrastive loss function is closely connected to optimizing for "alignment" (positive pairs map to the same representation) and "uniformity" (representations are "spread out" as much as possible on the hypersphere to maintain as much as information as possible).
 - [Downstream performance](https://arxiv.org/pdf/1902.09229.pdf): suppose that similar pairs belong to the same latent subclass, and that the downstream task aims to classify among some of these latent subclasses. Then, downstream loss of a linear classifier constructed using mean representations can be expressed in terms of the unsupervised contrastive loss.
 - [Debiasing contrastive learning](https://arxiv.org/pdf/2007.00224.pdf) and [using hard negative samples](https://openreview.net/pdf?id=CR1XOQ0UTh-): in unsupervised settings, negative pairs are constructed by selecting two points at random i.i.d. This can result in the two points actually belonging to the same latent subclass, but this can be corrected via importance weighting. Moreover, even within different latent subclasses, some negative samples can be "harder" than others and enforce better representations. 
- 
 
 ### Weak Supervision
 
