@@ -132,7 +132,23 @@ Subgroup information also does not need to be explicitly annotated or known. Sev
 - [Just Train Twice (JTT)]() trains an initial ERM model for a few epochs, identifies the datapoints this model gets incorrect after training, and trains a new model with ERM on the same dataset but with the incorrect points upsampled.  
 - [Correct-N-Contrast (CNC)]() also trains an initial ERM model, but uses supervised contrastive learning to train a new model to learn similar representations for datapoints with the same class but different trained ERM model predictions.
 
-### Observational Supervision [Khaled]
+### :animated-eyes: Observational Supervision 
+The way experts interact with their data (e.g. a radiologist’s eye movements) contains rich information about the task (e.g. classification difficulty), and the expert (e.g. drowsiness level).
+With the current trend of wearable technology (e.g. AR with eye tracking capability), the hardware needed to collect such human-data interactions is expected to become more ubiquitous, affordable, and standardized. 
+In observational supervision, we investigate how to extract the rich information embedded in the human-data interaction, to either supervise models from scratch, or to improve model robustness.
+
+Interesting works have collected observational signals such as:
+- Eye tracking data in medicine (chest x-ray [dataset](https://www.nature.com/articles/s41597-021-00863-5.pdf))
+- Eye tracking plus brain activity in NLP (Zuco [dataset](https://www.nature.com/articles/sdata2018291.pdf)) 
+- We have also collaborated with Stanford radiologists to curate an additional two medical datasets with eye tracking data [coming soon!].
+
+Interesting papers in observational supervision:
+- Improving NLP models with gaze by N. Hollenstein et al. [paper](https://arxiv.org/pdf/1902.10068.pdf)
+- Improving zero-shot learning with gaze by N. Karasseli et al. [paper](https://openaccess.thecvf.com/content_cvpr_2017/papers/Karessli_Gaze_Embeddings_for_CVPR_2017_paper.pdf) 
+- Improving sample complexity with gaze by K. Saab et al. [paper](https://openreview.net/pdf?id=r1gPtjcH_N)
+- Our recent work on supervising medical models from scratch [coming soon!]
+ 
+
 
 
 ## Applications
