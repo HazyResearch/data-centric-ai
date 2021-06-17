@@ -28,7 +28,26 @@ Instructions for adding resources:
 
 # Table of Contents
 
-[Data Programming & Weak Supervision](#data-programming--weak-supervision)
+1. [Data Programming & Weak Supervision](#data-programming--weak-supervision)
+   1. [The Theory of Weak Supervision](#the-theory-of-weak-supervision)
+   2. [Applications](#weak-supervision-applications)
+2. [Data Representations](#data-representations)
+   1. [Embeddings](#embeddings)
+   2. [Learning with Auxiliary Information](#learning-with-auxiliary-information)
+   3. [Success Stories](#data-representation-successes)
+3. [Data Augmentation](#data-augmentation)
+   1. [History](#augmentation-history)
+   2. [Theoretical Foundations](#augmentation-theory)
+4. [Contrastive Learning](#contrastive-learning)
+   1. [Theoretical Foundations](#contrastive-theory)
+   2. [Applications](#contrastive-applications)
+5. [Fine-Grained Evaluation](#fine-grained-evaluation)
+   1. [Slice-Based Evaluation](#slice-based-evaluation)
+   2. [Evaluation on Unlabeled Data](#evaluation-on-unlabeled-data)
+   3. [Benchmarking](#benchmarking)
+6. [Go Big or Go Home](#go-big-or-go-home)
+   1. [Universal Models](#universal-models)
+7. [Applications](#applications)
 
 
 # Data Programming & Weak Supervision
@@ -44,47 +63,11 @@ The theory behind weak supervision and data programming relies on latent variabl
 - In most weak supervision settings, labeling functions are assumed to be conditionally independent, or the dependencies are known. However, when they are not, [robust PCA](https://arxiv.org/pdf/1903.05844.pdf) can be applied to recover the structure.
 - [Comparing labeled versus unlabeled data](https://arxiv.org/pdf/2103.02761.pdf): generative classifiers based on graphical models (e.g. in weak supervision) can accept both labeled and unlabeled data, but unlabeled input is linearly more susceptible to misspecification of the dependency structure. However, this can be corrected using a general median-of-means estimator on top of method-of-moments.  
 
-## Applications
+<h2 id="weak-supervision-applications"> Applications </h2>
 
 ## Success Stories
 - Gmail
 - Google Ads
-
-# Contrastive Learning
-
-## Theoretical Foundations
-Contrastive learning works by optimizing a typically unsupervised loss function that pulls together similar points ("positive" pairs) and pushes apart dissimilar points ("negative" pairs). A theoretical understanding is lacking on what sort of representations are learned under contrastive loss, and what these representations guarantee on downstream tasks.
-
-- [Representations induced on the hypersphere](https://arxiv.org/pdf/2005.10242.pdf): assuming that the representations to learn are constrained to a hypersphere, the contrastive loss function is closely connected to optimizing for "alignment" (positive pairs map to the same representation) and "uniformity" (representations are ``spread out'' as much as possible on the hypersphere to maintain as much as information as possible).
-- [Downstream performance](https://arxiv.org/pdf/1902.09229.pdf): suppose that similar pairs belong to the same latent subclass, and that the downstream task aims to classify among some of these latent subclasses. Then, downstream loss of a linear classifier constructed using mean representations can be expressed in terms of the contrastive loss.
-- [Debiasing contrastive learning](https://arxiv.org/pdf/2007.00224.pdf) and [using hard negative samples](https://openreview.net/pdf?id=CR1XOQ0UTh-): in unsupervised settings, negative pairs are constructed by selecting two points at random i.i.d. This can result in the two points actually belonging to the same latent subclass, but this can be corrected via importance weighting. Moreover, even within different latent subclasses, some negative samples can be ``harder'' than others and enforce better representations.
-
-## Applications
-
-
-# Data Augmentation
-Data augmentation is a standard approach for improving model performance, where additional 
-synthetically modified versions of examples are added to training.
-
-## History
-Augmentation has been instrumental to achieving high-performing models since the original
-[AlexNet](https://papers.nips.cc/paper/2012/file/c399862d3b9d6b76c8436e924a68c45b-Paper.pdf) 
-paper on ILSVRC, which used random crops, translation & reflection of images for training, 
-and test-time augmentation for prediction.
-
-Since then, augmentation has become a de-facto part of image training pipelines.
-
-## Theoretical Foundations
-
-- 
-- [Kernel Theory of Data Augmentation]
-- []
-
-## Learned vs. Specified Augmentations
-
-## Label-Preserving 
-
-## Applications
 
 
 # Data Representations
@@ -143,15 +126,53 @@ Shift towards guiding and coding models with (latent) metadata
 [comment]: <> (- SLLSSL)
 [comment]: <> (- Hyperbolics)
 
-## Success Stories
+<h2 id="data-representation-successes">Success Stories</h2>
 
 ### Feature Stores
 - Uber Michelangelo
 - Feast + Tecton
 
 
+# Data Augmentation
+Data augmentation is a standard approach for improving model performance, where additional 
+synthetically modified versions of examples are added to training.
 
-# Fine-Grained Evaluation & Measurement
+<h2 id="augmentation-history">History</h2>
+
+Augmentation has been instrumental to achieving high-performing models since the original
+[AlexNet](https://papers.nips.cc/paper/2012/file/c399862d3b9d6b76c8436e924a68c45b-Paper.pdf) 
+paper on ILSVRC, which used random crops, translation & reflection of images for training, 
+and test-time augmentation for prediction.
+
+Since then, augmentation has become a de-facto part of image training pipelines.
+
+<h2 id="augmentation-theory">Theoretical Foundations</h2>
+
+- [] 
+- [Kernel Theory of Data Augmentation]()
+
+
+## Learned vs. Specified Augmentations
+
+## Label-Preserving 
+
+## Applications
+
+
+# Contrastive Learning
+
+<h2 id="contrastive-theory">Theoretical Foundations</h2>
+
+Contrastive learning works by optimizing a typically unsupervised loss function that pulls together similar points ("positive" pairs) and pushes apart dissimilar points ("negative" pairs). A theoretical understanding is lacking on what sort of representations are learned under contrastive loss, and what these representations guarantee on downstream tasks.
+
+- [Representations induced on the hypersphere](https://arxiv.org/pdf/2005.10242.pdf): assuming that the representations to learn are constrained to a hypersphere, the contrastive loss function is closely connected to optimizing for "alignment" (positive pairs map to the same representation) and "uniformity" (representations are ``spread out'' as much as possible on the hypersphere to maintain as much as information as possible).
+- [Downstream performance](https://arxiv.org/pdf/1902.09229.pdf): suppose that similar pairs belong to the same latent subclass, and that the downstream task aims to classify among some of these latent subclasses. Then, downstream loss of a linear classifier constructed using mean representations can be expressed in terms of the contrastive loss.
+- [Debiasing contrastive learning](https://arxiv.org/pdf/2007.00224.pdf) and [using hard negative samples](https://openreview.net/pdf?id=CR1XOQ0UTh-): in unsupervised settings, negative pairs are constructed by selecting two points at random i.i.d. This can result in the two points actually belonging to the same latent subclass, but this can be corrected via importance weighting. Moreover, even within different latent subclasses, some negative samples can be ``harder'' than others and enforce better representations.
+
+<h2 id="contrastive-applications">Applications</h2>
+
+
+# Fine-Grained Evaluation
 Models are typically evaluated using average performance, e.g. average accuracy or F1 scores.
 These metrics hide when a model is particularly poor on an important slice of data or if it's 
 decisions are made for the wrong reasons, which may hurt generalization. 
@@ -261,14 +282,18 @@ A variety of importance weighting methods are popular in the literature.
 
 [comment]: <> (Another approach to understand )
 
-## Benchmarking [Avanika]
+## Benchmarking
 
+[comment]: <> ([Avanika])
 [comment]: <> (## Robustness [Jared])
 [comment]: <> (- Hidden Stratification + GEORGE)
 
+
 # Go Big or Go Home
 
-## :frodo-monstertruck-sauron: Universal Models [Karan, Laurel]
+## Universal Models 
+
+[comment]: <> ([Karan, Laurel])
 Shift towards one-model-to-rule-them-all paradigm.
 
 ### Data-Agnostic Architectures
@@ -315,6 +340,7 @@ Models are also becoming more unviersal, capable of handling multiple modalities
 
 [comment]: <> (- Mosaic DataPanels)
 
+
 # Applications
 
 ### Named Entity Linking 
@@ -336,3 +362,5 @@ Models are also becoming more unviersal, capable of handling multiple modalities
 ### Computational Biology 
 
 [comment]: <> ([Sabri, Maya])
+
+
