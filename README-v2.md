@@ -53,17 +53,27 @@ Instructions for adding resources:
 
 
 # Data Programming & Weak Supervision
-[Snorkel: Rapid Training Data Creation with Weak Supervision](http://www.vldb.org/pvldb/vol11/p269-ratner.pdf) was the seminal work on data prgoramming, the ability to label data through programmatic labelling functions.
+Many modern machine learning systems require large, labeled datasets to be successful but producing such datasets is time-consuming and expensive. Instead, weaker sources of supervision, such as in [crowdsourcing](https://papers.nips.cc/paper/2011/file/c667d53acd899a97a85de0c201ba99be-Paper.pdf), [distant supervision](https://www.aclweb.org/anthology/P09-1113.pdf), and domain experts' heuristics, can be combined to programmatically create training datasets via [data programming](https://arxiv.org/pdf/1605.07723.pdf). Users specify many labeling functions that represent a noisy estimate of the ground-truth label. Because these labeling functions conflict and may be correlated, they are combined and denoised via a latent variable graphical model. The technical challenge is thus to learn accuracy and correlation parameters in this model, and to use them to infer the true label to be used for downstream tasks.
 
+We first present some recent work on weak supervision and various algorithmic developments in how to learn the graphical model. We then refer to some fundamental literature in graphical models that underlies this recent work.
+
+
+## Recent work
+- [This Snorkel blog post](https://www.snorkel.org/blog/weak-supervision) provides an overview of the weak supervision pipeline, including how it compares to other approaches to get more labeled data and the technical modeling challenges.
+- [These Stanford CS229 lecture notes](https://mayeechen.github.io/files/wslecturenotes.pdf) provide a more theoretical summary of how graphical models are used in weak supervision.
+- [MeTaL](https://arxiv.org/pdf/1810.02840.pdf): learning the parameters can be done via a matrix completion problem based on the fact that the (augmented) inverse covariance matrix of the labeling functions and true label is graph-structured, meaning that it has a 0 in locations where the row and column variables are independent conditional on all other variables. Under sufficient sparsity of the graphical model, this property can be utilized to learn the latent parameters of the model. 
+- [Learning dependencies](https://arxiv.org/pdf/1903.05844.pdf): in most weak supervision settings, labeling functions are assumed to be conditionally independent, or the dependencies are known. However, when they are not, robust PCA can be applied to recover the structure.
+- [FlyingSquid](https://arxiv.org/pdf/2002.11955.pdf): beyond using the inverse covariance matrix, certain families of graphical models can use method-of-moments---computing correlations among triplets of conditionally independent variables---to estimate latent parameters, which removes the need for SGD and speeds up weak supervision, enabling online and streaming settings.
+- [Comparing labeled versus unlabeled data](https://arxiv.org/pdf/2103.02761.pdf): generative classifiers based on graphical models (e.g. in weak supervision) can accept both labeled and unlabeled data (since usually practitioners have a small amount of labeled data available), but unlabeled input is linearly more susceptible to misspecification of the dependency structure. However, this can be corrected using a general median-of-means estimator on top of method-of-moments.
+  
 ## The Theory of Weak Supervision
-
 The theory behind weak supervision and data programming relies on latent variable estimation in graphical models.
 
-- [Wainwright and Jordan textbook](https://people.eecs.berkeley.edu/~wainwrig/Papers/WaiJor08_FTML.pdf): provides an overview of graphical models
-- [Structured inverse covariance matrices](https://arxiv.org/pdf/1212.0478.pdf): the (augmented) inverse covariance matrix of a graphical model will have 0s in locations where the row and column indices are independent conditional on all other random variables. Under sufficient sparsity of the graphical model, this property can be used in weak supervision to learn the correlations between latent variables (i.e. the unobserved ground-truth label). 
-- Beyond using the inverse covariance matrix, certain families of graphical models can use method-of-moments---computing correlations among triplets of conditional independent variables---to estimate latent parameters. In the scalar setting, [FlyingSquid](https://arxiv.org/pdf/2002.11955.pdf) applies this method to weak supervision, and more generally [tensor decomposition](https://www.jmlr.org/papers/volume15/anandkumar14b/anandkumar14b.pdf) can be used in latent variable estimation.
-- In most weak supervision settings, labeling functions are assumed to be conditionally independent, or the dependencies are known. However, when they are not, [robust PCA](https://arxiv.org/pdf/1903.05844.pdf) can be applied to recover the structure.
-- [Comparing labeled versus unlabeled data](https://arxiv.org/pdf/2103.02761.pdf): generative classifiers based on graphical models (e.g. in weak supervision) can accept both labeled and unlabeled data, but unlabeled input is linearly more susceptible to misspecification of the dependency structure. However, this can be corrected using a general median-of-means estimator on top of method-of-moments.  
+- [This textbook](https://people.eecs.berkeley.edu/~wainwrig/Papers/WaiJor08_FTML.pdf) by Martin J. Wainwright and Michael I. Jordan provides an overview of graphical models. Other textbooks on graphical models include [one by Daphne Koller and Nir Friedman](https://mitpress.mit.edu/books/probabilistic-graphical-models) and [Steffen Lauritzen's book](http://www.statslab.cam.ac.uk/~qz280/teaching/causal-2019/reading/Lauritzen_1996_Graphical_Models.pdf).
+- [Structured inverse covariance matrices](https://arxiv.org/pdf/1212.0478.pdf): this paper establishes the connection between the dependency structure of a graphical model and the inverse of a generalized covariance matrix, a key relationship utilized in latent variable estimation for weak supervision.
+- [Robust PCA](https://dl.acm.org/doi/pdf/10.1145/1970392.1970395) aims to recover a decomposition of a matrix into sparse and low-rank components in a way that is robust to arbitrarily large entrywise corruptions in the sparse matrix. It is used along with graph-structured inverse covariance matrices to learn dependencies in the graphical model.
+- [Tensor decomposition](https://www.jmlr.org/papers/volume15/anandkumar14b/anandkumar14b.pdf) is a more general form of the factorizations of variables used in weak supervision (i.e. in FlyingSquid) and can be used in latent variable estimation.
+
 
 <h2 id="weak-supervision-applications"> Applications </h2>
 
@@ -189,30 +199,75 @@ Augmentation has been instrumental to achieving high-performing models since the
 paper on ILSVRC, which used random crops, translation & reflection of images for training, 
 and test-time augmentation for prediction.
 
-Since then, augmentation has become a de-facto part of image training pipelines.
+Since then, augmentation has become a de-facto part of image training pipelines and 
+an integral part of text applications such as machine translation.
 
 <h2 id="augmentation-theory">Theoretical Foundations</h2>
 
-- [] 
-- [Kernel Theory of Data Augmentation]()
+- [Tangent Propagation](https://papers.nips.cc/paper/1991/file/65658fde58ab3c2b6e5132a39fae7cb9-Paper.pdf) expresses desired model invariances induced by a data augmentation as tangent constraints on the directional derivatives of the learned model
+- [Kernel Theory of Data Augmentation](http://proceedings.mlr.press/v97/dao19b/dao19b.pdf)
+- [On the Generalization Effects of Linear Transformations in Data Augmentation](https://arxiv.org/abs/2005.00695)
+
+<h2 id="augmentation-primitives">Augmentation Primitives</h2>
+
+### Hand-Crafted Primitives
+
+#### Images
+Heuristic transformations are commonly used in image augmentations, such as rotations, flips or crops 
+(e.g. [AlexNet](https://papers.nips.cc/paper/2012/file/c399862d3b9d6b76c8436e924a68c45b-Paper.pdf), [Inception](https://arxiv.org/abs/1409.4842.pdf)). 
+
+Recent work has hand-crafted more sophisticated primitives, such as 
+- [Cutout](https://arxiv.org/abs/1708.04552)
+- [Mixup](https://arxiv.org/pdf/1710.09412.pdf)
+- [CutMix](https://arxiv.org/abs/1905.04899.pdf) 
+- [MixMatch](https://arxiv.org/pdf/1905.02249.pdf) and [ReMixMatch](https://arxiv.org/abs/1911.09785.pdf) 
+  
+While these primitives have culminated in compelling performance gains, they can often produce unnatural images and distort image semantics.
+
+#### Text
+Heuristic transformations for text, typically involve paraphrasing text in order to produce more diverse samples.
+
+- [Backtranslation](https://arxiv.org/abs/1511.06709) uses a round-trip translation from a source to target language and back in order to generate a paraphrase. 
+  Examples of use include [QANet](https://arxiv.org/abs/1804.09541).
+- Synonym substitution methods
+- Noising
+- Grammar induction
+- Text editing
+- Other heuristics
+
+#### Audio
+
+- Vocal Tract Length Warping
+- Stochastic Feature Mapping
 
 
-## Learned vs. Specified Augmentations
+### Assembled Pipelines 
+Recent work learns augmentation pipelines to determine the right subset of augmentation primitives, and the order in which they should be applied.
+These pipelines are primarily built on top of a fixed set of generic transformations.
+Methods vary by the learning algorithm used, which can be
 
-## Label-Preserving 
+- random sampling such as in [RandAugment](https://arxiv.org/pdf/1909.13719.pdf)
+- reinforcement learning such as in [AutoAugment](https://openaccess.thecvf.com/content_CVPR_2019/papers/Cubuk_AutoAugment_Learning_Augmentation_Strategies_From_Data_CVPR_2019_paper.pdf) and [TANDA](https://arxiv.org/pdf/1709.01643.pdf) 
+- computationally efficient algorithms for learning augmentation policies have also been proposed such as [Population-Based Augmentation](https://arxiv.org/pdf/1905.05393.pdf) and [Fast AutoAugment](https://arxiv.org/pdf/1905.00397.pdf).
 
-## Applications
+[comment]: <> (### Learned Primitives)
+
+
+## Further Reading
+- the ["Automating the Art of Data Augmentation"](https://hazyresearch.stanford.edu/data-aug-part-1) 
+  series of blog posts by [Sharon Li](http://pages.cs.wisc.edu/~sharonli/) provide an overview of data augmentation.
 
 
 # Contrastive Learning
 
 <h2 id="contrastive-theory">Theoretical Foundations</h2>
 
-Contrastive learning works by optimizing a typically unsupervised loss function that pulls together similar points ("positive" pairs) and pushes apart dissimilar points ("negative" pairs). A theoretical understanding is lacking on what sort of representations are learned under contrastive loss, and what these representations guarantee on downstream tasks.
+Contrastive learning works by optimizing a loss function that pulls together similar points ("positive" pairs) and pushes apart dissimilar points ("negative" pairs). Compared to its empirical success in self-supervision, a theoretical understanding of contrastive learning is relatively lacking in terms of what sort of representations are learned by minimizing contrastive loss, and what these representations guarantee on downstream tasks.
 
-- [Representations induced on the hypersphere](https://arxiv.org/pdf/2005.10242.pdf): assuming that the representations to learn are constrained to a hypersphere, the contrastive loss function is closely connected to optimizing for "alignment" (positive pairs map to the same representation) and "uniformity" (representations are ``spread out'' as much as possible on the hypersphere to maintain as much as information as possible).
-- [Downstream performance](https://arxiv.org/pdf/1902.09229.pdf): suppose that similar pairs belong to the same latent subclass, and that the downstream task aims to classify among some of these latent subclasses. Then, downstream loss of a linear classifier constructed using mean representations can be expressed in terms of the contrastive loss.
-- [Debiasing contrastive learning](https://arxiv.org/pdf/2007.00224.pdf) and [using hard negative samples](https://openreview.net/pdf?id=CR1XOQ0UTh-): in unsupervised settings, negative pairs are constructed by selecting two points at random i.i.d. This can result in the two points actually belonging to the same latent subclass, but this can be corrected via importance weighting. Moreover, even within different latent subclasses, some negative samples can be ``harder'' than others and enforce better representations.
+- [Representations induced on the hypersphere](https://arxiv.org/pdf/2005.10242.pdf): assuming that the representations to learn are constrained to a hypersphere, the contrastive loss function is closely connected to optimizing for "alignment" (positive pairs map to the same representation) and "uniformity" (representations are "spread out" as much as possible on the hypersphere to maintain as much as information as possible).
+- [Downstream performance](https://arxiv.org/pdf/1902.09229.pdf): suppose that similar pairs belong to the same latent subclass, and that the downstream task aims to classify among some of these latent subclasses. Then, downstream loss of a linear classifier constructed using mean representations can be expressed in terms of the unsupervised contrastive loss.
+- [Debiasing contrastive learning](https://arxiv.org/pdf/2007.00224.pdf) and [using hard negative samples](https://openreview.net/pdf?id=CR1XOQ0UTh-): in unsupervised settings, negative pairs are constructed by selecting two points at random i.i.d. This can result in the two points actually belonging to the same latent subclass, but this can be corrected via importance weighting. Moreover, even within different latent subclasses, some negative samples can be "harder" than others and enforce better representations.
+
 
 <h2 id="contrastive-applications">Applications</h2>
 
@@ -310,16 +365,16 @@ methods that use a small target sample to estimate performance.
 
 ### Estimating Target Performance
 
-Distribution shift between labeled source data and unlabeled target data can be addressed
-with importance weighting. 
+Models are often deployed on an unlabeled target dataset different from the labeled source data they were trained and validated on. To efficiently check how the model performs on the target dataset, importance weighting by the distributions' density ratio is used to correct for distribution shift. 
 A variety of importance weighting methods are popular in the literature. 
 
-
+Below are some resources on distribution shift, importance weighting, and density ratio estimation:
 - [Density Ratio Estimation for Machine Learning](https://www.cambridge.org/core/books/density-ratio-estimation-in-machine-learning/BCBEA6AEAADD66569B1E85DDDEAA7648) explains the different approaches to estimate density ratios, a key technical step in computing importance weights.
+- [Art Owen's notes on importance sampling](https://statweb.stanford.edu/~owen/mc/Ch-var-is.pdf) provides an overview of importance weighting with connections to Monte Carlo theory.
 - [CS329D at Stanford: ML Under Distribution Shifts](https://thashim.github.io/cs329D-spring2021/) covers current research in distribution shift, ranging from covariate shift to adversarial robustness.
 - [Propensity Scores](https://academic.oup.com/biomet/article/70/1/41/240879) are used in observational studies for correcting disparities when evaluating treatment on a target population given that the treatment was applied to a set of potentially biased subjects. 
 - [Learning Bounds on Importance Weighting](https://papers.nips.cc/paper/2010/file/59c33016884a62116be975a9bb8257e3-Paper.pdf): how well importance weighting corrects for distribution shift can be attributed to the variance of the weights, or alternatively the R\'enyi divergence between source and target.
-- [Mandoline](?) works poorly when the supports of the source and target do not overlap and when data is high-dimensional. Mandoline addresses this by reweighting based on user/model-defined ``slices'' that intend to capture relevant axes of distribution shift.
+- Importance weighting works poorly when the supports of the source and target do not overlap and when data is high-dimensional. [Mandoline](https://mayeechen.github.io/files/mandoline.pdf)  addresses this by reweighting based on user/model-defined ``slices'' that intend to capture relevant axes of distribution shift. Slices are often readily available as subpopulations identified by the practitioner, but can also be based on things like metadata and the trained model's scores.
 
 ### Outlier Detection
 
@@ -374,9 +429,23 @@ Models are also becoming more unviersal, capable of handling multiple modalities
 [comment]: <> (### Other Links)
 [comment]: <> (- Stanford class [upcoming])
 
-## Efficient Models and Sparsity
+## Efficient Models
+Training large MLP models or Transformers requires extensive computational and memory resources, especially for wide linear layers or when modeling long sequences, mainly due to the quadratic complexity (w.r.t. input sequence length) in attention layers, respectively. 
 
-[comment]: <> ([Beidi, Tri])
+### Exploit Sparsity
+- For efficient MLP Training, [SLIDE](https://arxiv.org/pdf/1903.03129.pdf) uses Locality Sensitive Hashing(LSH) for approximating dense matrix multiplications in linear layers preceding a softmax (identify sparsity patterns).
+- For efficient Transformers Training, [Reformer](https://arxiv.org/pdf/2001.04451.pdf) uses similar techniques, LSH, to reduce quadratic computations in attention layers.
+- [MONGOOSE](https://openreview.net/pdf?id=wWK7yXkULyh) uses a scheduling algorithm and learnable hash functions to address LSH overhead and further speed-up MLP and Transformer training. 
+- [Routing Transformers](https://arxiv.org/pdf/2003.05997.pdf) and [Smyrf](https://arxiv.org/pdf/2010.05315.pdf) use other similar techniques, such as k-means or asymmetric LSH to identify sparsity patterns.
+
+### Exploit Low-rank Properties
+- This [paper](http://www.vikas.sindhwani.org/lowRank.pdf) uses low-rank matrix factorization to reduce the computation for linear layers.
+- For efficient attention computation in Transformers, [Performer](https://arxiv.org/pdf/2009.14794.pdf), [Linformer](http://proceedings.mlr.press/v119/katharopoulos20a/katharopoulos20a.pdf), [Linear Transformer](https://arxiv.org/pdf/2006.04768.pdf) use either low-rank or kernel approximation techniques.
+
+### Sparse+Low-rank and other References
+- Inspired by the classical robust-PCA algorithm for sparse and low-rank decomposition, [Scatterbrain]() unifies sparse (via LSH) and low-rank (via kernel feature map) attention for accurate and efficient approximation. 
+- This [survey paper](https://arxiv.org/pdf/2009.06732.pdf) covers most of the efficient Transformer variants.
+- [Long Range Arena](https://arxiv.org/pdf/2011.04006.pdf) is a systematic and unified benchmark, focused on evaluating model quality under long-context scenarios.
 
 
 ## :joystick: Interactive Machine Learning
@@ -400,6 +469,7 @@ Models are also becoming more unviersal, capable of handling multiple modalities
 # Applications
 
 <h2 id="named-entity-linking">Named Entity Linking</h2>
+
 Named entity linking (NEL) is the task of linking ambiguous mentions in text to entities in a knowledge base. NEL is a core preprocessing step in downstream applications, including search and question answering. 
 
 - [Shift towards simple Transformer models for NEL with bi-encoders and cross-encoders](https://arxiv.org/abs/1911.03814): recent state-of-the-art models such as BLINK rely on a simple two-stage architecture for NEL. First a bi-encoder retrieves candidate entitites by embedding the query and entities. Then a cross-encoder re-ranks the candidate entities.  
@@ -419,15 +489,16 @@ Named entity linking (NEL) is the task of linking ambiguous mentions in text to 
 [comment]: <> ([Sarah])
 
 <h2 id="computational-biology">:dna: Computational Biology</h2>
+
 - :pill: Collecting the right data for training and evalution can require wetlab work – especially in computational drug discovery. 
-   - [A Deep Learning Approach to Antibiotic Discovery](https://www.cell.com/cell/pdf/S0092-8674(20)30102-1.pdf))
-   - [Network medicine framework for identifying drug-repurposing opportunities for COVID-19](https://www.pnas.org/content/118/19/e2025581118))
+   - [A Deep Learning Approach to Antibiotic Discovery](https://www.cell.com/cell/pdf/S0092-8674(20)30102-1.pdf)
+   - [Network medicine framework for identifying drug-repurposing opportunities for COVID-19](https://www.pnas.org/content/118/19/e2025581118)
    
 - :jigsaw: Non-standard data modalities are common in computational biology. 
-   - Biological Interaction Networks (_e.g._ [Network-based in silico drug efficacy screening](https://www.nature.com/articles/ncomms10331), [Identification of disease treatment mechanisms through the multiscale interactome](https://www.nature.com/articles/s41467-021-21770-8))
-   - Chemical Graphs (_e.g._ [Strategies for pre-training graph neural networks](https://arxiv.org/pdf/1905.12265.pdf))
-   - DNA, RNA and Amino Acid sequences (_e.g._[Sequential regulatory activity prediction across chromosomes with convolutional neural networks](https://genome.cshlp.org/content/28/5/739.short))
-   - 3D structures (_e.g._ [Learning from protein structure with geometric vector perceptrons](https://openreview.net/pdf?id=1YLJDvSx6J4))
+   - Biological Interaction Networks (_e.g._ [Network-based in silico drug efficacy screening](https://www.nature.com/articles/ncomms10331), [Identification of disease treatment mechanisms through the multiscale interactome](https://www.nature.com/articles/s41467-021-21770-8)
+   - Chemical Graphs (_e.g._ [Strategies for pre-training graph neural networks](https://arxiv.org/pdf/1905.12265.pdf)
+   - DNA, RNA and Amino Acid sequences (_e.g._[Sequential regulatory activity prediction across chromosomes with convolutional neural networks](https://genome.cshlp.org/content/28/5/739.short)
+   - 3D structures (_e.g._ [Learning from protein structure with geometric vector perceptrons](https://openreview.net/pdf?id=1YLJDvSx6J4)
 
 - In order to facilitate the extraction of relevant signal from large biological datasets, methods have been designed to prune irrelevant features and integrate knowledge across datasets.  
    - [AMELIE](https://stm.sciencemag.org/content/scitransmed/12/544/eaau9113.full.pdf) helps improve diagnosis of Mendelian disorders by integrating information from a patient’s phenotype and genotype and automatically identifying relevant references to literature.
