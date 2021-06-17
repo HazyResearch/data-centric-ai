@@ -48,6 +48,8 @@ Instructions for adding resources:
 6. [Go Big or Go Home](#go-big-or-go-home)
    1. [Universal Models](#universal-models)
 7. [Applications](#applications)
+   1. [Named Entity Linking](#named-entity-linking) 
+   2. [Computational Biology](#computational-biology)
 
 
 # Data Programming & Weak Supervision
@@ -107,15 +109,58 @@ Stability describes the sensitivity of machine learning models (e.g. embeddings)
 ## Learning with Auxiliary Information
 Shift towards guiding and coding models with (latent) metadata
 
-### Higher-Level Signals 
+### Learning with Structured Data
 
-[comment]: <> ([Laurel, Maya, Megan])
-- Bootleg blog on structural resources. Uses structural resources to overcome the tail
-- Just using descriptions rather than any memorization with BLINK
+Structured data, such as the types associated with an entity, can provide useful signals for training models, alongside unstructured text corpora.  
 
-[comment]: <> (### Data Shaping [Simran])
+- [Bootleg](https://hazyresearch.stanford.edu/bootleg/) is a system that leverages structured data in the form of type and knowledge graph relations to improve named entity disambiguation over 40 F1 points for rare entities. 
+- This [blog]([README.md](https://hazyresearch.stanford.edu/bootleg_blog)) describes how Bootleg uses both structured and unstructured data to learn reasoning patterns, such as certain words should be associated with a type.  
 
-[comment]: <> (### Subgroup Information [Michael])
+### Data Shaping
+Standard language models struggle to reason over the long-tail of 
+entity-based knowledge and significant recent work 
+tackles this challenge by providing the model with external knowledge signals. 
+Prior methods modify the model architecture and/or algorithms to introduce the knowledge.
+
+In contrast, data shaping involves introduces external knowledge to the raw data 
+inputted to a language model. 
+While it may be difficult to efficiently deploy the specialized and sophisticated 
+models as proposed in prior work, data shaping simply uses the 
+standard language model with no modifications whatsoever to achieve competitive performance.
+
+- Recent work on knowledge-aware language modeling, involving a modified architecture and/or learning algorithm: 
+  [E-BERT](https://arxiv.org/abs/1911.03681) (Poerner, 2020), [K-Adapter](https://arxiv.org/abs/2002.01808) (Wang, 2020), 
+  [KGLM](https://arxiv.org/abs/1906.07241) (Logan, 2019), [KnowBERT](https://arxiv.org/abs/1909.04164) (Peters, 2019), 
+  [LUKE](https://www.aclweb.org/anthology/2020.emnlp-main.523.pdf) (Yamada, 2020), [ERNIE](https://arxiv.org/abs/1905.07129) (Zhang, 2019)
+- Examples demonstrating how to introduce inductive biases through the data for knowledge-based reasoning: 
+  [TEK](https://arxiv.org/pdf/2004.12006.pdf) (Joshi 2020),  [Data Noising](https://arxiv.org/pdf/1703.02573.pdf) (Xie, 2017), 
+  [DeepType](https://arxiv.org/abs/1802.01021) (Raiman, 2018)
+- Recent theoretical analyses of LM generalization reason about the data distributions. 
+  Information theory is an important foundational topic here: [Information Theory and Statistics](http://web.stanford.edu/class/stats311/) (Stanford STAT 311)
+
+### Subgroup Information
+
+Similar to observations brought up with hidden stratification, 
+a data subset or "subgroup" may carry spurious correlations between its features and 
+labels that do not hold for datapoints outside of the subgroup. When certain subgroups are larger 
+than others, models trained to minimize average error are susceptible to learning these 
+spurious correlations and performing poorly on the minority subgroups. 
+
+To obtain good performance on *all* subgroups, in addition to the ground-truth labels we can bring in subgroup information during training.
+
+- [Group Distributionally Robust Optimization (Group DRO)](https://arxiv.org/abs/1911.08731) assumes knowledge of which subgroup each training sample belongs to, and proposes a training algorithm that reweights the loss objective to focus on subgroups with higher error.  
+- [Model Patching](https://arxiv.org/abs/2008.06775) uses a generative model to synthesize samples from certain subgroups as if they belonged to another. These augmentations can then correct for subgroup imbalance, such that training on the new dataset mitigates learning correlations that only hold for the original majority subgroups.
+
+Subgroup information also does not need to be explicitly annotated or known. Several recent works aim to first infer subgroups before using a robust training method to obtain good performance on all subgroups. A frequent heuristic is to use the above observation that models trained with empirical risk minimization (ERM) and that minimize average error may still perform poorly on minority subgroups; one can then infer minority or majority subgroups depending on if the trained ERM model correctly predicts the datapoints.
+
+- [Learning from Failure (LfF)](https://arxiv.org/abs/2007.02561) trains two models in tandem. Each model trains on the same data batches, where for each batch, datapoints that the first model gets incorrect are upweighted in the loss objective for the second model. 
+- [Just Train Twice (JTT)]() trains an initial ERM model for a few epochs, identifies the datapoints this model gets incorrect after training, and trains a new model with ERM on the same dataset but with the incorrect points upsampled.  
+- [Correct-N-Contrast (CNC)]() also trains an initial ERM model, but uses supervised contrastive learning to train a new model to learn similar representations for datapoints with the same class but different trained ERM model predictions.
+
+
+[comment]: <> (### Explanations)
+
+
 
 [comment]: <> (### Observational Supervision [Khaled])
 
@@ -334,7 +379,18 @@ Models are also becoming more unviersal, capable of handling multiple modalities
 [comment]: <> ([Beidi, Tri])
 
 
-[comment]: <> (## Interactive Machine Learning [Karan, Sabri, Arjun, Laurel])
+## :joystick: Interactive Machine Learning
+
+- **Explanatory interactive learning** Can we, by interacting with models during training, encourage their explanations to line up with our priors on what parts of the input are relevant?
+   - [Right for the Right Reasons: Training Differentiable Models by Constraining their Explanations](https://arxiv.org/pdf/1703.03717.pdf)
+   - [Explanatory Interactive Machine Learning](https://ml-research.github.io/papers/teso2019aies_XIML.pdf)
+   - [Making deep neural networks right for the right scientific reasons by interacting with their explanations](https://www.nature.com/articles/s42256-020-0212-3)
+    
+- **[Mosaic](https://github.com/robustness-gym/mosaic)** makes it easier for ML practitioners to interact with high-dimensional, multi-modal data. It provides simple abstractions for data inspection, model evaluation and model training supported by efficient and robust IO under the hood. Mosaic's core contribution is the DataPanel, a simple columnar data abstraction. The Mosaic DataPanel can house columns of arbitrary type – from integers and strings to complex, high-dimensional objects like videos, images, medical volumes and graphs.
+   - [Introducing Mosaic](https://www.notion.so/Introducing-Mosaic-64891aca2c584f1889eb0129bb747863) (blog post)
+   - [Working with Images in Mosaic](https://drive.google.com/file/d/15kPD6Kym0MOpICafHgO1pCt8T2N_xevM/view?usp=sharing) (Google Colab)
+   - [Working with Medical Images in Mosaic](https://colab.research.google.com/drive/1UexpPqyXdKp6ydBf87TW7LtGIoU5z6Jy?usp=sharing) (Google Colab)
+
 
 [comment]: <> (- Forager [Fait])
 
@@ -343,24 +399,39 @@ Models are also becoming more unviersal, capable of handling multiple modalities
 
 # Applications
 
-### Named Entity Linking 
+<h2 id="named-entity-linking">Named Entity Linking</h2>
+Named entity linking (NEL) is the task of linking ambiguous mentions in text to entities in a knowledge base. NEL is a core preprocessing step in downstream applications, including search and question answering. 
 
-[comment]: <> ([Laurel, Maya, Megan])
+- [Shift towards simple Transformer models for NEL with bi-encoders and cross-encoders](https://arxiv.org/abs/1911.03814): recent state-of-the-art models such as BLINK rely on a simple two-stage architecture for NEL. First a bi-encoder retrieves candidate entitites by embedding the query and entities. Then a cross-encoder re-ranks the candidate entities.  
+- [Data-driven improvements in NEL through weak labeling](https://arxiv.org/pdf/2010.10363.pdf): Bootleg uses weak labeling of the training data to noisily assign entity links to mentions, increasing performance over rare entities. 
 
-### Video 
+
+## Video 
 
 [comment]: <> ([Dan])
 
-### Medical Imaging 
+## Medical Imaging 
 
 [comment]: <> ([Sarah, Arjun])
 
-### Image Segmentation 
+## Image Segmentation 
 
 [comment]: <> ([Sarah])
 
-### Computational Biology 
+<h2 id="computational-biology">:dna: Computational Biology</h2>
+- :pill: Collecting the right data for training and evalution can require wetlab work – especially in computational drug discovery. 
+   - [A Deep Learning Approach to Antibiotic Discovery](https://www.cell.com/cell/pdf/S0092-8674(20)30102-1.pdf))
+   - [Network medicine framework for identifying drug-repurposing opportunities for COVID-19](https://www.pnas.org/content/118/19/e2025581118))
+   
+- :jigsaw: Non-standard data modalities are common in computational biology. 
+   - Biological Interaction Networks (_e.g._ [Network-based in silico drug efficacy screening](https://www.nature.com/articles/ncomms10331), [Identification of disease treatment mechanisms through the multiscale interactome](https://www.nature.com/articles/s41467-021-21770-8))
+   - Chemical Graphs (_e.g._ [Strategies for pre-training graph neural networks](https://arxiv.org/pdf/1905.12265.pdf))
+   - DNA, RNA and Amino Acid sequences (_e.g._[Sequential regulatory activity prediction across chromosomes with convolutional neural networks](https://genome.cshlp.org/content/28/5/739.short))
+   - 3D structures (_e.g._ [Learning from protein structure with geometric vector perceptrons](https://openreview.net/pdf?id=1YLJDvSx6J4))
 
-[comment]: <> ([Sabri, Maya])
+- In order to facilitate the extraction of relevant signal from large biological datasets, methods have been designed to prune irrelevant features and integrate knowledge across datasets.  
+   - [AMELIE](https://stm.sciencemag.org/content/scitransmed/12/544/eaau9113.full.pdf) helps improve diagnosis of Mendelian disorders by integrating information from a patient’s phenotype and genotype and automatically identifying relevant references to literature.
+   - [This](https://journals.plos.org/plosgenetics/article?id=10.1371/journal.pgen.1004754) article discusses the importance of creating effective feature selection methods to filter irrelevant features from large whole genome datasets. Other works (such as [this one](https://bmcbioinformatics.biomedcentral.com/articles/10.1186/s12859-020-03693-1) and [this one](https://www.worldscientific.com/doi/abs/10.1142/9789813279827_0024)) discuss approaches for identifying putative genetic variants by incorporating information from interaction networks or utilizing independent control datasets.
+   - Approaches for extracting biological information from medical literature (such as [chemical-disease relation extraction](https://link.springer.com/article/10.1186/s13321-016-0165-z) and [genotype-phenotype association extraction](https://www.nature.com/articles/s41467-019-11026-x)) have benefitted from data programming techniques as well as the incorporation of weakly labeled data.
 
 
