@@ -26,6 +26,11 @@ Instructions for adding resources:
 
 ---
 
+# Table of Contents
+
+[Data Programming & Weak Supervision](#data-programming--weak-supervision)
+
+
 # Data Programming & Weak Supervision
 [Snorkel: Rapid Training Data Creation with Weak Supervision](http://www.vldb.org/pvldb/vol11/p269-ratner.pdf) was the seminal work on data prgoramming, the ability to label data through programmatic labelling functions.
 
@@ -119,7 +124,9 @@ Stability describes the sensitivity of machine learning models (e.g. embeddings)
 ## Learning with Auxiliary Information
 Shift towards guiding and coding models with (latent) metadata
 
-### Higher-Level Signals [Laurel, Maya, Megan]
+### Higher-Level Signals 
+
+[comment]: <> ([Laurel, Maya, Megan])
 - Bootleg blog on structural resources. Uses structural resources to overcome the tail
 - Just using descriptions rather than any memorization with BLINK
 
@@ -136,7 +143,7 @@ Shift towards guiding and coding models with (latent) metadata
 [comment]: <> (- SLLSSL)
 [comment]: <> (- Hyperbolics)
 
-## Success Storeis
+## Success Stories
 
 ### Feature Stores
 - Uber Michelangelo
@@ -251,7 +258,8 @@ A variety of importance weighting methods are popular in the literature.
 ### Outlier Detection
 
 ### Active Sampling and Labeling
-Another approach to understand 
+
+[comment]: <> (Another approach to understand )
 
 ## Benchmarking [Avanika]
 
@@ -296,7 +304,9 @@ Models are also becoming more unviersal, capable of handling multiple modalities
 [comment]: <> (### Other Links)
 [comment]: <> (- Stanford class [upcoming])
 
-## Efficient Models and Sparsity [Beidi, Tri]
+## Efficient Models and Sparsity
+
+[comment]: <> ([Beidi, Tri])
 
 
 [comment]: <> (## Interactive Machine Learning [Karan, Sabri, Arjun, Laurel])
@@ -307,12 +317,22 @@ Models are also becoming more unviersal, capable of handling multiple modalities
 
 # Applications
 
-### Named Entity Linking [Laurel, Maya, Megan]
+### Named Entity Linking 
 
-### Video [Dan]
+[comment]: <> ([Laurel, Maya, Megan])
 
-### Medical Imaging [Sarah, Arjun]
+### Video 
 
-### Image Segmentation [Sarah]
+[comment]: <> ([Dan])
 
-### Computational Biology [Sabri, Maya]
+### Medical Imaging 
+
+[comment]: <> ([Sarah, Arjun])
+
+### Image Segmentation 
+
+[comment]: <> ([Sarah])
+
+### Computational Biology 
+
+[comment]: <> ([Sabri, Maya])
