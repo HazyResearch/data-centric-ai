@@ -59,9 +59,7 @@ How data is represented and transferred
 Stability describes the sensitivity of machine learning models (e.g. embeddings) to changes in their input. In production settings, machine learning models may be constantly retrained on up-to-date data ([sometimes every hour](https://research.fb.com/wp-content/uploads/2017/12/hpca-2018-facebook.pdf)!), making it critical to understand their stability. Recent works have shown that word embeddings can suffer from instability: 
 
 - [Factors Influencing the Surprising Instability of Word Embeddings](https://www.aclweb.org/anthology/N18-1190.pdf) evaluates the impact of word properties (e.g. part of speech), data properties (e.g. word frequencies), and algorithms ([PPMI](https://link.springer.com/content/pdf/10.3758/BF03193020.pdf), [GloVe](https://www.aclweb.org/anthology/D14-1162.pdf), [word2vec](https://papers.nips.cc/paper/2013/file/9aa42b31882ec039965f3c4923ce901b-Paper.pdf)) on word embedding stability. 
-
 - [Evaluating the Stability of Embedding-based Word Similarities](https://www.aclweb.org/anthology/Q18-1008.pdf) shows that small changes in the training data, such as including specific documents, causes the nearest neighbors of word embeddings to vary significantly.
-
 - [Understanding the Downstream Instability of Word Embeddings](https://arxiv.org/abs/2003.04983) demonstrates that instability can propagate to the downstream models that use word embeddings and introduces a theoretically-motivated measure to help select embeddings to minimize downstream instability.  
   
 ### Embedding Patching [Laurel]
@@ -102,9 +100,12 @@ When you don't have enough data, inductive biases can make models much more effi
 ## Learning with Auxiliary Information
 Shift towards guiding and coding models with (latent) metadata
 
-### Higher-Level Signals [Laurel, Maya, Megan]
-- Bootleg blog on structural resources. Uses structural resources to overcome the tail
-- Just using descriptions rather than any memorization with BLINK
+### Learning with Structured Data [Laurel, Maya, Megan]
+
+Structured data, such as the types associated with an entity, can provide useful signals for training models, alongside unstructured text corpora.  
+
+- [Bootleg](https://hazyresearch.stanford.edu/bootleg/) is a system that leverages structured data in the form of type and knowledge graph relations to improve named entity disambiguation over 40 F1 points for rare entities. 
+- This [blog]([README.md](https://hazyresearch.stanford.edu/bootleg_blog)) describes how Bootleg uses both structured and unstructured data to learn reasoning patterns, such as certain words should be associated with a type.  
 
 ### Data Shaping [Simran]
 
@@ -116,8 +117,11 @@ Shift towards guiding and coding models with (latent) metadata
 ## Applications
 
 ### Named Entity Linking [Laurel, Maya, Megan]
-- Shift towards simple Transformer models with BLINK and CrossEncoder
-- Using more data-driven changes with Zero-Shot Description and Bootleg
+
+Named entity linking (NEL) is the task of linking ambiguous mentions in text to entities in a knowledge base. NEL is a core preprocessing step in downstream applications, including search and question answering. 
+
+- [Shift towards simple Transformer models for NEL with bi-encoders and cross-encoders](https://arxiv.org/abs/1911.03814): recent state-of-the-art models such as BLINK rely on a simple two-stage architecture for NEL. First a bi-encoder retrieves candidate entitites by embedding the query and entities. Then a cross-encoder re-ranks the candidate entities.  
+- [Data-driven improvements in NEL through weak labeling](https://arxiv.org/pdf/2010.10363.pdf): Bootleg uses weak labeling of the training data to noisily assign entity links to mentions, increasing performance over rare entities. 
 
 ### Video [Dan]
 
