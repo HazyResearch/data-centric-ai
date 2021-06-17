@@ -125,8 +125,15 @@ Shift towards guiding and coding models with (latent) metadata
 
 ### Image Segmentation [Sarah]
 
-### Computational Biology [Sabri, Maya]
-
+### :dna: Computational Biology [Sabri, Maya]
+- :pill: Collecting the right data for training and evalution can require wetlab work – especially in computational drug discovery. 
+   - [A Deep Learning Approach to Antibiotic Discovery](https://www.cell.com/cell/pdf/S0092-8674(20)30102-1.pdf))
+   - [Network medicine framework for identifying drug-repurposing opportunities for COVID-19](https://www.pnas.org/content/118/19/e2025581118))
+- :jigsaw: Non-standard data modalities are common in computational biology. 
+   - Biological Interaction Networks (_e.g._ [Network-based in silico drug efficacy screening](https://www.nature.com/articles/ncomms10331), [Identification of disease treatment mechanisms through the multiscale interactome](https://www.nature.com/articles/s41467-021-21770-8))
+   - Chemical Graphs (_e.g._ [Strategies for pre-training graph neural networks](https://arxiv.org/pdf/1905.12265.pdf))
+   - DNA, RNA and Amino Acid sequences (_e.g._[Sequential regulatory activity prediction across chromosomes with convolutional neural networks](https://genome.cshlp.org/content/28/5/739.short))
+   - 3D structures (_e.g._ [Learning from protein structure with geometric vector perceptrons](https://openreview.net/pdf?id=1YLJDvSx6J4))
 
 ## Benchmarking [Avanika]
 
