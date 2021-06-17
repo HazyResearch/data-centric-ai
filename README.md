@@ -100,6 +100,10 @@ Shift towards guiding and coding models with (latent) metadata
 - Just using descriptions rather than any memorization with BLINK
 
 ### Data Shaping [Simran]
+Standard language models struggle to reason over the long-tail of entity-based knowledge and significant recent work tackles this challenge by providing the model with external knowledge signals. Prior methods modify the model architecture and/or algorithms to introduce the knowledge. In contrast, data shaping involves introduces external knowledge to the raw data inputted to a language model. While it may be difficult to efficiently deploy the specialized and sophisticated models as proposed in prior work, data shaping simply uses the standard language model with no modifications whatsoever to achieve competitive performance.
+- Recent work on knowledge-aware language modeling, involving a modified architecture and/or learning algorithm: [E-BERT](https://arxiv.org/abs/1911.03681) (Poerner, 2020), [K-Adapter](https://arxiv.org/abs/2002.01808) (Wang, 2020), [KGLM](https://arxiv.org/abs/1906.07241) (Logan, 2019), [KnowBERT](https://arxiv.org/abs/1909.04164) (Peters, 2019), [LUKE](https://www.aclweb.org/anthology/2020.emnlp-main.523.pdf) (Yamada, 2020), [ERNIE](https://arxiv.org/abs/1905.07129) (Zhang, 2019)
+- Examples demonstrating how to introduce inductive biases through the data for knowledge-based reasoning: [TEK](https://arxiv.org/pdf/2004.12006.pdf) (Joshi 2020),  [Data Noising](https://arxiv.org/pdf/1703.02573.pdf) (Xie, 2017), [DeepType](https://arxiv.org/abs/1802.01021) (Raiman, 2018)
+- Recent theoretical analyses of LM generalization reason about the data distributions. Information theory is an important foundataional topic here: [Information Theory and Statistics](http://web.stanford.edu/class/stats311/) (Stanford STAT 311)
 
 ### Subgroup Information [Michael]
 
