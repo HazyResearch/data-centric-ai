@@ -3,10 +3,9 @@
 We're collecting (an admittedly opinionated) list of resources and progress made 
 in data-centric AI, with exciting directions from our own lab and collaborators.
 
-AI has been too focused on the models, while in reality, the experience of those who put 
-models into production or use them in real applications is that data matters most. 
-
-It's the data that's unique, not the models. 
+AI has been pretty focused on models, while in reality, the experience of those who put 
+models into production or use them in real applications is that data matters a lot (maybe even more!). 
+Often, it's the data (which is unique to you) that can make or break model performance.
 
 ---
 
