@@ -189,19 +189,63 @@ Augmentation has been instrumental to achieving high-performing models since the
 paper on ILSVRC, which used random crops, translation & reflection of images for training, 
 and test-time augmentation for prediction.
 
-Since then, augmentation has become a de-facto part of image training pipelines.
+Since then, augmentation has become a de-facto part of image training pipelines and 
+an integral part of text applications such as machine translation.
 
 <h2 id="augmentation-theory">Theoretical Foundations</h2>
 
-- [] 
-- [Kernel Theory of Data Augmentation]()
+- [Tangent Propagation](https://papers.nips.cc/paper/1991/file/65658fde58ab3c2b6e5132a39fae7cb9-Paper.pdf) expresses desired model invariances induced by a data augmentation as tangent constraints on the directional derivatives of the learned model
+- [Kernel Theory of Data Augmentation](http://proceedings.mlr.press/v97/dao19b/dao19b.pdf)
+- [On the Generalization Effects of Linear Transformations in Data Augmentation](https://arxiv.org/abs/2005.00695)
+
+<h2 id="augmentation-primitives">Augmentation Primitives</h2>
+
+### Hand-Crafted Primitives
+
+#### Images
+Heuristic transformations are commonly used in image augmentations, such as rotations, flips or crops 
+(e.g. [AlexNet](https://papers.nips.cc/paper/2012/file/c399862d3b9d6b76c8436e924a68c45b-Paper.pdf), [Inception](https://arxiv.org/abs/1409.4842.pdf)). 
+
+Recent work has hand-crafted more sophisticated primitives, such as 
+- [Cutout](https://arxiv.org/abs/1708.04552)
+- [Mixup](https://arxiv.org/pdf/1710.09412.pdf)
+- [CutMix](https://arxiv.org/abs/1905.04899.pdf) 
+- [MixMatch](https://arxiv.org/pdf/1905.02249.pdf) and [ReMixMatch](https://arxiv.org/abs/1911.09785.pdf) 
+  
+While these primitives have culminated in compelling performance gains, they can often produce unnatural images and distort image semantics.
+
+#### Text
+Heuristic transformations for text, typically involve paraphrasing text in order to produce more diverse samples.
+
+- [Backtranslation](https://arxiv.org/abs/1511.06709) uses a round-trip translation from a source to target language and back in order to generate a paraphrase. 
+  Examples of use include [QANet](https://arxiv.org/abs/1804.09541).
+- Synonym substitution methods
+- Noising
+- Grammar induction
+- Text editing
+- Other heuristics
+
+#### Audio
+
+- Vocal Tract Length Warping
+- Stochastic Feature Mapping
 
 
-## Learned vs. Specified Augmentations
+### Assembled Pipelines 
+Recent work learns augmentation pipelines to determine the right subset of augmentation primitives, and the order in which they should be applied.
+These pipelines are primarily built on top of a fixed set of generic transformations.
+Methods vary by the learning algorithm used, which can be
 
-## Label-Preserving 
+- random sampling such as in [RandAugment](https://arxiv.org/pdf/1909.13719.pdf)
+- reinforcement learning such as in [AutoAugment](https://openaccess.thecvf.com/content_CVPR_2019/papers/Cubuk_AutoAugment_Learning_Augmentation_Strategies_From_Data_CVPR_2019_paper.pdf) and [TANDA](https://arxiv.org/pdf/1709.01643.pdf) 
+- computationally efficient algorithms for learning augmentation policies have also been proposed such as [Population-Based Augmentation](https://arxiv.org/pdf/1905.05393.pdf) and [Fast AutoAugment](https://arxiv.org/pdf/1905.00397.pdf).
 
-## Applications
+[comment]: <> (### Learned Primitives)
+
+
+## Further Reading
+- the ["Automating the Art of Data Augmentation"](https://hazyresearch.stanford.edu/data-aug-part-1) 
+  series of blog posts by [Sharon Li](http://pages.cs.wisc.edu/~sharonli/) provide an overview of data augmentation.
 
 
 # Contrastive Learning
@@ -400,6 +444,7 @@ Models are also becoming more unviersal, capable of handling multiple modalities
 # Applications
 
 <h2 id="named-entity-linking">Named Entity Linking</h2>
+
 Named entity linking (NEL) is the task of linking ambiguous mentions in text to entities in a knowledge base. NEL is a core preprocessing step in downstream applications, including search and question answering. 
 
 - [Shift towards simple Transformer models for NEL with bi-encoders and cross-encoders](https://arxiv.org/abs/1911.03814): recent state-of-the-art models such as BLINK rely on a simple two-stage architecture for NEL. First a bi-encoder retrieves candidate entitites by embedding the query and entities. Then a cross-encoder re-ranks the candidate entities.  
