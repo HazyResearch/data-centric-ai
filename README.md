@@ -75,12 +75,13 @@ To better understand how models perform when deployed in real-world settings, to
 
 ### Mandoline: Model Evaluation under Distribution Shift
 
-Distribution shift between labeled source data and unlabeled target data can be addressed with importance weighting, but this method works poorly when the supports of the source and target do not overlap and when data is high-dimensional. Mandoline addresses this by reweighting based on user/model-defined ``slices'' that intend to capture relevant axes of distribution shift.
+Models are often deployed on an unlabeled target dataset different from the labeled source data they were trained and validated on. To efficiently check how the model performs on the target dataset, importance weighting by the distributions' density ratio is used to correct for distribution shift. However, this method works poorly when the supports of the source and target do not overlap and when data is high-dimensional. [Mandoline](https://mayeechen.github.io/files/mandoline.pdf) addresses this by reweighting based on user-guided "slices" that intend to capture relevant axes of distribution shift. Slices are often readily available as subpopulations identified by the practitioner, but can also be based on things like metadata and the trained model's scores. Below are some resources on distribution shift, importance weighting, and density ratio estimation:
 
-- [Density Ratio Estimation for Machine Learning](https://www.cambridge.org/core/books/density-ratio-estimation-in-machine-learning/BCBEA6AEAADD66569B1E85DDDEAA7648) explains the different approaches to estimate density ratios, a key technical step in computing importance weights.
 - [CS329D at Stanford: ML Under Distribution Shifts](https://thashim.github.io/cs329D-spring2021/) covers current research in distribution shift, ranging from covariate shift to adversarial robustness.
+- [Art Owen's notes on importance sampling](https://statweb.stanford.edu/~owen/mc/Ch-var-is.pdf) overview of importance weighting with connections to Monte Carlo theory.
 - [Propensity Scores](https://academic.oup.com/biomet/article/70/1/41/240879) are used in observational studies for correcting disparities when evaluating treatment on a target population given that the treatment was applied to a set of potentially biased subjects. 
 - [Learning Bounds on Importance Weighting](https://papers.nips.cc/paper/2010/file/59c33016884a62116be975a9bb8257e3-Paper.pdf): how well importance weighting corrects for distribution shift can be attributed to the variance of the weights, or alternatively the R\'enyi divergence between source and target. 
+- [Density Ratio Estimation for Machine Learning](https://www.cambridge.org/core/books/density-ratio-estimation-in-machine-learning/BCBEA6AEAADD66569B1E85DDDEAA7648) explains the different approaches to estimate density ratios, a key technical step in computing importance weights.
 
 ### Active Validation [Vishnu]
 
@@ -175,6 +176,13 @@ Contrastive learning works by optimizing a typically unsupervised loss function 
  
 
 ### Weak Supervision
+
+Modern machine learning suffers from a lack of 
+
+- data programming paper
+- blogs
+- the lecture notes
+- include both foundational and current papers 
 
 The theory behind weak supervision and data programming relies on latent variable estimation in graphical models.
 
