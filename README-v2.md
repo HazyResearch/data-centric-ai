@@ -1,7 +1,7 @@
 # Data Centric AI
 
 We're collecting (an admittedly opinionated) list of resources and progress made 
-in data-centric AI, with exciting directions from our own lab and collaborators.
+in data-centric AI, with exciting directions past and present.
 
 AI has been pretty focused on models, while in reality, the experience of those who put 
 models into production or use them in real applications is that data matters a lot (maybe even more!). 
@@ -27,8 +27,9 @@ Instructions for adding resources:
 ---
 
 # Data Programming & Weak Supervision
+[Snorkel: Rapid Training Data Creation with Weak Supervision](http://www.vldb.org/pvldb/vol11/p269-ratner.pdf) was the seminal work on data prgoramming, the ability to label data through programmatic labelling functions.
 
-### Weak Supervision
+## The Theory of Weak Supervision
 
 The theory behind weak supervision and data programming relies on latent variable estimation in graphical models.
 
@@ -38,14 +39,47 @@ The theory behind weak supervision and data programming relies on latent variabl
 - In most weak supervision settings, labeling functions are assumed to be conditionally independent, or the dependencies are known. However, when they are not, [robust PCA](https://arxiv.org/pdf/1903.05844.pdf) can be applied to recover the structure.
 - [Comparing labeled versus unlabeled data](https://arxiv.org/pdf/2103.02761.pdf): generative classifiers based on graphical models (e.g. in weak supervision) can accept both labeled and unlabeled data, but unlabeled input is linearly more susceptible to misspecification of the dependency structure. However, this can be corrected using a general median-of-means estimator on top of method-of-moments.  
 
-### Contrastive Learning
+## Applications
 
-Contrastive learning works by optimizing a typically unsupervised loss function that pulls together similar points (``positive'' pairs) and pushes apart dissimilar points (``negative'' pairs). A theoretical understanding is lacking on what sort of representations are learned under contrastive loss, and what these representations guarantee on downstream tasks.
+## Success Stories
+- Gmail
+- Google Ads
 
-- [Representations induced on the hypersphere](https://arxiv.org/pdf/2005.10242.pdf): assuming that the representations to learn are constrained to a hypersphere, the contrastive loss function is closely connected to optimizing for ``alignment'' (positive pairs map to the same representation) and ``uniformity'' (representations are ``spread out'' as much as possible on the hypersphere to maintain as much as information as possible).
+# Contrastive Learning
+
+## Theoretical Foundations
+Contrastive learning works by optimizing a typically unsupervised loss function that pulls together similar points ("positive" pairs) and pushes apart dissimilar points ("negative" pairs). A theoretical understanding is lacking on what sort of representations are learned under contrastive loss, and what these representations guarantee on downstream tasks.
+
+- [Representations induced on the hypersphere](https://arxiv.org/pdf/2005.10242.pdf): assuming that the representations to learn are constrained to a hypersphere, the contrastive loss function is closely connected to optimizing for "alignment" (positive pairs map to the same representation) and "uniformity" (representations are ``spread out'' as much as possible on the hypersphere to maintain as much as information as possible).
 - [Downstream performance](https://arxiv.org/pdf/1902.09229.pdf): suppose that similar pairs belong to the same latent subclass, and that the downstream task aims to classify among some of these latent subclasses. Then, downstream loss of a linear classifier constructed using mean representations can be expressed in terms of the contrastive loss.
 - [Debiasing contrastive learning](https://arxiv.org/pdf/2007.00224.pdf) and [using hard negative samples](https://openreview.net/pdf?id=CR1XOQ0UTh-): in unsupervised settings, negative pairs are constructed by selecting two points at random i.i.d. This can result in the two points actually belonging to the same latent subclass, but this can be corrected via importance weighting. Moreover, even within different latent subclasses, some negative samples can be ``harder'' than others and enforce better representations.
 
+## Applications
+
+
+# Data Augmentation
+Data augmentation is a standard approach for improving model performance, where additional 
+synthetically modified versions of examples are added to training.
+
+## History
+Augmentation has been instrumental to achieving high-performing models since the original
+[AlexNet](https://papers.nips.cc/paper/2012/file/c399862d3b9d6b76c8436e924a68c45b-Paper.pdf) 
+paper on ILSVRC, which used random crops, translation & reflection of images for training, 
+and test-time augmentation for prediction.
+
+Since then, augmentation has become a de-facto part of image training pipelines.
+
+## Theoretical Foundations
+
+- 
+- [Kernel Theory of Data Augmentation]
+- []
+
+## Learned vs. Specified Augmentations
+
+## Label-Preserving 
+
+## Applications
 
 
 # Data Representations
@@ -89,18 +123,24 @@ Shift towards guiding and coding models with (latent) metadata
 - Bootleg blog on structural resources. Uses structural resources to overcome the tail
 - Just using descriptions rather than any memorization with BLINK
 
-### Data Shaping [Simran]
+[comment]: <> (### Data Shaping [Simran])
 
-### Subgroup Information [Michael]
+[comment]: <> (### Subgroup Information [Michael])
 
-### Observational Supervision [Khaled]
-
-## Data-Driven Inductive Bias in Model Representations [Albert, Ines]
-When you don't have enough data, inductive biases can make models much more efficient. 
-- SLLSSL
-- Hyperbolics
+[comment]: <> (### Observational Supervision [Khaled])
 
 
+
+[comment]: <> (## Data-Driven Inductive Bias in Model Representations [Albert, Ines])
+[comment]: <> (When you don't have enough data, inductive biases can make models much more efficient. )
+[comment]: <> (- SLLSSL)
+[comment]: <> (- Hyperbolics)
+
+## Success Storeis
+
+### Feature Stores
+- Uber Michelangelo
+- Feast + Tecton
 
 
 
@@ -213,16 +253,12 @@ A variety of importance weighting methods are popular in the literature.
 ### Active Sampling and Labeling
 Another approach to understand 
 
+## Benchmarking [Avanika]
 
 [comment]: <> (## Robustness [Jared])
 [comment]: <> (- Hidden Stratification + GEORGE)
 
-
-
-
 # Go Big or Go Home
-
-[comment]: <> (## Benchmarking [Avanika])
 
 ## :frodo-monstertruck-sauron: Universal Models [Karan, Laurel]
 Shift towards one-model-to-rule-them-all paradigm.
@@ -260,17 +296,18 @@ Models are also becoming more unviersal, capable of handling multiple modalities
 [comment]: <> (### Other Links)
 [comment]: <> (- Stanford class [upcoming])
 
+## Efficient Models and Sparsity [Beidi, Tri]
 
-## Interactive Machine Learning [Karan, Sabri, Arjun, Laurel]
 
-- Forager [Fait]
-- Mosaic DataPanels
+[comment]: <> (## Interactive Machine Learning [Karan, Sabri, Arjun, Laurel])
 
-## Applications
+[comment]: <> (- Forager [Fait])
+
+[comment]: <> (- Mosaic DataPanels)
+
+# Applications
 
 ### Named Entity Linking [Laurel, Maya, Megan]
-- Shift towards simple Transformer models with BLINK and CrossEncoder
-- Using more data-driven changes with Zero-Shot Description and Bootleg
 
 ### Video [Dan]
 
@@ -279,141 +316,3 @@ Models are also becoming more unviersal, capable of handling multiple modalities
 ### Image Segmentation [Sarah]
 
 ### Computational Biology [Sabri, Maya]
-
-
-
-## Theoretical Foundations
-
-
-### Data Augmentation [Tri, Hongyang, Sen]
-- Sharon's Blog Post Series
-
-### Sparsity [Beidi, Tri]
-
-### Structured Matrices [Albert, Tri]
-
-
-
-# Successes in Data-Centric AI [Nancy, Karan, Laurel]
-Where data-centric AI has already succeeded!
-
-## Stories
-- GMail
-- Google Ads
-- Tesla Data Engine
-- Instacart/all the blog posts of turning to logs for embedding pretraining
-
-
-## Industry
-- Snorkel
-- Ludwig
-- DataRobot
-- Karpathy's Blog(s)
-
-
-# Tools
-
-## Monitoring
-- Weights & Biases
-- CometML
-
-## Feature Stores
-- Uber Michelangelo
-- Feast + Tecton
-
-## Data Exploration Tools
-- Pandas
-- Mosaic
-
-## Data Repositories
-- Huggingface Datasets
-- Kaggle
-- MIMIC 
-- WILDS
-- Tensorflow Datasets
-- Torch Datasets
-- Scikit-Learn
-- UCI Datasets Repository  
-- data.gov
-
-## Data Collection
-- Snorkel
-- Crowdsourcing stuff
-
-## Zero Code ML
-- Ludwig
-- Overton
-
-
-# History of Data-Centric AI
-
-_Themes:_ more data, noisier data, less supervision.
-
-1. I want more labeled data.
-2. I can handle more noise, so it's easier to collect labeled data.
-3. I don't even need labels (or very few labels).
-
-
-## Early Approaches to Data-Centric AI [25 BC - 1980]
-- Stone Tablets
-- Egyptians with Papyrus
-- Printing Press & Gutenberg
-- The Personal Computer
-
-
-## More Labeled Data [2008? - 2015?]
-
-### Data Collection
-Any and all mechanisms for gathering clean-ish data and manually cleaning it. 
-Methods for collecting more data e.g. web scraping, crowdsourcing, Wikipedia annotations.
-
-#### Modern Approaches
-
-### Data Labeling & Crowdsourcing
-
-
-
-## Noisier Data [2015 - 2018?]
-
-### Noise-Aware Approaches to Data Collection
-
-### Data Programming & Weak Supervision [Snorkel, Dan]
-- General approach of data programming.
-- Incorporating noisy data sources.
-
-
-### Data Augmentation [Sen, Hongyang]
-
-
-## Less Supervision [2018 - present]
-
-### Pretraining with Large, Unlabeled Data
-
-### Scaling Up [Beidi]
-Transformers, GPT
-
-### Multi-Modality
-
-### Few-Shot & Meta Learning
-
-
-## Large Datasets
-Data-centric AI was pushed forward by the availability of large
-datasets.
-
-- ImageNet [totally supervised]
-- MS Coco [rich annotations]
-- Language Modeling Datasets (GPT, Pile) [pretraining]
-- Huggingface Datasets
-
-### Feature Engineering [Snorkel]
-- Tell the story of how people used to do careful feature engineering, 
-hand-crafted features.
-- Still done in industry with feature stores alongside embeddings.
-
-## Data Extraction & Preparation
-
-### Data Cleaning
-### Data Integration
-### Knowledge Base Construction
-
