@@ -418,9 +418,23 @@ Models are also becoming more unviersal, capable of handling multiple modalities
 [comment]: <> (### Other Links)
 [comment]: <> (- Stanford class [upcoming])
 
-## Efficient Models and Sparsity
+## Efficient Models
+Training large MLP models or Transformers requires extensive computational and memory resources, especially for wide linear layers or when modeling long sequences, mainly due to the quadratic complexity (w.r.t. input sequence length) in attention layers, respectively. 
 
-[comment]: <> ([Beidi, Tri])
+### Exploit Sparsity
+- For efficient MLP Training, [SLIDE](https://arxiv.org/pdf/1903.03129.pdf) uses Locality Sensitive Hashing(LSH) for approximating dense matrix multiplications in linear layers preceding a softmax (identify sparsity patterns).
+- For efficient Transformers Training, [Reformer](https://arxiv.org/pdf/2001.04451.pdf) uses similar techniques, LSH, to reduce quadratic computations in attention layers.
+- [MONGOOSE](https://openreview.net/pdf?id=wWK7yXkULyh) uses a scheduling algorithm and learnable hash functions to address LSH overhead and further speed-up MLP and Transformer training. 
+- [Routing Transformers](https://arxiv.org/pdf/2003.05997.pdf) and [Smyrf](https://arxiv.org/pdf/2010.05315.pdf) use other similar techniques, such as k-means or asymmetric LSH to identify sparsity patterns.
+
+### Exploit Low-rank Properties
+- This [paper](http://www.vikas.sindhwani.org/lowRank.pdf) uses low-rank matrix factorization to reduce the computation for linear layers.
+- For efficient attention computation in Transformers, [Performer](https://arxiv.org/pdf/2009.14794.pdf), [Linformer](http://proceedings.mlr.press/v119/katharopoulos20a/katharopoulos20a.pdf), [Linear Transformer](https://arxiv.org/pdf/2006.04768.pdf) use either low-rank or kernel approximation techniques.
+
+### Sparse+Low-rank and other References
+- Inspired by the classical robust-PCA algorithm for sparse and low-rank decomposition, [Scatterbrain]() unifies sparse (via LSH) and low-rank (via kernel feature map) attention for accurate and efficient approximation. 
+- This [survey paper](https://arxiv.org/pdf/2009.06732.pdf) covers most of the efficient Transformer variants.
+- [Long Range Arena](https://arxiv.org/pdf/2011.04006.pdf) is a systematic and unified benchmark, focused on evaluating model quality under long-context scenarios.
 
 
 ## :joystick: Interactive Machine Learning
