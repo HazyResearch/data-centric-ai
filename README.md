@@ -42,25 +42,25 @@ _Themes_:
 - how does data influence the learned representations?
 
 ## Embeddings
+How data is represented and transferred
 
-Widespread use: shift in how information is represented.
-- The take over of Word2Vec and BERT
+### "Atoms" of an embedding
+- Patches for images
+- Subword tokens, BPE, No tokens
+
+### Knowledge Transfer
+- BERTology
+- Bootleg
+- Omniprescence in industrial ecosystems
+
+### Continuous (Fuzzy??) Distances
 - Epoxy [Dan]
-- Replacing influence functions via NN
-- Hidden Stratification + GEORGE
-- VLDB Tutorial [upcoming]
 
-### Stability [Megan]
+### Stability and Compression [Megan, Simran]
 
-### Compression [Simran]
-
-### Embedding Updates [Laurel]
-
-### Label Propagation [Dan]
-- Epoxy
-
-### Hidden Stratification [Jared]
-- Hidden Stratification + GEORGE
+### Embedding Patching [Laurel]
+- Goodwill Hunting
+- Model Patching
 
 ## Interactive Machine Learning [Karan, Sabri, Arjun, Laurel]
 
@@ -76,7 +76,6 @@ To better understand how models perform when deployed in real-world settings, to
 ### Mandoline: Model Evaluation under Distribution Shift
 
 Distribution shift between labeled source data and unlabeled target data can be addressed with importance weighting, but this method works poorly when the supports of the source and target do not overlap and when data is high-dimensional. Mandoline addresses this by reweighting based on user/model-defined ``slices'' that intend to capture relevant axes of distribution shift.
-
 - [Density Ratio Estimation for Machine Learning](https://www.cambridge.org/core/books/density-ratio-estimation-in-machine-learning/BCBEA6AEAADD66569B1E85DDDEAA7648) explains the different approaches to estimate density ratios, a key technical step in computing importance weights.
 - [CS329D at Stanford: ML Under Distribution Shifts](https://thashim.github.io/cs329D-spring2021/) covers current research in distribution shift, ranging from covariate shift to adversarial robustness.
 - [Propensity Scores](https://academic.oup.com/biomet/article/70/1/41/240879) are used in observational studies for correcting disparities when evaluating treatment on a target population given that the treatment was applied to a set of potentially biased subjects. 
@@ -95,8 +94,11 @@ When you don't have enough data, inductive biases can make models much more effi
 
 
 ## Learning with Auxiliary Information
+Shift towards guiding and coding models with (latent) metadata
 
 ### Higher-Level Signals [Laurel, Maya, Megan]
+- Bootleg blog on structural resources. Uses structural resources to overcome the tail
+- Just using descriptions rather than any memorization with BLINK
 
 ### Data Shaping [Simran]
 
@@ -108,6 +110,8 @@ When you don't have enough data, inductive biases can make models much more effi
 ## Applications
 
 ### Named Entity Linking [Laurel, Maya, Megan]
+- Shift towards simple Transformer models with BLINK and CrossEncoder
+- Using more data-driven changes with Zero-Shot Description and Bootleg
 
 ### Video [Dan]
 
@@ -171,8 +175,7 @@ Contrastive learning works by optimizing a typically unsupervised loss function 
 
 - [Representations induced on the hypersphere](https://arxiv.org/pdf/2005.10242.pdf): assuming that the representations to learn are constrained to a hypersphere, the contrastive loss function is closely connected to optimizing for ``alignment'' (positive pairs map to the same representation) and ``uniformity'' (representations are ``spread out'' as much as possible on the hypersphere to maintain as much as information as possible).
 - [Downstream performance](https://arxiv.org/pdf/1902.09229.pdf): suppose that similar pairs belong to the same latent subclass, and that the downstream task aims to classify among some of these latent subclasses. Then, downstream loss of a linear classifier constructed using mean representations can be expressed in terms of the contrastive loss.
-- [Debiasing contrastive learning](https://arxiv.org/pdf/2007.00224.pdf) and [using hard negative samples](https://openreview.net/pdf?id=CR1XOQ0UTh-): in unsupervised settings, negative pairs are constructed by selecting two points at random i.i.d. This can result in the two points actually belonging to the same latent subclass, but this can be corrected via importance weighting. Moreover, even within different latent subclasses, some negative samples can be ``harder'' than others and enforce better representations. 
- 
+- [Debiasing contrastive learning](https://arxiv.org/pdf/2007.00224.pdf) and [using hard negative samples](https://openreview.net/pdf?id=CR1XOQ0UTh-): in unsupervised settings, negative pairs are constructed by selecting two points at random i.i.d. This can result in the two points actually belonging to the same latent subclass, but this can be corrected via importance weighting. Moreover, even within different latent subclasses, some negative samples can be ``harder'' than others and enforce better representations.
 
 ### Weak Supervision
 
