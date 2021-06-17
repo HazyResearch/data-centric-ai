@@ -26,6 +26,12 @@ Instructions for adding resources:
 
 ---
 
+# Data Programming & Weak Supervision
+
+# Embedding-Based Data Representations
+
+# Fine-Grained Evaluation & Measurement
+
 # Open Problems
 
 
