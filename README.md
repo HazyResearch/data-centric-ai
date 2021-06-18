@@ -38,30 +38,34 @@ Instructions for adding resources:
    3. [Foundations](#data-programming-foundations)
    3. [Other Resources](#data-programming-resources)
    4. [Success Stories](#weak-supervision-success-stories)
-2. [Data Representations](#data-representations)
+2. [Data Representations & Self-Supervision](#data-representations--self-supervision)
    1. [Embeddings](#embeddings)
    2. [Learning with Auxiliary Information](#learning-with-auxiliary-information)
    3. [Success Stories](#data-representation-successes)
-3. [Data Augmentation](#data-augmentation)
+3. [Go Big or Go Home](#go-big-or-go-home)
+   1. [Universal Models](#universal-models)
+   2. [Efficient Models](#efficient-models)
+   3. [Interactive Machine Learning](#interactive-machine-learning)
+4. [Data Augmentation](#data-augmentation)
    1. [History](#augmentation-history)
    2. [Theoretical Foundations](#augmentation-theory)
    3. [Augmentation Primitives](#augmentation-primitives)
    4. [Future Directions](#augmentation-future)
    5. [Further Reading](#augmentation-evenmore)
-4. [Contrastive Learning](#contrastive-learning)
+5. [Contrastive Learning](#contrastive-learning)
    1. [Theoretical Foundations](#contrastive-theory)
    2. [Applications](#contrastive-applications)
-5. [Fine-Grained Evaluation](#fine-grained-evaluation)
+6. [Fine-Grained Evaluation](#fine-grained-evaluation)
    1. [Slice-Based Evaluation](#slice-based-evaluation)
+   2. [Benchmarking](#benchmarking)
+7. [Robustess](#robustness)
+   1. [Subgroup Information](#subgroup-information)
    2. [Evaluation on Unlabeled Data](#evaluation-on-unlabeled-data)
-   3. [Benchmarking](#benchmarking)
-6. [Go Big or Go Home](#go-big-or-go-home)
-   1. [Universal Models](#universal-models)
-   2. [Efficient Models](#efficient-models)
-7. [Applications](#section-applications)
+9. [Applications](#section-applications)
    1. [Named Entity Linking](#named-entity-linking) 
-   2. [Computational Biology](#computational-biology)
-   3. [Observational Supervision](#observational-supervision)
+   2. [Medical Imaging](#medical-imaging)
+   3. [Computational Biology](#computational-biology)
+   4. [Observational Supervision](#observational-supervision)
 
 
 # Data Programming & Weak Supervision
@@ -110,27 +114,28 @@ trained with tens of thousands of hand-labeled examples over millions of datapoi
 - This [Software 2.0 blog post](https://hazyresearch.stanford.edu/software2) summarizes other successes for data programming.
 
 
-# Data Representations
-When data is at the forefront of machine learning, how you represent and share the data becomes a critical factor to building ML systems. 
+# Data Representations & Self-Supervision
+The need for large, labeled datasets has also motivated methods for training data on naturally, or automatically, labelled datasets, allowing the model to learn latent structure in the data. For example, language models can be trained to predict the next token in a textual input. The paradigm, called "self-supervision", has revolutionized how we train (or pre-train) models. Importantly, these self-supervised models learn without manual labels or hand curated features. This reduces the engineer effort to create and maintain features and makes models significantly easier to deploy and maintain. This shift put more importance on the underlying training data and how it is represented to the model.
 
-## Embeddings
-Data is represented and transferred through embeddings which encode
-knowledge about the "unit" the embedding is representing. The widespread
-use of embeddings is fundamentally changing how we build and understand models.
 
-### Learning Embeddings
-How you train an embedding changes what kind of knowledge and how the knowledge is represented
-- Graph based approaches, such as [TransE](https://papers.nips.cc/paper/2013/file/1cecc7a77928ca8133fa24680a88d2f9-Paper.pdf), preserve link structure
-- [Hyperbolic embeddings](https://homepages.inf.ed.ac.uk/rsarkar/papers/HyperbolicDelaunayFull.pdf) takes graph-structured embeddigns one step further and learns embeddings in hyporbolic space. This [blog](https://dawn.cs.stanford.edu/2019/10/10/noneuclidean/) gives a great introduction.
-- Common word embedding techniques, like [word2vec](https://papers.nips.cc/paper/2013/file/9aa42b31882ec039965f3c4923ce901b-Paper.pdf), train embeddings to predict surrounding words given a single word, preserving word co-occurrence patterns. This [chapter](http://web.stanford.edu/~jurafsky/slp3/6.pdf) from Speech and Language Processing gives a nice overview of word embeddings.
-- Contextual word embeddings, like [BERT](https://www.aclweb.org/anthology/N19-1423.pdf), generate embeddings that depend on the surrounding context thereby allowing for homonyms to get different representations.
-- [FaceNet: A Unified Embedding for Face Recognition and Clustering](https://www.cv-foundation.org/openaccess/content_cvpr_2015/html/Schroff_FaceNet_A_Unified_2015_CVPR_paper.html) learns euclidean embeddings of images of faces to better perform face recognition.
-- [StarSpace: Embed All the Things!](https://arxiv.org/abs/1709.03856) using as one-embedding-model approach to a general purpose embedding for graphs and lang
+<h2 id="embeddings">Embeddings</h2>
+Self-supervised models commonly rely on embeddings as core inputs and outputs during training. For example, language models like [BERT](https://www.aclweb.org/anthology/N19-1423.pdf) and [GPT-2](https://d4mucfpksywv.cloudfront.net/better-language-models/language_models_are_unsupervised_multitask_learners.pdf) tokenize a sentence into sub-tokens. Each sub-token gets an embedding that is fed through the model and updated during training. These token embeddings encode knowledge about what the is and how it interacts with other tokens in the sentence.
+
+### Embedding Atoms and Learning Embeddings
+How you "tokenize" your intput into different atomic units and how you train an embedding changes what kind of knowledge and how the knowledge is represented.
+- Graph based approaches, such as [TransE](https://papers.nips.cc/paper/2013/file/1cecc7a77928ca8133fa24680a88d2f9-Paper.pdf), represent entities (people, place, and things) and are trained to preserve link structure in a Knowledge Base.
+- [Hyperbolic embeddings](https://homepages.inf.ed.ac.uk/rsarkar/papers/HyperbolicDelaunayFull.pdf) takes graph-structured embeddings one step further and learns embeddings in hyporbolic space. This [blog](https://dawn.cs.stanford.edu/2019/10/10/noneuclidean/) gives a great introduction.
+- Common word embedding techniques, like [word2vec](https://papers.nips.cc/paper/2013/file/9aa42b31882ec039965f3c4923ce901b-Paper.pdf), train embeddings for each word in a fixed vocabulary to predict surrounding words given a single word, preserving word co-occurrence patterns. This [chapter](http://web.stanford.edu/~jurafsky/slp3/6.pdf) from Speech and Language Processing gives a nice overview of word embeddings.
+- Contextual word embeddings, like [BERT](https://www.aclweb.org/anthology/N19-1423.pdf), split words into sub-tokens and generate embeddings for each sub-token that depend on the surrounding context thereby allowing for homonyms to get different representations.
+- [Selfie](https://arxiv.org/pdf/1906.02940.pdf) learns embeddings for image patches, sub-spaces of the image, to be trained using Transformer architecture.
+- [StarSpace: Embed All the Things!](https://arxiv.org/abs/1709.03856) using as one-embedding-model approach to a general purpose embedding for graph nodes, words, and entities.
 
 ### Knowledge Transfer
-Embeddings can be use in downstream tasks as a way of transferring knowledge.
+As self-supervised embeddings are trained in a general-purpose manner, they are frequently used as core inputs into downstream tasks to be fine-tuned on a specific task. These embeddings transfer general knowledge into the downstream tasks for improved quality.
+
 - [A Primer in BERTology: What We Know About How BERT Works](https://www.aclweb.org/anthology/2020.tacl-1.54/) explores the omniprescent use of BERT word embeddings as a way of transferring global language knowledge to downstream tasks.
-- Systems like [KnowBERT](https://arxiv.org/pdf/1909.04164.pdf) and [Bootleg](https://arxiv.org/abs/2010.10363) both explore how the use of entity embeddings from a Named Entity Disambiguation system can encode entity knowledge in downstream knowledge rich taskse like relation extraction.
+- Systems like [KnowBERT](https://arxiv.org/pdf/1909.04164.pdf) and [Bootleg](https://arxiv.org/abs/2010.10363) both explore how the use of entity embeddings from a Named Entity Disambiguation system can encode entity knowledge in downstream knowledge rich tasks like relation extraction.
+- [Selfie](https://arxiv.org/pdf/1906.02940.pdf) and [BEiT](https://arxiv.org/abs/2106.08254) pretrain image patch embeddings to be used in downstream image classifications tasks.
 
 ### Stability and Compression
 Stability describes the sensitivity of machine learning models (e.g. embeddings) to changes in their input. In production settings, machine learning models may be constantly retrained on up-to-date data ([sometimes every hour](https://research.fb.com/wp-content/uploads/2017/12/hpca-2018-facebook.pdf)!), making it critical to understand their stability. Recent works have shown that word embeddings can suffer from instability: 
@@ -145,27 +150,18 @@ Stability describes the sensitivity of machine learning models (e.g. embeddings)
 - [word2vec, node2vec, graph2vec, X2vec: Towards a Theory of Vector Embeddings of Structured Data](https://arxiv.org/abs/2003.12590), the pdf version of a POD 2020 KeyNote talk, discusses the connection between the theory of homomorphism vectors and embedding techniques.
 - These [notes](http://demo.clab.cs.cmu.edu/cdyer/nce_notes.pdf) discuss how noise contrastive estimation and negative sampling impacts static word embedding training.  
 
-## Learning with Auxiliary Information
-Using large, unlablled datasets make it difficult for engineers to inject domain specific knowledge into the model. One approach to give this fine-grained control over a model, while keeping the mode as simple as possible, is to inject (latent) metadata into the model.
+<h2 id="learning-with-auxiliary-information">Learning with Auxiliary Information</h2>
+In a self-supervised regime, large, unlabeled datasets make it difficult for engineers to inject domain specific knowledge into the model. One approach to have this fine-grained control over a model, while keeping the model as simple as possible, is to inject (latent) metadata into the model.
 
 ### Overcoming the Long Tail with Structured Data
-Rare are entities (named entities, products, words, ...) are uncommon or non-existant in training data yet appear when a model is deployed. Models often struggle to resolve these rare entities as the diversity of signals required to understand them is not represented in training data. One approachs, is to rely on structural information, such as the types associated with an entity.  
+Rare are entities (named entities, products, words, ...) are uncommon or non-existent in training data yet appear when a model is deployed. Models often struggle to resolve these rare entities as the diversity of signals required to understand them is not represented in training data. One approachs, is to rely on structural information, such as the types associated with an entity.  
 
 - The [Bootleg](https://hazyresearch.stanford.edu/bootleg/) system leverages structured data in the form of type and knowledge graph relations to improve Named Entity Disambiguation over 40 F1 points for rare entities.
 - This [zero-shot NED system](https://arxiv.org/pdf/1906.07348.pdf) uses entity descriptions to improve rare entity linking performance.
 - The [TEK](https://arxiv.org/pdf/2004.12006.pdf) framework injects entity descriptions for improved reading comprehension and QA. 
 
 ### Data Shaping
-Standard language models struggle to reason over the long-tail of 
-entity-based knowledge and significant recent work 
-tackles this challenge by providing the model with external knowledge signals. 
-Prior methods modify the model architecture and/or algorithms to introduce the knowledge.
-
-In contrast, data shaping involves introduces external knowledge to the raw data 
-inputted to a language model. 
-While it may be difficult to efficiently deploy the specialized and sophisticated 
-models as proposed in prior work, data shaping simply uses the 
-standard language model with no modifications whatsoever to achieve competitive performance.
+Prior methods to inject domain knowledge often modify the model architecture and/or algorithms. In contrast, data shaping involves introduces external knowledge to the raw data inputted to a language model. While it may be difficult to efficiently deploy the specialized and sophisticated models as proposed in prior work, data shaping simply uses the standard language model with no modifications whatsoever to achieve competitive performance.
 
 - Recent work on knowledge-aware language modeling, involving a modified architecture and/or learning algorithm: 
   [E-BERT](https://arxiv.org/abs/1911.03681) (Poerner, 2020), [K-Adapter](https://arxiv.org/abs/2002.01808) (Wang, 2020), 
@@ -177,51 +173,93 @@ standard language model with no modifications whatsoever to achieve competitive 
 - Recent theoretical analyses of LM generalization reason about the data distributions. 
   Information theory is an important foundational topic here: [Information Theory and Statistics](http://web.stanford.edu/class/stats311/) (Stanford STAT 311)
 
-### Subgroup Information
-
-A data subset or "subgroup" may carry spurious correlations between its features and 
-labels that do not hold for datapoints outside of the subgroup. When certain subgroups are larger 
-than others, models trained to minimize average error are susceptible to learning these 
-spurious correlations and performing poorly on the minority subgroups. 
-
-To obtain good performance on *all* subgroups, in addition to the ground-truth labels we can bring in subgroup information during training.
-
-- [Group Distributionally Robust Optimization (Group DRO)](https://arxiv.org/abs/1911.08731) assumes knowledge of which subgroup each training sample belongs to, and proposes a training algorithm that reweights the loss objective to focus on subgroups with higher error.  
-- [Model Patching](https://arxiv.org/abs/2008.06775) uses a generative model to synthesize samples from certain subgroups as if they belonged to another. These augmentations can then correct for subgroup imbalance, such that training on the new dataset mitigates learning correlations that only hold for the original majority subgroups.
-
-Subgroup information also does not need to be explicitly annotated or known. Several recent works aim to first infer subgroups before using a robust training method to obtain good performance on all subgroups. A frequent heuristic is to use the above observation that models trained with empirical risk minimization (ERM) and that minimize average error may still perform poorly on minority subgroups; one can then infer minority or majority subgroups depending on if the trained ERM model correctly predicts the datapoints.
-
-- [Learning from Failure (LfF)](https://arxiv.org/abs/2007.02561) trains two models in tandem. Each model trains on the same data batches, where for each batch, datapoints that the first model gets incorrect are upweighted in the loss objective for the second model. 
-- [Just Train Twice (JTT)]() trains an initial ERM model for a few epochs, identifies the datapoints this model gets incorrect after training, and trains a new model with ERM on the same dataset but with the incorrect points upsampled.  
-- [Correct-N-Contrast (CNC)]() also trains an initial ERM model, but uses supervised contrastive learning to train a new model to learn similar representations for datapoints with the same class but different trained ERM model predictions.
-
-
-[comment]: <> (### Explanations)
-
-
-
-[comment]: <> (### Observational Supervision [Khaled])
-
-
-
-[comment]: <> (## Data-Driven Inductive Bias in Model Representations [Albert, Ines])
-[comment]: <> (When you don't have enough data, inductive biases can make models much more efficient. )
-[comment]: <> (- SLLSSL)
-[comment]: <> (- Hyperbolics)
-
 <h2 id="data-representation-successes">Success Stories</h2>
 
 ### Feature Stores
-Feature Store (FS) systems were developed to help engineers build, share, and manage data features for model training and deployment. 
+Feature Store (FS) systems were developed to help engineers build, share, and manage data features (including pretrained embeddings) for model training and deployment. 
 - Uber's [Michelangelo](https://eng.uber.com/michelangelo-machine-learning-platform/) was the first of its kind Feature Store deployed at Uber.
 - [Feast](https://www.tecton.ai/feast/) by Tecton is one of the only open source Feature Store.
 - There's an entire [website](https://www.featurestore.org/) devoted to Feature Stores.
 
 ### Industry and the Embedding Ecosystem
-Embeddings are core inputs to numerous downstream user-facing systems in industry. We term the embeddings and models that use them a "embedding ecosystem". A few examples of these ecosystems at work are:
+Self-supervised embeddings are core inputs to numerous downstream user-facing systems in industry. We term the embeddings and models that use them a "embedding ecosystem". A few examples of these ecosystems at work are:
 - [Pinterest's](https://medium.com/pinterest-engineering/pinnersage-multi-modal-user-embedding-framework-for-recommendations-at-pinterest-bfd116b49475) multi-model user embeddings for recommendation.
 - [Spotify](https://research.atspotify.com/contextual-and-sequential-user-embeddings-for-music-recommendation/) uses embeddings for user music recommendations.
 - [Netflix](https://netflixtechblog.com/supporting-content-decision-makers-with-machine-learning-995b7b76006f) also uses embeddings for movie recommendations. 
+
+
+# Go Big or Go Home
+With the ability to train models on unlabelled data, research is scaling up both data size and model size at an [impressive rate](https://medium.com/analytics-vidhya/openai-gpt-3-language-models-are-few-shot-learners-82531b3d3122). This both raises questions of how to scale and how to make models more efficient to alleviate the costs of training.
+
+<h2 id="universal-models">Universal Models</h2>
+
+[comment]: <> ([Karan, Laurel])
+As models get larger, researchers are seeing emergent trends of impressive zero-shot behavior. This is driving a one-model-to-rule-them-all paradigm that would alleviate the need for any downstream fine-tuning.
+
+### Task-Agnostic, Simple Architectures
+The goal is to find one architecture that can be universal, working on text, image, video, etc. Further, rather than leaning into something complex, recent work in [scaling laws](https://arxiv.org/pdf/2001.08361.pdf) suggest that architectures matter less than data. The implication is that very standard, commoditized architectures can be universal.
+- The most common standard architecture is that of the [Transformer](https://arxiv.org/pdf/1706.03762.pdf), explained very well in this [blog](https://jalammar.github.io/illustrated-transformer/).
+- Transformers have seen wide-spread-use in NLP tasks through [BERT](https://www.aclweb.org/anthology/N19-1423.pdf), [RoBERTa](https://arxiv.org/abs/1907.11692v1), and Hugging Face's [model hub](https://huggingface.co/models), where numerous Transformer style models are trained and shared.
+- Recent work has shown how Transformers can even be sued in vision tasks with the [Vision Transformers](https://arxiv.org/pdf/2010.11929.pdf).
+- Transformers are no pancea and are still generally larger and slower to train that the simple model of a MLP. Recent work has explored how you can replace the Transformer architecture with a sequence of MLPs in the [gMLP](https://arxiv.org/pdf/2105.08050.pdf).
+
+### Emphasis on Scale
+With the ability to train models without needing labelled data through self-supervision, the focus became on scaling models up and training on more data.
+- [GPT-3](https://arxiv.org/abs/2005.14165.pdf) was the first 170B parameter model capable of few-shot in-context learning developed by OpenAI.
+- [Moore's Law for Everything](https://moores.samaltman.com) is a post about scale and its effect on AI / society.
+- [Switch Transformers](https://arxiv.org/pdf/2101.03961.pdf) is a mixture of experts for training massive models beyond the scale of GPT-3.  
+
+### Multi-Modal Applications
+Models are also becoming more unviersal, capable of handling multiple modalities at once.
+- [Wu Dao 2.0](https://www.engadget.com/chinas-gigantic-multi-modal-ai-is-no-one-trick-pony-211414388.html) is the Chinese 1.75T parameter MoE model with multimodal capabilities.
+- [DALL-E](https://openai.com/blog/dall-e/) & [CLIP](https://openai.com/blog/clip/) are two other multi-modal models
+
+### Industrial Trends
+- Companies like [OpenAI](https://openai.com), [Anthropic](https://www.anthropic.com), [Cohere](https://cohere.ai) see building universal models as part of their core business strategy.
+- Lots of companies emerging that rely on APIs from these universal model companies to build applications on top e.g. [AI Dungeon](https://play.aidungeon.io/main/landing). A long list from OpenAI at this [link](https://openai.com/blog/gpt-3-apps/).
+
+### Data Trends
+- There's been a shift towards understanding how to collect and curate truly massive amounts of data for pretraining.
+    - [The Pile](https://pile.eleuther.ai) is a new massive, more diverse dataset for training language models than the standard Common Crawl.
+    - [Huggingface BigScience](https://docs.google.com/document/d/1BIIl-SObx6tR41MaEpUNkRAsGhH7CQqP_oHQrqYiH00/edit) is a new effort to establish good practices in data curation.
+
+### Theoretical Foundations
+- [Limitations of Autoregressive Models and Their Alternatives](https://arxiv.org/abs/2010.11939) explores the theoretical limitations of autoregressive language models in the inability to represent "hard" language distributions.
+
+[comment]: <> (### Other Links)
+[comment]: <> (- Stanford class [upcoming])
+
+<h2 id="efficient-models">Efficient Models</h2>
+As models get larger, there is an increasing need to make training less computational expensive, espcially in larger Transformer networks that have a quadratic complexity (w.r.t. input sequence length) in attention layers. 
+
+### Exploit Sparsity
+- For efficient MLP Training, [SLIDE](https://arxiv.org/pdf/1903.03129.pdf) uses Locality Sensitive Hashing(LSH) for approximating dense matrix multiplications in linear layers preceding a softmax (identify sparsity patterns).
+- For efficient Transformers Training, [Reformer](https://arxiv.org/pdf/2001.04451.pdf) uses similar techniques, LSH, to reduce quadratic computations in attention layers.
+- [MONGOOSE](https://openreview.net/pdf?id=wWK7yXkULyh) uses a scheduling algorithm and learnable hash functions to address LSH overhead and further speed-up MLP and Transformer training. 
+- [Routing Transformers](https://arxiv.org/pdf/2003.05997.pdf) and [Smyrf](https://arxiv.org/pdf/2010.05315.pdf) use other similar techniques, such as k-means or asymmetric LSH to identify sparsity patterns.
+
+### Exploit Low-rank Properties
+- This [paper](http://www.vikas.sindhwani.org/lowRank.pdf) uses low-rank matrix factorization to reduce the computation for linear layers.
+- For efficient attention computation in Transformers, [Performer](https://arxiv.org/pdf/2009.14794.pdf), [Linformer](http://proceedings.mlr.press/v119/katharopoulos20a/katharopoulos20a.pdf), [Linear Transformer](https://arxiv.org/pdf/2006.04768.pdf) use either low-rank or kernel approximation techniques.
+
+### Sparse+Low-rank and other References
+- Inspired by the classical robust-PCA algorithm for sparse and low-rank decomposition, [Scatterbrain]() unifies sparse (via LSH) and low-rank (via kernel feature map) attention for accurate and efficient approximation. 
+- This [survey paper](https://arxiv.org/pdf/2009.06732.pdf) covers most of the efficient Transformer variants.
+- [Long Range Arena](https://arxiv.org/pdf/2011.04006.pdf) is a systematic and unified benchmark, focused on evaluating model quality under long-context scenarios.
+
+<h2 id="interactive-machine-learning">Interactive Machine Learning</h2>
+With models getting larger and costing more to train, there's a growing need to interact with the model and quickly iterate on its performance before a full training run.
+
+- **Explanatory interactive learning** Can we, by interacting with models during training, encourage their explanations to line up with our priors on what parts of the input are relevant?
+   - [Right for the Right Reasons: Training Differentiable Models by Constraining their Explanations](https://arxiv.org/pdf/1703.03717.pdf)
+   - [Explanatory Interactive Machine Learning](https://ml-research.github.io/papers/teso2019aies_XIML.pdf)
+   - [Making deep neural networks right for the right scientific reasons by interacting with their explanations](https://www.nature.com/articles/s42256-020-0212-3)
+    
+- **[Mosaic](https://github.com/robustness-gym/mosaic)** makes it easier for ML practitioners to interact with high-dimensional, multi-modal data. It provides simple abstractions for data inspection, model evaluation and model training supported by efficient and robust IO under the hood. Mosaic's core contribution is the DataPanel, a simple columnar data abstraction. The Mosaic DataPanel can house columns of arbitrary type – from integers and strings to complex, high-dimensional objects like videos, images, medical volumes and graphs.
+   - [Introducing Mosaic](https://www.notion.so/Introducing-Mosaic-64891aca2c584f1889eb0129bb747863) (blog post)
+   - [Working with Images in Mosaic](https://drive.google.com/file/d/15kPD6Kym0MOpICafHgO1pCt8T2N_xevM/view?usp=sharing) (Google Colab)
+   - [Working with Medical Images in Mosaic](https://colab.research.google.com/drive/1UexpPqyXdKp6ydBf87TW7LtGIoU5z6Jy?usp=sharing) (Google Colab)
+
 
 # Data Augmentation
 Data augmentation is a standard approach for improving model performance, where additional 
@@ -384,7 +422,7 @@ There are a variety of tools that assist in performing slice-based evaluations, 
 open questions in how to discover and select the most important and relevant slices for a 
 given context.
 
-### Foundations
+[comment]: <> (### Foundations)
 
 #### Slice Specification and Discovery
 How are important slices of data found? Since it's impossible to enumerate all slices that 
@@ -437,46 +475,13 @@ reproducible error analyses in a domain-specific language that supports explicit
 Slice-based analyses are commonplace and have been performed across all modalities with varying
 degrees of thoroughness. 
 
-- [Hidden Stratification]() describes the problem of subpar performance on hidden strata. 
+- [Hidden Stratification](https://arxiv.org/pdf/2011.12945.pdf) describes the problem of subpar performance on hidden strata. 
 - The [GLUE](https://openreview.net/pdf?id=rJ4km2R5t7) benchmark paper describes important
   slices for text classification, which were used to decide what may be challenging examples for GLUE. 
 - The [Robustness Gym](https://arxiv.org/abs/2101.04840.pdf) paper contains slice-based analyses
 across several NLP tasks (natural language inference, named entity linking, text summarization).
 - Subgroup robustness work typically specify slices.  
 
-### Evaluation Criteria
-- Robust accuracy, or the worst case performance across a set of subpopulations 
-has become prominent as an evaluation metric in the model robustness literature.
-
-
-## Evaluation on Unlabeled Data
-A key part of model evaluation is _monitoring_ the data in order to track when the data distribution
-has shifted and take remedial action. Since the model makes predictions on unlabeled data,
-standard validation cannot be used due to the absence of labels.
-
-Instead, the problem is one of statistical estimation, 
-with techniques for direct performance estimation that rely on importance weighting, and active sampling
-methods that use a small target sample to estimate performance.
-
-### Estimating Target Performance
-
-Models are often deployed on an unlabeled target dataset different from the labeled source data they were trained and validated on. To efficiently check how the model performs on the target dataset, importance weighting by the distributions' density ratio is used to correct for distribution shift. 
-A variety of importance weighting methods are popular in the literature. 
-
-Below are some resources on distribution shift, importance weighting, and density ratio estimation:
-- [Density Ratio Estimation for Machine Learning](https://www.cambridge.org/core/books/density-ratio-estimation-in-machine-learning/BCBEA6AEAADD66569B1E85DDDEAA7648) explains the different approaches to estimate density ratios, a key technical step in computing importance weights.
-- [Art Owen's notes on importance sampling](https://statweb.stanford.edu/~owen/mc/Ch-var-is.pdf) provides an overview of importance weighting with connections to Monte Carlo theory.
-- [CS329D at Stanford: ML Under Distribution Shifts](https://thashim.github.io/cs329D-spring2021/) covers current research in distribution shift, ranging from covariate shift to adversarial robustness.
-- [Propensity Scores](https://academic.oup.com/biomet/article/70/1/41/240879) are used in observational studies for correcting disparities when evaluating treatment on a target population given that the treatment was applied to a set of potentially biased subjects. 
-- [Learning Bounds on Importance Weighting](https://papers.nips.cc/paper/2010/file/59c33016884a62116be975a9bb8257e3-Paper.pdf): how well importance weighting corrects for distribution shift can be attributed to the variance of the weights, or alternatively the R\'enyi divergence between source and target.
-- Importance weighting works poorly when the supports of the source and target do not overlap and when data is high-dimensional. [Mandoline](https://mayeechen.github.io/files/mandoline.pdf)  addresses this by reweighting based on user/model-defined ``slices'' that intend to capture relevant axes of distribution shift. Slices are often readily available as subpopulations identified by the practitioner, but can also be based on things like metadata and the trained model's scores.
-
-### Outlier Detection
-_This section is a stub. You can help by improving it._
-
-
-### Active Sampling and Labeling
-_This section is a stub. You can help by improving it._
 
 [comment]: <> (Another approach to understand )
 
@@ -501,84 +506,59 @@ Other benchmarking efforts have focused on enabling more robust model comparison
 [comment]: <> (## Robustness [Jared])
 [comment]: <> (- Hidden Stratification + GEORGE)
 
+# Robustness
+NEED ROBUSTNESS SETUP/HIDDEN STRAT
+label drift whatever
+Hidden straification point to talks! This is a huge thing, it came first--and it shouldn't be some after thought as "application".
+Then, put all that work in context.
+Tell the stor!
 
-# Go Big or Go Home
-With the ability to train models on unlabelled data, research is scaling up both data size and model size at an [impressive rate](https://medium.com/analytics-vidhya/openai-gpt-3-language-models-are-few-shot-learners-82531b3d3122). This both raises questions of how to scale and how to make models more efficient to alleviate the costs of training.
+<h2 id="subgroup-information">Subgroup Information</h2>
 
-<h2 id="universal-models">Universal Models</h2>
+A data subset or "subgroup" may carry spurious correlations between its features and labels that do not hold for datapoints outside of the subgroup. When certain subgroups are larger than others, models trained to minimize average error are susceptible to learning these spurious correlations and performing poorly on the minority subgroups. 
 
-[comment]: <> ([Karan, Laurel])
-As models get larger, researchers are seeing emergent trends of impressive zero-shot behavior. This is driving a one-model-to-rule-them-all paradigm that would alleviate the need for any downstream fine-tuning.
+To obtain good performance on *all* subgroups, in addition to the ground-truth labels we can bring in subgroup information during training.
 
-### Data-Agnostic Architectures
-The goal is to find one architecutre that can be universal, working on text, image, video, etc.
-- The most common standard architecture is that of the [Transformer](https://arxiv.org/pdf/1706.03762.pdf), explained very well in this [blog](https://jalammar.github.io/illustrated-transformer/).
-- Transformers have seen wide-spread-use in NLP tasks through [BERT](https://www.aclweb.org/anthology/N19-1423.pdf), [RoBERTa](https://arxiv.org/abs/1907.11692v1), and Hugging Face's [model hub](https://huggingface.co/models), where numerous Transformer style models are trained and shared.
-- Recent work has shown how Transformers can even be sued in vision tasks with the [Vision Transformers](https://arxiv.org/pdf/2010.11929.pdf).
-- Transformers are no pancea and are still generally larger and slower to train that the simple model of a MLP. Recent work has explored how you can replace the Transformer architecture with a sequence of MLPs in the [gMLP](https://arxiv.org/pdf/2105.08050.pdf).
+- [Group Distributionally Robust Optimization (Group DRO)](https://arxiv.org/abs/1911.08731) assumes knowledge of which subgroup each training sample belongs to, and proposes a training algorithm that reweights the loss objective to focus on subgroups with higher error.  
+- [Model Patching](https://arxiv.org/abs/2008.06775) uses a generative model to synthesize samples from certain subgroups as if they belonged to another. These augmentations can then correct for subgroup imbalance, such that training on the new dataset mitigates learning correlations that only hold for the original majority subgroups.
 
-### Emphasis on Scale
-With the ability to train models without needing labelled data through self-supervision, the focus became on scaling models up and training on more data.
-- [GPT-3](https://arxiv.org/abs/2005.14165.pdf) was the first 170B parameter model capable of few-shot in-context learning developed by OpenAI.
-- [Moore's Law for Everything](https://moores.samaltman.com) is a post about scale and its effect on AI / society.
-- [Switch Transformers](https://arxiv.org/pdf/2101.03961.pdf) is a mixture of experts for training massive models beyond the scale of GPT-3.  
+Subgroup information also does not need to be explicitly annotated or known. Several recent works aim to first infer subgroups before using a robust training method to obtain good performance on all subgroups. A frequent heuristic is to use the above observation that models trained with empirical risk minimization (ERM) and that minimize average error may still perform poorly on minority subgroups; one can then infer minority or majority subgroups depending on if the trained ERM model correctly predicts the datapoints.
 
-### Multi-Modal Applications
-Models are also becoming more unviersal, capable of handling multiple modalities at once.
-- [Wu Dao 2.0](https://www.engadget.com/chinas-gigantic-multi-modal-ai-is-no-one-trick-pony-211414388.html) is the Chinese 1.75T parameter MoE model with multimodal capabilities.
-- [DALL-E](https://openai.com/blog/dall-e/) & [CLIP](https://openai.com/blog/clip/) are two other multi-modal models
+- [Learning from Failure (LfF)](https://arxiv.org/abs/2007.02561) trains two models in tandem. Each model trains on the same data batches, where for each batch, datapoints that the first model gets incorrect are upweighted in the loss objective for the second model. 
+- [Just Train Twice (JTT)]() trains an initial ERM model for a few epochs, identifies the datapoints this model gets incorrect after training, and trains a new model with ERM on the same dataset but with the incorrect points upsampled.  
+- [Correct-N-Contrast (CNC)]() also trains an initial ERM model, but uses supervised contrastive learning to train a new model to learn similar representations for datapoints with the same class but different trained ERM model predictions.
 
-### Industrial Trends
-- Companies like [OpenAI](https://openai.com), [Anthropic](https://www.anthropic.com), [Cohere](https://cohere.ai) see building universal models as part of their core business strategy.
-- Lots of companies emerging that rely on APIs from these universal model companies to build applications on top e.g. [AI Dungeon](https://play.aidungeon.io/main/landing). A long list from OpenAI at this [link](https://openai.com/blog/gpt-3-apps/).
+<h2 id="evaluation-on-unlabeled-data">Evaluation on Unlabeled Data</h2>
+A key part of robustness is _monitoring_ the data in order to track when the data distribution
+has shifted and take remedial action. Since the model makes predictions on unlabeled data,
+standard validation cannot be used due to the absence of labels.
 
-### Data Trends
-- There's been a shift towards understanding how to collect and curate truly massive amounts of data for pretraining.
-    - [The Pile](https://pile.eleuther.ai) is a new massive, more diverse dataset for training language models than the standard Common Crawl.
-    - [Huggingface BigScience](https://docs.google.com/document/d/1BIIl-SObx6tR41MaEpUNkRAsGhH7CQqP_oHQrqYiH00/edit) is a new effort to establish good practices in data curation.
+Instead, the problem is one of statistical estimation, 
+with techniques for direct performance estimation that rely on importance weighting, and active sampling
+methods that use a small target sample to estimate performance.
 
-### Theoretical Foundations
-- [Limitations of Autoregressive Models and Their Alternatives](https://arxiv.org/abs/2010.11939) explores the theoretical limitations of autoregressive language models in the inability to represent "hard" language distributions.
+### Estimating Target Performance
 
-[comment]: <> (### Other Links)
-[comment]: <> (- Stanford class [upcoming])
+Models are often deployed on an unlabeled target dataset different from the labeled source data they were trained and validated on. To efficiently check how the model performs on the target dataset, importance weighting by the distributions' density ratio is used to correct for distribution shift. 
+A variety of importance weighting methods are popular in the literature. 
 
-<h2 id="efficient-models">Efficient Models</h2>
-As models get larger, there is an increasing need to make training less computational expensive, espcially in larger Transformer networks that have a quadratic complexity (w.r.t. input sequence length) in attention layers. 
+Below are some resources on distribution shift, importance weighting, and density ratio estimation:
+- [Density Ratio Estimation for Machine Learning](https://www.cambridge.org/core/books/density-ratio-estimation-in-machine-learning/BCBEA6AEAADD66569B1E85DDDEAA7648) explains the different approaches to estimate density ratios, a key technical step in computing importance weights.
+- [Art Owen's notes on importance sampling](https://statweb.stanford.edu/~owen/mc/Ch-var-is.pdf) provides an overview of importance weighting with connections to Monte Carlo theory.
+- [CS329D at Stanford: ML Under Distribution Shifts](https://thashim.github.io/cs329D-spring2021/) covers current research in distribution shift, ranging from covariate shift to adversarial robustness.
+- [Propensity Scores](https://academic.oup.com/biomet/article/70/1/41/240879) are used in observational studies for correcting disparities when evaluating treatment on a target population given that the treatment was applied to a set of potentially biased subjects. 
+- [Learning Bounds on Importance Weighting](https://papers.nips.cc/paper/2010/file/59c33016884a62116be975a9bb8257e3-Paper.pdf): how well importance weighting corrects for distribution shift can be attributed to the variance of the weights, or alternatively the R\'enyi divergence between source and target.
+- Importance weighting works poorly when the supports of the source and target do not overlap and when data is high-dimensional. [Mandoline](https://mayeechen.github.io/files/mandoline.pdf)  addresses this by reweighting based on user/model-defined ``slices'' that intend to capture relevant axes of distribution shift. Slices are often readily available as subpopulations identified by the practitioner, but can also be based on things like metadata and the trained model's scores.
 
-### Exploit Sparsity
-- For efficient MLP Training, [SLIDE](https://arxiv.org/pdf/1903.03129.pdf) uses Locality Sensitive Hashing(LSH) for approximating dense matrix multiplications in linear layers preceding a softmax (identify sparsity patterns).
-- For efficient Transformers Training, [Reformer](https://arxiv.org/pdf/2001.04451.pdf) uses similar techniques, LSH, to reduce quadratic computations in attention layers.
-- [MONGOOSE](https://openreview.net/pdf?id=wWK7yXkULyh) uses a scheduling algorithm and learnable hash functions to address LSH overhead and further speed-up MLP and Transformer training. 
-- [Routing Transformers](https://arxiv.org/pdf/2003.05997.pdf) and [Smyrf](https://arxiv.org/pdf/2010.05315.pdf) use other similar techniques, such as k-means or asymmetric LSH to identify sparsity patterns.
+### Outlier Detection
+_This section is a stub. You can help by improving it._
 
-### Exploit Low-rank Properties
-- This [paper](http://www.vikas.sindhwani.org/lowRank.pdf) uses low-rank matrix factorization to reduce the computation for linear layers.
-- For efficient attention computation in Transformers, [Performer](https://arxiv.org/pdf/2009.14794.pdf), [Linformer](http://proceedings.mlr.press/v119/katharopoulos20a/katharopoulos20a.pdf), [Linear Transformer](https://arxiv.org/pdf/2006.04768.pdf) use either low-rank or kernel approximation techniques.
+### Active Sampling and Labeling
+_This section is a stub. You can help by improving it._
 
-### Sparse+Low-rank and other References
-- Inspired by the classical robust-PCA algorithm for sparse and low-rank decomposition, [Scatterbrain]() unifies sparse (via LSH) and low-rank (via kernel feature map) attention for accurate and efficient approximation. 
-- This [survey paper](https://arxiv.org/pdf/2009.06732.pdf) covers most of the efficient Transformer variants.
-- [Long Range Arena](https://arxiv.org/pdf/2011.04006.pdf) is a systematic and unified benchmark, focused on evaluating model quality under long-context scenarios.
+[comment]: <> (## Video)
 
-
-## Interactive Machine Learning
-With models getting larger and costing more to train, there's a growing need to interact with the model and quickly iterate on its performance before a full training run.
-
-- **Explanatory interactive learning** Can we, by interacting with models during training, encourage their explanations to line up with our priors on what parts of the input are relevant?
-   - [Right for the Right Reasons: Training Differentiable Models by Constraining their Explanations](https://arxiv.org/pdf/1703.03717.pdf)
-   - [Explanatory Interactive Machine Learning](https://ml-research.github.io/papers/teso2019aies_XIML.pdf)
-   - [Making deep neural networks right for the right scientific reasons by interacting with their explanations](https://www.nature.com/articles/s42256-020-0212-3)
-    
-- **[Mosaic](https://github.com/robustness-gym/mosaic)** makes it easier for ML practitioners to interact with high-dimensional, multi-modal data. It provides simple abstractions for data inspection, model evaluation and model training supported by efficient and robust IO under the hood. Mosaic's core contribution is the DataPanel, a simple columnar data abstraction. The Mosaic DataPanel can house columns of arbitrary type – from integers and strings to complex, high-dimensional objects like videos, images, medical volumes and graphs.
-   - [Introducing Mosaic](https://www.notion.so/Introducing-Mosaic-64891aca2c584f1889eb0129bb747863) (blog post)
-   - [Working with Images in Mosaic](https://drive.google.com/file/d/15kPD6Kym0MOpICafHgO1pCt8T2N_xevM/view?usp=sharing) (Google Colab)
-   - [Working with Medical Images in Mosaic](https://colab.research.google.com/drive/1UexpPqyXdKp6ydBf87TW7LtGIoU5z6Jy?usp=sharing) (Google Colab)
-
-
-[comment]: <> (- Forager [Fait])
-
-[comment]: <> (- Mosaic DataPanels)
+[comment]: <> ([Dan])
 
 
 <h1 id="section-applications">Applications</h1>
@@ -592,11 +572,7 @@ Named entity linking (NEL) is the task of linking ambiguous mentions in text to 
 - Other trends have been to enhance the training data further. The system [Bootleg](https://arxiv.org/pdf/2010.10363.pdf) system uses weak labeling of the training data to noisily assign entity links to mentions, increasing performance over rare entities.
 - Ikuya Yamada has a wonderful GitHub [survey](https://github.com/izuna385/Entity-Linking-Recent-Trends) of recent trend in Entity Linking
 
-[comment]: <> (## Video)
-
-[comment]: <> ([Dan])
-
-## Medical Imaging
+<h2 id="medical-imaging">Medical Imaging</h2>
 
 - Sensitive to inputs, not models
     - The varient of imaging configurations (e.g. [site locations](https://arxiv.org/pdf/2002.11379.pdf)), hardware, and processing techniques (e.g. [CT windowing](https://pubs.rsna.org/doi/abs/10.1148/ryai.2021200229)) lead to large performance shifts
