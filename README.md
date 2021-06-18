@@ -1,4 +1,4 @@
-# Data Centric AI
+# Data Centric AI (v0.0.1)
 
 We're collecting (an admittedly opinionated) list of resources and progress made 
 in data-centric AI, with exciting directions past and present.
@@ -554,8 +554,7 @@ Named entity linking (NEL) is the task of linking ambiguous mentions in text to 
 - Pre-deep-learning approaches to NED have been [rule-based](https://www.aclweb.org/anthology/X96-1053.pdf) or leverage statistical techniques and manual feature engineering to filter and rank candidates ([survey paper](https://arxiv.org/abs/1910.11470)).
 - In recent years, deep learning systems have become the new standard ([overview paper](https://dl.acm.org/doi/10.1145/3183713.3196926) of deep learning approaches to entity disambiguation and entity matching problems). The most recent state-of-the-art models generally rely on deep contextual word embeddings with entity embeddings. For example, [Pre-training of Deep Contextualized Embeddings of Words and Entities for Named Entity Disambiguation](https://arxiv.org/pdf/1909.00426v1.pdf) and [Empirical Evaluation of Pretraining Strategies for Supervised Entity Linking](https://arxiv.org/pdf/2005.14253.pdf).
 - We've seen a recent shift in simplifying the model even more to just use tranformers without explicit entity embeddings with models like [BLINK](https://arxiv.org/pdf/1911.03814.pdf) (uses a bi-encoder) and the [Dual and Cross-Attention Encoders](https://arxiv.org/pdf/2004.03555.pdf) (uses cross-encoder).
-  
-- [Data-driven improvements in NEL through weak labeling](https://arxiv.org/pdf/2010.10363.pdf): Bootleg uses weak labeling of the training data to noisily assign entity links to mentions, increasing performance over rare entities.
+  - Other trends have been to enhance the training data further. The system [Bootleg](https://arxiv.org/pdf/2010.10363.pdf) system uses weak labeling of the training data to noisily assign entity links to mentions, increasing performance over rare entities.
 - Ikuya Yamada has a wonderful GitHub [survey](https://github.com/izuna385/Entity-Linking-Recent-Trends) of recent trend in Entity Linking
 
 [comment]: <> (## Video)
