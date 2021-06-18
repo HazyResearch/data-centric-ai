@@ -15,8 +15,9 @@ Make a pull request if you want to add resources.
 
 Instructions for adding resources:
 
-0. Add potential emoji to section header (syntax `:emoji:`). 
-   The emoji can be made up and may not exist (yet).
+[comment]: <> (0. Add potential emoji to section header &#40;syntax `:emoji:`&#41;. )
+[comment]: <> (   The emoji can be made up and may not exist &#40;yet&#41;.)
+
 1. Write a sentence summarizing the content of the section you're writing. 
    Feel free to change the header name to something more appropriate 
    and/or split your section across multiple headers if that makes sense to you.
@@ -29,8 +30,9 @@ Instructions for adding resources:
 # Table of Contents
 
 1. [Data Programming & Weak Supervision](#data-programming--weak-supervision)
-   1. [The Theory of Weak Supervision](#the-theory-of-weak-supervision)
-   2. [Applications](#weak-supervision-applications)
+   1. [Recent Work](#data-programming-recent-work)
+   2. [The Theory of Weak Supervision](#the-theory-of-weak-supervision)
+   3. [Success Stories](#weak-supervision-success-stories)
 2. [Data Representations](#data-representations)
    1. [Embeddings](#embeddings)
    2. [Learning with Auxiliary Information](#learning-with-auxiliary-information)
@@ -60,7 +62,7 @@ Many modern machine learning systems require large, labeled datasets to be succe
 We first present some recent work on weak supervision and various algorithmic developments in how to learn the graphical model. We then refer to some fundamental literature in graphical models that underlies this recent work.
 
 
-## Recent work
+<h2 id="data-programming-recent-work">Recent Work</h2>
 - [This Snorkel blog post](https://www.snorkel.org/blog/weak-supervision) provides an overview of the weak supervision pipeline, including how it compares to other approaches to get more labeled data and the technical modeling challenges.
 - [These Stanford CS229 lecture notes](https://mayeechen.github.io/files/wslecturenotes.pdf) provide a more theoretical summary of how graphical models are used in weak supervision.
 - [MeTaL](https://arxiv.org/pdf/1810.02840.pdf): learning the parameters can be done via a matrix completion problem based on the fact that the (augmented) inverse covariance matrix of the labeling functions and true label is graph-structured, meaning that it has a 0 in locations where the row and column variables are independent conditional on all other variables. Under sufficient sparsity of the graphical model, this property can be utilized to learn the latent parameters of the model. 
@@ -77,16 +79,18 @@ The theory behind weak supervision and data programming relies on latent variabl
 - [Tensor decomposition](https://www.jmlr.org/papers/volume15/anandkumar14b/anandkumar14b.pdf) is a more general form of the factorizations of variables used in weak supervision (i.e. in FlyingSquid) and can be used in latent variable estimation.
 
 
-<h2 id="weak-supervision-applications"> Applications </h2>
+<h2 id="weak-supervision-success-stories"> Success Stories </h2>
 
-## Success Stories
 - The [Overton](https://www.cs.stanford.edu/~chrismre/papers/overton-tr.pdf) zero-code, deep-learning system to help engineers build, monitor, and improve ML systems.
-- [G-mail](http://cidrdb.org/cidr2020/papers/p31-sheng-cidr20.pdf) privacy-safe strcutred data extraction system migrated to Software 2.0 design. 
+- [G-mail](http://cidrdb.org/cidr2020/papers/p31-sheng-cidr20.pdf) privacy-safe structured data extraction system migrated to Software 2.0 design. 
 - Using weak supervision to train content and even classifiers at [Google](https://arxiv.org/pdf/1812.00417.pdf).
 - The [Software 2.0 blog post](https://hazyresearch.stanford.edu/software2) summarizes other successes for data programming.
 
+
+
 # Data Representations
 When data is at the forefront of machine learning, how you represent and share the data becomes a critical factor to building ML systems. 
+
 ## Embeddings
 Data is represented and transferred through embeddings which encode
 knowledge about the "unit" the embedding is representing. The widespread
@@ -129,7 +133,7 @@ Rare are entities (named entities, products, words, ...) are uncommon or non-exi
 - This [zero-shot NED system](https://arxiv.org/pdf/1906.07348.pdf) uses entity descriptions to improve rare entity linking performance.
 - The [TEK](https://arxiv.org/pdf/2004.12006.pdf) framework injects entity descriptions for improved reading comprehension and QA. 
 
- ### Data Shaping
+### Data Shaping
 Standard language models struggle to reason over the long-tail of 
 entity-based knowledge and significant recent work 
 tackles this challenge by providing the model with external knowledge signals. 
@@ -187,10 +191,16 @@ Subgroup information also does not need to be explicitly annotated or known. Sev
 <h2 id="data-representation-successes">Success Stories</h2>
 
 ### Feature Stores
-Feature Store (FS) systems were developed to help engineers build, share, and manage data features for model training and deployment.  
-- Uber Michelangelo
-- Feast + Tecton
+Feature Store (FS) systems were developed to help engineers build, share, and manage data features for model training and deployment. 
+- Uber's [Michelangelo](https://eng.uber.com/michelangelo-machine-learning-platform/) was the first of its kind Feature Store deployed at Uber.
+- [Feast](https://www.tecton.ai/feast/) by Tecton is one of the only open source Feature Store.
+- There's an entire [website](https://www.featurestore.org/) devoted to Feature Stores.
 
+### Industry and the Embedding Ecosystem
+Embeddings are core inputs to numerous downstream user-facing systems in industry. We term the embeddings and models that use them a "embedding ecosystem". A few examples of these ecosystems at work are:
+- [Pinterest's](https://medium.com/pinterest-engineering/pinnersage-multi-modal-user-embedding-framework-for-recommendations-at-pinterest-bfd116b49475) multi-model user embeddings for recommendation.
+  - [Spotify](https://research.atspotify.com/contextual-and-sequential-user-embeddings-for-music-recommendation/) uses embeddings for user music recommendations.
+   - [Netflix](https://netflixtechblog.com/supporting-content-decision-makers-with-machine-learning-995b7b76006f) also uses embeddings for movie recommendations. 
 
 # Data Augmentation
 Data augmentation is a standard approach for improving model performance, where additional 
@@ -446,7 +456,7 @@ Below are some resources on distribution shift, importance weighting, and densit
 
 
 # Go Big or Go Home
-
+With the ability to train modeWe're seeing an push in AI to train larger models on more data.
 <h2 id="universal-models">Universal Models</h2>
 
 [comment]: <> ([Karan, Laurel])
@@ -486,7 +496,7 @@ Models are also becoming more unviersal, capable of handling multiple modalities
 [comment]: <> (- Stanford class [upcoming])
 
 <h2 id="efficient-models">Efficient Models</h2>
-Training large MLP models or Transformers requires extensive computational and memory resources, especially for wide linear layers or when modeling long sequences, mainly due to the quadratic complexity (w.r.t. input sequence length) in attention layers, respectively. 
+As mTraining large MLP models or Transformers requires extensive computational and memory resources, especially for wide linear layers or when modeling long sequences, mainly due to the quadratic complexity (w.r.t. input sequence length) in attention layers, respectively. 
 
 ### Exploit Sparsity
 - For efficient MLP Training, [SLIDE](https://arxiv.org/pdf/1903.03129.pdf) uses Locality Sensitive Hashing(LSH) for approximating dense matrix multiplications in linear layers preceding a softmax (identify sparsity patterns).
@@ -568,7 +578,8 @@ Named entity linking (NEL) is the task of linking ambiguous mentions in text to 
    - Approaches for extracting biological information from medical literature (such as [chemical-disease relation extraction](https://link.springer.com/article/10.1186/s13321-016-0165-z) and [genotype-phenotype association extraction](https://www.nature.com/articles/s41467-019-11026-x)) have benefitted from data programming techniques as well as the incorporation of weakly labeled data.
 
 
-<h2 id="observational-supervision">:animated-eyes: Observational Supervision</h2>
+<h2 id="observational-supervision">Observational Supervision</h2>
+
 The way experts interact with their data (e.g. a radiologist’s eye movements) contains rich information about the task (e.g. classification difficulty), and the expert (e.g. drowsiness level).
 With the current trend of wearable technology (e.g. AR with eye tracking capability), the hardware needed to collect such human-data interactions is expected to become more ubiquitous, affordable, and standardized. 
 In observational supervision, we investigate how to extract the rich information embedded in the human-data interaction, to either supervise models from scratch, or to improve model robustness.
