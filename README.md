@@ -456,7 +456,8 @@ Below are some resources on distribution shift, importance weighting, and densit
 
 
 # Go Big or Go Home
-With the ability to train models on unlabelled data, research is scaling up both data size and model size at an impressive rate. 
+With the ability to train models on unlabelled data, research is scaling up both data size and model size at an [impressive rate](https://medium.com/analytics-vidhya/openai-gpt-3-language-models-are-few-shot-learners-82531b3d3122). This both raises questions of how to scale and how to make models more efficient to alleviate the costs of training.
+
 <h2 id="universal-models">Universal Models</h2>
 
 [comment]: <> ([Karan, Laurel])
@@ -548,13 +549,13 @@ Named entity linking (NEL) is the task of linking ambiguous mentions in text to 
 
 ## Medical Imaging
 
-- :seesaw: Sensitive to inputs, not models
+- Sensitive to inputs, not models
     - The varient of imaging configurations (e.g. [site locations](https://arxiv.org/pdf/2002.11379.pdf)), hardware, and processing techniques (e.g. [CT windowing](https://pubs.rsna.org/doi/abs/10.1148/ryai.2021200229)) lead to large performance shifts
     - Recent medical imaging challenges (segmentation: [knee](https://arxiv.org/pdf/2004.14003.pdf), [brain](https://arxiv.org/pdf/1811.02629.pdf), reconstruction: [MRI](https://arxiv.org/abs/2012.06318)), found that, to a large extent, the choice of model is less important than the underlying distribution of data (e.g. disease extent)
 
--  :mixing-pot: Towards multi-modal data fusion
-    - :report: Radiologist reports (and more generally text) have been used to improve learned visual representations (e.g. [ConVIRT](https://arxiv.org/abs/2010.00747)) and to source weak labels in annotation-scarce settings (e.g. ([PET/CT](https://www-nature-com.stanford.idm.oclc.org/articles/s41467-021-22018-1)))
-    - :ekg: :test-tube: Auxiliary features from other rich, semi-structured data, such as [electronic health records (EHRs)](https://www-nature-com.stanford.idm.oclc.org/articles/s41746-020-00341-z), successfully complemented standard image representations
+- Towards multi-modal data fusion
+    - Radiologist reports (and more generally text) have been used to improve learned visual representations (e.g. [ConVIRT](https://arxiv.org/abs/2010.00747)) and to source weak labels in annotation-scarce settings (e.g. ([PET/CT](https://www-nature-com.stanford.idm.oclc.org/articles/s41467-021-22018-1)))
+    - Auxiliary features from other rich, semi-structured data, such as [electronic health records (EHRs)](https://www-nature-com.stanford.idm.oclc.org/articles/s41746-020-00341-z), successfully complemented standard image representations
 
 [comment]: <> (## Image Segmentation)
 
