@@ -67,23 +67,32 @@ Many modern machine learning systems require large, labeled datasets to be succe
 
 We first present some recent work on weak supervision and various algorithmic developments in how to learn the graphical model. We then refer to some fundamental literature in graphical models that underlies this recent work.
 
+<h2 id="data-programming-key-papers">Key Papers</h2>
+- [Data Programming: Creating Large Training Sets, Quickly](https://arxiv.org/pdf/1605.07723.pdf): Introduces the data programming paradigm.
+- [Snorkel: Rapid Training Data Creation with Weak Supervision](http://www.vldb.org/pvldb/vol11/p269-ratner.pdf): Introduces the Snorkel system for enabling data programming at scale.
 
-<h2 id="data-programming-recent-work">Recent Work</h2>
+<h2 id="data-programming-techniques">Techniques</h2>
+*Learning the parameters of a latent variable graphical model:* At the heart of weak supervision lies the label model--a generative model for the labeling functions and the unobserved (latent) true label. This concept enables the modeling of labeling functions with varying accuracies and potential correlations. Learning the label model permits the use of diverse sources of signal. We do not need the sources to be equally accurate or to be independent of one another! While learning latent variable graphical models is a challenging problem, new techniques offer provable guarantees and computational efficiency!
+- [MeTaL](https://arxiv.org/pdf/1810.02840.pdf): the structure of the inverse covariance matrix of the sources is closely related to the dependency structure of the graphical model; it provides enough information to learn the parameters of the label model. 
+- [FlyingSquid](https://arxiv.org/pdf/2002.11955.pdf): rather than work with the entire covariance matrix, small covariance sub-matrices (as small as 3x3) still contain enough information to learn the accuracies. Obtaining the parameters is done by computing a closed-form expression---no optimization required.
 
+*Learning the structure of a latent variable graphical model:*
+- [Learning dependencies](https://arxiv.org/pdf/1903.05844.pdf): in most weak supervision settings, labeling functions are assumed to be conditionally independent, or the dependencies are known. However, when they are not, robust PCA can be applied to recover the structure.
+- [Learning the Structure of Generative Models without Labeled Data](https://export.arxiv.org/pdf/1703.00854): To learn the label function dependencies with limited data, we can use a structure estimation method that is 100x faster than maximum likelihood approaches.
+
+*Learning the structure of a latent variable graphical model:*
+- [Comparing labeled versus unlabeled data](https://arxiv.org/pdf/2103.02761.pdf): generative classifiers based on graphical models (e.g. in weak supervision) can accept both labeled and unlabeled data (since usually practitioners have a small amount of labeled data available), but unlabeled input is linearly more susceptible to misspecification of the dependency structure. However, this can be corrected using a general median-of-means estimator on top of method-of-moments.
+
+<h2 id="data-programming-foundations">Foundations</h2>
+
+- Crowdsourcing and noisy labelers: the closely-related problem of dealing with labelers of different quality, especially in the context of crowdsourcing, is foundational. The classic work of [Dawid and Skene](https://www.jstor.org/stable/2346806) uses expectation maximization to learn the confusion matrices for each labeler. In a more recent seminal work, [Karger, Oh, and Shah](https://papers.nips.cc/paper/2011/file/c667d53acd899a97a85de0c201ba99be-Paper.pdf) show how to iteratively improve estimates of reliability---reducing the total amount of required sources. [Joglekar et al](https://dl.acm.org/doi/10.1145/2487575.2487595) learn confidence intervals for labeler reliability.
+- Learning with noisy labels: Even if we know the reliability of noisy labelers, when and how can we train a model on noisy examples? The possibility of learning with noisy labels has been studied starting with classic work from [Angluin and Laird](http://homepages.math.uic.edu/~lreyzin/papers/angluin88b.pdf). For models trained with a surrogate loss function, [Scott](http://web.eecs.umich.edu/~cscott/pubs/asymsurrEJS.pdf), and [Natarajan et al](https://proceedings.neurips.cc/paper/2013/file/3871bd64012152bfb53fdf04b401193f-Paper.pdf) opened up a new area by showing that a simple re-weighting modification of the loss enables unbiased learning in the presence of noise. 
+- Learning latent-variable graphical models: Learning both the structure and parameters of a latent-variable graphical model is a more challenging variant of the traditional graphical model learning problem. While EM remains an option, other techniques exploit structure in matrices and tensors of moments. A core technique is tensor decomposition pioneered by [Anandkumar et al](https://www.jmlr.org/papers/volume15/anandkumar14b/anandkumar14b.pdf), used as a block in [Chaganty and Liang](http://proceedings.mlr.press/v32/chaganty14.html). 
+- Structure learning of latent-variable graphical models: using extensions of robust PCA permits the recovery of latent-variable Gaussian graphical models, as in [Chandrasekaran et al](https://arxiv.org/pdf/1008.1290.pdf). Discrete models share certain similar properties, i.e., having structured inverse covariance matrices.
+
+<h2 id="data-programming-resources">Other Resources</h2>
 - This [Snorkel blog post](https://www.snorkel.org/blog/weak-supervision) provides an overview of the weak supervision pipeline, including how it compares to other approaches to get more labeled data and the technical modeling challenges.
 - [These Stanford CS229 lecture notes](https://mayeechen.github.io/files/wslecturenotes.pdf) provide a more theoretical summary of how graphical models are used in weak supervision.
-- [MeTaL](https://arxiv.org/pdf/1810.02840.pdf): learning the parameters can be done via a matrix completion problem based on the fact that the (augmented) inverse covariance matrix of the labeling functions and true label is graph-structured, meaning that it has a 0 in locations where the row and column variables are independent conditional on all other variables. Under sufficient sparsity of the graphical model, this property can be utilized to learn the latent parameters of the model. 
-- [Learning dependencies](https://arxiv.org/pdf/1903.05844.pdf): in most weak supervision settings, labeling functions are assumed to be conditionally independent, or the dependencies are known. However, when they are not, robust PCA can be applied to recover the structure.
-- [FlyingSquid](https://arxiv.org/pdf/2002.11955.pdf): beyond using the inverse covariance matrix, certain families of graphical models can use method-of-moments---computing correlations among triplets of conditionally independent variables---to estimate latent parameters, which removes the need for SGD and speeds up weak supervision, enabling online and streaming settings.
-- [Comparing labeled versus unlabeled data](https://arxiv.org/pdf/2103.02761.pdf): generative classifiers based on graphical models (e.g. in weak supervision) can accept both labeled and unlabeled data (since usually practitioners have a small amount of labeled data available), but unlabeled input is linearly more susceptible to misspecification of the dependency structure. However, this can be corrected using a general median-of-means estimator on top of method-of-moments.
-  
-## The Theory of Weak Supervision
-The theory behind weak supervision and data programming relies on latent variable estimation in graphical models.
-
-- [This textbook](https://people.eecs.berkeley.edu/~wainwrig/Papers/WaiJor08_FTML.pdf) by Martin J. Wainwright and Michael I. Jordan provides an overview of graphical models. Other textbooks on graphical models include [one by Daphne Koller and Nir Friedman](https://mitpress.mit.edu/books/probabilistic-graphical-models) and [Steffen Lauritzen's book](http://www.statslab.cam.ac.uk/~qz280/teaching/causal-2019/reading/Lauritzen_1996_Graphical_Models.pdf).
-- [Structured inverse covariance matrices](https://arxiv.org/pdf/1212.0478.pdf): this paper establishes the connection between the dependency structure of a graphical model and the inverse of a generalized covariance matrix, a key relationship utilized in latent variable estimation for weak supervision.
-- [Robust PCA](https://dl.acm.org/doi/pdf/10.1145/1970392.1970395) aims to recover a decomposition of a matrix into sparse and low-rank components in a way that is robust to arbitrarily large entrywise corruptions in the sparse matrix. It is used along with graph-structured inverse covariance matrices to learn dependencies in the graphical model.
-- [Tensor decomposition](https://www.jmlr.org/papers/volume15/anandkumar14b/anandkumar14b.pdf) is a more general form of the factorizations of variables used in weak supervision (i.e. in FlyingSquid) and can be used in latent variable estimation.
 
 
 <h2 id="weak-supervision-success-stories"> Success Stories </h2>
