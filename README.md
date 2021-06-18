@@ -40,6 +40,9 @@ Instructions for adding resources:
 3. [Data Augmentation](#data-augmentation)
    1. [History](#augmentation-history)
    2. [Theoretical Foundations](#augmentation-theory)
+   3. [Augmentation Primitives](#augmentation-primitives)
+   4. [Future Directions](#augmentation-future)
+   5. [Further Reading](#augmentation-evenmore)
 4. [Contrastive Learning](#contrastive-learning)
    1. [Theoretical Foundations](#contrastive-theory)
    2. [Applications](#contrastive-applications)
@@ -63,6 +66,7 @@ We first present some recent work on weak supervision and various algorithmic de
 
 
 <h2 id="data-programming-recent-work">Recent Work</h2>
+
 - [This Snorkel blog post](https://www.snorkel.org/blog/weak-supervision) provides an overview of the weak supervision pipeline, including how it compares to other approaches to get more labeled data and the technical modeling challenges.
 - [These Stanford CS229 lecture notes](https://mayeechen.github.io/files/wslecturenotes.pdf) provide a more theoretical summary of how graphical models are used in weak supervision.
 - [MeTaL](https://arxiv.org/pdf/1810.02840.pdf): learning the parameters can be done via a matrix completion problem based on the fact that the (augmented) inverse covariance matrix of the labeling functions and true label is graph-structured, meaning that it has a 0 in locations where the row and column variables are independent conditional on all other variables. Under sufficient sparsity of the graphical model, this property can be utilized to learn the latent parameters of the model. 
@@ -217,11 +221,15 @@ and test-time augmentation for prediction.
 Since then, augmentation has become a de-facto part of image training pipelines and 
 an integral part of text applications such as machine translation.
 
+
+
 <h2 id="augmentation-theory">Theoretical Foundations</h2>
 
 - [Tangent Propagation](https://papers.nips.cc/paper/1991/file/65658fde58ab3c2b6e5132a39fae7cb9-Paper.pdf) expresses desired model invariances induced by a data augmentation as tangent constraints on the directional derivatives of the learned model
 - [Kernel Theory of Data Augmentation](http://proceedings.mlr.press/v97/dao19b/dao19b.pdf) connects the tangent propagation view of data augmentation to kernel-based methods.
 - [On the Generalization Effects of Linear Transformations in Data Augmentation](https://arxiv.org/abs/2005.00695) studies an over-parametrized linear regression setting and study the generalization effect of applying a familar of linear transformations in this setting.
+
+
 
 <h2 id="augmentation-primitives">Augmentation Primitives</h2>
 
@@ -306,7 +314,8 @@ Examples of these approaches include
 Recent approaches use a combination of learned domain translation models with consistency training to further 
 improve performance e.g. [Model Patching](https://arxiv.org/pdf/2008.06775.pdf).
 
-## Future Directions
+<h2 id="augmentation-future">Future Directions</h2>
+
 Several open questions remain in data augmentation and synthetic data generation.
 
 - While augmentation has been found to have a strong positive effect on performance: 
@@ -319,7 +328,9 @@ Several open questions remain in data augmentation and synthetic data generation
   What is the effect of the noise added by data augmentation? 
   Can we tolerate larger amounts of noise to improve performance further? 
 
-## Further Reading
+
+<h2 id="augmentation-evenmore">Further Reading</h2>
+
 - the ["Automating the Art of Data Augmentation"](https://hazyresearch.stanford.edu/data-aug-part-1) 
   series of blog posts by [Sharon Li](http://pages.cs.wisc.edu/~sharonli/) provide an overview of data augmentation.
 
@@ -336,6 +347,7 @@ Contrastive learning works by optimizing a loss function that pulls together sim
 
 
 <h2 id="contrastive-applications">Applications</h2>
+
 
 
 # Fine-Grained Evaluation
@@ -461,7 +473,7 @@ With the ability to train models on unlabelled data, research is scaling up both
 <h2 id="universal-models">Universal Models</h2>
 
 [comment]: <> ([Karan, Laurel])
-Shift towards one-model-to-rule-them-all paradigm.
+As models get larger, researchers are seeing emergent trends of impressive zero-shot behavior. This is driving a one-model-to-rule-them-all paradigm that would alleviate the need for any downstream fine-tuning.
 
 ### Data-Agnostic Architectures
 The goal is to find one architecutre that can be universal, working on text, image, video, etc.
@@ -497,7 +509,7 @@ Models are also becoming more unviersal, capable of handling multiple modalities
 [comment]: <> (- Stanford class [upcoming])
 
 <h2 id="efficient-models">Efficient Models</h2>
-As mTraining large MLP models or Transformers requires extensive computational and memory resources, especially for wide linear layers or when modeling long sequences, mainly due to the quadratic complexity (w.r.t. input sequence length) in attention layers, respectively. 
+As models get larger, there is an increasing need to make training less computational expensive, espcially in larger Transformer networks that have a quadratic complexity (w.r.t. input sequence length) in attention layers. 
 
 ### Exploit Sparsity
 - For efficient MLP Training, [SLIDE](https://arxiv.org/pdf/1903.03129.pdf) uses Locality Sensitive Hashing(LSH) for approximating dense matrix multiplications in linear layers preceding a softmax (identify sparsity patterns).
@@ -516,6 +528,7 @@ As mTraining large MLP models or Transformers requires extensive computational a
 
 
 ## Interactive Machine Learning
+With models getting larger and costing more to train, there's a growing need to interact with the model and quickly iterate on its performance before a full training run.
 
 - **Explanatory interactive learning** Can we, by interacting with models during training, encourage their explanations to line up with our priors on what parts of the input are relevant?
    - [Right for the Right Reasons: Training Differentiable Models by Constraining their Explanations](https://arxiv.org/pdf/1703.03717.pdf)
@@ -537,11 +550,13 @@ As mTraining large MLP models or Transformers requires extensive computational a
 
 <h2 id="named-entity-linking">Named Entity Linking</h2>
 
-Named entity linking (NEL) is the task of linking ambiguous mentions in text to entities in a knowledge base. NEL is a core preprocessing step in downstream applications, including search and question answering. 
-
-- [Shift towards simple Transformer models for NEL with bi-encoders and cross-encoders](https://arxiv.org/abs/1911.03814): recent state-of-the-art models such as BLINK rely on a simple two-stage architecture for NEL. First a bi-encoder retrieves candidate entitites by embedding the query and entities. Then a cross-encoder re-ranks the candidate entities.  
-- [Data-driven improvements in NEL through weak labeling](https://arxiv.org/pdf/2010.10363.pdf): Bootleg uses weak labeling of the training data to noisily assign entity links to mentions, increasing performance over rare entities. 
-
+Named entity linking (NEL) is the task of linking ambiguous mentions in text to entities in a knowledge base. NEL is a core preprocessing step in downstream applications, including search and question answering.
+- Pre-deep-learning approaches to NED have been [rule-based](https://www.aclweb.org/anthology/X96-1053.pdf) or leverage statistical techniques and manual feature engineering to filter and rank candidates ([survey paper](https://arxiv.org/abs/1910.11470)).
+- In recent years, deep learning systems have become the new standard ([overview paper](https://dl.acm.org/doi/10.1145/3183713.3196926) of deep learning approaches to entity disambiguation and entity matching problems). The most recent state-of-the-art models generally rely on deep contextual word embeddings with entity embeddings. For example, [Pre-training of Deep Contextualized Embeddings of Words and Entities for Named Entity Disambiguation](https://arxiv.org/pdf/1909.00426v1.pdf) and [Empirical Evaluation of Pretraining Strategies for Supervised Entity Linking](https://arxiv.org/pdf/2005.14253.pdf).
+- We've seen a recent shift in simplifying the model even more to just use tranformers without explicit entity embeddings with models like [BLINK](https://arxiv.org/pdf/1911.03814.pdf) (uses a bi-encoder) and the [Dual and Cross-Attention Encoders](https://arxiv.org/pdf/2004.03555.pdf) (uses cross-encoder).
+  
+- [Data-driven improvements in NEL through weak labeling](https://arxiv.org/pdf/2010.10363.pdf): Bootleg uses weak labeling of the training data to noisily assign entity links to mentions, increasing performance over rare entities.
+- Ikuya Yamada has a wonderful GitHub [survey](https://github.com/izuna385/Entity-Linking-Recent-Trends) of recent trend in Entity Linking
 
 [comment]: <> (## Video)
 
