@@ -560,7 +560,7 @@ With models getting larger and costing more to train, there's a growing need to 
 [comment]: <> (- Mosaic DataPanels)
 
 
-<h1 id="section-applications"></h1>
+<h1 id="section-applications">Applications</h1>
 
 <h2 id="named-entity-linking">Named Entity Linking</h2>
 
