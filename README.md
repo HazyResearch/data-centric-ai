@@ -456,7 +456,7 @@ Below are some resources on distribution shift, importance weighting, and densit
 
 
 # Go Big or Go Home
-With the ability to train modeWe're seeing an push in AI to train larger models on more data.
+With the ability to train models on unlabelled data, research is scaling up both data size and model size at an impressive rate. 
 <h2 id="universal-models">Universal Models</h2>
 
 [comment]: <> ([Karan, Laurel])
@@ -560,7 +560,7 @@ Named entity linking (NEL) is the task of linking ambiguous mentions in text to 
 
 [comment]: <> ([Sarah])
 
-<h2 id="computational-biology">:dna: Computational Biology</h2>
+<h2 id="computational-biology">Computational Biology</h2>
 
 - Collecting the right data for training and evalution can require wetlab work – especially in computational drug discovery. 
    - [A Deep Learning Approach to Antibiotic Discovery](https://www.cell.com/cell/pdf/S0092-8674(20)30102-1.pdf)
