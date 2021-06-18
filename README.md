@@ -106,7 +106,7 @@ Embeddings can be use in downstream tasks as a way of transferring knowledge.
 - [A Primer in BERTology: What We Know About How BERT Works](https://www.aclweb.org/anthology/2020.tacl-1.54/) explores the omniprescent use of BERT word embeddings as a way of transferring global language knowledge to downstream tasks.
 - Systems like [KnowBERT](https://arxiv.org/pdf/1909.04164.pdf) and [Bootleg](https://arxiv.org/abs/2010.10363) both explore how the use of entity embeddings from a Named Entity Disambiguation system can encode entity knowledge in downstream knowledge rich taskse like relation extraction.
 
-### :lotus_position: Stability and Compression
+### Stability and Compression
 Stability describes the sensitivity of machine learning models (e.g. embeddings) to changes in their input. In production settings, machine learning models may be constantly retrained on up-to-date data ([sometimes every hour](https://research.fb.com/wp-content/uploads/2017/12/hpca-2018-facebook.pdf)!), making it critical to understand their stability. Recent works have shown that word embeddings can suffer from instability: 
 
 - [Factors Influencing the Surprising Instability of Word Embeddings](https://www.aclweb.org/anthology/N18-1190.pdf) 
@@ -187,6 +187,7 @@ Subgroup information also does not need to be explicitly annotated or known. Sev
 <h2 id="data-representation-successes">Success Stories</h2>
 
 ### Feature Stores
+Feature Store (FS) systems were developed to help engineers build, share, and manage data features for model training and deployment.  
 - Uber Michelangelo
 - Feast + Tecton
 
@@ -503,7 +504,7 @@ Training large MLP models or Transformers requires extensive computational and m
 - [Long Range Arena](https://arxiv.org/pdf/2011.04006.pdf) is a systematic and unified benchmark, focused on evaluating model quality under long-context scenarios.
 
 
-## :joystick: Interactive Machine Learning
+## Interactive Machine Learning
 
 - **Explanatory interactive learning** Can we, by interacting with models during training, encourage their explanations to line up with our priors on what parts of the input are relevant?
    - [Right for the Right Reasons: Training Differentiable Models by Constraining their Explanations](https://arxiv.org/pdf/1703.03717.pdf)
@@ -535,7 +536,7 @@ Named entity linking (NEL) is the task of linking ambiguous mentions in text to 
 
 [comment]: <> ([Dan])
 
-## :xray: Medical Imaging [Sarah, Arjun]
+## Medical Imaging
 
 - :seesaw: Sensitive to inputs, not models
     - The varient of imaging configurations (e.g. [site locations](https://arxiv.org/pdf/2002.11379.pdf)), hardware, and processing techniques (e.g. [CT windowing](https://pubs.rsna.org/doi/abs/10.1148/ryai.2021200229)) lead to large performance shifts
@@ -551,11 +552,11 @@ Named entity linking (NEL) is the task of linking ambiguous mentions in text to 
 
 <h2 id="computational-biology">:dna: Computational Biology</h2>
 
-- :pill: Collecting the right data for training and evalution can require wetlab work – especially in computational drug discovery. 
+- Collecting the right data for training and evalution can require wetlab work – especially in computational drug discovery. 
    - [A Deep Learning Approach to Antibiotic Discovery](https://www.cell.com/cell/pdf/S0092-8674(20)30102-1.pdf)
    - [Network medicine framework for identifying drug-repurposing opportunities for COVID-19](https://www.pnas.org/content/118/19/e2025581118)
    
-- :jigsaw: Non-standard data modalities are common in computational biology. 
+- Non-standard data modalities are common in computational biology. 
    - Biological Interaction Networks (_e.g._ [Network-based in silico drug efficacy screening](https://www.nature.com/articles/ncomms10331), [Identification of disease treatment mechanisms through the multiscale interactome](https://www.nature.com/articles/s41467-021-21770-8)
    - Chemical Graphs (_e.g._ [Strategies for pre-training graph neural networks](https://arxiv.org/pdf/1905.12265.pdf)
    - DNA, RNA and Amino Acid sequences (_e.g._[Sequential regulatory activity prediction across chromosomes with convolutional neural networks](https://genome.cshlp.org/content/28/5/739.short)
