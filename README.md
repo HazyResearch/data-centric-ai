@@ -203,8 +203,8 @@ Feature Store (FS) systems were developed to help engineers build, share, and ma
 ### Industry and the Embedding Ecosystem
 Embeddings are core inputs to numerous downstream user-facing systems in industry. We term the embeddings and models that use them a "embedding ecosystem". A few examples of these ecosystems at work are:
 - [Pinterest's](https://medium.com/pinterest-engineering/pinnersage-multi-modal-user-embedding-framework-for-recommendations-at-pinterest-bfd116b49475) multi-model user embeddings for recommendation.
-  - [Spotify](https://research.atspotify.com/contextual-and-sequential-user-embeddings-for-music-recommendation/) uses embeddings for user music recommendations.
-   - [Netflix](https://netflixtechblog.com/supporting-content-decision-makers-with-machine-learning-995b7b76006f) also uses embeddings for movie recommendations. 
+- [Spotify](https://research.atspotify.com/contextual-and-sequential-user-embeddings-for-music-recommendation/) uses embeddings for user music recommendations.
+- [Netflix](https://netflixtechblog.com/supporting-content-decision-makers-with-machine-learning-995b7b76006f) also uses embeddings for movie recommendations. 
 
 # Data Augmentation
 Data augmentation is a standard approach for improving model performance, where additional 
@@ -455,12 +455,23 @@ Below are some resources on distribution shift, importance weighting, and densit
 - Importance weighting works poorly when the supports of the source and target do not overlap and when data is high-dimensional. [Mandoline](https://mayeechen.github.io/files/mandoline.pdf)  addresses this by reweighting based on user/model-defined ``slices'' that intend to capture relevant axes of distribution shift. Slices are often readily available as subpopulations identified by the practitioner, but can also be based on things like metadata and the trained model's scores.
 
 ### Outlier Detection
+_This section is a stub. You can help by improving it._
+
 
 ### Active Sampling and Labeling
+_This section is a stub. You can help by improving it._
 
 [comment]: <> (Another approach to understand )
 
 ## Benchmarking
+
+Benchmarking is a common practice for quantifying the performance of comparing machine learning and 
+comparing between models for particular tasks and applications.
+
+Recent work has shifted towards data-driven benchmarking, where instead of submitting models,
+participants can submit datasets to understand the impact of the data on training. A prominent 
+example is the [Data-Centric AI Competition](https://https-deeplearning-ai.github.io/data-centric-comp/).
+
 
 [comment]: <> ([Avanika])
 [comment]: <> (## Robustness [Jared])
@@ -480,7 +491,7 @@ The goal is to find one architecutre that can be universal, working on text, ima
 - The most common standard architecture is that of the [Transformer](https://arxiv.org/pdf/1706.03762.pdf), explained very well in this [blog](https://jalammar.github.io/illustrated-transformer/).
 - Transformers have seen wide-spread-use in NLP tasks through [BERT](https://www.aclweb.org/anthology/N19-1423.pdf), [RoBERTa](https://arxiv.org/abs/1907.11692v1), and Hugging Face's [model hub](https://huggingface.co/models), where numerous Transformer style models are trained and shared.
 - Recent work has shown how Transformers can even be sued in vision tasks with the [Vision Transformers](https://arxiv.org/pdf/2010.11929.pdf).
-  - Transformers are no pancea and are still generally larger and slower to train that the simple model of a MLP. Recent work has explored how you can replace the Transformer architecture with a sequence of MLPs in the [gMLP](https://arxiv.org/pdf/2105.08050.pdf).
+- Transformers are no pancea and are still generally larger and slower to train that the simple model of a MLP. Recent work has explored how you can replace the Transformer architecture with a sequence of MLPs in the [gMLP](https://arxiv.org/pdf/2105.08050.pdf).
 
 ### Emphasis on Scale
 With the ability to train models without needing labelled data through self-supervision, the focus became on scaling models up and training on more data.
@@ -554,7 +565,7 @@ Named entity linking (NEL) is the task of linking ambiguous mentions in text to 
 - Pre-deep-learning approaches to NED have been [rule-based](https://www.aclweb.org/anthology/X96-1053.pdf) or leverage statistical techniques and manual feature engineering to filter and rank candidates ([survey paper](https://arxiv.org/abs/1910.11470)).
 - In recent years, deep learning systems have become the new standard ([overview paper](https://dl.acm.org/doi/10.1145/3183713.3196926) of deep learning approaches to entity disambiguation and entity matching problems). The most recent state-of-the-art models generally rely on deep contextual word embeddings with entity embeddings. For example, [Pre-training of Deep Contextualized Embeddings of Words and Entities for Named Entity Disambiguation](https://arxiv.org/pdf/1909.00426v1.pdf) and [Empirical Evaluation of Pretraining Strategies for Supervised Entity Linking](https://arxiv.org/pdf/2005.14253.pdf).
 - We've seen a recent shift in simplifying the model even more to just use tranformers without explicit entity embeddings with models like [BLINK](https://arxiv.org/pdf/1911.03814.pdf) (uses a bi-encoder) and the [Dual and Cross-Attention Encoders](https://arxiv.org/pdf/2004.03555.pdf) (uses cross-encoder).
-  - Other trends have been to enhance the training data further. The system [Bootleg](https://arxiv.org/pdf/2010.10363.pdf) system uses weak labeling of the training data to noisily assign entity links to mentions, increasing performance over rare entities.
+- Other trends have been to enhance the training data further. The system [Bootleg](https://arxiv.org/pdf/2010.10363.pdf) system uses weak labeling of the training data to noisily assign entity links to mentions, increasing performance over rare entities.
 - Ikuya Yamada has a wonderful GitHub [survey](https://github.com/izuna385/Entity-Linking-Recent-Trends) of recent trend in Entity Linking
 
 [comment]: <> (## Video)
