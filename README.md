@@ -24,7 +24,10 @@ Instructions for adding resources:
 2. Add a few critical links (citations, paper links, blogs, videos, code, workshops, 
    classes, tutorials, figures, pictures, recipes, tweets, books), and a short 
    description of what the content is about and how it relates to the section.
-
+3. If you added any sections with `h1` or `h2` headers, add them to the table of contents. 
+   Use `<h1 id="my-h1-section"></h1>` or `<h2 id="my-h2-section"></h2>` to tag sections 
+   instead of standard markdown hashes.
+   
 ---
 
 # Table of Contents
@@ -53,7 +56,7 @@ Instructions for adding resources:
 6. [Go Big or Go Home](#go-big-or-go-home)
    1. [Universal Models](#universal-models)
    2. [Efficient Models](#efficient-models)
-7. [Applications](#applications)
+7. [Applications](#section-applications)
    1. [Named Entity Linking](#named-entity-linking) 
    2. [Computational Biology](#computational-biology)
    3. [Observational Supervision](#observational-supervision)
@@ -557,7 +560,7 @@ With models getting larger and costing more to train, there's a growing need to 
 [comment]: <> (- Mosaic DataPanels)
 
 
-# Applications
+<h1 id="section-applications"></h1>
 
 <h2 id="named-entity-linking">Named Entity Linking</h2>
 
