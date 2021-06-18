@@ -80,13 +80,13 @@ The theory behind weak supervision and data programming relies on latent variabl
 <h2 id="weak-supervision-applications"> Applications </h2>
 
 ## Success Stories
-- Gmail
-- Google Ads
-
+- The [Overton](https://www.cs.stanford.edu/~chrismre/papers/overton-tr.pdf) zero-code, deep-learning system to help engineers build, monitor, and improve ML systems.
+- [G-mail](http://cidrdb.org/cidr2020/papers/p31-sheng-cidr20.pdf) privacy-safe strcutred data extraction system migrated to Software 2.0 design. 
+- Using weak supervision to train content and even classifiers at [Google](https://arxiv.org/pdf/1812.00417.pdf).
+- The [Software 2.0 blog post](https://hazyresearch.stanford.edu/software2) summarizes other successes for data programming.
 
 # Data Representations
-
-
+When data is at the forefront of machine learning, how you represent and share the data becomes a critical factor to building ML systems. 
 ## Embeddings
 Data is represented and transferred through embeddings which encode
 knowledge about the "unit" the embedding is representing. The widespread
@@ -96,15 +96,15 @@ use of embeddings is fundamentally changing how we build and understand models.
 How you train an embedding changes what kind of knowledge and how the knowledge is represented
 - Graph based approaches, such as [TransE](https://papers.nips.cc/paper/2013/file/1cecc7a77928ca8133fa24680a88d2f9-Paper.pdf), preserve link structure
 - [Hyperbolic embeddings](https://homepages.inf.ed.ac.uk/rsarkar/papers/HyperbolicDelaunayFull.pdf) takes graph-structured embeddigns one step further and learns embeddings in hyporbolic space. This [blog](https://dawn.cs.stanford.edu/2019/10/10/noneuclidean/) gives a great introduction.
-- Common word embedding techniques, like [word2vec](https://papers.nips.cc/paper/2013/file/9aa42b31882ec039965f3c4923ce901b-Paper.pdf), train embeddings to predict surrounding words given a single word, preserving word co-occurrence patterns.
+- Common word embedding techniques, like [word2vec](https://papers.nips.cc/paper/2013/file/9aa42b31882ec039965f3c4923ce901b-Paper.pdf), train embeddings to predict surrounding words given a single word, preserving word co-occurrence patterns. This [chapter](http://web.stanford.edu/~jurafsky/slp3/6.pdf) from Speech and Language Processing gives a nice overview of word embeddings.
 - Contextual word embeddings, like [BERT](https://www.aclweb.org/anthology/N19-1423.pdf), generate embeddings that depend on the surrounding context thereby allowing for homonyms to get different representations.
 - [FaceNet: A Unified Embedding for Face Recognition and Clustering](https://www.cv-foundation.org/openaccess/content_cvpr_2015/html/Schroff_FaceNet_A_Unified_2015_CVPR_paper.html) learns euclidean embeddings of images of faces to better perform face recognition.
 - [StarSpace: Embed All the Things!](https://arxiv.org/abs/1709.03856) using as one-embedding-model approach to a general purpose embedding for graphs and lang
 
 ### Knowledge Transfer
-The embeddings can be use in downstream tasks as a way of transferring knowledge.
+Embeddings can be use in downstream tasks as a way of transferring knowledge.
 - [A Primer in BERTology: What We Know About How BERT Works](https://www.aclweb.org/anthology/2020.tacl-1.54/) explores the omniprescent use of BERT word embeddings as a way of transferring global language knowledge to downstream tasks.
-- [Bootleg: Chasing the Tail with Self-Supervised Named Entity Disambiguation](https://arxiv.org/abs/2010.10363) explores how the use of entity embeddings from a Named Entity Disambiguation system can encode entity knowledge in downstream knowledge rich tasks, like relation extraction.
+- Systems like [KnowBERT](https://arxiv.org/pdf/1909.04164.pdf) and [Bootleg](https://arxiv.org/abs/2010.10363) both explore how the use of entity embeddings from a Named Entity Disambiguation system can encode entity knowledge in downstream knowledge rich taskse like relation extraction.
 
 ### :lotus_position: Stability and Compression
 Stability describes the sensitivity of machine learning models (e.g. embeddings) to changes in their input. In production settings, machine learning models may be constantly retrained on up-to-date data ([sometimes every hour](https://research.fb.com/wp-content/uploads/2017/12/hpca-2018-facebook.pdf)!), making it critical to understand their stability. Recent works have shown that word embeddings can suffer from instability: 
@@ -120,16 +120,16 @@ Stability describes the sensitivity of machine learning models (e.g. embeddings)
 - These [notes](http://demo.clab.cs.cmu.edu/cdyer/nce_notes.pdf) discuss how noise contrastive estimation and negative sampling impacts static word embedding training.  
 
 ## Learning with Auxiliary Information
-Shift towards guiding and coding models with (latent) metadata
+Using large, unlablled datasets make it difficult for engineers to inject domain specific knowledge into the model. One approach to give this fine-grained control over a model, while keeping the mode as simple as possible, is to inject (latent) metadata into the model.
 
-### Learning with Structured Data
+### Overcoming the Long Tail with Structured Data
+Rare are entities (named entities, products, words, ...) are uncommon or non-existant in training data yet appear when a model is deployed. Models often struggle to resolve these rare entities as the diversity of signals required to understand them is not represented in training data. One approachs, is to rely on structural information, such as the types associated with an entity.  
 
-Structured data, such as the types associated with an entity, can provide useful signals for training models, alongside unstructured text corpora.  
+- The [Bootleg](https://hazyresearch.stanford.edu/bootleg/) system leverages structured data in the form of type and knowledge graph relations to improve Named Entity Disambiguation over 40 F1 points for rare entities.
+- This [zero-shot NED system](https://arxiv.org/pdf/1906.07348.pdf) uses entity descriptions to improve rare entity linking performance.
+- The [TEK](https://arxiv.org/pdf/2004.12006.pdf) framework injects entity descriptions for improved reading comprehension and QA. 
 
-- [Bootleg](https://hazyresearch.stanford.edu/bootleg/) is a system that leverages structured data in the form of type and knowledge graph relations to improve named entity disambiguation over 40 F1 points for rare entities. 
-- This [blog]([README.md](https://hazyresearch.stanford.edu/bootleg_blog)) describes how Bootleg uses both structured and unstructured data to learn reasoning patterns, such as certain words should be associated with a type.  
-
-### Data Shaping
+ ### Data Shaping
 Standard language models struggle to reason over the long-tail of 
 entity-based knowledge and significant recent work 
 tackles this challenge by providing the model with external knowledge signals. 
@@ -195,6 +195,7 @@ Subgroup information also does not need to be explicitly annotated or known. Sev
 Data augmentation is a standard approach for improving model performance, where additional 
 synthetically modified versions of examples are added to training.
 
+
 <h2 id="augmentation-history">History</h2>
 
 Augmentation has been instrumental to achieving high-performing models since the original
@@ -208,12 +209,19 @@ an integral part of text applications such as machine translation.
 <h2 id="augmentation-theory">Theoretical Foundations</h2>
 
 - [Tangent Propagation](https://papers.nips.cc/paper/1991/file/65658fde58ab3c2b6e5132a39fae7cb9-Paper.pdf) expresses desired model invariances induced by a data augmentation as tangent constraints on the directional derivatives of the learned model
-- [Kernel Theory of Data Augmentation](http://proceedings.mlr.press/v97/dao19b/dao19b.pdf)
+- [Kernel Theory of Data Augmentation](http://proceedings.mlr.press/v97/dao19b/dao19b.pdf) connects the tangent propagation view of data augmentation to kernel-based methods.
 - [On the Generalization Effects of Linear Transformations in Data Augmentation](https://arxiv.org/abs/2005.00695) studies an over-parametrized linear regression setting and study the generalization effect of applying a familar of linear transformations in this setting.
 
 <h2 id="augmentation-primitives">Augmentation Primitives</h2>
 
 ### Hand-Crafted Primitives
+A large body of work utilizes hand-crafted data augmentation primitives in order to improve
+model performance. These hand-crafted primitives are designed based on domain knowledge
+about data properties, e.g. rotating an image preserves the content of the image, and should
+typically not change the class label. 
+
+The next few sections provide a sampling of work across several different
+modalities (images, text, audio) that take this approach.
 
 #### Images
 Heuristic transformations are commonly used in image augmentations, such as rotations, flips or crops 
@@ -232,16 +240,23 @@ Heuristic transformations for text, typically involve paraphrasing text in order
 
 - [Backtranslation](https://arxiv.org/abs/1511.06709) uses a round-trip translation from a source to target language and back in order to generate a paraphrase. 
   Examples of use include [QANet](https://arxiv.org/abs/1804.09541).
-- Synonym substitution methods
-- Noising
-- Grammar induction
-- Text editing
-- Other heuristics
+- Synonym substitution methods replace words with their synonyms such as in 
+  [Data Augmentation for Low-Resource Neural Machine Translation](https://www.aclweb.org/anthology/P17-2090/),
+  [Contextual Augmentation: Data Augmentation by Words with Paradigmatic Relations](https://www.aclweb.org/anthology/N18-2072/),
+  [Model-Portability Experiments for Textual Temporal Analysis](https://www.aclweb.org/anthology/P11-2047/)
+  [That’s So Annoying!!!](https://www.aclweb.org/anthology/D15-1306/) and
+  [Character-level Convolutional Networks for Text Classification](https://arxiv.org/pdf/1509.01626.pdf)
+
+[comment]: <> (- Noising)
+[comment]: <> (- Grammar induction)
+[comment]: <> (- Text editing)
+[comment]: <> (- Other heuristics)
 
 #### Audio
 
-- Vocal Tract Length Warping
-- Stochastic Feature Mapping
+- Vocal Tract Length Warping approaches, such as [Audio Augmentation for Speech Recognition](https://www.danielpovey.com/files/2015_interspeech_augmentation.pdf) and [Vocal Tract Length Perturbation (VTLP) improves speech recognition](http://www.cs.toronto.edu/~ndjaitly/jaitly-icml13.pdf)
+- Stochastic Feature Mapping approaches, such as in [Data Augmentation for Deep Neural Network Acoustic Modeling](https://www.semanticscholar.org/paper/Data-Augmentation-for-Deep-Neural-Network-Acoustic-Cui-Goel/c083dc15b5e169e02e208b576d6991d93955b4eb)
+    and [Continuous Probabilistic Transform for Voice Conversion](https://www.ee.columbia.edu/~dpwe/papers/StylCM98-vxtfm.pdf)
 
 
 ### Assembled Pipelines 
@@ -249,13 +264,49 @@ Recent work learns augmentation pipelines to determine the right subset of augme
 These pipelines are primarily built on top of a fixed set of generic transformations.
 Methods vary by the learning algorithm used, which can be
 
-- random sampling such as in [RandAugment](https://arxiv.org/pdf/1909.13719.pdf) and uncertainty-based random sampling scheme such as in [Dauphin] (https://arxiv.org/abs/2005.00695).
+- random sampling such as in [RandAugment](https://arxiv.org/pdf/1909.13719.pdf) and an uncertainty-based random sampling scheme such as in [Dauphin](https://arxiv.org/abs/2005.00695).
 - reinforcement learning such as in [AutoAugment](https://openaccess.thecvf.com/content_CVPR_2019/papers/Cubuk_AutoAugment_Learning_Augmentation_Strategies_From_Data_CVPR_2019_paper.pdf) and [TANDA](https://arxiv.org/pdf/1709.01643.pdf) 
-- computationally efficient algorithms for learning augmentation policies have also been proposed such as [Population-Based Augmentation](https://arxiv.org/pdf/1905.05393.pdf) and [Fast AutoAugment](https://arxiv.org/pdf/1905.00397.pdf).
+- computationally efficient algorithms for learning augmentation policies have also been proposed such as [Population-Based Augmentation](https://arxiv.org/pdf/1905.05393.pdf) and [Fast AutoAugment](https://arxiv.org/pdf/1905.00397.pdf)
 
 
-[comment]: <> (### Learned Primitives)
+### Learned Primitives
+There is substantial prior work in learning transformations that produce semantic, rather than superficial changes to an input. 
 
+One paradigm is to learn a semantically meaningful data representation, and manipulate embeddings in this representation to produce a desired transformation.
+
+- several methods express these transformations as vector operations over embeddings, such as in 
+  [Deep Visual Analogy Making](https://papers.nips.cc/paper/2015/hash/e07413354875be01a996dc560274708e-Abstract.html),
+  [Deep feature interpolation for image content changes](https://arxiv.org/pdf/1611.05507.pdf)
+- other methods look towards manifold traversal techniques such as 
+  [Deep Manifold Traversal: Changing Labels with Convolutional Features](https://arxiv.org/pdf/1511.06421.pdf),
+  [Learning to disentangle factors of variation with manifold interaction](http://proceedings.mlr.press/v32/reed14.pdf)
+
+Another class of approaches relies on training conditional generative models, that learn a mapping between two or more data distributions. 
+A prominent use case focuses on imbalanced datasets, where learned augmentations are used to generate examples for underrepresented classes or domains.
+Examples of these approaches include
+[BaGAN](https://arxiv.org/abs/1803.09655.pdf), [DAGAN](https://arxiv.org/abs/1711.04340.pdf), [TransferringGAN](https://arxiv.org/abs/1805.01677.pdf), 
+[Synthetic Examples Improve Generalization for Rare Classes](https://arxiv.org/pdf/1904.05916.pdf),
+[Learning Data Manipulation for Augmentation and Weighting](https://arxiv.org/pdf/1910.12795.pdf),
+[Generative Models For Deep Learning with Very Scarce Data](https://arxiv.org/abs/1903.09030.pdf),
+[Adversarial learning of general transformations for data augmentation](https://arxiv.org/abs/1909.09801.pdf),
+[DADA](https://arxiv.org/abs/1809.00981) and
+[A Bayesian Data Augmentation Approach for Learning Deep Models](https://arxiv.org/pdf/1710.10564.pdf)
+
+Recent approaches use a combination of learned domain translation models with consistency training to further 
+improve performance e.g. [Model Patching](https://arxiv.org/pdf/2008.06775.pdf).
+
+## Future Directions
+Several open questions remain in data augmentation and synthetic data generation.
+
+- While augmentation has been found to have a strong positive effect on performance: 
+  what kind of augmentations maximize model robustness? How should such augmentations be specified or learned?
+- Augmentation adds several sources of noise to training. The inputs are transformed or 
+  corrupted, and may no longer be likely to occur in the data distribution. 
+  The common assumption that augmentation leaves the label unmodified is often 
+  violated in discrete data such as text, where small changes can 
+  make a large impact on the label.
+  What is the effect of the noise added by data augmentation? 
+  Can we tolerate larger amounts of noise to improve performance further? 
 
 ## Further Reading
 - the ["Automating the Art of Data Augmentation"](https://hazyresearch.stanford.edu/data-aug-part-1) 
