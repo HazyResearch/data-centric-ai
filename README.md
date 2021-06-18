@@ -63,14 +63,14 @@ Instructions for adding resources:
 
 
 # Data Programming & Weak Supervision
-Many modern machine learning systems require large, labeled datasets to be successful but producing such datasets is time-consuming and expensive. Instead, weaker sources of supervision, such as in [crowdsourcing](https://papers.nips.cc/paper/2011/file/c667d53acd899a97a85de0c201ba99be-Paper.pdf), [distant supervision](https://www.aclweb.org/anthology/P09-1113.pdf), and domain experts' heuristics, can be combined to programmatically create training datasets via [data programming](https://arxiv.org/pdf/1605.07723.pdf). Users specify many labeling functions that represent a noisy estimate of the ground-truth label. Because these labeling functions conflict and may be correlated, they are combined and denoised via a latent variable graphical model. The technical challenge is thus to learn accuracy and correlation parameters in this model, and to use them to infer the true label to be used for downstream tasks.
+Many modern machine learning systems require large, labeled datasets to be successful but producing such datasets is time-consuming and expensive. Instead, weaker sources of supervision, such as [crowdsourcing](https://papers.nips.cc/paper/2011/file/c667d53acd899a97a85de0c201ba99be-Paper.pdf), [distant supervision](https://www.aclweb.org/anthology/P09-1113.pdf), and domain experts' heuristics, can be combined to programmatically create training datasets via [data programming](https://arxiv.org/pdf/1605.07723.pdf). Users specify multiple labeling functions that each represent a noisy estimate of the ground-truth label. Because these labeling functions vary in accuracy, coverage of the dataset, and may even be correlated, they are combined and denoised via a latent variable graphical model. The technical challenge is thus to learn accuracy and correlation parameters in this model, and to use them to infer the true label to be used for downstream tasks.
 
 We first present some recent work on weak supervision and various algorithmic developments in how to learn the graphical model. We then refer to some fundamental literature in graphical models that underlies this recent work.
 
 
 <h2 id="data-programming-recent-work">Recent Work</h2>
 
-- [This Snorkel blog post](https://www.snorkel.org/blog/weak-supervision) provides an overview of the weak supervision pipeline, including how it compares to other approaches to get more labeled data and the technical modeling challenges.
+- This [Snorkel blog post](https://www.snorkel.org/blog/weak-supervision) provides an overview of the weak supervision pipeline, including how it compares to other approaches to get more labeled data and the technical modeling challenges.
 - [These Stanford CS229 lecture notes](https://mayeechen.github.io/files/wslecturenotes.pdf) provide a more theoretical summary of how graphical models are used in weak supervision.
 - [MeTaL](https://arxiv.org/pdf/1810.02840.pdf): learning the parameters can be done via a matrix completion problem based on the fact that the (augmented) inverse covariance matrix of the labeling functions and true label is graph-structured, meaning that it has a 0 in locations where the row and column variables are independent conditional on all other variables. Under sufficient sparsity of the graphical model, this property can be utilized to learn the latent parameters of the model. 
 - [Learning dependencies](https://arxiv.org/pdf/1903.05844.pdf): in most weak supervision settings, labeling functions are assumed to be conditionally independent, or the dependencies are known. However, when they are not, robust PCA can be applied to recover the structure.
@@ -89,10 +89,13 @@ The theory behind weak supervision and data programming relies on latent variabl
 <h2 id="weak-supervision-success-stories"> Success Stories </h2>
 
 - The [Overton](https://www.cs.stanford.edu/~chrismre/papers/overton-tr.pdf) zero-code, deep-learning system to help engineers build, monitor, and improve ML systems.
-- [G-mail](http://cidrdb.org/cidr2020/papers/p31-sheng-cidr20.pdf) privacy-safe structured data extraction system migrated to Software 2.0 design. 
-- Using weak supervision to train content and even classifiers at [Google](https://arxiv.org/pdf/1812.00417.pdf).
-- The [Software 2.0 blog post](https://hazyresearch.stanford.edu/software2) summarizes other successes for data programming.
-
+- [Google](https://arxiv.org/pdf/1812.00417.pdf) used a weak supervision system based on Snorkel to create classifiers of comparable quality to ones
+trained with tens of thousands of hand-labeled examples over millions of datapoints in just tens of minutes.
+- [Intel](https://ajratner.github.io/assets/papers/Osprey_DEEM.pdf) used weak supervision to replace six months of crowdworker labels while improving precision by double digits.
+- [G-mail](http://cidrdb.org/cidr2020/papers/p31-sheng-cidr20.pdf) migrated a privacy-safe information extraction system to a Software 2.0 design with weak supervision.
+- [Facebook](https://ai.facebook.com/blog/billion-scale-semi-supervised-learning/) achieved new state-of-the-art performance on academic benchmarks for image and video classification by weakly supervising training labels in the billions.
+- [Stanford Radiology](https://arxiv.org/pdf/1903.11101.pdf) used a cross-modal weak supervision approach to weakly supervise training labels from text reports and then train an image model for the associated radiology images.
+- This [Software 2.0 blog post](https://hazyresearch.stanford.edu/software2) summarizes other successes for data programming.
 
 
 # Data Representations
