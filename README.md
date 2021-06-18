@@ -475,7 +475,7 @@ reproducible error analyses in a domain-specific language that supports explicit
 Slice-based analyses are commonplace and have been performed across all modalities with varying
 degrees of thoroughness. 
 
-- [Hidden Stratification](https://arxiv.org/pdf/2011.12945.pdf) describes the problem of subpar performance on hidden strata. 
+- [Hidden Stratification](https://arxiv.org/pdf/1909.12475.pdf) describes the problem of subpar performance on hidden strata. 
 - The [GLUE](https://openreview.net/pdf?id=rJ4km2R5t7) benchmark paper describes important
   slices for text classification, which were used to decide what may be challenging examples for GLUE. 
 - The [Robustness Gym](https://arxiv.org/abs/2101.04840.pdf) paper contains slice-based analyses
@@ -495,8 +495,8 @@ Recent work has shifted towards data-driven benchmarking, where instead of submi
 Similarly, [Dynabench](https://dynabench.org/) addresses problems inherent to traditional benchmarks such as overfitting and saturation by providing an platform for dynamic, human-in-the-loop dataset collection and model benchmarking. 
 
 Other benchmarking efforts have focused on enabling more robust model comparisons by (1) reporting richer benchmarking data such as evaluation metrics beyond accuracy (e.g. fairness scores) and metrics of practical concern (e.g. compute) and by (2) providing tools for fine-grained model comparisons. Some examples are as follows:
--	[Dynaboard](https://ai.facebook.com/blog/dynaboard-moving-beyond-accuracy-to-holistic-model-evaluation-in-nlp/): an evaluation-as-a-service interface for comparing models across a holistic set of evaluation criteria including accuracy, robustness, fairness, compute, and memory. 
--	[ExplainaBoard](http://explainaboard.nlpedia.ai/): an interactive leaderboard and evaluation software for fine-grained model comparisons.
+- [Dynaboard](https://ai.facebook.com/blog/dynaboard-moving-beyond-accuracy-to-holistic-model-evaluation-in-nlp/): an evaluation-as-a-service interface for comparing models across a holistic set of evaluation criteria including accuracy, robustness, fairness, compute, and memory. 
+- [ExplainaBoard](http://explainaboard.nlpedia.ai/): an interactive leaderboard and evaluation software for fine-grained model comparisons.
 - [Ludwig Benchmarking Toolkit](https://github.com/HazyResearch/ludwig-benchmarking-toolkit): a personalized benchmarking toolkit for running multi-objective, standardized, and configurable benchmarking studies.
 
 
@@ -529,7 +529,7 @@ Subgroup information also does not need to be explicitly annotated or known. Sev
 - [Correct-N-Contrast (CNC)]() also trains an initial ERM model, but uses supervised contrastive learning to train a new model to learn similar representations for datapoints with the same class but different trained ERM model predictions.
 
 <h2 id="evaluation-on-unlabeled-data">Evaluation on Unlabeled Data</h2>
-A key part of robustness is _monitoring_ the data in order to track when the data distribution
+A key part of robustness is *monitoring* the data in order to track when the data distribution
 has shifted and take remedial action. Since the model makes predictions on unlabeled data,
 standard validation cannot be used due to the absence of labels.
 
