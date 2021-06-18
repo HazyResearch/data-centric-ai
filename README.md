@@ -176,8 +176,7 @@ standard language model with no modifications whatsoever to achieve competitive 
 
 ### Subgroup Information
 
-Similar to observations brought up with hidden stratification, 
-a data subset or "subgroup" may carry spurious correlations between its features and 
+A data subset or "subgroup" may carry spurious correlations between its features and 
 labels that do not hold for datapoints outside of the subgroup. When certain subgroups are larger 
 than others, models trained to minimize average error are susceptible to learning these 
 spurious correlations and performing poorly on the minority subgroups. 
