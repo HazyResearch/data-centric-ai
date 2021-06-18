@@ -465,12 +465,19 @@ _This section is a stub. You can help by improving it._
 
 ## Benchmarking
 
-Benchmarking is a common practice for quantifying the performance of comparing machine learning and 
-comparing between models for particular tasks and applications.
+Benchmarking is a common practice for quantifying progress in the machine learning community and 
+comparing models across tasks and applications.
 
-Recent work has shifted towards data-driven benchmarking, where instead of submitting models,
-participants can submit datasets to understand the impact of the data on training. A prominent 
-example is the [Data-Centric AI Competition](https://https-deeplearning-ai.github.io/data-centric-comp/).
+Recent work has shifted towards data-driven benchmarking, where instead of submitting models, participants can submit datasets to understand the impact of the data on training. A prominent example is the [Data-Centric AI Competition](https://https-deeplearning-ai.github.io/data-centric-comp/).
+
+Similarly, [Dynabench](https://dynabench.org/) addresses problems inherent to traditional benchmarks such as overfitting and saturation by providing an platform for dynamic, human-in-the-loop dataset collection and model benchmarking. 
+
+Other benchmarking efforts have focused on enabling more robust model comparisons by (1) reporting richer benchmarking data such as evaluation metrics beyond accuracy (e.g. fairness scores) and metrics of practical concern (e.g. compute) and by (2) providing tools for fine-grained model comparisons. Some examples are as follows:
+-	[Dynaboard](https://ai.facebook.com/blog/dynaboard-moving-beyond-accuracy-to-holistic-model-evaluation-in-nlp/): an evaluation-as-a-service interface for comparing models across a holistic set of evaluation criteria including accuracy, robustness, fairness, compute, and memory. 
+-	[ExplainaBoard](http://explainaboard.nlpedia.ai/): an interactive leaderboard and evaluation software for fine-grained model comparisons.
+- [Ludwig Benchmarking Toolkit](https://github.com/HazyResearch/ludwig-benchmarking-toolkit): a personalized benchmarking toolkit for running multi-objective, standardized, and configurable benchmarking studies.
+
+
 
 
 [comment]: <> ([Avanika])
