@@ -47,9 +47,11 @@ Instructions for adding resources:
    3. [Benchmarking](#benchmarking)
 6. [Go Big or Go Home](#go-big-or-go-home)
    1. [Universal Models](#universal-models)
+   2. [Efficient Models](#efficient-models)
 7. [Applications](#applications)
    1. [Named Entity Linking](#named-entity-linking) 
    2. [Computational Biology](#computational-biology)
+   3. [Observational Supervision](#observational-supervision)
 
 
 # Data Programming & Weak Supervision
@@ -315,7 +317,7 @@ method to make the process of slice discovery efficient and parallelizable.
   of a deep model in order to discover underperforming subgroups of data.
   
 Future directions for slice discovery will continue to improve our understanding of how to find slices 
-that are interpretable, task-relevant, error-prone and suspectible to distribution shift. 
+that are interpretable, task-relevant, error-prone and susceptible to distribution shift. 
 
 #### Selecting Important Slices
 Which slices are most relevant among a large set of given slices? 
@@ -391,7 +393,7 @@ Below are some resources on distribution shift, importance weighting, and densit
 
 # Go Big or Go Home
 
-## Universal Models 
+<h2 id="universal-models">Universal Models</h2>
 
 [comment]: <> ([Karan, Laurel])
 Shift towards one-model-to-rule-them-all paradigm.
@@ -429,7 +431,7 @@ Models are also becoming more unviersal, capable of handling multiple modalities
 [comment]: <> (### Other Links)
 [comment]: <> (- Stanford class [upcoming])
 
-## Efficient Models
+<h2 id="efficient-models">Efficient Models</h2>
 Training large MLP models or Transformers requires extensive computational and memory resources, especially for wide linear layers or when modeling long sequences, mainly due to the quadratic complexity (w.r.t. input sequence length) in attention layers, respectively. 
 
 ### Exploit Sparsity
@@ -504,5 +506,22 @@ Named entity linking (NEL) is the task of linking ambiguous mentions in text to 
    - [AMELIE](https://stm.sciencemag.org/content/scitransmed/12/544/eaau9113.full.pdf) helps improve diagnosis of Mendelian disorders by integrating information from a patient’s phenotype and genotype and automatically identifying relevant references to literature.
    - [This](https://journals.plos.org/plosgenetics/article?id=10.1371/journal.pgen.1004754) article discusses the importance of creating effective feature selection methods to filter irrelevant features from large whole genome datasets. Other works (such as [this one](https://bmcbioinformatics.biomedcentral.com/articles/10.1186/s12859-020-03693-1) and [this one](https://www.worldscientific.com/doi/abs/10.1142/9789813279827_0024)) discuss approaches for identifying putative genetic variants by incorporating information from interaction networks or utilizing independent control datasets.
    - Approaches for extracting biological information from medical literature (such as [chemical-disease relation extraction](https://link.springer.com/article/10.1186/s13321-016-0165-z) and [genotype-phenotype association extraction](https://www.nature.com/articles/s41467-019-11026-x)) have benefitted from data programming techniques as well as the incorporation of weakly labeled data.
+
+
+<h2 id="observational-supervision">:animated-eyes: Observational Supervision</h2>
+The way experts interact with their data (e.g. a radiologist’s eye movements) contains rich information about the task (e.g. classification difficulty), and the expert (e.g. drowsiness level).
+With the current trend of wearable technology (e.g. AR with eye tracking capability), the hardware needed to collect such human-data interactions is expected to become more ubiquitous, affordable, and standardized. 
+In observational supervision, we investigate how to extract the rich information embedded in the human-data interaction, to either supervise models from scratch, or to improve model robustness.
+
+Interesting works have collected observational signals such as:
+- Eye tracking data in medicine (chest x-ray [dataset](https://www.nature.com/articles/s41597-021-00863-5.pdf))
+- Eye tracking plus brain activity in NLP (Zuco [dataset](https://www.nature.com/articles/sdata2018291.pdf)) 
+- We have also collaborated with Stanford radiologists to curate an additional two medical datasets with eye tracking data [coming soon!].
+
+Interesting papers in observational supervision:
+- Improving NLP models with gaze by N. Hollenstein et al. [paper](https://arxiv.org/pdf/1902.10068.pdf)
+- Improving zero-shot learning with gaze by N. Karasseli et al. [paper](https://openaccess.thecvf.com/content_cvpr_2017/papers/Karessli_Gaze_Embeddings_for_CVPR_2017_paper.pdf) 
+- Improving sample complexity with gaze by K. Saab et al. [paper](https://openreview.net/pdf?id=r1gPtjcH_N)
+- Our recent work on supervising medical models from scratch [coming soon!]
 
 
