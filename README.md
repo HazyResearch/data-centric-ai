@@ -78,6 +78,7 @@ We first present some recent work on weak supervision and various algorithmic de
 - [Snorkel: Rapid Training Data Creation with Weak Supervision](http://www.vldb.org/pvldb/vol11/p269-ratner.pdf): Introduces the Snorkel system for enabling data programming at scale.
 
 <h2 id="data-programming-techniques">Techniques</h2>
+
 **Learning the parameters of a latent variable graphical model:** At the heart of weak supervision lies the label model--a generative model for the labeling functions and the unobserved (latent) true label. This concept enables the modeling of labeling functions with varying accuracies and potential correlations. Learning the label model permits the use of diverse sources of signal. We do not need the sources to be equally accurate or to be independent of one another! While learning latent variable graphical models is a challenging problem, new techniques offer provable guarantees and computational efficiency!
 - [MeTaL](https://arxiv.org/pdf/1810.02840.pdf): the structure of the inverse covariance matrix of the sources is closely related to the dependency structure of the graphical model; it provides enough information to learn the parameters of the label model. 
 - [FlyingSquid](https://arxiv.org/pdf/2002.11955.pdf): rather than work with the entire covariance matrix, small covariance sub-matrices (as small as 3x3) still contain enough information to learn the accuracies. Obtaining the parameters is done by computing a closed-form expression---no optimization required.
@@ -148,7 +149,8 @@ Stability describes the sensitivity of machine learning models (e.g. embeddings)
 
 ### Theoretical Foundations
 - [word2vec, node2vec, graph2vec, X2vec: Towards a Theory of Vector Embeddings of Structured Data](https://arxiv.org/abs/2003.12590), the pdf version of a POD 2020 KeyNote talk, discusses the connection between the theory of homomorphism vectors and embedding techniques.
-- These [notes](http://demo.clab.cs.cmu.edu/cdyer/nce_notes.pdf) discuss how noise contrastive estimation and negative sampling impacts static word embedding training.  
+- These [notes](http://demo.clab.cs.cmu.edu/cdyer/nce_notes.pdf) discuss how noise contrastive estimation and negative sampling impacts static word embedding training. 
+- [A Mathematical Exploration of Why Language Models Help Solve Downstream Tasks](https://arxiv.org/pdf/2010.03648.pdf) seeks to explain why pretraining on next token prediction self-supervised tasks improves downstream performance.
 
 <h2 id="learning-with-auxiliary-information">Learning with Auxiliary Information</h2>
 In a self-supervised regime, large, unlabeled datasets make it difficult for engineers to inject domain specific knowledge into the model. One approach to have this fine-grained control over a model, while keeping the model as simple as possible, is to inject (latent) metadata into the model.
@@ -570,7 +572,7 @@ Named entity linking (NEL) is the task of linking ambiguous mentions in text to 
 - In recent years, deep learning systems have become the new standard ([overview paper](https://dl.acm.org/doi/10.1145/3183713.3196926) of deep learning approaches to entity disambiguation and entity matching problems). The most recent state-of-the-art models generally rely on deep contextual word embeddings with entity embeddings. For example, [Pre-training of Deep Contextualized Embeddings of Words and Entities for Named Entity Disambiguation](https://arxiv.org/pdf/1909.00426v1.pdf) and [Empirical Evaluation of Pretraining Strategies for Supervised Entity Linking](https://arxiv.org/pdf/2005.14253.pdf).
 - We've seen a recent shift in simplifying the model even more to just use tranformers without explicit entity embeddings with models like [BLINK](https://arxiv.org/pdf/1911.03814.pdf) (uses a bi-encoder) and the [Dual and Cross-Attention Encoders](https://arxiv.org/pdf/2004.03555.pdf) (uses cross-encoder).
 - Other trends have been to enhance the training data further. The system [Bootleg](https://arxiv.org/pdf/2010.10363.pdf) system uses weak labeling of the training data to noisily assign entity links to mentions, increasing performance over rare entities.
-- Ikuya Yamada has a wonderful GitHub [survey](https://github.com/izuna385/Entity-Linking-Recent-Trends) of recent trend in Entity Linking
+- Ikuya Yamada has a wonderful GitHub [survey](https://github.com/izuna385/Entity-Linking-Recent-Trends) of recent trends in Entity Linking
 
 <h2 id="medical-imaging">Medical Imaging</h2>
 
