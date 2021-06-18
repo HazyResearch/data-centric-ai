@@ -208,7 +208,7 @@ an integral part of text applications such as machine translation.
 
 - [Tangent Propagation](https://papers.nips.cc/paper/1991/file/65658fde58ab3c2b6e5132a39fae7cb9-Paper.pdf) expresses desired model invariances induced by a data augmentation as tangent constraints on the directional derivatives of the learned model
 - [Kernel Theory of Data Augmentation](http://proceedings.mlr.press/v97/dao19b/dao19b.pdf)
-- [On the Generalization Effects of Linear Transformations in Data Augmentation](https://arxiv.org/abs/2005.00695)
+- [On the Generalization Effects of Linear Transformations in Data Augmentation](https://arxiv.org/abs/2005.00695) studies an over-parametrized linear regression setting and study the generalization effect of applying a familar of linear transformations in this setting.
 
 <h2 id="augmentation-primitives">Augmentation Primitives</h2>
 
@@ -248,9 +248,10 @@ Recent work learns augmentation pipelines to determine the right subset of augme
 These pipelines are primarily built on top of a fixed set of generic transformations.
 Methods vary by the learning algorithm used, which can be
 
-- random sampling such as in [RandAugment](https://arxiv.org/pdf/1909.13719.pdf)
+- random sampling such as in [RandAugment](https://arxiv.org/pdf/1909.13719.pdf) and uncertainty-based random sampling scheme such as in [Dauphin] (https://arxiv.org/abs/2005.00695).
 - reinforcement learning such as in [AutoAugment](https://openaccess.thecvf.com/content_CVPR_2019/papers/Cubuk_AutoAugment_Learning_Augmentation_Strategies_From_Data_CVPR_2019_paper.pdf) and [TANDA](https://arxiv.org/pdf/1709.01643.pdf) 
 - computationally efficient algorithms for learning augmentation policies have also been proposed such as [Population-Based Augmentation](https://arxiv.org/pdf/1905.05393.pdf) and [Fast AutoAugment](https://arxiv.org/pdf/1905.00397.pdf).
+
 
 [comment]: <> (### Learned Primitives)
 
