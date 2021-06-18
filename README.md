@@ -290,7 +290,7 @@ These pipelines are primarily built on top of a fixed set of generic transformat
 Methods vary by the learning algorithm used, which can be
 
 - random sampling such as in [RandAugment](https://arxiv.org/pdf/1909.13719.pdf) and an uncertainty-based random sampling scheme such as in [Dauphin](https://arxiv.org/abs/2005.00695).
-- reinforcement learning such as in [AutoAugment](https://openaccess.thecvf.com/content_CVPR_2019/papers/Cubuk_AutoAugment_Learning_Augmentation_Strategies_From_Data_CVPR_2019_paper.pdf) and [TANDA](https://arxiv.org/pdf/1709.01643.pdf) 
+- reinforcement learning approaches led by the [TANDA](https://arxiv.org/pdf/1709.01643.pdf) work, and extended by [AutoAugment](https://openaccess.thecvf.com/content_CVPR_2019/papers/Cubuk_AutoAugment_Learning_Augmentation_Strategies_From_Data_CVPR_2019_paper.pdf) 
 - computationally efficient algorithms for learning augmentation policies have also been proposed such as [Population-Based Augmentation](https://arxiv.org/pdf/1905.05393.pdf) and [Fast AutoAugment](https://arxiv.org/pdf/1905.00397.pdf)
 
 
