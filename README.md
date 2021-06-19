@@ -69,35 +69,51 @@ Instructions for adding resources:
 
 
 # Data Programming & Weak Supervision
-Many modern machine learning systems require large, labeled datasets to be successful but producing such datasets is time-consuming and expensive. Instead, weaker sources of supervision, such as [crowdsourcing](https://papers.nips.cc/paper/2011/file/c667d53acd899a97a85de0c201ba99be-Paper.pdf), [distant supervision](https://www.aclweb.org/anthology/P09-1113.pdf), and domain experts' heuristics, can be combined to programmatically create training datasets via [data programming](https://arxiv.org/pdf/1605.07723.pdf). Users specify multiple labeling functions that each represent a noisy estimate of the ground-truth label. Because these labeling functions vary in accuracy, coverage of the dataset, and may even be correlated, they are combined and denoised via a latent variable graphical model. The technical challenge is thus to learn accuracy and correlation parameters in this model, and to use them to infer the true label to be used for downstream tasks.
+Many modern machine learning systems require large, labeled datasets to be successful but producing such datasets is time-consuming and expensive. Instead, weaker sources of supervision, such as [crowdsourcing](https://papers.nips.cc/paper/2011/file/c667d53acd899a97a85de0c201ba99be-Paper.pdf), [distant supervision](https://www.aclweb.org/anthology/P09-1113.pdf), and domain experts' heuristics like [Hearst Patterns](cite) have been used since the 90s! 
+ 
+However, these were largely regarded by AI and AI/ML folks as ad hoc or isolated techniques. The effort to unify and combine these into a data centric viewpoint started in earnest with [data programming](https://arxiv.org/pdf/1605.07723.pdf) embodied in the [Snorkel system](http://www.vldb.org/pvldb/vol11/p269-ratner.pdf), now an [open-source project](http://snorkel.org) and [thriving company](http://snorkel.ai). In Snorkel's conception, users specify multiple labeling functions that each represent a noisy estimate of the ground-truth label. Because these labeling functions vary in accuracy, coverage of the dataset, and may even be correlated, they are combined and denoised via a latent variable graphical model. The technical challenge is thus to learn accuracy and correlation parameters in this model, and to use them to infer the true label to be used for downstream tasks.
 
 We first present some recent work on weak supervision and various algorithmic developments in how to learn the graphical model. We then refer to some fundamental literature in graphical models that underlies this recent work.
 
-<h2 id="data-programming-key-papers">Key Papers</h2>
-- [Data Programming: Creating Large Training Sets, Quickly](https://arxiv.org/pdf/1605.07723.pdf): Introduces the data programming paradigm.
-- [Snorkel: Rapid Training Data Creation with Weak Supervision](http://www.vldb.org/pvldb/vol11/p269-ratner.pdf): Introduces the Snorkel system for enabling data programming at scale.
+<h2 id="data-programming-link">A Link to the Classics via Graphical Models</h2>
+
+**Learning the parameters of a latent variable graphical model:** At the heart of weak supervision lies the label model--a generative model for the labeling functions and the unobserved (latent) true label. This concept enables the modeling of labeling functions with varying accuracies and potential correlations. Learning the label model permits the use of diverse sources of signal. We do not need the sources to be equally accurate or to be independent of one another! The [MeTaL](https://arxiv.org/pdf/1810.02840.pdf) paper explains the link between structure of the inverse covariance matrix of the sources is closely related to the dependency structure of the graphical model, which allows us to tap into fundamental theory (see below), which are described in *LECTURE NOTES*
+
+<h2 id="data-programming-foundations">Foundational Papers</h2>
+
+
+- **Crowdsourcing and noisy labelers:** the closely-related problem of dealing with labelers of different quality, especially in the context of crowdsourcing, is foundational. The classic work of [Dawid and Skene](https://www.jstor.org/stable/2346806) uses expectation maximization to learn the confusion matrices for each labeler. In a more recent seminal work, [Karger, Oh, and Shah](https://papers.nips.cc/paper/2011/file/c667d53acd899a97a85de0c201ba99be-Paper.pdf) show how to iteratively improve estimates of reliability---reducing the total amount of required sources. [Joglekar et al](https://dl.acm.org/doi/10.1145/2487575.2487595) learn confidence intervals for labeler reliability.
+
+THERE ARE BOOKS WRITTEN HERE, POINT TO THEM!
+
+- **Learning with noisy labels:** Even if we know the reliability of noisy labelers, when and how can we train a model on noisy examples? The possibility of learning with noisy labels has been studied starting with classic work from [Angluin and Laird](http://homepages.math.uic.edu/~lreyzin/papers/angluin88b.pdf). For models trained with a surrogate loss function, [Scott](http://web.eecs.umich.edu/~cscott/pubs/asymsurrEJS.pdf), and [Natarajan et al](https://proceedings.neurips.cc/paper/2013/file/3871bd64012152bfb53fdf04b401193f-Paper.pdf) opened up a new area by showing that a simple re-weighting modification of the loss enables unbiased learning in the presence of noise. 
+
+GIVE MORE CREDIT!
+
+- **Learning latent-variable graphical models:** Learning both the structure and parameters of a latent-variable graphical model is a more challenging variant of the traditional graphical model learning problem. While EM remains an option, other techniques exploit structure in matrices and tensors of moments. A core technique is tensor decomposition pioneered by [Anandkumar et al](https://www.jmlr.org/papers/volume15/anandkumar14b/anandkumar14b.pdf), used as a block in [Chaganty and Liang](http://proceedings.mlr.press/v32/chaganty14.html). 
+
+THERE IS A HUGE LITERATURE HERE.
+
+- **Structure learning of latent-variable graphical models:** using extensions of robust PCA permits the recovery of latent-variable Gaussian graphical models, as in [Chandrasekaran et al](https://arxiv.org/pdf/1008.1290.pdf). Discrete models share certain similar properties, i.e., having structured inverse covariance matrices.
+
+ALSO THE CANDES PAPERS! 
+
+- ** Effective rank
+
 
 <h2 id="data-programming-techniques">Techniques</h2>
-
-**Learning the parameters of a latent variable graphical model:** At the heart of weak supervision lies the label model--a generative model for the labeling functions and the unobserved (latent) true label. This concept enables the modeling of labeling functions with varying accuracies and potential correlations. Learning the label model permits the use of diverse sources of signal. We do not need the sources to be equally accurate or to be independent of one another! While learning latent variable graphical models is a challenging problem, new techniques offer provable guarantees and computational efficiency!
-- [MeTaL](https://arxiv.org/pdf/1810.02840.pdf): the structure of the inverse covariance matrix of the sources is closely related to the dependency structure of the graphical model; it provides enough information to learn the parameters of the label model. 
-- [FlyingSquid](https://arxiv.org/pdf/2002.11955.pdf): rather than work with the entire covariance matrix, small covariance sub-matrices (as small as 3x3) still contain enough information to learn the accuracies. Obtaining the parameters is done by computing a closed-form expression---no optimization required.
+- [FlyingSquid](https://arxiv.org/pdf/2002.11955.pdf): rather than work with the entire covariance matrix, small covariance sub-matrices (as small as 3x3) still contain enough information to learn the accuracies. Obtaining the parameters is done by computing a closed-form expression---no optimization required. *THIS IS A REFINEMENT, WHY DID IT FEATURE SO PROMINENTLY? IT's IN THE NOTES*
 
 **Learning the structure of a latent variable graphical model:**
 - [Learning dependencies](https://arxiv.org/pdf/1903.05844.pdf): in most weak supervision settings, labeling functions are assumed to be conditionally independent, or the dependencies are known. However, when they are not, robust PCA can be applied to recover the structure.
 - [Learning the Structure of Generative Models without Labeled Data](https://export.arxiv.org/pdf/1703.00854): To learn the label function dependencies with limited data, we can use a structure estimation method that is 100x faster than maximum likelihood approaches.
 
 **Learning the structure of a latent variable graphical model:**
-- [Comparing labeled versus unlabeled data](https://arxiv.org/pdf/2103.02761.pdf): generative classifiers based on graphical models (e.g. in weak supervision) can accept both labeled and unlabeled data (since usually practitioners have a small amount of labeled data available), but unlabeled input is linearly more susceptible to misspecification of the dependency structure. However, this can be corrected using a general median-of-means estimator on top of method-of-moments.
-
-<h2 id="data-programming-foundations">Foundations</h2>
-
-- **Crowdsourcing and noisy labelers:** the closely-related problem of dealing with labelers of different quality, especially in the context of crowdsourcing, is foundational. The classic work of [Dawid and Skene](https://www.jstor.org/stable/2346806) uses expectation maximization to learn the confusion matrices for each labeler. In a more recent seminal work, [Karger, Oh, and Shah](https://papers.nips.cc/paper/2011/file/c667d53acd899a97a85de0c201ba99be-Paper.pdf) show how to iteratively improve estimates of reliability---reducing the total amount of required sources. [Joglekar et al](https://dl.acm.org/doi/10.1145/2487575.2487595) learn confidence intervals for labeler reliability.
-- **Learning with noisy labels:** Even if we know the reliability of noisy labelers, when and how can we train a model on noisy examples? The possibility of learning with noisy labels has been studied starting with classic work from [Angluin and Laird](http://homepages.math.uic.edu/~lreyzin/papers/angluin88b.pdf). For models trained with a surrogate loss function, [Scott](http://web.eecs.umich.edu/~cscott/pubs/asymsurrEJS.pdf), and [Natarajan et al](https://proceedings.neurips.cc/paper/2013/file/3871bd64012152bfb53fdf04b401193f-Paper.pdf) opened up a new area by showing that a simple re-weighting modification of the loss enables unbiased learning in the presence of noise. 
-- **Learning latent-variable graphical models:** Learning both the structure and parameters of a latent-variable graphical model is a more challenging variant of the traditional graphical model learning problem. While EM remains an option, other techniques exploit structure in matrices and tensors of moments. A core technique is tensor decomposition pioneered by [Anandkumar et al](https://www.jmlr.org/papers/volume15/anandkumar14b/anandkumar14b.pdf), used as a block in [Chaganty and Liang](http://proceedings.mlr.press/v32/chaganty14.html). 
-- **Structure learning of latent-variable graphical models:** using extensions of robust PCA permits the recovery of latent-variable Gaussian graphical models, as in [Chandrasekaran et al](https://arxiv.org/pdf/1008.1290.pdf). Discrete models share certain similar properties, i.e., having structured inverse covariance matrices.
+- [Comparing labeled versus unlabeled data](https://arxiv.org/pdf/2103.02761.pdf): generative classifiers based on graphical models (e.g. in weak supervision) can accept both labeled and unlabeled data (since usually practitioners have a small amount of labeled data available), but unlabeled input is linearly more susceptible to misspecification of the dependency structure. However, this can be corrected using a general median-of-means estimator on top of method-of-moments. *THIS IS FINE FOR DETAIL*
 
 <h2 id="data-programming-resources">Other Resources</h2>
+
+** THESE SHOULD FEATURE MORE UPFRONT AND USE THEM IN THE STORY. YOU SHOULD BE ABLE TO POINT TO PEOPLE'S TALKS and things **
 
 - This [Snorkel blog post](https://www.snorkel.org/blog/weak-supervision) provides an overview of the weak supervision pipeline, including how it compares to other approaches to get more labeled data and the technical modeling challenges.
 - [These Stanford CS229 lecture notes](https://mayeechen.github.io/files/wslecturenotes.pdf) provide a more theoretical summary of how graphical models are used in weak supervision.
@@ -231,26 +247,11 @@ Models are also becoming more unviersal, capable of handling multiple modalities
 [comment]: <> (### Other Links)
 [comment]: <> (- Stanford class [upcoming])
 
-<h2 id="efficient-models">Efficient Models</h2>
-As models get larger, there is an increasing need to make training less computational expensive, espcially in larger Transformer networks that have a quadratic complexity (w.r.t. input sequence length) in attention layers. 
-
-### Exploit Sparsity
-- For efficient MLP Training, [SLIDE](https://arxiv.org/pdf/1903.03129.pdf) uses Locality Sensitive Hashing(LSH) for approximating dense matrix multiplications in linear layers preceding a softmax (identify sparsity patterns).
-- For efficient Transformers Training, [Reformer](https://arxiv.org/pdf/2001.04451.pdf) uses similar techniques, LSH, to reduce quadratic computations in attention layers.
-- [MONGOOSE](https://openreview.net/pdf?id=wWK7yXkULyh) uses a scheduling algorithm and learnable hash functions to address LSH overhead and further speed-up MLP and Transformer training. 
-- [Routing Transformers](https://arxiv.org/pdf/2003.05997.pdf) and [Smyrf](https://arxiv.org/pdf/2010.05315.pdf) use other similar techniques, such as k-means or asymmetric LSH to identify sparsity patterns.
-
-### Exploit Low-rank Properties
-- This [paper](http://www.vikas.sindhwani.org/lowRank.pdf) uses low-rank matrix factorization to reduce the computation for linear layers.
-- For efficient attention computation in Transformers, [Performer](https://arxiv.org/pdf/2009.14794.pdf), [Linformer](http://proceedings.mlr.press/v119/katharopoulos20a/katharopoulos20a.pdf), [Linear Transformer](https://arxiv.org/pdf/2006.04768.pdf) use either low-rank or kernel approximation techniques.
-
-### Sparse+Low-rank and other References
-- Inspired by the classical robust-PCA algorithm for sparse and low-rank decomposition, [Scatterbrain]() unifies sparse (via LSH) and low-rank (via kernel feature map) attention for accurate and efficient approximation. 
-- This [survey paper](https://arxiv.org/pdf/2009.06732.pdf) covers most of the efficient Transformer variants.
-- [Long Range Arena](https://arxiv.org/pdf/2011.04006.pdf) is a systematic and unified benchmark, focused on evaluating model quality under long-context scenarios.
 
 <h2 id="interactive-machine-learning">Interactive Machine Learning</h2>
 With models getting larger and costing more to train, there's a growing need to interact with the model and quickly iterate on its performance before a full training run.
+
+**I DO NOT UNDERSTAND THIS **
 
 - **Explanatory interactive learning** Can we, by interacting with models during training, encourage their explanations to line up with our priors on what parts of the input are relevant?
    - [Right for the Right Reasons: Training Differentiable Models by Constraining their Explanations](https://arxiv.org/pdf/1703.03717.pdf)
