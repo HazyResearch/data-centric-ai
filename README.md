@@ -58,7 +58,7 @@ Instructions for adding resources:
 6. [Fine-Grained Evaluation](#fine-grained-evaluation)
    1. [Slice-Based Evaluation](#slice-based-evaluation)
    2. [Benchmarking](#benchmarking)
-7. [Robustess](#robustness)
+7. [Robustness](#robustness)
    1. [Subgroup Information](#subgroup-information)
    2. [Evaluation on Unlabeled Data](#evaluation-on-unlabeled-data)
 9. [Applications](#section-applications)
@@ -505,19 +505,31 @@ Other benchmarking efforts have focused on enabling more robust model comparison
 
 
 [comment]: <> ([Avanika])
-[comment]: <> (## Robustness [Jared])
+[comment]: <> (## Robustness [Jared, Michael])
 [comment]: <> (- Hidden Stratification + GEORGE)
 
-# Robustness
+<h1 id="robustness">Robustness</h2>  
 NEED ROBUSTNESS SETUP/HIDDEN STRAT
 label drift whatever
 Hidden straification point to talks! This is a huge thing, it came first--and it shouldn't be some after thought as "application".
 Then, put all that work in context.
-Tell the stor!
+Tell the stor!  
 
-<h2 id="subgroup-information">Subgroup Information</h2>
+Machine learning subscribes to a simple idea: models perform well on data that “look” or “behave” similarly to data they were trained on - the test distributions are encountered and learned during training.  
+* However, in practice collecting enough training data to account for all potential deployment scenarios is infeasible. With standard training (i.e. empirical risk minimization (ERM)), this can lead to poor ML robustness; current ML systems may fail when encountering out-of-distribution data.  
+* More fundamentally, this lack of robustness also sheds light on the limitations with how we collect data and train models. Training only with respect to statistical averages can lead to models learning the "wrong" things, such as spurious correlations and dependencies on confounding variables that hold for most, but not all, of the data.  
 
-A data subset or "subgroup" may carry spurious correlations between its features and labels that do not hold for datapoints outside of the subgroup. When certain subgroups are larger than others, models trained to minimize average error are susceptible to learning these spurious correlations and performing poorly on the minority subgroups. 
+How can we obtain models that perform well on many possible distributions and tasks, especially in realistic scenarios that come from deploying models in practice? This is a broad question and a big undertaking. We've therefore been interested in building on both the frameworks and problem settings that allow us to model and address robustness in tractable ways, and the methods to improve robustness in these frameworks.  
+
+One area we find particularly interesting is that of subgroup robustness or [hidden](https://hazyresearch.stanford.edu/hidden-stratification) [stratification](https://www.youtube.com/watch?v=_4gn7ibByAc). With classic classification, we assign a single label for each sample in our dataset, and train a model to correctly predict those labels. However, several distinct data subsets or "subgroups" might exist among datapoints that all share the same label, and these labels may only coarsely describe the meaningful variation within the population.  
+* In real-world settings such as [medical](https://dl.acm.org/doi/pdf/10.1145/3368555.3384468) [imaging](https://lukeoakdenrayner.wordpress.com/2019/10/14/improving-medical-ai-safety-by-addressing-hidden-stratification/), models trained on the entire training data can obtain low average error on a similarly-distributed test set, but surprisingly high error on certain subgroups, even if these subgroups' distributions were encountered during training.  
+* Frequently, what also separates these underperfoming subgroups from traditional outliers in the noisy data sense is that there exists a true dependency between the subgroup features and labels - the model just isn't learning it.  
+
+Towards overcoming hidden stratification, recent work such as [GEORGE](https://www.youtube.com/watch?v=ZXHGx52yKDM) observes that modern machine learning methods also learn these "hidden" differences between subgroups as hidden layer representations with supervised learning, even if no subgroup labels are provided.  
+
+<h2 id="subgroup-information">Improving Robustness with Subgroup Information</h2>
+
+Framed another way, a data subset or "subgroup" may carry spurious correlations between its features and labels that do not hold for datapoints outside of the subgroup. When certain subgroups are larger than others, models trained to minimize average error are susceptible to learning these spurious correlations and performing poorly on the minority subgroups. 
 
 To obtain good performance on *all* subgroups, in addition to the ground-truth labels we can bring in subgroup information during training.
 
