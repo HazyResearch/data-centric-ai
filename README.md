@@ -349,12 +349,16 @@ Heuristic transformations for text, typically involve paraphrasing text in order
 
 
 ### Assembled Pipelines 
-Recent work learns augmentation pipelines to determine the right subset of augmentation primitives, and the order in which they should be applied.
+An interesting idea is to learn augmentation pipelines, a study initiated by [TANDA](https://arxiv.org/pdf/1709.01643.pdf). This area has seen rapid growth in recent years with both deeper theoretical understanding and practical implementations, like AutoAugment.. 
+
+** PLEASE CLEAN UP *** 
+
+to determine the right subset of augmentation primitives, and the order in which they should be applied. 
 These pipelines are primarily built on top of a fixed set of generic transformations.
 Methods vary by the learning algorithm used, which can be
 
 - random sampling such as in [RandAugment](https://arxiv.org/pdf/1909.13719.pdf) and an uncertainty-based random sampling scheme such as in [Dauphin](https://arxiv.org/abs/2005.00695).
-- reinforcement learning approaches led by the [TANDA](https://arxiv.org/pdf/1709.01643.pdf) work, and extended by [AutoAugment](https://openaccess.thecvf.com/content_CVPR_2019/papers/Cubuk_AutoAugment_Learning_Augmentation_Strategies_From_Data_CVPR_2019_paper.pdf) 
+- reinforcement learning approaches led by the work, and extended by [AutoAugment](https://openaccess.thecvf.com/content_CVPR_2019/papers/Cubuk_AutoAugment_Learning_Augmentation_Strategies_From_Data_CVPR_2019_paper.pdf) 
 - computationally efficient algorithms for learning augmentation policies have also been proposed such as [Population-Based Augmentation](https://arxiv.org/pdf/1905.05393.pdf) and [Fast AutoAugment](https://arxiv.org/pdf/1905.00397.pdf)
 
 
