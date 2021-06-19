@@ -102,7 +102,7 @@ ALSO THE CANDES PAPERS!
 
 
 <h2 id="data-programming-techniques">Techniques</h2>
-- [FlyingSquid](https://arxiv.org/pdf/2002.11955.pdf): rather than work with the entire covariance matrix, small covariance sub-matrices (as small as 3x3) still contain enough information to learn the accuracies. Obtaining the parameters is done by computing a closed-form expression---no optimization required. *THIS IS A REFINEMENT, WHY DID IT FEATURE SO PROMINENTLY? IT's IN THE NOTES*
+- [FlyingSquid](https://arxiv.org/pdf/2002.11955.pdf): rather than work with the entire covariance matrix, small covariance sub-matrices (as small as 3x3) still contain enough information to learn the accuracies. Obtaining the parameters is done by computing a closed-form expression---no optimization required. *THIS IS A GREAT TECHNIQUE, BUT IT SHOULD BE PAINTED IN A CONTEXT (and it's not a conceptual thing)*
 
 **Learning the structure of a latent variable graphical model:**
 - [Learning dependencies](https://arxiv.org/pdf/1903.05844.pdf): in most weak supervision settings, labeling functions are assumed to be conditionally independent, or the dependencies are known. However, when they are not, robust PCA can be applied to recover the structure.
