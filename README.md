@@ -122,11 +122,23 @@ ALSO THE CANDES PAPERS!
 <h2 id="weak-supervision-success-stories"> Success Stories </h2>
 
 - The [Overton](https://www.cs.stanford.edu/~chrismre/papers/overton-tr.pdf) zero-code, deep-learning system to help engineers build, monitor, and improve ML systems.
+
+** SOMEWHAT WEAK SUPERVISION, AND IF YOU PUT THIS HERE LIST THE OTHERS LIKE LUDWIG AND OTHERS . SEEMS TO WEAKEN YOUR POINT **
+
 - [Google](https://arxiv.org/pdf/1812.00417.pdf) used a weak supervision system based on Snorkel to create classifiers of comparable quality to ones
 trained with tens of thousands of hand-labeled examples over millions of datapoints in just tens of minutes.
+
+** IT ISI IN GOOGLE ADS AND YOUTUBE. THIS MAKE IT SOUND LIKE IT WAS IN TREE HACKS **
+
 - [Intel](https://ajratner.github.io/assets/papers/Osprey_DEEM.pdf) used weak supervision to replace six months of crowdworker labels while improving precision by double digits.
 - [G-mail](http://cidrdb.org/cidr2020/papers/p31-sheng-cidr20.pdf) migrated a privacy-safe information extraction system to a Software 2.0 design with weak supervision.
+
+** THE ARGUMENTS ARE HUGE FROM HERE, AND YOU'VE USED THE SERVICE **
+
 - [Facebook](https://ai.facebook.com/blog/billion-scale-semi-supervised-learning/) achieved new state-of-the-art performance on academic benchmarks for image and video classification by weakly supervising training labels in the billions.
+
+** Please watch a talk for how I talk about htis... **
+
 - [Stanford Radiology](https://arxiv.org/pdf/1903.11101.pdf) used a cross-modal weak supervision approach to weakly supervise training labels from text reports and then train an image model for the associated radiology images.
 - This [Software 2.0 blog post](https://hazyresearch.stanford.edu/software2) summarizes other successes for data programming.
 
