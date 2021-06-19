@@ -617,8 +617,8 @@ Interesting works have collected observational signals such as:
 - Eye tracking plus brain activity in NLP (Zuco [dataset](https://www.nature.com/articles/sdata2018291.pdf)) 
 - We have also collaborated with Stanford radiologists to curate an additional two medical datasets with eye tracking data [coming soon!].
 
-Interesting papers in observational supervision:
-- Improving NLP models with gaze by N. Hollenstein et al. [paper](https://arxiv.org/pdf/1902.10068.pdf)
+Critical papers in observational supervision:
+- Some of the pioneering work on using gaze data. N. Hollenstein and C. Zhang showed how to use gaze data to improve NLP models [paper](https://arxiv.org/pdf/1902.10068.pdf).
 - Improving zero-shot learning with gaze by N. Karasseli et al. [paper](https://openaccess.thecvf.com/content_cvpr_2017/papers/Karessli_Gaze_Embeddings_for_CVPR_2017_paper.pdf) 
 - Improving sample complexity with gaze by K. Saab et al. [paper](https://openreview.net/pdf?id=r1gPtjcH_N)
 - Our recent work on supervising medical models from scratch [coming soon!]
