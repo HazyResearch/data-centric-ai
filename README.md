@@ -61,6 +61,7 @@ Instructions for adding resources:
 7. [Robustness](#robustness)
    1. [Subgroup Information](#subgroup-information)
    2. [Evaluation on Unlabeled Data](#evaluation-on-unlabeled-data)
+   3. [Outlier Detection](#outlier-detection)
 9. [Applications](#section-applications)
    1. [Named Entity Linking](#named-entity-linking) 
    2. [Medical Imaging](#medical-imaging)
@@ -523,7 +524,8 @@ How can we obtain models that perform well on many possible distributions and ta
 
 One area we find particularly interesting is that of subgroup robustness or [hidden](https://hazyresearch.stanford.edu/hidden-stratification) [stratification](https://www.youtube.com/watch?v=_4gn7ibByAc). With classic classification, we assign a single label for each sample in our dataset, and train a model to correctly predict those labels. However, several distinct data subsets or "subgroups" might exist among datapoints that all share the same label, and these labels may only coarsely describe the meaningful variation within the population.  
 * In real-world settings such as [medical](https://dl.acm.org/doi/pdf/10.1145/3368555.3384468) [imaging](https://lukeoakdenrayner.wordpress.com/2019/10/14/improving-medical-ai-safety-by-addressing-hidden-stratification/), models trained on the entire training data can obtain low average error on a similarly-distributed test set, but surprisingly high error on certain subgroups, even if these subgroups' distributions were encountered during training.  
-* Frequently, what also separates these underperfoming subgroups from traditional outliers in the noisy data sense is that there exists a true dependency between the subgroup features and labels - the model just isn't learning it.  
+* Frequently, what also separates these underperfoming subgroups from traditional 
+s in the noisy data sense is that there exists a true dependency between the subgroup features and labels - the model just isn't learning it.  
 
 Towards overcoming hidden stratification, recent work such as [GEORGE](https://www.youtube.com/watch?v=ZXHGx52yKDM) observes that modern machine learning methods also learn these "hidden" differences between subgroups as hidden layer representations with supervised learning, even if no subgroup labels are provided.  
 
@@ -564,8 +566,18 @@ Below are some resources on distribution shift, importance weighting, and densit
 - [Learning Bounds on Importance Weighting](https://papers.nips.cc/paper/2010/file/59c33016884a62116be975a9bb8257e3-Paper.pdf): how well importance weighting corrects for distribution shift can be attributed to the variance of the weights, or alternatively the R\'enyi divergence between source and target.
 - Importance weighting works poorly when the supports of the source and target do not overlap and when data is high-dimensional. [Mandoline](https://mayeechen.github.io/files/mandoline.pdf)  addresses this by reweighting based on user/model-defined ``slices'' that intend to capture relevant axes of distribution shift. Slices are often readily available as subpopulations identified by the practitioner, but can also be based on things like metadata and the trained model's scores.
 
-### Outlier Detection
-_This section is a stub. You can help by improving it._
+<h2 id="outlier-detection">Outlier Detection</h2>
+
+As an important task in open-world learning, out-of-distribution (OOD) detection refers to detecting whether or not an input comes from the training distribution. It has been shown that both [discriminative](https://arxiv.org/abs/1412.1897) and [generative](https://arxiv.org/abs/1810.09136) models can assign high confience predictions for OOD data. Here are some recent works that try to tackle different aspects of OOD detection:
+
+- New OOD scores: besides using the  [maximum softmax probability](https://arxiv.org/abs/1610.02136) from a pre-trained network for OOD detection, recent works  propose new OOD scores to improve the OOD uncertainty estimation such as [the calibrated softmax score](https://arxiv.org/abs/1706.02690),  [generalized ODIN](https://arxiv.org/abs/2002.11297), [the Mahalanobis distance-based confidence score](https://arxiv.org/abs/1807.03888), and [energy score](https://arxiv.org/abs/2010.03759).
+
+- Robustness of OOD detection: [This paper](https://arxiv.org/pdf/1909.12180.pdf) provides the first provable guarantees for wort-case OOD detection on some balls around uniform noise. [ATOM](https://arxiv.org/abs/2006.15207) shows that by effectively mining informative auxiliary OOD data to improve the decision boundary of the OOD detector, one can boost OOD detection performance as well as adversarial robustness.
+
+- Computationally efficient and Large-scale OOD detection:  In contrast to most works that rely on final-layer outputs for OOD detection, [MOOD](https://arxiv.org/abs/2104.14726) first exploits intermediate classifier outputs for dynamic and efficient OOD inference. [MOS](https://arxiv.org/abs/2105.01879) proposes a group-based OOD detection framework with a new OOD scoring function for large-scale image classification. The main idea is to decompose the large semantic space into smaller groups with similar concepts , which allows simplifying the decision boundaries between in- vs. OOD data for effective OOD detection. 
+
+
+
 
 ### Active Sampling and Labeling
 _This section is a stub. You can help by improving it._
