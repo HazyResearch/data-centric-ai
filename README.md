@@ -61,6 +61,7 @@ Instructions for adding resources:
 7. [Robustness](#robustness)
    1. [Subgroup Information](#subgroup-information)
    2. [Evaluation on Unlabeled Data](#evaluation-on-unlabeled-data)
+   3. [Outlier Detection](#outlier-detection)
 9. [Applications](#section-applications)
    1. [Named Entity Linking](#named-entity-linking) 
    2. [Medical Imaging](#medical-imaging)
@@ -571,7 +572,7 @@ As an important task in open-world learning, out-of-distribution (OOD) detection
 
 - New OOD scores: besides using the  [maximum softmax probability](https://arxiv.org/abs/1610.02136) from a pre-trained network for OOD detection, recent works  propose new OOD scores to improve the OOD uncertainty estimation such as [the calibrated softmax score](https://arxiv.org/abs/1706.02690),  [generalized ODIN](https://arxiv.org/abs/2002.11297), [the Mahalanobis distance-based confidence score](https://arxiv.org/abs/1807.03888), and [energy score](https://arxiv.org/abs/2010.03759).
 
-- Robustness of OOD detection: [This paper](https://arxiv.org/pdf/1909.12180.pdf) provide the first provable guarantees for wort-case OOD detection on some balls around uniform noise. [ATOM](https://arxiv.org/abs/2006.15207) shows that by effectively mining informative auxiliary OOD data to improve the decision boundary of the OOD detector, one can boost OOD detection performance as well as adversarial robustness.
+- Robustness of OOD detection: [This paper](https://arxiv.org/pdf/1909.12180.pdf) provides the first provable guarantees for wort-case OOD detection on some balls around uniform noise. [ATOM](https://arxiv.org/abs/2006.15207) shows that by effectively mining informative auxiliary OOD data to improve the decision boundary of the OOD detector, one can boost OOD detection performance as well as adversarial robustness.
 
 - Computationally efficient and Large-scale OOD detection:  In contrast to most works that rely on final-layer outputs for OOD detection, [MOOD](https://arxiv.org/abs/2104.14726) first exploits intermediate classifier outputs for dynamic and efficient OOD inference. [MOS](https://arxiv.org/abs/2105.01879) proposes a group-based OOD detection framework with a new OOD scoring function for large-scale image classification. The main idea is to decompose the large semantic space into smaller groups with similar concepts , which allows simplifying the decision boundaries between in- vs. OOD data for effective OOD detection. 
 
