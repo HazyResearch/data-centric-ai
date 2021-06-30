@@ -3,9 +3,8 @@
 We're collecting (an admittedly opinionated) list of resources and progress made 
 in data-centric AI, with exciting directions past and present.
 
-AI has been pretty focused on models, while in reality, the experience of those who put 
-models into production or use them in real applications is that data matters a lot (maybe even more!). 
-Often, it's the data (which is unique to you) that can make or break model performance.
+While AI has been pretty focused on models, the real-world experience of those who put 
+models into production is that the data often matters more. 
 
 ---
 
@@ -70,7 +69,7 @@ Instructions for adding resources:
 
 
 # Data Programming & Weak Supervision
-Many modern machine learning systems require large, labeled datasets to be successful but producing such datasets is time-consuming and expensive. Instead, weaker sources of supervision, such as [crowdsourcing](https://papers.nips.cc/paper/2011/file/c667d53acd899a97a85de0c201ba99be-Paper.pdf), [distant supervision](https://www.aclweb.org/anthology/P09-1113.pdf), and domain experts' heuristics, can be combined to programmatically create training datasets via [data programming](https://arxiv.org/pdf/1605.07723.pdf). Users specify multiple labeling functions that each represent a noisy estimate of the ground-truth label. Because these labeling functions vary in accuracy, coverage of the dataset, and may even be correlated, they are combined and denoised via a latent variable graphical model. The technical challenge is thus to learn accuracy and correlation parameters in this model, and to use them to infer the true label to be used for downstream tasks.
+Many modern machine learning systems require large labeled datasets to be successful, but producing such datasets is time-consuming and expensive. Instead, weaker sources of supervision such as [crowdsourcing](https://papers.nips.cc/paper/2011/file/c667d53acd899a97a85de0c201ba99be-Paper.pdf), [distant supervision](https://www.aclweb.org/anthology/P09-1113.pdf), and domain experts' heuristics, can be combined to programmatically create training datasets via [data programming](https://arxiv.org/pdf/1605.07723.pdf). Users specify multiple _labeling functions_ that each represent a noisy estimate of the ground-truth label. Because these labeling functions vary in accuracy, have different levels of dataset coverage, and may even be correlated, they are combined and denoised via a latent variable graphical model. The technical challenge is thus to learn accuracy and correlation parameters in this model, and to use them to infer the true label to be used for downstream tasks.
 
 We first present some recent work on weak supervision and various algorithmic developments in how to learn the graphical model. We then refer to some fundamental literature in graphical models that underlies this recent work.
 
