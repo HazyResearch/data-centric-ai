@@ -3,9 +3,8 @@
 We're collecting (an admittedly opinionated) list of resources and progress made 
 in data-centric AI, with exciting directions past and present.
 
-AI has been pretty focused on models, while in reality, the experience of those who put 
-models into production or use them in real applications is that data matters a lot (maybe even more!). 
-Often, it's the data (which is unique to you) that can make or break model performance.
+While AI has been pretty focused on models, the real-world experience of those who put 
+models into production is that the data often matters more. 
 
 ---
 
@@ -70,7 +69,7 @@ Instructions for adding resources:
 
 
 # Data Programming & Weak Supervision
-Many modern machine learning systems require large, labeled datasets to be successful but producing such datasets is time-consuming and expensive. Instead, weaker sources of supervision, such as [crowdsourcing](https://papers.nips.cc/paper/2011/file/c667d53acd899a97a85de0c201ba99be-Paper.pdf), [distant supervision](https://www.aclweb.org/anthology/P09-1113.pdf), and domain experts' heuristics, can be combined to programmatically create training datasets via [data programming](https://arxiv.org/pdf/1605.07723.pdf). Users specify multiple labeling functions that each represent a noisy estimate of the ground-truth label. Because these labeling functions vary in accuracy, coverage of the dataset, and may even be correlated, they are combined and denoised via a latent variable graphical model. The technical challenge is thus to learn accuracy and correlation parameters in this model, and to use them to infer the true label to be used for downstream tasks.
+Many modern machine learning systems require large labeled datasets to be successful, but producing such datasets is time-consuming and expensive. Instead, weaker sources of supervision such as [crowdsourcing](https://papers.nips.cc/paper/2011/file/c667d53acd899a97a85de0c201ba99be-Paper.pdf), [distant supervision](https://www.aclweb.org/anthology/P09-1113.pdf), and domain experts' heuristics, can be combined to programmatically create training datasets via [data programming](https://arxiv.org/pdf/1605.07723.pdf). Users specify multiple _labeling functions_ that each represent a noisy estimate of the ground-truth label. Because these labeling functions vary in accuracy, have different levels of dataset coverage, and may even be correlated, they are combined and denoised via a latent variable graphical model. The technical challenge is thus to learn accuracy and correlation parameters in this model, and to use them to infer the true label to be used for downstream tasks.
 
 We first present some recent work on weak supervision and various algorithmic developments in how to learn the graphical model. We then refer to some fundamental literature in graphical models that underlies this recent work.
 
@@ -112,12 +111,12 @@ trained with tens of thousands of hand-labeled examples over millions of datapoi
 - [Intel](https://ajratner.github.io/assets/papers/Osprey_DEEM.pdf) used weak supervision to replace six months of crowdworker labels while improving precision by double digits.
 - [G-mail](http://cidrdb.org/cidr2020/papers/p31-sheng-cidr20.pdf) migrated a privacy-safe information extraction system to a Software 2.0 design with weak supervision.
 - [Facebook](https://ai.facebook.com/blog/billion-scale-semi-supervised-learning/) achieved new state-of-the-art performance on academic benchmarks for image and video classification by weakly supervising training labels in the billions.
-- [Stanford Radiology](https://arxiv.org/pdf/1903.11101.pdf) used a cross-modal weak supervision approach to weakly supervise training labels from text reports and then train an image model for the associated radiology images.
+- [Stanford Radiology](https://arxiv.org/pdf/1903.11101.pdf) used a cross-modal weak supervision approach to weakly supervise training labels from text reports and then train an image model for the associated radiology images; read about more success stores from weak superision in science and medicine [here](https://hazyresearch.stanford.edu/ws4science).
 - This [Software 2.0 blog post](https://hazyresearch.stanford.edu/software2) summarizes other successes for data programming.
 
 
 # Data Representations & Self-Supervision
-The need for large, labeled datasets has also motivated methods for training data on naturally, or automatically, labelled datasets, allowing the model to learn latent structure in the data. For example, language models can be trained to predict the next token in a textual input. The paradigm, called "self-supervision", has revolutionized how we train (or pre-train) models. Importantly, these self-supervised models learn without manual labels or hand curated features. This reduces the engineer effort to create and maintain features and makes models significantly easier to deploy and maintain. This shift put more importance on the underlying training data and how it is represented to the model.
+The need for large, labeled datasets has also motivated methods for training data on naturally, or automatically, labelled datasets, allowing the model to learn latent structure in the data. For example, language models can be trained to predict the next token in a textual input. The paradigm, called "self-supervision", has revolutionized how we train (or pre-train) models. Importantly, these self-supervised models learn without manual labels or hand curated features. This reduces the engineering effort to create and maintain features and makes models significantly easier to deploy and maintain. This shift put more importance on the underlying training data and how it is represented to the model.
 
 
 <h2 id="embeddings">Embeddings</h2>
@@ -126,7 +125,7 @@ Self-supervised models commonly rely on embeddings as core inputs and outputs du
 ### Embedding Atoms and Learning Embeddings
 How you "tokenize" your intput into different atomic units and how you train an embedding changes what kind of knowledge and how the knowledge is represented.
 - Graph based approaches, such as [TransE](https://papers.nips.cc/paper/2013/file/1cecc7a77928ca8133fa24680a88d2f9-Paper.pdf), represent entities (people, place, and things) and are trained to preserve link structure in a Knowledge Base.
-- [Hyperbolic embeddings](https://homepages.inf.ed.ac.uk/rsarkar/papers/HyperbolicDelaunayFull.pdf) takes graph-structured embeddings one step further and learns embeddings in hyporbolic space. This [blog](https://dawn.cs.stanford.edu/2019/10/10/noneuclidean/) gives a great introduction.
+- [Hyperbolic embeddings](https://homepages.inf.ed.ac.uk/rsarkar/papers/HyperbolicDelaunayFull.pdf) takes graph-structured embeddings one step further and learns embeddings in hyperbolic space. This [blog](https://dawn.cs.stanford.edu/2019/10/10/noneuclidean/) gives a great introduction.
 - Common word embedding techniques, like [word2vec](https://papers.nips.cc/paper/2013/file/9aa42b31882ec039965f3c4923ce901b-Paper.pdf), train embeddings for each word in a fixed vocabulary to predict surrounding words given a single word, preserving word co-occurrence patterns. This [chapter](http://web.stanford.edu/~jurafsky/slp3/6.pdf) from Speech and Language Processing gives a nice overview of word embeddings.
 - Contextual word embeddings, like [BERT](https://www.aclweb.org/anthology/N19-1423.pdf), split words into sub-tokens and generate embeddings for each sub-token that depend on the surrounding context thereby allowing for homonyms to get different representations.
 - [Selfie](https://arxiv.org/pdf/1906.02940.pdf) learns embeddings for image patches, sub-spaces of the image, to be trained using Transformer architecture.
@@ -136,7 +135,7 @@ How you "tokenize" your intput into different atomic units and how you train an 
 As self-supervised embeddings are trained in a general-purpose manner, they are frequently used as core inputs into downstream tasks to be fine-tuned on a specific task. These embeddings transfer general knowledge into the downstream tasks for improved quality.
 
 - [A Primer in BERTology: What We Know About How BERT Works](https://www.aclweb.org/anthology/2020.tacl-1.54/) explores the omniprescent use of BERT word embeddings as a way of transferring global language knowledge to downstream tasks.
-- Systems like [KnowBERT](https://arxiv.org/pdf/1909.04164.pdf) and [Bootleg](https://arxiv.org/abs/2010.10363) both explore how the use of entity embeddings from a Named Entity Disambiguation system can encode entity knowledge in downstream knowledge rich tasks like relation extraction.
+- Systems like [KnowBERT](https://arxiv.org/pdf/1909.04164.pdf) and [Bootleg](https://arxiv.org/abs/2010.10363) both explore how the use of entity embeddings from a Named Entity Disambiguation system can encode entity knowledge in downstream knowledge-rich tasks like relation extraction.
 - [Selfie](https://arxiv.org/pdf/1906.02940.pdf) and [BEiT](https://arxiv.org/abs/2106.08254) pretrain image patch embeddings to be used in downstream image classifications tasks.
 
 ### Stability and Compression
@@ -164,7 +163,7 @@ Rare are entities (named entities, products, words, ...) are uncommon or non-exi
 - The [TEK](https://arxiv.org/pdf/2004.12006.pdf) framework injects entity descriptions for improved reading comprehension and QA. 
 
 ### Data Shaping
-Prior methods to inject domain knowledge often modify the model architecture and/or algorithms. In contrast, data shaping involves introduces external knowledge to the raw data inputted to a language model. While it may be difficult to efficiently deploy the specialized and sophisticated models as proposed in prior work, data shaping simply uses the standard language model with no modifications whatsoever to achieve competitive performance.
+Prior methods to inject domain knowledge often modify the model architecture and/or algorithms. In contrast, data shaping involves introducing external knowledge to the raw data inputted to a language model. While it may be difficult to efficiently deploy the specialized and sophisticated models as proposed in prior work, data shaping simply uses the standard language model with no modifications whatsoever to achieve competitive performance.
 
 - Recent work on knowledge-aware language modeling, involving a modified architecture and/or learning algorithm: 
   [E-BERT](https://arxiv.org/abs/1911.03681) (Poerner, 2020), [K-Adapter](https://arxiv.org/abs/2002.01808) (Wang, 2020), 
@@ -186,7 +185,7 @@ Feature Store (FS) systems were developed to help engineers build, share, and ma
 
 ### Industry and the Embedding Ecosystem
 Self-supervised embeddings are core inputs to numerous downstream user-facing systems in industry. We term the embeddings and models that use them a "embedding ecosystem". A few examples of these ecosystems at work are:
-- [Pinterest's](https://medium.com/pinterest-engineering/pinnersage-multi-modal-user-embedding-framework-for-recommendations-at-pinterest-bfd116b49475) multi-model user embeddings for recommendation.
+- [Pinterest's](https://medium.com/pinterest-engineering/pinnersage-multi-modal-user-embedding-framework-for-recommendations-at-pinterest-bfd116b49475) multi-modal user embeddings for recommendation.
 - [Spotify](https://research.atspotify.com/contextual-and-sequential-user-embeddings-for-music-recommendation/) uses embeddings for user music recommendations.
 - [Netflix](https://netflixtechblog.com/supporting-content-decision-makers-with-machine-learning-995b7b76006f) also uses embeddings for movie recommendations. 
 
@@ -203,8 +202,8 @@ As models get larger, researchers are seeing emergent trends of impressive zero-
 The goal is to find one architecture that can be universal, working on text, image, video, etc. Further, rather than leaning into something complex, recent work in [scaling laws](https://arxiv.org/pdf/2001.08361.pdf) suggest that architectures matter less than data. The implication is that very standard, commoditized architectures can be universal.
 - The most common standard architecture is that of the [Transformer](https://arxiv.org/pdf/1706.03762.pdf), explained very well in this [blog](https://jalammar.github.io/illustrated-transformer/).
 - Transformers have seen wide-spread-use in NLP tasks through [BERT](https://www.aclweb.org/anthology/N19-1423.pdf), [RoBERTa](https://arxiv.org/abs/1907.11692v1), and Hugging Face's [model hub](https://huggingface.co/models), where numerous Transformer style models are trained and shared.
-- Recent work has shown how Transformers can even be sued in vision tasks with the [Vision Transformers](https://arxiv.org/pdf/2010.11929.pdf).
-- Transformers are no pancea and are still generally larger and slower to train that the simple model of a MLP. Recent work has explored how you can replace the Transformer architecture with a sequence of MLPs in the [gMLP](https://arxiv.org/pdf/2105.08050.pdf).
+- Recent work has shown how Transformers can even be used in vision tasks with the [Vision Transformers](https://arxiv.org/pdf/2010.11929.pdf).
+- Transformers are no panacea and are still generally larger and slower to train that the simple model of a MLP. Recent work has explored how you can replace the Transformer architecture with a sequence of MLPs in the [gMLP](https://arxiv.org/pdf/2105.08050.pdf).
 
 ### Emphasis on Scale
 With the ability to train models without needing labelled data through self-supervision, the focus became on scaling models up and training on more data.
@@ -213,7 +212,7 @@ With the ability to train models without needing labelled data through self-supe
 - [Switch Transformers](https://arxiv.org/pdf/2101.03961.pdf) is a mixture of experts for training massive models beyond the scale of GPT-3.  
 
 ### Multi-Modal Applications
-Models are also becoming more unviersal, capable of handling multiple modalities at once.
+Models are also becoming more universal, capable of handling multiple modalities at once.
 - [Wu Dao 2.0](https://www.engadget.com/chinas-gigantic-multi-modal-ai-is-no-one-trick-pony-211414388.html) is the Chinese 1.75T parameter MoE model with multimodal capabilities.
 - [DALL-E](https://openai.com/blog/dall-e/) & [CLIP](https://openai.com/blog/clip/) are two other multi-modal models
 
@@ -233,7 +232,7 @@ Models are also becoming more unviersal, capable of handling multiple modalities
 [comment]: <> (- Stanford class [upcoming])
 
 <h2 id="efficient-models">Efficient Models</h2>
-As models get larger, there is an increasing need to make training less computational expensive, espcially in larger Transformer networks that have a quadratic complexity (w.r.t. input sequence length) in attention layers. 
+As models get larger, there is an increasing need to make training less computational expensive, especially in larger Transformer networks that have a quadratic complexity (w.r.t. input sequence length) in attention layers. 
 
 ### Exploit Sparsity
 - For efficient MLP Training, [SLIDE](https://arxiv.org/pdf/1903.03129.pdf) uses Locality Sensitive Hashing(LSH) for approximating dense matrix multiplications in linear layers preceding a softmax (identify sparsity patterns).
@@ -365,7 +364,7 @@ Examples of these approaches include
 [Synthetic Examples Improve Generalization for Rare Classes](https://arxiv.org/pdf/1904.05916.pdf),
 [Learning Data Manipulation for Augmentation and Weighting](https://arxiv.org/pdf/1910.12795.pdf),
 [Generative Models For Deep Learning with Very Scarce Data](https://arxiv.org/abs/1903.09030.pdf),
-[Adversarial learning of general transformations for data augmentation](https://arxiv.org/abs/1909.09801.pdf),
+[Adversarial Learning of General Transformations for Data Augmentation](https://arxiv.org/abs/1909.09801.pdf),
 [DADA](https://arxiv.org/abs/1809.00981) and
 [A Bayesian Data Augmentation Approach for Learning Deep Models](https://arxiv.org/pdf/1710.10564.pdf)
 
@@ -478,7 +477,7 @@ reproducible error analyses in a domain-specific language that supports explicit
 Slice-based analyses are commonplace and have been performed across all modalities with varying
 degrees of thoroughness. 
 
-- [Hidden Stratification](https://arxiv.org/pdf/1909.12475.pdf) describes the problem of subpar performance on hidden strata. 
+- Recent work on [hidden stratification](https://arxiv.org/pdf/1909.12475.pdf) describes the problem of subpar performance on hidden strata -- unlabeled subclasses of the data that are semantically and practically meaningful.
 - The [GLUE](https://openreview.net/pdf?id=rJ4km2R5t7) benchmark paper describes important
   slices for text classification, which were used to decide what may be challenging examples for GLUE. 
 - The [Robustness Gym](https://arxiv.org/abs/2101.04840.pdf) paper contains slice-based analyses
@@ -501,6 +500,7 @@ Other benchmarking efforts have focused on enabling more robust model comparison
 - [Dynaboard](https://ai.facebook.com/blog/dynaboard-moving-beyond-accuracy-to-holistic-model-evaluation-in-nlp/): an evaluation-as-a-service interface for comparing models across a holistic set of evaluation criteria including accuracy, robustness, fairness, compute, and memory. 
 - [ExplainaBoard](http://explainaboard.nlpedia.ai/): an interactive leaderboard and evaluation software for fine-grained model comparisons.
 - [Ludwig Benchmarking Toolkit](https://github.com/HazyResearch/ludwig-benchmarking-toolkit): a personalized benchmarking toolkit for running multi-objective, standardized, and configurable benchmarking studies.
+- [Experiment Impact Tracker])(https://github.com/Breakend/experiment-impact-tracker): a toolkit for tracking model energy usage, carbon emissions, and compute utilization.
 
 
 
@@ -516,16 +516,16 @@ Hidden straification point to talks! This is a huge thing, it came first--and it
 Then, put all that work in context.
 Tell the stor!  
 
-Machine learning subscribes to a simple idea: models perform well on data that “look” or “behave” similarly to data they were trained on - the test distributions are encountered and learned during training.  
-* However, in practice collecting enough training data to account for all potential deployment scenarios is infeasible. With standard training (i.e. empirical risk minimization (ERM)), this can lead to poor ML robustness; current ML systems may fail when encountering out-of-distribution data.  
+Machine learning subscribes to a simple idea: models perform well on data that “look” or “behave” similarly to data that they were trained on - in other words, the test distributions are encountered and learned during training.  
+* In practice, though, collecting enough training data to account for all potential deployment scenarios is infeasible. With standard training (i.e. empirical risk minimization (ERM)), this can lead to poor ML robustness; current ML systems may fail when encountering out-of-distribution data.  
 * More fundamentally, this lack of robustness also sheds light on the limitations with how we collect data and train models. Training only with respect to statistical averages can lead to models learning the "wrong" things, such as spurious correlations and dependencies on confounding variables that hold for most, but not all, of the data.  
 
 How can we obtain models that perform well on many possible distributions and tasks, especially in realistic scenarios that come from deploying models in practice? This is a broad question and a big undertaking. We've therefore been interested in building on both the frameworks and problem settings that allow us to model and address robustness in tractable ways, and the methods to improve robustness in these frameworks.  
 
-One area we find particularly interesting is that of subgroup robustness or [hidden](https://hazyresearch.stanford.edu/hidden-stratification) [stratification](https://www.youtube.com/watch?v=_4gn7ibByAc). With classic classification, we assign a single label for each sample in our dataset, and train a model to correctly predict those labels. However, several distinct data subsets or "subgroups" might exist among datapoints that all share the same label, and these labels may only coarsely describe the meaningful variation within the population.  
+One area we find particularly interesting is that of subgroup robustness or [hidden](https://hazyresearch.stanford.edu/hidden-stratification) [stratification](https://www.youtube.com/watch?v=_4gn7ibByAc). With standard classification, we assign a single label for each sample in our dataset, and train a model to correctly predict those labels. However, several distinct data subsets or "subgroups" might exist among datapoints that all share the same label, and these labels may only coarsely describe the meaningful variation within the population.  
 * In real-world settings such as [medical](https://dl.acm.org/doi/pdf/10.1145/3368555.3384468) [imaging](https://lukeoakdenrayner.wordpress.com/2019/10/14/improving-medical-ai-safety-by-addressing-hidden-stratification/), models trained on the entire training data can obtain low average error on a similarly-distributed test set, but surprisingly high error on certain subgroups, even if these subgroups' distributions were encountered during training.  
 * Frequently, what also separates these underperfoming subgroups from traditional 
-s in the noisy data sense is that there exists a true dependency between the subgroup features and labels - the model just isn't learning it.  
+ones in the noisy data sense is that there exists a true dependency between the subgroup features and labels - the model just isn't learning it.  
 
 Towards overcoming hidden stratification, recent work such as [GEORGE](https://www.youtube.com/watch?v=ZXHGx52yKDM) observes that modern machine learning methods also learn these "hidden" differences between subgroups as hidden layer representations with supervised learning, even if no subgroup labels are provided.  
 
@@ -601,7 +601,7 @@ Named entity linking (NEL) is the task of linking ambiguous mentions in text to 
 <h2 id="medical-imaging">Medical Imaging</h2>
 
 - Sensitive to inputs, not models
-    - The varient of imaging configurations (e.g. [site locations](https://arxiv.org/pdf/2002.11379.pdf)), hardware, and processing techniques (e.g. [CT windowing](https://pubs.rsna.org/doi/abs/10.1148/ryai.2021200229)) lead to large performance shifts
+    - The variation of imaging configurations (e.g. [site locations](https://arxiv.org/pdf/2002.11379.pdf)), hardware, and processing techniques (e.g. [CT windowing](https://pubs.rsna.org/doi/abs/10.1148/ryai.2021200229)) lead to large performance shifts
     - Recent medical imaging challenges (segmentation: [knee](https://arxiv.org/pdf/2004.14003.pdf), [brain](https://arxiv.org/pdf/1811.02629.pdf), reconstruction: [MRI](https://arxiv.org/abs/2012.06318)), found that, to a large extent, the choice of model is less important than the underlying distribution of data (e.g. disease extent)
 
 - Towards multi-modal data fusion
