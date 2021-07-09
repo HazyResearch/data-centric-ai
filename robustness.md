@@ -1,11 +1,5 @@
 # Robustness
 
-NEED ROBUSTNESS SETUP/HIDDEN STRAT
-label drift whatever
-Hidden straification point to talks! This is a huge thing, it came first--and it shouldn't be some after thought as "application".
-Then, put all that work in context.
-Tell the stor!
-
 Machine learning subscribes to a simple idea: models perform well on data that “look” or “behave” similarly to data that they were trained on - in other words, the test distributions are encountered and learned during training.
 
 - In practice, though, collecting enough training data to account for all potential deployment scenarios is infeasible. With standard training (i.e. empirical risk minimization (ERM)), this can lead to poor ML robustness; current ML systems may fail when encountering out-of-distribution data.
