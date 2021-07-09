@@ -12,3 +12,6 @@
 - [Self-Supervised Learning for Reasoning and Perception](https://icml21ssl.github.io), ICLR
 
 ## 2020
+- [The Art of Learning with Missing Values](https://artemiss-workshop.github.io), ICML
+- [Self-Supervision in Audio and Speech](https://icml-sas.gitlab.io), ICML
+- [Challenges in Deploying and Monitoring Machine Learning Systems](https://sites.google.com/view/deploymonitormlsystems), ICML

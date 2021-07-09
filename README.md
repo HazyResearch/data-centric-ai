@@ -35,13 +35,14 @@ Instructions for adding resources:
 # Table of Contents
 
 1. [Data Programming & Weak Supervision](data-programming.md)
-2. [Data Augmentation](#data-representations--self-supervision)
-3. [Self-Supervision](#data-representations--self-supervision)
+2. [Data Augmentation](augmentation.md)
+3. [Self-Supervision](self-supervision.md)
 4. [The End of Modelitis](#go-big-or-go-home)
 5. [Fine-Grained Evaluation](#fine-grained-evaluation)
 6. [Robustness](#robustness)
 7. [Emerging Trends](#emerging_trends)
 8. [Applications](#section-applications)
+9. [Workshops](workshops.md)
 
 <h1 id="sec:data-programming">Data Programming & Weak Supervision</h1>
 
