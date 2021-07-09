@@ -93,13 +93,13 @@ An overview of the weak supervision pipeline can be found in this [Snorkel blog 
 
 [Data Augmentation Area Page](augmentation.md)
 
-A key challenge when training machine learning models is collecting a large, diverse dataset that sufficiently captures the variability observed in the real world. Due to the cost of collecting and labeling datasets, data augmentation has emerged as a promising alternative. 
+A key challenge when training machine learning models is collecting a large, diverse dataset that sufficiently captures the variability observed in the real world. Due to the cost of collecting and labeling datasets, data augmentation has emerged as a cheap, promising alternative. 
 
-The central idea in data augmentation is to transform examples in the dataset in order to generate additional augmented examples that can then be added to the data. These additional examples typically increase the diversity of the data seen by the model, and provide additional supervision to the model. The foundations of data augmentation originate in [tangent propagation](https://papers.nips.cc/paper/1991/file/65658fde58ab3c2b6e5132a39fae7cb9-Paper.pdf), where model invariances were expressed by adding constraints on the derivates of the learned model.
+The central idea in data augmentation is to transform examples in an existing dataset to generate additional augmented examples that can then be added to the dataset. These additional examples typically increase the diversity of the data seen by the model, and provide additional supervision to the model. The foundations of data augmentation originate in [tangent propagation](https://papers.nips.cc/paper/1991/file/65658fde58ab3c2b6e5132a39fae7cb9-Paper.pdf), which introduced techniques to make a learned model invariant with respect to some transformation of the data.
 
-Early successes in augmentation such as [AlexNet](https://papers.nips.cc/paper/2012/file/c399862d3b9d6b76c8436e924a68c45b-Paper.pdf) focused on inducing invariances in an image classifier by generating examples that encouraged translational or rotational invariance. These examples made augmentation a de-facto part of pipelines for a wide-ranging tasks such as image, speech and text classification, machine translation, etc. 
+Early successes in augmentation such as [AlexNet](https://papers.nips.cc/paper/2012/file/c399862d3b9d6b76c8436e924a68c45b-Paper.pdf) focused on inducing invariances in an image classifier by generating examples that encouraged translational or rotational invariance. These successes made augmentation a de-facto part of pipelines for a wide-ranging set of tasks such as image, speech and text classification, machine translation, etc. 
 
-The choice of transformations used in augmentation is an important consideration, since it dictates the behavior and invariances learned by the model. While heuristic augmentations have remained popular, it was important to be able to control and program this augmentation pipeline carefully. [TANDA](https://arxiv.org/pdf/1709.01643.pdf.) initiated a study of the problem of programming augmentation pipelines by composing a selection of data transformations. This area  has seen rapid growth in recent years with both deeper theoretical understanding and practical implementations such as [AutoAugment](https://openaccess.thecvf.com/content_CVPR_2019/papers/Cubuk_AutoAugment_Learning_Augmentation_Strategies_From_Data_CVPR_2019_paper.pdf). A nascent line of work leverages conditional generative models to learn-rather than specify-these transformations, further extending this programming paradigm. 
+The choice of transformations used in augmentation is an important consideration, since it dictates the invariances learned by the model, and its behavior when encountering a diversity of test examples. While heuristic augmentations have remained popular, it is important to be able to control and program the augmentation pipeline more carefully. [TANDA](https://arxiv.org/pdf/1709.01643.pdf.) initiated a study of the problem of programming augmentation pipelines by composing a selection of data transformations. This area has since seen rapid growth with both deeper theoretical understanding and practical implementations such as [AutoAugment](https://openaccess.thecvf.com/content_CVPR_2019/papers/Cubuk_AutoAugment_Learning_Augmentation_Strategies_From_Data_CVPR_2019_paper.pdf). A nascent line of work has leveraged conditional generative models to learn-rather than specify-these transformations, further extending this programming paradigm. 
 
 
 <h1 id="sec:contrastive">Contrastive Learning</h1>
@@ -118,5 +118,7 @@ The choice of transformations used in augmentation is an important consideration
 
 
 <h1 id="sec:applications">Applications</h1>
+
+[Applications Area Page](applications.md)
 
 Data-centric approaches have had a wide-ranging impact wherever machine learning is used and deployed, whether in academia, industry or other organizations. Impact spans modalities such as structured data, text, images, videos, graphs and others, while areas include text and image processing, medical imaging, computational biology, autonomous driving, etc.
