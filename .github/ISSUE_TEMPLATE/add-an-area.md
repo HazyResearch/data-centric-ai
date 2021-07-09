@@ -7,7 +7,7 @@ assignees: ''
 
 ---
 
-Use this template to propose a new area page. A good rule-of-thumb to decide whether a topic merits an area page is whether it would pass muster at a workshop in a machine learning venue.
+Use this template to propose a new area page. A good rule-of-thumb to decide whether a topic merits an area page is whether it would pass muster as a workshop at a machine learning venue (e.g. ICML).
 
 Please address the following questions when raising this issue:
 - what story you might tell about the topic's importance to data-centric AI
