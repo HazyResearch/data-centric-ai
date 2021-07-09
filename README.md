@@ -8,6 +8,8 @@ models into production is that the data often matters more. The goal of this rep
 is to consolidate this experience in a single place that can be accessed by anyone that
 wants to understand and contribute to this area.
 
+Join our [mailing list](https://groups.google.com/forum/#!forum/data-centric-ai/join) if you're interested in this area and would like to hear more!
+
 ---
 
 ## How Can I Help?
