@@ -10,19 +10,24 @@ wants to understand and contribute to this area.
 
 ---
 
-## Contributing
+## How Can I Help?
+
+### Feedback (Interested in a class?)
+We are creating a class at Stanford about data-centric AI, and we'd love your feedback. If you are interested in learning more, please fill out this [form]().
+
+### Contributing
 
 We want this resource to grow with contributions from readers and data enthusiasts.
 Make a pull request if you want to add resources.
 
-### Instructions for editing existing area pages
+#### Instructions for editing existing area pages
 
 - For making edits to existing areas and area pages, submit a PR containing the relevant changes.
 - We welcome changes
   such as missed subtopics, clarifying discussion, additional resources and links such as citations, paper links, blogs, videos, code, workshops,
   classes, tutorials, figures, pictures, recipes, tweets and books.
 
-### Instructions for adding new areas
+#### Instructions for adding new areas
 
 If you'd like to add a new area page, use the [Area Page Issue](https://github.com/HazyResearch/data-centric-ai/issues/new/choose) to suggest a new area: your request will need to be approved by admins before you make any PRs that add a new area page.
 
@@ -32,7 +37,7 @@ If you'd like to add a new area page, use the [Area Page Issue](https://github.c
   classes, tutorials, figures, pictures, recipes, tweets, books), and a short
   description for each sub-topic and how it relates to the section.
 
-### General instructions
+#### General instructions
 
 - Use `h1` or `h2` headers for all major headings (other subheadings can be in standard markdown).
   So, use `<h1 id="sec:my-h1-section"></h1>` or `<h2 id="subsec:my-h2-section"></h2>` to tag sections
