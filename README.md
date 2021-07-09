@@ -1,4 +1,4 @@
-# Data Centric AI (v0.0.2)
+# Data Centric AI _(v0.0.2)_
 
 We're collecting (an admittedly opinionated) list of resources and progress made
 in data-centric AI, with exciting directions past and present.
@@ -15,33 +15,41 @@ wants to understand and contribute to this area.
 We want this resource to grow with contributions from readers and data enthusiasts.
 Make a pull request if you want to add resources.
 
-Instructions for adding resources:
+### Instructions for editing existing area pages
 
-[comment]: <> (0. Add potential emoji to section header &#40;syntax `:emoji:`&#41;. )
-[comment]: <> ( The emoji can be made up and may not exist &#40;yet&#41;.)
+- For making edits to existing areas and area pages, submit a PR containing the relevant changes.
+- We welcome changes
+  such as missed subtopics, clarifying discussion, additional resources and links such as citations, paper links, blogs, videos, code, workshops,
+  classes, tutorials, figures, pictures, recipes, tweets and books.
 
-1. Write a sentence summarizing the content of the section you're writing.
-   Feel free to change the header name to something more appropriate
-   and/or split your section across multiple headers if that makes sense to you.
-2. Add a few critical links (citations, paper links, blogs, videos, code, workshops,
-   classes, tutorials, figures, pictures, recipes, tweets, books), and a short
-   description of what the content is about and how it relates to the section.
-3. If you added any sections with `h1` or `h2` headers, add them to the table of contents.
-   Use `<h1 id="my-h1-section"></h1>` or `<h2 id="my-h2-section"></h2>` to tag sections
-   instead of standard markdown hashes.
+### Instructions for adding new areas
+
+If you'd like to add a new area page, use the [Area Page Issue](https://github.com/HazyResearch/data-centric-ai/issues/new/choose) to suggest a new area: your request will need to be approved by admins before you make any PRs that add a new area page.
+
+- If writing a new area page, write a summary for the area and how it relates to data-centric AI in README.md.
+- Add a new area page. In the area page, add subheaders for different subtopics that might be important.
+  Add a few critical links (citations, paper links, blogs, videos, code, workshops,
+  classes, tutorials, figures, pictures, recipes, tweets, books), and a short
+  description for each sub-topic and how it relates to the section.
+
+### General instructions
+
+- Use `h1` or `h2` headers for all major headings (other subheadings can be in standard markdown).
+  So, use `<h1 id="sec:my-h1-section"></h1>` or `<h2 id="subsec:my-h2-section"></h2>` to tag sections
+  instead of standard markdown hashes.
 
 ---
 
 # Table of Contents
 
-1. [Data Programming & Weak Supervision](data-programming.md)
-2. [Data Augmentation](augmentation.md)
-3. [Self-Supervision](self-supervision.md)
-4. [The End of Modelitis](#go-big-or-go-home)
-5. [Fine-Grained Evaluation](#fine-grained-evaluation)
-6. [Robustness](#robustness)
-7. [Emerging Trends](#emerging_trends)
-8. [Applications](#section-applications)
+1. [Data Programming & Weak Supervision](#sec:data-programming)
+2. [Data Augmentation](#sec:augmentation)
+3. [Self-Supervision](#sec:self-supervision)
+4. [The End of Modelitis](#sec:end_modelitis)
+5. [Fine-Grained Evaluation](#sec:evaluation)
+6. [Robustness](#sec:robustness)
+7. [Emerging Trends](#sec:emerging)
+8. [Applications](#sec:applications)
 9. [Workshops](workshops.md)
 
 <h1 id="sec:data-programming">Data Programming & Weak Supervision</h1>
@@ -68,7 +76,7 @@ Early successes in augmentation such as [AlexNet](https://papers.nips.cc/paper/2
 
 The choice of transformations used in augmentation is an important consideration, since it dictates the invariances learned by the model, and its behavior when encountering a diversity of test examples. While heuristic augmentations have remained popular, it is important to be able to control and program the augmentation pipeline more carefully. [TANDA](https://arxiv.org/pdf/1709.01643.pdf.) initiated a study of the problem of programming augmentation pipelines by composing a selection of data transformations. This area has since seen rapid growth with both deeper theoretical understanding and practical implementations such as [AutoAugment](https://openaccess.thecvf.com/content_CVPR_2019/papers/Cubuk_AutoAugment_Learning_Augmentation_Strategies_From_Data_CVPR_2019_paper.pdf). A nascent line of work has leveraged conditional generative models to learn-rather than specify-these transformations, further extending this programming paradigm.
 
-<h1 id="sec:representation">Self-Supervision</h1>
+<h1 id="sec:self-supervision">Self-Supervision</h1>
 
 [Self-Supervision Area Page](self-supervision.md)
 
@@ -76,7 +84,7 @@ The need for large, labeled datasets has motivated methods to pre-train latent r
 
 <h1 id="sec:end_modelitis">The End of Modelitis</h1>
 
-[The End of Modelitis Area Page](end_of_modelitis.md)
+[The End of Modelitis Area Page](end-of-modelitis.md)
 
 Historically, the "kid in a candy shop" moment for ML researchers is building and tweaking models using tools like PyTorch or Jax. New models were coming out each day and these customize model architectures and finely-tuned parameters were beating state-of-the-art results. This modelitis craze, however, is coming to an end.
 
@@ -94,8 +102,7 @@ While evaluation is a classical problem in machine learning, data-centric AI app
 
 Approaches to fine-grained evaluation include measuring performance on critical data subsets called slices, invariance or sensitivity to data transformations, and resistance to adversarial perturbations. While most evaluation is user-specified, an important line of work found that models often underperform on _hidden strata_ that are missed by model builders in evaluation, which can have profound consequences on our ability to deploy and use models. This motivates future work in automatically discovering these hidden strata, or more generally, finding all possible failure modes of a model by analyzing datasets and models in systematically in conjunction.
 
-Another important facet of fine-grained evaluation is data and model monitoring in order to anticipate, measure and mitigate degradations in performance due to distribution shift. This includes identifying and isolating data points that may be considered outliers, estimating performance on unlabeled data that is streaming to a deployed model, and generating rich summaries of how the data distribution may be shifting over time. 
-
+Another important facet of fine-grained evaluation is data and model monitoring in order to anticipate, measure and mitigate degradations in performance due to distribution shift. This includes identifying and isolating data points that may be considered outliers, estimating performance on unlabeled data that is streaming to a deployed model, and generating rich summaries of how the data distribution may be shifting over time.
 
 <h1 id="sec:robustness">Robustness</h1>
 
@@ -103,18 +110,18 @@ Another important facet of fine-grained evaluation is data and model monitoring 
 
 One standard assumption for successfully deploying machine learning models is that test time distributions are similar to those encountered and well-represented during training. In reality however, this assumption rarely holds: seldom do we expect to deploy models in settings that exactly match their training distributions. Training models robust to distribution shifts is then another core challenge to improve machine learning in the wild, which we argue can be addressed under a data-centric paradigm.
 
-Here, we broadly categorize attempts to improve robustness to distribution shifts as those addressing (1) subpopulation shift or hidden stratification, (2) domain shift, and (3) shifts from adversarial perturbations. 
+Here, we broadly categorize attempts to improve robustness to distribution shifts as those addressing (1) subpopulation shift or hidden stratification, (2) domain shift, and (3) shifts from adversarial perturbations.
 
-Under subpopulation shift, training and test-time distributions differ in how well-represented each subpopulation or “data group” is. If certain subpopulations are underrepresented in the training data, then even if these distributions are encountered during training, standard empirical risk minimization (ERM) and “learning from statistical averages” can result in models that only perform well on the overrepresented subpopulations.  
-* One initial real world problem under subpopulation shift came with training models on datasets that exhibit spurious correlations. If a majority of groups exhibit relations between certain features and the target of interest, but these dependencies do not hold for all data, then models may learn non-robust dependencies relying on these “spurious” correlations. If these groups are known, [Group DRO](https://arxiv.org/abs/1911.08731) to prevent this by focusing optimization on worst-group error.  
-* Another instantiation comes from hidden stratification, where datapoints belonging to the same labeled classes can actually vary in their feature distributions quite a bit. With [GEORGE](https://arxiv.org/abs/2011.12945), we learned that despite not being able to generalize to unseen data under all groups, deep neural networks trained with ERM can actually learn separable representations for different groups that share the same label.
+Under subpopulation shift, training and test-time distributions differ in how well-represented each subpopulation or “data group” is. If certain subpopulations are underrepresented in the training data, then even if these distributions are encountered during training, standard empirical risk minimization (ERM) and “learning from statistical averages” can result in models that only perform well on the overrepresented subpopulations.
+
+- One initial real world problem under subpopulation shift came with training models on datasets that exhibit spurious correlations. If a majority of groups exhibit relations between certain features and the target of interest, but these dependencies do not hold for all data, then models may learn non-robust dependencies relying on these “spurious” correlations. If these groups are known, [Group DRO](https://arxiv.org/abs/1911.08731) to prevent this by focusing optimization on worst-group error.
+- Another instantiation comes from hidden stratification, where datapoints belonging to the same labeled classes can actually vary in their feature distributions quite a bit. With [GEORGE](https://arxiv.org/abs/2011.12945), we learned that despite not being able to generalize to unseen data under all groups, deep neural networks trained with ERM can actually learn separable representations for different groups that share the same label.
 
 Both Group DRO and GEORGE introduced approaches to handle subpopulation shift under real-world instantiations. These methods have inspired additional work related to upsampling estimated groups ([LfF](https://arxiv.org/abs/2007.02561), [JTT](link_here)) and using contrastive learning to learn group-invariant representations ([CNC](link_here)).
 
-Beyond subpopulation shift, robustness also features domain shift and adversarial perturbations. Under domain shift, we model test-time data as coming from a completely different domain from the training data. Under distribution shift with adversarial perturbations, test-time data may exhibit corruptions or imperceptible differences in input feature space that prevent trained ERM models from strongly generalizing to the test-time distributions. *These sections are stubs - review if they should be in-scope here.*
+Beyond subpopulation shift, robustness also features domain shift and adversarial perturbations. Under domain shift, we model test-time data as coming from a completely different domain from the training data. Under distribution shift with adversarial perturbations, test-time data may exhibit corruptions or imperceptible differences in input feature space that prevent trained ERM models from strongly generalizing to the test-time distributions. _These sections are stubs - review if they should be in-scope here._
 
-
-<h1 id="sec:end_modelitus">Emerging Trends</h1>
+<h1 id="sec:emerging">Emerging Trends</h1>
 
 [Emerging Trends Area Page](emerging.md)
 
