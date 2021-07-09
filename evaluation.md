@@ -1,11 +1,12 @@
+<h1 id="sec:evaluation">Evaluation</h1>
 
-Models are typically evaluated using average performance, e.g. average accuracy or F1 scores.
-These metrics hide when a model is particularly poor on an important slice of data or if it's
-decisions are made for the wrong reasons, which may hurt generalization.
+Model evaluation is a crucial part of the model development process in machine learning. The goal of evaluation is to understand the quality of a model, and anticipate if it will perform well in the future.
 
-To better understand how models perform when deployed in real-world settings,
-tools for fine-grained analysis and efficient methods for handling unlabeled
-validation/test data are needed in evaluation.
+While evaluation is a classical problem in machine learning, data-centric AI approaches have catalyzed a shift towards _fine-grained evaluation_: moving beyond standard measures of average performance such as accuracy and F1 scores, to measuring performance on particular populations of interest. This enables a more granular understanding of model performance, and gives users a clearer idea of model capabilities. This shift is complentary to a growing interest in understanding model robustness, since access to fine-grained evaluation permits an enhanced ability to build more robust models.
+
+Approaches to fine-grained evaluation include measuring performance on critical data subsets called slices, invariance or sensitivity to data transformations, and resistance to adversarial perturbations. While most evaluation is user-specified, an important line of work found that models often underperform on _hidden strata_ that are missed by model builders in evaluation, which can have profound consequences on our ability to deploy and use models. This motivates future work in automatically discovering these hidden strata, or more generally, finding all possible failure modes of a model by analyzing datasets and models in systematically in conjunction.
+
+Another important facet of fine-grained evaluation is data and model monitoring in order to anticipate, measure and mitigate degradations in performance due to distribution shift. This includes identifying and isolating data points that may be considered outliers, estimating performance on unlabeled data that is streaming to a deployed model, and generating rich summaries of how the data distribution may be shifting over time. 
 
 ## Slice-Based Evaluation
 
