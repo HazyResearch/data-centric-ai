@@ -43,13 +43,13 @@ If you'd like to add a new area page, use the [Area Page Issue](https://github.c
 # Table of Contents
 
 1. [Data Programming & Weak Supervision](#data-programming)
-2. [Data Augmentation](#sec:augmentation)
-3. [Self-Supervision](#sec:self-supervision)
-4. [The End of Modelitis](#sec:end_modelitis)
-5. [Fine-Grained Evaluation](#sec:evaluation)
-6. [Robustness](#sec:robustness)
-7. [Emerging Trends](#sec:emerging)
-8. [Applications](#sec:applications)
+2. [Data Augmentation](#augmentation)
+3. [Self-Supervision](#self-supervision)
+4. [The End of Modelitis](#end_modelitis)
+5. [Fine-Grained Evaluation](#evaluation)
+6. [Robustness](#robustness)
+7. [Emerging Trends](#emerging)
+8. [Applications](#applications)
 9. [Workshops](workshops.md)
 
 <h1 id="data-programming">Data Programming & Weak Supervision</h1>
@@ -64,7 +64,7 @@ Data programming builds on a long line of work on parameter estimation in latent
 
 An overview of the weak supervision pipeline can be found in this [Snorkel blog post](https://www.snorkel.org/blog/weak-supervision), including how it compares to other approaches to get more labeled data and the technical modeling challenges. These [Stanford CS229 lecture notes](https://mayeechen.github.io/files/wslecturenotes.pdf) provide a theoretical summary of how graphical models are used in weak supervision.
 
-<h1 id="sec:augmentation">Data Augmentation</h1>
+<h1 id="augmentation">Data Augmentation</h1>
 
 [Data Augmentation Area Page](augmentation.md)
 
@@ -76,13 +76,13 @@ Early successes in augmentation such as [AlexNet](https://papers.nips.cc/paper/2
 
 The choice of transformations used in augmentation is an important consideration, since it dictates the invariances learned by the model, and its behavior when encountering a diversity of test examples. While heuristic augmentations have remained popular, it is important to be able to control and program the augmentation pipeline more carefully. [TANDA](https://arxiv.org/pdf/1709.01643.pdf.) initiated a study of the problem of programming augmentation pipelines by composing a selection of data transformations. This area has since seen rapid growth with both deeper theoretical understanding and practical implementations such as [AutoAugment](https://openaccess.thecvf.com/content_CVPR_2019/papers/Cubuk_AutoAugment_Learning_Augmentation_Strategies_From_Data_CVPR_2019_paper.pdf). A nascent line of work has leveraged conditional generative models to learn-rather than specify-these transformations, further extending this programming paradigm.
 
-<h1 id="sec:self-supervision">Self-Supervision</h1>
+<h1 id="self-supervision">Self-Supervision</h1>
 
 [Self-Supervision Area Page](self-supervision.md)
 
 The need for large, labeled datasets has motivated methods to pre-train latent representations of the input space using unlabeled data and use the now knowledge-rich representations in downstream tasks. As the representations allow for knowledge transfer to downstream tasks, these tasks require less labeled data. For example, language models can be pre-trained to predict the next token in a textual input to learn representations of words or sub-tokens. These word representations are then used in downstream models such as sentiment classification. This paradigm, called "self-supervision", has revolutionized how we train (and pre-train) models. Importantly, these self-supervised pre-trained models learn without manual labels or hand curated features. This reduces the engineer effort to create and maintain features and makes models significantly easier to deploy and maintain. This shift has allowed for more data to be fed to the model and shifted the focus to understanding what data to use.
 
-<h1 id="sec:end_modelitis">The End of Modelitis</h1>
+<h1 id="end_modelitis">The End of Modelitis</h1>
 
 [The End of Modelitis Area Page](end-of-modelitis.md)
 
@@ -92,7 +92,7 @@ Recently, researchers have realized two things: (1) more gains are coming from d
 
 This trend, which we are calling the End of Modelitis, is moving towards a data-centric view of model construction. The question is shifting from “how to construct the best model” to “how do you feed a models”.
 
-<h1 id="sec:evaluation">Evaluation</h1>
+<h1 id="evaluation">Evaluation</h1>
 
 [Evaluation Area Page](evaluation.md)
 
@@ -104,7 +104,7 @@ Approaches to fine-grained evaluation include measuring performance on critical 
 
 Another important facet of fine-grained evaluation is data and model monitoring in order to anticipate, measure and mitigate degradations in performance due to distribution shift. This includes identifying and isolating data points that may be considered outliers, estimating performance on unlabeled data that is streaming to a deployed model, and generating rich summaries of how the data distribution may be shifting over time.
 
-<h1 id="sec:robustness">Robustness</h1>
+<h1 id="robustness">Robustness</h1>
 
 [Robustness Area Page](robustness.md)
 
@@ -121,13 +121,13 @@ Both Group DRO and GEORGE introduced approaches to handle subpopulation shift un
 
 Beyond subpopulation shift, robustness also features domain shift and adversarial perturbations. Under domain shift, we model test-time data as coming from a completely different domain from the training data. Under distribution shift with adversarial perturbations, test-time data may exhibit corruptions or imperceptible differences in input feature space that prevent trained ERM models from strongly generalizing to the test-time distributions. _These sections are stubs - review if they should be in-scope here._
 
-<h1 id="sec:emerging">Emerging Trends</h1>
+<h1 id="emerging">Emerging Trends</h1>
 
 [Emerging Trends Area Page](emerging.md)
 
 Data-centric AI is still growing, and we want to capture emerging trends as they arise. Some new areas we think are forming involve interactive machine learning, massice scale models, and observational ML. Take a look at the area page.
 
-<h1 id="sec:applications">Applications</h1>
+<h1 id="applications">Applications</h1>
 
 [Applications Area Page](applications.md)
 
