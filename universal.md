@@ -1,83 +1,27 @@
-# Go Big or Go Home
+# The End of Modelitus
 
-With the ability to train models on unlabelled data, research is scaling up both data size and model size at an [impressive rate](https://medium.com/analytics-vidhya/openai-gpt-3-language-models-are-few-shot-learners-82531b3d3122). This both raises questions of how to scale and how to make models more efficient to alleviate the costs of training.
+With the ability to train models on unlabelled data, research is scaling up both data size and model size at an [impressive rate](https://medium.com/analytics-vidhya/openai-gpt-3-language-models-are-few-shot-learners-82531b3d3122). With access to such massive amounts of data, the question shifted from “how to construct the best model” to “how do you feed these models”. And as [Kaplan et al](https://arxiv.org/pdf/2001.08361.pdf) showed, the architecture matters less; the real lift comes from the data.
 
-<h2 id="universal-models">Universal Models</h2>
+## Commoditized Architectures to One-Model-to-Rule-them-Al
+- Over the last few years, the natural language processing community has landed on the [Transformer](https://arxiv.org/pdf/1706.03762.pdf), explained very well in this [blog](https://jalammar.github.io/illustrated-transformer/), as being the *commoditized* language architecture. The vision community landed on the convolutional neural network, explained more in this [blog](https://towardsdatascience.com/convolutional-neural-networks-explained-9cc5188c4939).
+- [Ramachandran et al](https://arxiv.org/pdf/1906.05909.pdf) showed that the CNN and self-attention block in Transformers could actual be the same, and this was capitalized with the [Vision Transformers](https://arxiv.org/pdf/2010.11929.pdf) that used a Transformer to train an image classification model to achieve near or above state-of-the-art results.
+- These architecutres are still complex and expensive to use. Researchers missed the good-old-days of MLP layers. Exciting recent work has shown that even the Transformer can be replaced by a sequence of MLPs in [gMLP](https://arxiv.org/pdf/2105.08050.pdf) and [MLP-Mixer](https://arxiv.org/pdf/2105.01601.pdf).
 
-[comment]: <> ([Karan, Laurel])
-As models get larger, researchers are seeing emergent trends of impressive zero-shot behavior. This is driving a one-model-to-rule-them-all paradigm that would alleviate the need for any downstream fine-tuning.
-
-### Task-Agnostic, Simple Architectures
-
-The goal is to find one architecture that can be universal, working on text, image, video, etc. Further, rather than leaning into something complex, recent work in [scaling laws](https://arxiv.org/pdf/2001.08361.pdf) suggest that architectures matter less than data. The implication is that very standard, commoditized architectures can be universal.
-
-- The most common standard architecture is that of the [Transformer](https://arxiv.org/pdf/1706.03762.pdf), explained very well in this [blog](https://jalammar.github.io/illustrated-transformer/).
-- Transformers have seen wide-spread-use in NLP tasks through [BERT](https://www.aclweb.org/anthology/N19-1423.pdf), [RoBERTa](https://arxiv.org/abs/1907.11692v1), and Hugging Face's [model hub](https://huggingface.co/models), where numerous Transformer style models are trained and shared.
-- Recent work has shown how Transformers can even be used in vision tasks with the [Vision Transformers](https://arxiv.org/pdf/2010.11929.pdf).
-- Transformers are no panacea and are still generally larger and slower to train that the simple model of a MLP. Recent work has explored how you can replace the Transformer architecture with a sequence of MLPs in the [gMLP](https://arxiv.org/pdf/2105.08050.pdf).
-
-### Emphasis on Scale
-
-With the ability to train models without needing labelled data through self-supervision, the focus became on scaling models up and training on more data.
-
-- [GPT-3](https://arxiv.org/abs/2005.14165.pdf) was the first 170B parameter model capable of few-shot in-context learning developed by OpenAI.
-- [Moore's Law for Everything](https://moores.samaltman.com) is a post about scale and its effect on AI / society.
-- [Switch Transformers](https://arxiv.org/pdf/2101.03961.pdf) is a mixture of experts for training massive models beyond the scale of GPT-3.
-
-### Multi-Modal Applications
-
-Models are also becoming more universal, capable of handling multiple modalities at once.
-
+## More Focus on the Data Being Fed
+As the goal is to fed as much knowledge to these commoditized models as possible, recent work has explored multi-modal applications that use both vision and text data.
 - [Wu Dao 2.0](https://www.engadget.com/chinas-gigantic-multi-modal-ai-is-no-one-trick-pony-211414388.html) is the Chinese 1.75T parameter MoE model with multimodal capabilities.
-- [DALL-E](https://openai.com/blog/dall-e/) & [CLIP](https://openai.com/blog/clip/) are two other multi-modal models
+- [DALL-E](https://openai.com/blog/dall-e/) & [CLIP](https://openai.com/blog/clip/) are two other multi-modal models.
 
-### Industrial Trends
+Other groups are trying to curate a better pretraining dataset
+- [The Pile](https://pile.eleuther.ai) is a new massive, more diverse dataset for training language models than the standard Common Crawl.
+- [Huggingface BigScience](https://docs.google.com/document/d/1BIIl-SObx6tR41MaEpUNkRAsGhH7CQqP_oHQrqYiH00/edit) is a new effort to establish good practices in data curation.
 
+More focus is being put into the kind of tokenization strategies can be used to further unify these models. While language tasks typically deal with [WordPiece](https://storage.googleapis.com/pub-tools-public-publication-data/pdf/37842.pdf) tokens or [BytePairEncoding (BPE)](https://arxiv.org/pdf/1508.07909.pdf) tokens, recent work explores [byte-to-byte](https://arxiv.org/pdf/2105.13626.pdf) strategies that work on individual bytes or characters, requiring no tokenization. In vision, tokens are usually [patches](https://arxiv.org/pdf/2010.11929.pdf) in the image.
+
+## Theoretical Foundations
+- [Limitations of Autoregressive Models and Their Alternatives](https://arxiv.org/abs/2010.11939) explores the theoretical limitations of autoregressive language models in the inability to represent "hard" language distributions.
+- [Provable Limitations of Acquiring Meaning from Ungrounded Form: What Will Future Language Models Understand?](https://arxiv.org/pdf/2104.10809.pdf) explores the theoretical limitations of autoregressive language models in the inability to represent "hard" language distributions.
+
+## Success Stories
 - Companies like [OpenAI](https://openai.com), [Anthropic](https://www.anthropic.com), [Cohere](https://cohere.ai) see building universal models as part of their core business strategy.
 - Lots of companies emerging that rely on APIs from these universal model companies to build applications on top e.g. [AI Dungeon](https://play.aidungeon.io/main/landing). A long list from OpenAI at this [link](https://openai.com/blog/gpt-3-apps/).
-
-### Data Trends
-
-- There's been a shift towards understanding how to collect and curate truly massive amounts of data for pretraining.
-  - [The Pile](https://pile.eleuther.ai) is a new massive, more diverse dataset for training language models than the standard Common Crawl.
-  - [Huggingface BigScience](https://docs.google.com/document/d/1BIIl-SObx6tR41MaEpUNkRAsGhH7CQqP_oHQrqYiH00/edit) is a new effort to establish good practices in data curation.
-
-### Theoretical Foundations
-
-- [Limitations of Autoregressive Models and Their Alternatives](https://arxiv.org/abs/2010.11939) explores the theoretical limitations of autoregressive language models in the inability to represent "hard" language distributions.
-
-[comment]: <> (### Other Links)
-[comment]: <> (- Stanford class [upcoming])
-
-<h2 id="efficient-models">Efficient Models</h2>
-As models get larger, there is an increasing need to make training less computational expensive, especially in larger Transformer networks that have a quadratic complexity (w.r.t. input sequence length) in attention layers.
-
-### Exploit Sparsity
-
-- For efficient MLP Training, [SLIDE](https://arxiv.org/pdf/1903.03129.pdf) uses Locality Sensitive Hashing(LSH) for approximating dense matrix multiplications in linear layers preceding a softmax (identify sparsity patterns).
-- For efficient Transformers Training, [Reformer](https://arxiv.org/pdf/2001.04451.pdf) uses similar techniques, LSH, to reduce quadratic computations in attention layers.
-- [MONGOOSE](https://openreview.net/pdf?id=wWK7yXkULyh) uses a scheduling algorithm and learnable hash functions to address LSH overhead and further speed-up MLP and Transformer training.
-- [Routing Transformers](https://arxiv.org/pdf/2003.05997.pdf) and [Smyrf](https://arxiv.org/pdf/2010.05315.pdf) use other similar techniques, such as k-means or asymmetric LSH to identify sparsity patterns.
-
-### Exploit Low-rank Properties
-
-- This [paper](http://www.vikas.sindhwani.org/lowRank.pdf) uses low-rank matrix factorization to reduce the computation for linear layers.
-- For efficient attention computation in Transformers, [Performer](https://arxiv.org/pdf/2009.14794.pdf), [Linformer](http://proceedings.mlr.press/v119/katharopoulos20a/katharopoulos20a.pdf), [Linear Transformer](https://arxiv.org/pdf/2006.04768.pdf) use either low-rank or kernel approximation techniques.
-
-### Sparse+Low-rank and other References
-
-- Inspired by the classical robust-PCA algorithm for sparse and low-rank decomposition, [Scatterbrain]() unifies sparse (via LSH) and low-rank (via kernel feature map) attention for accurate and efficient approximation.
-- This [survey paper](https://arxiv.org/pdf/2009.06732.pdf) covers most of the efficient Transformer variants.
-- [Long Range Arena](https://arxiv.org/pdf/2011.04006.pdf) is a systematic and unified benchmark, focused on evaluating model quality under long-context scenarios.
-
-<h2 id="interactive-machine-learning">Interactive Machine Learning</h2>
-With models getting larger and costing more to train, there's a growing need to interact with the model and quickly iterate on its performance before a full training run.
-
-- **Explanatory interactive learning** Can we, by interacting with models during training, encourage their explanations to line up with our priors on what parts of the input are relevant?
-  - [Right for the Right Reasons: Training Differentiable Models by Constraining their Explanations](https://arxiv.org/pdf/1703.03717.pdf)
-  - [Explanatory Interactive Machine Learning](https://ml-research.github.io/papers/teso2019aies_XIML.pdf)
-  - [Making deep neural networks right for the right scientific reasons by interacting with their explanations](https://www.nature.com/articles/s42256-020-0212-3)
-- **[Meerkat](https://github.com/robustness-gym/meerkat)** makes it easier for ML practitioners to interact with high-dimensional, multi-modal data. It provides simple abstractions for data inspection, model evaluation and model training supported by efficient and robust IO under the hood. Mosaic's core contribution is the DataPanel, a simple columnar data abstraction. The Mosaic DataPanel can house columns of arbitrary type – from integers and strings to complex, high-dimensional objects like videos, images, medical volumes and graphs.
-  - [Introducing Meerkat](https://www.notion.so/Introducing-Mosaic-64891aca2c584f1889eb0129bb747863) (blog post)
-  - [Working with Images in Mosaic](https://drive.google.com/file/d/15kPD6Kym0MOpICafHgO1pCt8T2N_xevM/view?usp=sharing) (Google Colab)
-  - [Working with Medical Images in Mosaic](https://colab.research.google.com/drive/1UexpPqyXdKp6ydBf87TW7LtGIoU5z6Jy?usp=sharing) (Google Colab)
