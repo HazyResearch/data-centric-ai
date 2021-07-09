@@ -83,13 +83,13 @@ With the ability to train models on unlabelled data, research is scaling up both
 
 [Evaluation Area Page](evaluation.md)
 
-In machine learning, model evaluation is a crucial part of the model development process. The goal of evaluation is to understand the quality of a model, and anticipate if it will perform well in the future.
+Model evaluation is a crucial part of the model development process in machine learning. The goal of evaluation is to understand the quality of a model, and anticipate if it will perform well in the future.
 
-While evaluation is a classical problem in machine learning, data-centric AI approaches have catalyzed a shift towards _fine-grained evaluation_: moving beyond standard measures of performance such as accuracy and F1 scores, to measuring performance on particular populations of interest. This enables a more granular understanding of model performance, and gives users a clearer idea of model capabilities.
+While evaluation is a classical problem in machine learning, data-centric AI approaches have catalyzed a shift towards _fine-grained evaluation_: moving beyond standard measures of performance such as accuracy and F1 scores, to measuring performance on particular populations of interest. This enables a more granular understanding of model performance, and gives users a clearer idea of model capabilities. This shift is complentary to a growing interest in understanding model robustness, since access to fine-grained evaluation permits an enhanced ability to build more robust models.
 
-Approaches to fine-grained evaluation include measuring performance on critical data data subsets called slices, invariance or sensitivity to data transformations, and resistance to adversarial perturbations. While most evaluation is user-specified, an important line of work found that models often underperform on _hidden strata_ that are missed by model builders, which can have profound consequences on our ability to deploy and use models.
+Approaches to fine-grained evaluation include measuring performance on critical data subsets called slices, invariance or sensitivity to data transformations, and resistance to adversarial perturbations. While most evaluation is user-specified, an important line of work found that models often underperform on _hidden strata_ that are missed by model builders in evaluation, which can have profound consequences on our ability to deploy and use models. This motivates future work in automatically discovering these hidden strata, or more generally, finding all possible failure modes of a model by analyzing datasets and models in systematically in conjunction.
 
-These advances have been complentary to an increased interest in understanding model robustness, since access to fine-grained evaluation permits an enhanced ability to build more robust models.
+Another important facet of fine-grained evaluation is data and model monitoring, where degradations in performance due to distribution shift are anticipated and measured. This includes identifying and isolating data points that may be considered outliers, estimating performance on unlabeled data that streaming to a deployed model and generating rich summaries of how the data distribution may be shifting over time. 
 
 <h1 id="sec:robustness">Robustness</h1>
 
