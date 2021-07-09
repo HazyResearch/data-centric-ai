@@ -77,7 +77,7 @@ The need for large, labeled datasets has motivated methods to pre-train latent r
 
 <h1 id="sec:end_modelitus">The End of Modelitus</h1>
 
-[The End of Modelitus Area Page](universal.md)
+[The End of Modelitus Area Page](end_of_modelitus.md)
 
 With the ability to train models on unlabelled data, research is scaling up both data size and model size at an [impressive rate](https://medium.com/analytics-vidhya/openai-gpt-3-language-models-are-few-shot-learners-82531b3d3122). With access to such massive amounts of data, the question shifted from “how to construct the best model” to “how do you feed these models”. And as [Kaplan et al](https://arxiv.org/pdf/2001.08361.pdf) showed, the architecture matters less; the real lift comes from the data.
 
@@ -105,6 +105,11 @@ An important area of interest is subgroup robustness or [hidden](https://hazyres
 
 Towards overcoming hidden stratification, recent work such as [GEORGE](https://www.youtube.com/watch?v=ZXHGx52yKDM) observes that modern machine learning methods also learn these "hidden" differences between subgroups as hidden layer representations with supervised learning, even if no subgroup labels are provided.
 
+<h1 id="sec:end_modelitus">Emerging Trends</h1>
+
+[Emerging Trends Area Page](emerging.md)
+
+Data-centric AI is still growing, and we want to capture emerging trends as they arise. Some new areas we think are forming involve interactive machine learning, massice scale models, and observational ML. Take a look at the area page.
 
 <h1 id="sec:applications">Applications</h1>
 
