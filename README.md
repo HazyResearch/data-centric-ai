@@ -42,7 +42,7 @@ If you'd like to add a new area page, use the [Area Page Issue](https://github.c
 
 # Table of Contents
 
-1. [Data Programming & Weak Supervision](#sec:data-programming)
+1. [Data Programming & Weak Supervision](#data-programming)
 2. [Data Augmentation](#sec:augmentation)
 3. [Self-Supervision](#sec:self-supervision)
 4. [The End of Modelitis](#sec:end_modelitis)
@@ -52,7 +52,7 @@ If you'd like to add a new area page, use the [Area Page Issue](https://github.c
 8. [Applications](#sec:applications)
 9. [Workshops](workshops.md)
 
-<h1 id="sec:data-programming">Data Programming & Weak Supervision</h1>
+<h1 id="data-programming">Data Programming & Weak Supervision</h1>
 
 [Data Programming & Weak Supervision Area Page](data-programming.md)
 
