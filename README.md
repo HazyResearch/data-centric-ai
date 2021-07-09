@@ -35,41 +35,12 @@ Instructions for adding resources:
 # Table of Contents
 
 1. [Data Programming & Weak Supervision](data-programming.md)
-   1. [Key Papers](data-programming.md#data-programming-key-papers)
-   2. [Techniques](data-programming.md#data-programming-techniques)
-   3. [Foundations](data-programming.md#data-programming-foundations)
-   4. [Other Resources](data-programming.md#data-programming-resources)
-   5. [Success Stories](data-programming.md#weak-supervision-success-stories)
-2. [Data Representations & Self-Supervision](#data-representations--self-supervision)
-   1. [Embeddings](#embeddings)
-   2. [Learning with Auxiliary Information](#learning-with-auxiliary-information)
-   3. [Success Stories](#data-representation-successes)
-3. [Go Big or Go Home](#go-big-or-go-home)
-   1. [Universal Models](#universal-models)
-   2. [Efficient Models](#efficient-models)
-   3. [Interactive Machine Learning](#interactive-machine-learning)
-4. [Data Augmentation](#data-augmentation)
-   1. [History](#augmentation-history)
-   2. [Theoretical Foundations](#augmentation-theory)
-   3. [Augmentation Primitives](#augmentation-primitives)
-   4. [Future Directions](#augmentation-future)
-   5. [Further Reading](#augmentation-evenmore)
-5. [Contrastive Learning](#contrastive-learning)
-   1. [Theoretical Foundations](#contrastive-theory)
-   2. [Applications](#contrastive-applications)
-6. [Fine-Grained Evaluation](#fine-grained-evaluation)
-   1. [Slice-Based Evaluation](#slice-based-evaluation)
-   2. [Benchmarking](#benchmarking)
-7. [Robustness](#robustness)
-   1. [Subgroup Information](#subgroup-information)
-   2. [Evaluation on Unlabeled Data](#evaluation-on-unlabeled-data)
-   3. [Outlier Detection](#outlier-detection)
-8. [Applications](#section-applications)
-   1. [Named Entity Linking](#named-entity-linking)
-   2. [Medical Imaging](#medical-imaging)
-   3. [Computational Biology](#computational-biology)
-   4. [Observational Supervision](#observational-supervision)
-
+2. [Data Augmentation](#data-representations--self-supervision)
+3. [Self-Supervision](#data-representations--self-supervision)
+4. [The End of Modelitus](#go-big-or-go-home)
+5. [Fine-Grained Evaluation](#fine-grained-evaluation)
+6. [Robustness](#robustness)
+7. [Applications](#section-applications)
 
 <h1 id="sec:data-programming">Data Programming & Weak Supervision</h1>
 
@@ -82,11 +53,6 @@ However, these were largely regarded by AI and AI/ML folks as ad hoc or isolated
 Data programming builds on a long line of work on parameter estimation in latent variable graphical models. Concretely, a generative model for the joint distribution of labeling functions and the unobserved (latent) true label is learned. This label model permits aggregation of diverse sources of signal, while allowing them to have varying accuracies and potential correlations.
 
 An overview of the weak supervision pipeline can be found in this [Snorkel blog post](https://www.snorkel.org/blog/weak-supervision), including how it compares to other approaches to get more labeled data and the technical modeling challenges. These [Stanford CS229 lecture notes](https://mayeechen.github.io/files/wslecturenotes.pdf) provide a theoretical summary of how graphical models are used in weak supervision.
-
-
-<h1 id="sec:representation">Data Representations & Self-Supervision</h1>
-
-[Data Representation & Self-Supervision Area Page](data-representation.md)
 
 
 <h1 id="sec:augmentation">Data Augmentation</h1>
@@ -102,10 +68,18 @@ Early successes in augmentation such as [AlexNet](https://papers.nips.cc/paper/2
 The choice of transformations used in augmentation is an important consideration, since it dictates the invariances learned by the model, and its behavior when encountering a diversity of test examples. While heuristic augmentations have remained popular, it is important to be able to control and program the augmentation pipeline more carefully. [TANDA](https://arxiv.org/pdf/1709.01643.pdf.) initiated a study of the problem of programming augmentation pipelines by composing a selection of data transformations. This area has since seen rapid growth with both deeper theoretical understanding and practical implementations such as [AutoAugment](https://openaccess.thecvf.com/content_CVPR_2019/papers/Cubuk_AutoAugment_Learning_Augmentation_Strategies_From_Data_CVPR_2019_paper.pdf). A nascent line of work has leveraged conditional generative models to learn-rather than specify-these transformations, further extending this programming paradigm. 
 
 
-<h1 id="sec:contrastive">Contrastive Learning</h1>
+<h1 id="sec:representation">Self-Supervision</h1>
 
-[Constrastive Learning Area Page](contrastive.md)
+[Self-Supervision Area Page](self-supervision.md)
 
+The need for large, labeled datasets has motivated methods to pre-train latent representations of the input space using unlabeled data and use the now knowledge-rich representations in downstream tasks. As the representations allow for knowledge transfer to downstream tasks, these tasks require less labeled data. For example, language models can be pre-trained to predict the next token in a textual input to learn representations of words or sub-tokens. These word representations are then used in downstream models such as sentiment classification. This paradigm, called "self-supervision", has revolutionized how we train (and pre-train) models. Importantly, these self-supervised pre-trained models learn without manual labels or hand curated features. This reduces the engineer effort to create and maintain features and makes models significantly easier to deploy and maintain. This shift has allowed for more data to be fed to the model and shifted the focus to understanding what data to use.
+
+
+<h1 id="sec:end_modelitus">The End of Modelitus</h1>
+
+[The End of Modelitus Area Page](universal.md)
+
+With the ability to train models on unlabelled data, research is scaling up both data size and model size at an [impressive rate](https://medium.com/analytics-vidhya/openai-gpt-3-language-models-are-few-shot-learners-82531b3d3122). With access to such massive amounts of data, the question shifted from “how to construct the best model” to “how do you feed these models”. And as [Kaplan et al](https://arxiv.org/pdf/2001.08361.pdf) showed, the architecture matters less; the real lift comes from the data.
 
 <h1 id="sec:evaluation">Evaluation</h1>
 
