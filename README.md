@@ -5,7 +5,7 @@ in data-centric AI, with exciting directions past and present.
 
 While AI has been pretty focused on models, the real-world experience of those who put
 models into production is that the data often matters more. The goal of this repository
-is to consolidate this experience in a single place that can be accessed by anyone that 
+is to consolidate this experience in a single place that can be accessed by anyone that
 wants to understand and contribute to this area.
 
 ---
@@ -55,26 +55,23 @@ Data programming builds on a long line of work on parameter estimation in latent
 
 An overview of the weak supervision pipeline can be found in this [Snorkel blog post](https://www.snorkel.org/blog/weak-supervision), including how it compares to other approaches to get more labeled data and the technical modeling challenges. These [Stanford CS229 lecture notes](https://mayeechen.github.io/files/wslecturenotes.pdf) provide a theoretical summary of how graphical models are used in weak supervision.
 
-
 <h1 id="sec:augmentation">Data Augmentation</h1>
 
 [Data Augmentation Area Page](augmentation.md)
 
-A key challenge when training machine learning models is collecting a large, diverse dataset that sufficiently captures the variability observed in the real world. Due to the cost of collecting and labeling datasets, data augmentation has emerged as a cheap, promising alternative. 
+A key challenge when training machine learning models is collecting a large, diverse dataset that sufficiently captures the variability observed in the real world. Due to the cost of collecting and labeling datasets, data augmentation has emerged as a cheap, promising alternative.
 
 The central idea in data augmentation is to transform examples in an existing dataset to generate additional augmented examples that can then be added to the dataset. These additional examples typically increase the diversity of the data seen by the model, and provide additional supervision to the model. The foundations of data augmentation originate in [tangent propagation](https://papers.nips.cc/paper/1991/file/65658fde58ab3c2b6e5132a39fae7cb9-Paper.pdf), which introduced techniques to make a learned model invariant with respect to some transformation of the data.
 
-Early successes in augmentation such as [AlexNet](https://papers.nips.cc/paper/2012/file/c399862d3b9d6b76c8436e924a68c45b-Paper.pdf) focused on inducing invariances in an image classifier by generating examples that encouraged translational or rotational invariance. These successes made augmentation a de-facto part of pipelines for a wide-ranging set of tasks such as image, speech and text classification, machine translation, etc. 
+Early successes in augmentation such as [AlexNet](https://papers.nips.cc/paper/2012/file/c399862d3b9d6b76c8436e924a68c45b-Paper.pdf) focused on inducing invariances in an image classifier by generating examples that encouraged translational or rotational invariance. These successes made augmentation a de-facto part of pipelines for a wide-ranging set of tasks such as image, speech and text classification, machine translation, etc.
 
-The choice of transformations used in augmentation is an important consideration, since it dictates the invariances learned by the model, and its behavior when encountering a diversity of test examples. While heuristic augmentations have remained popular, it is important to be able to control and program the augmentation pipeline more carefully. [TANDA](https://arxiv.org/pdf/1709.01643.pdf.) initiated a study of the problem of programming augmentation pipelines by composing a selection of data transformations. This area has since seen rapid growth with both deeper theoretical understanding and practical implementations such as [AutoAugment](https://openaccess.thecvf.com/content_CVPR_2019/papers/Cubuk_AutoAugment_Learning_Augmentation_Strategies_From_Data_CVPR_2019_paper.pdf). A nascent line of work has leveraged conditional generative models to learn-rather than specify-these transformations, further extending this programming paradigm. 
-
+The choice of transformations used in augmentation is an important consideration, since it dictates the invariances learned by the model, and its behavior when encountering a diversity of test examples. While heuristic augmentations have remained popular, it is important to be able to control and program the augmentation pipeline more carefully. [TANDA](https://arxiv.org/pdf/1709.01643.pdf.) initiated a study of the problem of programming augmentation pipelines by composing a selection of data transformations. This area has since seen rapid growth with both deeper theoretical understanding and practical implementations such as [AutoAugment](https://openaccess.thecvf.com/content_CVPR_2019/papers/Cubuk_AutoAugment_Learning_Augmentation_Strategies_From_Data_CVPR_2019_paper.pdf). A nascent line of work has leveraged conditional generative models to learn-rather than specify-these transformations, further extending this programming paradigm.
 
 <h1 id="sec:representation">Self-Supervision</h1>
 
 [Self-Supervision Area Page](self-supervision.md)
 
 The need for large, labeled datasets has motivated methods to pre-train latent representations of the input space using unlabeled data and use the now knowledge-rich representations in downstream tasks. As the representations allow for knowledge transfer to downstream tasks, these tasks require less labeled data. For example, language models can be pre-trained to predict the next token in a textual input to learn representations of words or sub-tokens. These word representations are then used in downstream models such as sentiment classification. This paradigm, called "self-supervision", has revolutionized how we train (and pre-train) models. Importantly, these self-supervised pre-trained models learn without manual labels or hand curated features. This reduces the engineer effort to create and maintain features and makes models significantly easier to deploy and maintain. This shift has allowed for more data to be fed to the model and shifted the focus to understanding what data to use.
-
 
 <h1 id="sec:end_modelitus">The End of Modelitus</h1>
 
@@ -86,8 +83,15 @@ With the ability to train models on unlabelled data, research is scaling up both
 
 [Evaluation Area Page](evaluation.md)
 
+In machine learning, model evaluation is a crucial part of the model development process. The goal of evaluation is to understand the quality of a model, and anticipate if it will perform well in the future.
 
-<h1 id="sec:robustness">Robustness</h1>  
+While evaluation is a classical problem in machine learning, data-centric AI approaches have catalyzed a shift towards _fine-grained evaluation_: moving beyond standard measures of performance such as accuracy and F1 scores, to measuring performance on particular populations of interest. This enables a more granular understanding of model performance, and gives users a clearer idea of model capabilities.
+
+Approaches to fine-grained evaluation include measuring performance on critical data data subsets called slices, invariance or sensitivity to data transformations, and resistance to adversarial perturbations. While most evaluation is user-specified, an important line of work found that models often underperform on _hidden strata_ that are missed by model builders, which can have profound consequences on our ability to deploy and use models.
+
+These advances have been complentary to an increased interest in understanding model robustness, since access to fine-grained evaluation permits an enhanced ability to build more robust models.
+
+<h1 id="sec:robustness">Robustness</h1>
 
 [Robustness Area Page](robustness.md)
 
@@ -96,7 +100,7 @@ Machine learning subscribes to a simple idea: models perform well on data that â
 - In practice, collecting enough training data to account for all potential deployment scenarios is infeasible. With standard training (i.e. empirical risk minimization (ERM)), this can lead to poor robustness. Current ML systems may fail when encountering out-of-distribution data.
 - More fundamentally, this lack of robustness also sheds light on the limitations with how we collect data and train models. Training only with respect to statistical averages can lead to models learning the "wrong" things, such as spurious correlations and dependencies on confounding variables that hold for most, but not all, of the data.
 
-How can we obtain models that perform well on many possible distributions and tasks, especially in realistic scenarios that come from deploying models in practice? This is a broad question and a big undertaking. 
+How can we obtain models that perform well on many possible distributions and tasks, especially in realistic scenarios that come from deploying models in practice? This is a broad question and a big undertaking.
 
 An important area of interest is subgroup robustness or [hidden](https://hazyresearch.stanford.edu/hidden-stratification) [stratification](https://www.youtube.com/watch?v=_4gn7ibByAc). Standard classification assigns a single label for each sample in the dataset, and trains a model to correctly predict those labels. However, several distinct data subsets or "subgroups" might exist among datapoints that all share the same label, and these labels may only coarsely describe the meaningful variation within the population.
 
