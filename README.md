@@ -37,7 +37,7 @@ Instructions for adding resources:
 1. [Data Programming & Weak Supervision](data-programming.md)
 2. [Data Augmentation](#data-representations--self-supervision)
 3. [Self-Supervision](#data-representations--self-supervision)
-4. [The End of Modelitus](#go-big-or-go-home)
+4. [The End of Modelitis](#go-big-or-go-home)
 5. [Fine-Grained Evaluation](#fine-grained-evaluation)
 6. [Robustness](#robustness)
 7. [Emerging Trends](#emerging_trends)
@@ -73,11 +73,14 @@ The choice of transformations used in augmentation is an important consideration
 
 The need for large, labeled datasets has motivated methods to pre-train latent representations of the input space using unlabeled data and use the now knowledge-rich representations in downstream tasks. As the representations allow for knowledge transfer to downstream tasks, these tasks require less labeled data. For example, language models can be pre-trained to predict the next token in a textual input to learn representations of words or sub-tokens. These word representations are then used in downstream models such as sentiment classification. This paradigm, called "self-supervision", has revolutionized how we train (and pre-train) models. Importantly, these self-supervised pre-trained models learn without manual labels or hand curated features. This reduces the engineer effort to create and maintain features and makes models significantly easier to deploy and maintain. This shift has allowed for more data to be fed to the model and shifted the focus to understanding what data to use.
 
-<h1 id="sec:end_modelitus">The End of Modelitus</h1>
+<h1 id="sec:end_modelitis">The End of Modelitis</h1>
+[The End of Modelitis Area Page](end_of_modelitis.md)
 
-[The End of Modelitus Area Page](end_of_modelitus.md)
+Historically, the "kid in a candy shop" moment for ML researchers is building and tweaking models using tools like PyTorch or Jax. New models were coming out each day and these customize model architectures and finely-tuned parameters were beating state-of-the-art results. This modelitis craze, however, is coming to an end.
 
-With the ability to train models on unlabelled data, research is scaling up both data size and model size at an [impressive rate](https://medium.com/analytics-vidhya/openai-gpt-3-language-models-are-few-shot-learners-82531b3d3122). With access to such massive amounts of data, the question shifted from “how to construct the best model” to “how do you feed these models”. And as [Kaplan et al](https://arxiv.org/pdf/2001.08361.pdf) showed, the architecture matters less; the real lift comes from the data.
+Recently, researchers have realized two things: (1) more gains are coming from deeply understanding the data rather than model tweaking (see all the exciting work in Data Augmentation), and (2) custom models are difficult to maintain and extend in a production environment. This resulted in model building platforms like [Ludwig](https://eng.uber.com/introducing-ludwig/) and [Overton](https://www.cs.stanford.edu/~chrismre/papers/overton-tr.pdf) that enforced commoditized architectures. And they showed these commoditiy models were even better than their tuned predecessors! This result was further supported by [Kaplan et al](https://arxiv.org/pdf/2001.08361.pdf) that showed the architecture matters less than the data.
+
+This trend, which we are calling the End of Modelitis, is moving towards a data-centric view of model construction. The question is shifting from “how to construct the best model” to “how do you feed a models”.
 
 <h1 id="sec:evaluation">Evaluation</h1>
 
