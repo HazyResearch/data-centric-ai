@@ -40,7 +40,8 @@ Instructions for adding resources:
 4. [The End of Modelitus](#go-big-or-go-home)
 5. [Fine-Grained Evaluation](#fine-grained-evaluation)
 6. [Robustness](#robustness)
-7. [Applications](#section-applications)
+7. [Emerging Trends](#emerging_trends)
+8. [Applications](#section-applications)
 
 <h1 id="sec:data-programming">Data Programming & Weak Supervision</h1>
 
