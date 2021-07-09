@@ -1,3 +1,5 @@
+# Emerging Trends
+
 <h2 id="interactive-machine-learning">Interactive Machine Learning</h2>
 With models getting larger and costing more to train, there's a growing need to interact with the model and quickly iterate on its performance before a full training run.
 
