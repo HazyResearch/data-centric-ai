@@ -74,6 +74,7 @@ The choice of transformations used in augmentation is an important consideration
 The need for large, labeled datasets has motivated methods to pre-train latent representations of the input space using unlabeled data and use the now knowledge-rich representations in downstream tasks. As the representations allow for knowledge transfer to downstream tasks, these tasks require less labeled data. For example, language models can be pre-trained to predict the next token in a textual input to learn representations of words or sub-tokens. These word representations are then used in downstream models such as sentiment classification. This paradigm, called "self-supervision", has revolutionized how we train (and pre-train) models. Importantly, these self-supervised pre-trained models learn without manual labels or hand curated features. This reduces the engineer effort to create and maintain features and makes models significantly easier to deploy and maintain. This shift has allowed for more data to be fed to the model and shifted the focus to understanding what data to use.
 
 <h1 id="sec:end_modelitis">The End of Modelitis</h1>
+
 [The End of Modelitis Area Page](end_of_modelitis.md)
 
 Historically, the "kid in a candy shop" moment for ML researchers is building and tweaking models using tools like PyTorch or Jax. New models were coming out each day and these customize model architectures and finely-tuned parameters were beating state-of-the-art results. This modelitis craze, however, is coming to an end.
