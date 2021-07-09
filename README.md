@@ -1,4 +1,4 @@
-# Data Centric AI (v0.0.1)
+# Data Centric AI (v0.0.2)
 
 We're collecting (an admittedly opinionated) list of resources and progress made
 in data-centric AI, with exciting directions past and present.
