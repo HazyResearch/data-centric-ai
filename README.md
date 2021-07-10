@@ -9,8 +9,6 @@ is to consolidate this experience in a single place that can be accessed by anyo
 wants to understand and contribute to this area.
 
 
----
-
 ## How Can I Help?
 
 If you're interested in this area and would like to hear more, join our [mailing list](https://groups.google.com/forum/#!forum/data-centric-ai/join)! We'd also appreciate if you could fill out this short [form](https://docs.google.com/forms/d/e/1FAIpQLSf5UcTJnvMIcLzxvTgac5Jdvyry3u2XsewMrXFosgKtWTTGxA/viewform?usp=sf_link)
