@@ -13,11 +13,11 @@ wants to understand and contribute to this area.
 
 ## How Can I Help?
 
-If you're interested in this area and would like to hear more, join our [mailing list](https://groups.google.com/forum/#!forum/data-centric-ai/join)! We'd also appreciate if you could fill out this short [form](https://forms.gle/xJgPx7MvbDbdwnZu9)
+If you're interested in this area and would like to hear more, join our [mailing list](https://groups.google.com/forum/#!forum/data-centric-ai/join)! We'd also appreciate if you could fill out this short [form](https://docs.google.com/forms/d/e/1FAIpQLSf5UcTJnvMIcLzxvTgac5Jdvyry3u2XsewMrXFosgKtWTTGxA/viewform?usp=sf_link)
 to help us better understand what your interests might be.
 
 ### Feedback (Interested in a class?)
-We are creating a class at Stanford about data-centric AI, and we'd love your feedback. If you are interested in learning more, please fill out this [form](https://forms.gle/xJgPx7MvbDbdwnZu9).
+We are creating a class at Stanford about data-centric AI, and we'd love your feedback. If you are interested in learning more, please fill out this [form](https://docs.google.com/forms/d/e/1FAIpQLSf5UcTJnvMIcLzxvTgac5Jdvyry3u2XsewMrXFosgKtWTTGxA/viewform?usp=sf_link).
 
 ### Contributing
 
