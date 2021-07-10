@@ -1,7 +1,7 @@
-# Data Centric AI _(v0.0.2)_
+# Data Centric AI
 
 We're collecting (an admittedly opinionated) list of resources and progress made
-in data-centric AI, with exciting directions past and present.
+in data-centric AI, with exciting directions past, present and future.
 
 While AI has been pretty focused on models, the real-world experience of those who put
 models into production is that the data often matters more. The goal of this repository
