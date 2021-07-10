@@ -1,4 +1,4 @@
-# Applications
+<h1 id="applications">Applications</h1>
 
 <h2 id="named-entity-linking">Named Entity Linking</h2>
 
