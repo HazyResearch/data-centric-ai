@@ -17,19 +17,21 @@ to help us better understand what your interests might be.
 ### Feedback (Interested in a class?)
 We are creating a class at Stanford about data-centric AI, and we'd love your feedback. If you are interested in learning more, please fill out this [form](https://docs.google.com/forms/d/e/1FAIpQLSf5UcTJnvMIcLzxvTgac5Jdvyry3u2XsewMrXFosgKtWTTGxA/viewform?usp=sf_link).
 
+If you have ideas on how we can make this repository better, feel free to submit an issue with suggestions.
+
 ### Contributing
 
 We want this resource to grow with contributions from readers and data enthusiasts.
 Make a pull request if you want to add resources.
 
-#### Instructions for editing existing area pages
+#### Editing existing area pages
 
 - For making edits to existing areas and area pages, submit a PR containing the relevant changes.
 - We welcome changes
   such as missed subtopics, clarifying discussion, additional resources and links such as citations, paper links, blogs, videos, code, workshops,
   classes, tutorials, figures, pictures, recipes, tweets and books.
 
-#### Instructions for adding new areas
+#### Adding new areas
 
 If you'd like to add a new area page, use the [Area Page Issue](https://github.com/HazyResearch/data-centric-ai/issues/new/choose) to suggest a new area: your request will need to be approved by admins before you make any PRs that add a new area page.
 
@@ -38,6 +40,10 @@ If you'd like to add a new area page, use the [Area Page Issue](https://github.c
   Add a few critical links (citations, paper links, blogs, videos, code, workshops,
   classes, tutorials, figures, pictures, recipes, tweets, books), and a short
   description for each sub-topic and how it relates to the section.
+
+#### Contributing awesome lists
+
+We want to gather interesting lists of resources and content that are related to data-centric AI. Please submit a PR if you'd like to add a new list or grow an existing one. We've included a list of [workshops](awesome-lists/workshops.md) as an example.
 
 #### General instructions
 
@@ -57,7 +63,7 @@ If you'd like to add a new area page, use the [Area Page Issue](https://github.c
 6. [Robustness](#robustness)
 7. [Emerging Trends](#emerging)
 8. [Applications](#applications)
-9. [Workshops](workshops.md)
+9. [Workshops](awesome-lists/workshops.md)
 
 <h1 id="data-programming">Data Programming & Weak Supervision</h1>
 
