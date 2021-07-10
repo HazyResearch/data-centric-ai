@@ -8,15 +8,16 @@ models into production is that the data often matters more. The goal of this rep
 is to consolidate this experience in a single place that can be accessed by anyone that
 wants to understand and contribute to this area.
 
+
 ---
 
 ## How Can I Help?
 
-### Lurk and Learn
-Join our [mailing list](https://groups.google.com/forum/#!forum/data-centric-ai/join) if you're interested in this area and would like to hear more!
+If you're interested in this area and would like to hear more, join our [mailing list](https://groups.google.com/forum/#!forum/data-centric-ai/join)! We'd also appreciate if you could fill out this short [form](https://forms.gle/xJgPx7MvbDbdwnZu9)
+to help us better understand what your interests might be.
 
 ### Feedback (Interested in a class?)
-We are creating a class at Stanford about data-centric AI, and we'd love your feedback. If you are interested in learning more, please fill out this [form]().
+We are creating a class at Stanford about data-centric AI, and we'd love your feedback. If you are interested in learning more, please fill out this [form](https://forms.gle/xJgPx7MvbDbdwnZu9).
 
 ### Contributing
 
