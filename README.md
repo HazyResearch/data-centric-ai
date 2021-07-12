@@ -132,7 +132,7 @@ Under subpopulation shift, training and test-time distributions differ in how we
 
 Both Group DRO and GEORGE introduced approaches to handle subpopulation shift under real-world instantiations. These methods have inspired additional work related to upsampling estimated groups ([LfF](https://arxiv.org/abs/2007.02561), [JTT](link_here)) and using contrastive learning to learn group-invariant representations ([CNC](link_here)).
 
-Beyond subpopulation shift, robustness also features domain shift and adversarial perturbations. Under domain shift, we model test-time data as coming from a completely different domain from the training data. Under distribution shift with adversarial perturbations, test-time data may exhibit corruptions or imperceptible differences in input feature space that prevent trained ERM models from strongly generalizing to the test-time distributions. _These sections are stubs - review if they should be in-scope here._
+Beyond subpopulation shift, robustness also features domain shift and adversarial perturbations. Under domain shift, we model test-time data as coming from a completely different domain from the training data. Under distribution shift with adversarial perturbations, test-time data may exhibit corruptions or imperceptible differences in input feature space that prevent trained ERM models from strongly generalizing to the test-time distributions. _These important sections are are still stubs. Please add your contributions!_
 
 <h1 id="emerging">Emerging Trends</h1>
 
