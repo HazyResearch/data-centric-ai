@@ -22,8 +22,9 @@ an integral part of text applications such as machine translation.
 
 <h2 id="augmentation-theory">Theoretical Foundations</h2>
 
-- [Tangent Propagation](https://papers.nips.cc/paper/1991/file/65658fde58ab3c2b6e5132a39fae7cb9-Paper.pdf) expresses desired model invariances induced by a data augmentation as tangent constraints on the directional derivatives of the learned model
+- [Tangent Propagation](https://papers.nips.cc/paper/1991/file/65658fde58ab3c2b6e5132a39fae7cb9-Paper.pdf) expresses desired model invariances induced by a data augmentation as tangent constraints on the directional derivatives of the learned model.
 - [Kernel Theory of Data Augmentation](http://proceedings.mlr.press/v97/dao19b/dao19b.pdf) connects the tangent propagation view of data augmentation to kernel-based methods.
+- [A Group-Theoretic Framework for Data Augmentation](https://arxiv.org/abs/1907.10905) develops a theoretical framework to study data augmentation, showing how it can reduce variance and improve generalization.
 - [On the Generalization Effects of Linear Transformations in Data Augmentation](https://arxiv.org/abs/2005.00695) studies an over-parameterized linear regression setting and studies the generalization effect of applying a familar of linear transformations in this setting.
 
 <h2 id="augmentation-primitives">Augmentation Primitives</h2>
@@ -84,9 +85,9 @@ The idea is to determine the right subset of augmentation primitives, and the or
 These pipelines are primarily built on top of a fixed set of generic transformations.
 Methods vary by the learning algorithm used, which can be
 
+- reinforcement learning approaches led by the [TANDA](https://arxiv.org/pdf/1709.01643.pdf) work, and extended by [AutoAugment](https://openaccess.thecvf.com/content_CVPR_2019/papers/Cubuk_AutoAugment_Learning_Augmentation_Strategies_From_Data_CVPR_2019_paper.pdf);
+- computationally efficient algorithms for learning augmentation policies have also been proposed such as [Population-Based Augmentation](https://arxiv.org/pdf/1905.05393.pdf), [Fast AutoAugment](https://arxiv.org/pdf/1905.00397.pdf), and [Faster AutoAugment](https://arxiv.org/pdf/1911.06987.pdf);
 - random sampling such as in [RandAugment](https://arxiv.org/pdf/1909.13719.pdf) and an uncertainty-based random sampling scheme such as in [Dauphin](https://arxiv.org/abs/2005.00695).
-- reinforcement learning approaches led by the [TANDA](https://arxiv.org/pdf/1709.01643.pdf) work, and extended by [AutoAugment](https://openaccess.thecvf.com/content_CVPR_2019/papers/Cubuk_AutoAugment_Learning_Augmentation_Strategies_From_Data_CVPR_2019_paper.pdf)
-- computationally efficient algorithms for learning augmentation policies have also been proposed such as [Population-Based Augmentation](https://arxiv.org/pdf/1905.05393.pdf) and [Fast AutoAugment](https://arxiv.org/pdf/1905.00397.pdf)
 
 ### Learned Primitives
 
