@@ -31,7 +31,7 @@ Topics covered include weak supervision, self-supervision, and foundations of da
     - RandAugment
     - Augmentation in linear models
 
-## Topic. Self-Supervised Systems
+## Topic: Self-Supervised Systems
 #### _1 week / 2 classes_
 
 1. Applications.
@@ -48,7 +48,7 @@ Topics covered include weak supervision, self-supervision, and foundations of da
     - Overton, Ludwig, and industry--Model search.
     - Discussion of NAS and other paradigms 
 
-## Topic. Monitoring and Measurement
+## Topic: Monitoring and Measurement
 #### _1 week / 2 classes_
 
 1. Applications
@@ -57,7 +57,7 @@ Topics covered include weak supervision, self-supervision, and foundations of da
     - Foundations of monitoring (slicing, estimation problems)
     - Estimating the unseen
 
-## Topic. Maintenance over time
+## Topic: Maintenance over time
 #### _1 week / 2 classes_
 
 1. Applications
@@ -67,7 +67,7 @@ Topics covered include weak supervision, self-supervision, and foundations of da
     - Just train twice, George, CNC and robustness post.
     - Skiing algorithm and the simplest maintenance baselines
 
-## Topic. Interacting with Structured data
+## Topic: Interacting with Structured data
 #### _2 weeks / 4 classes_
 
 1. Applications
