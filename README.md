@@ -1,7 +1,13 @@
-# Data Centric AI
+<div align="center">
+    <img src="robot.png" height=400 alt=""/>
+</div>
+<br>
+<div align="center">
+  <h1>Data-Centric AI</h1>
+</div>
 
 We're collecting (an admittedly opinionated) list of resources and progress made
-in data-centric AI, with exciting directions past, present and future.
+in data-centric AI, with exciting directions past, present and future. 
 
 While AI has been pretty focused on models, the real-world experience of those who put
 models into production is that the data often matters more. The goal of this repository
@@ -37,7 +43,7 @@ If you'd like to make contributions to this Github repository, please read our [
 8. [MLOps](#mlops) (Under construction)
 9. [Emerging Trends](#emerging)
 10. [Applications](#applications)
-11. [Workshops](awesome-lists/workshops.md)
+11. [Awesome Lists](awesome-lists/README.md)
 
 <h1 id="data-programming">Data Programming & Weak Supervision</h1>
 
@@ -134,3 +140,4 @@ Data-centric AI is still growing, and we want to capture emerging trends as they
 [Applications Area Page](applications.md)
 
 Data-centric approaches have had a wide-ranging impact wherever machine learning is used and deployed, whether in academia, industry or other organizations. Impact spans modalities such as structured data, text, images, videos, graphs and others, while areas include text and image processing, medical imaging, computational biology, autonomous driving, etc.
+
