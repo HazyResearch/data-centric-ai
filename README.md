@@ -138,3 +138,6 @@ Data-centric AI is still growing, and we want to capture emerging trends as they
 
 Data-centric approaches have had a wide-ranging impact wherever machine learning is used and deployed, whether in academia, industry or other organizations. Impact spans modalities such as structured data, text, images, videos, graphs and others, while areas include text and image processing, medical imaging, computational biology, autonomous driving, etc.
 
+
+# About
+Thanks to [Kabir Goel](https://kabirgoel.com) for the header artwork.
