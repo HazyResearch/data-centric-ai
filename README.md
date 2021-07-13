@@ -1,7 +1,7 @@
-<center>
+<div align="center">
     <img src="robot.png" height=400 alt=""/>
     <h1>Data-Centric AI</h1>
-</center>
+</div>
 
 We're collecting (an admittedly opinionated) list of resources and progress made
 in data-centric AI, with exciting directions past, present and future. 
