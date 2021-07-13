@@ -140,15 +140,15 @@ Beyond subpopulation shift, robustness also features domain shift and adversaria
 
 [Data Cleaning Area Page](data-cleaning.md)
 
-Another way to improve data quality to improve the quality of ML/AI applications is via data cleaning. There are a diverse range of exciting work along this line to jointly understand data cleaning and machine learning. 
+Another way to improve data quality for ML/AI applications is via data cleaning. There is a diverse range of exciting work along this line to jointly understand data cleaning and machine learning. 
 
 
 <h1 id="mlops">MLOps</h1>
 
 [MLOps Area Page](mlops.md)
 
-The central role of data makes the development and deployment process of ML/AI applications an human-in-the-loop process. 
-This is a complex process in which human engineers could make mistakes, require guidance, or be warned when something unexpected happens. The goal of MLOps is to provide principled ways for lifecycle management, monitoring, and validation.
+The central role of data makes the development and deployment of ML/AI applications an human-in-the-loop process. 
+This is a complex process in which human engineers could make mistakes, require guidance, or need to be warned when something unexpected happens. The goal of MLOps is to provide principled ways for lifecycle management, monitoring, and validation.
 
 
 <h1 id="emerging">Emerging Trends</h1>
