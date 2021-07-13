@@ -61,9 +61,11 @@ We want to gather interesting lists of resources and content that are related to
 4. [The End of Modelitis](#end_modelitis)
 5. [Fine-Grained Evaluation](#evaluation)
 6. [Robustness](#robustness)
-7. [Emerging Trends](#emerging)
-8. [Applications](#applications)
-9. [Workshops](awesome-lists/workshops.md)
+7. [Data Cleaning](#cleaning) (Under construction)
+8. [MLOps](#mlops) (Under construction)
+9. [Emerging Trends](#emerging)
+10. [Applications](#applications)
+11. [Workshops](awesome-lists/workshops.md)
 
 <h1 id="data-programming">Data Programming & Weak Supervision</h1>
 
@@ -133,6 +135,21 @@ Under subpopulation shift, training and test-time distributions differ in how we
 Both Group DRO and GEORGE introduced approaches to handle subpopulation shift under real-world instantiations. These methods have inspired additional work related to upsampling estimated groups ([LfF](https://arxiv.org/abs/2007.02561), [JTT](link_here)) and using contrastive learning to learn group-invariant representations ([CNC](link_here)).
 
 Beyond subpopulation shift, robustness also features domain shift and adversarial perturbations. Under domain shift, we model test-time data as coming from a completely different domain from the training data. Under distribution shift with adversarial perturbations, test-time data may exhibit corruptions or imperceptible differences in input feature space that prevent trained ERM models from strongly generalizing to the test-time distributions. _These important sections are are still stubs. Please add your contributions!_
+
+<h1 id="cleaning">Data Cleaning  (Under Construction)</h1>
+
+[Data Cleaning Area Page](data-cleaning.md)
+
+Another way to improve data quality for ML/AI applications is via data cleaning. There is a diverse range of exciting work along this line to jointly understand data cleaning and machine learning. 
+
+
+<h1 id="mlops">MLOps  (Under Construction)</h1>
+
+[MLOps Area Page](mlops.md)
+
+The central role of data makes the development and deployment of ML/AI applications an human-in-the-loop process. 
+This is a complex process in which human engineers could make mistakes, require guidance, or need to be warned when something unexpected happens. The goal of MLOps is to provide principled ways for lifecycle management, monitoring, and validation.
+
 
 <h1 id="emerging">Emerging Trends</h1>
 
