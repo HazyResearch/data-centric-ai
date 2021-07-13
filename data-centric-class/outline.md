@@ -49,7 +49,7 @@ Topics covered include weak supervision, self-supervision, and foundations of da
     - Discussion of NAS and other paradigms 
 
 ## Topic. Monitoring and Measurement
-#### _1 week_
+#### _1 week / 2 classes_
 
 1. Applications
     - Robustness Gym, DynaBench, and Applications
@@ -58,7 +58,7 @@ Topics covered include weak supervision, self-supervision, and foundations of da
     - Estimating the unseen
 
 ## Topic. Maintenance over time
-#### _1 week_
+#### _1 week / 2 classes_
 
 1. Applications
     - Robustness and Label Stratification errors
@@ -68,7 +68,7 @@ Topics covered include weak supervision, self-supervision, and foundations of da
     - Skiing algorithm and the simplest maintenance baselines
 
 ## Topic. Interacting with Structured data
-#### _2 weeks_
+#### _2 weeks / 4 classes_
 
 1. Applications
     - Data cleaning and embedding, Holoclean and more
