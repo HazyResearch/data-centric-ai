@@ -6,11 +6,11 @@ The need for large, labeled datasets has motivated methods to pre-train latent r
 
 Self-supervised models train representations, or embeddings, to encode latent structural information about the input. For example, language models like [BERT](https://www.aclweb.org/anthology/N19-1423.pdf) and [GPT-2](https://d4mucfpksywv.cloudfront.net/better-language-models/language_models_are_unsupervised_multitask_learners.pdf) learn an embedding per sub-token in a sentence. These sub-token embeddings encode knowledge about what the token is and how it interacts with other tokens in the sentence.
 
-How you "tokenize" your intput into different atomic units and how you train an embedding changes what kind of knowledge and how the knowledge is represented.
+How you "tokenize" your input into different atomic units and how you train an embedding changes what kind of knowledge and how the knowledge is represented.
 
 
 - Graph based approaches, such as [TransE](https://papers.nips.cc/paper/2013/file/1cecc7a77928ca8133fa24680a88d2f9-Paper.pdf), represent entities (people, place, and things) and are trained to preserve link structure in a Knowledge Base.
-- [Hyperbolic embeddings](https://homepages.inf.ed.ac.uk/rsarkar/papers/HyperbolicDelaunayFull.pdf) takes graph-structured embeddings one step further and learns embeddings in hyporbolic space. This [blog](https://dawn.cs.stanford.edu/2019/10/10/noneuclidean/) gives a great introduction.
+- [Hyperbolic embeddings](https://homepages.inf.ed.ac.uk/rsarkar/papers/HyperbolicDelaunayFull.pdf) takes graph-structured embeddings one step further and learns embeddings in hyperbolic space. This [blog](https://dawn.cs.stanford.edu/2019/10/10/noneuclidean/) gives a great introduction.
 - Common word embedding techniques, like [word2vec](https://papers.nips.cc/paper/2013/file/9aa42b31882ec039965f3c4923ce901b-Paper.pdf), train embeddings for each word in a fixed vocabulary to predict surrounding words given a single word, preserving word co-occurrence patterns. This [chapter](http://web.stanford.edu/~jurafsky/slp3/6.pdf) from Speech and Language Processing gives a nice overview of word embeddings.
 - Contextual word embeddings, like [ELMo](https://arxiv.org/pdf/1802.05365.pdf), split words into sub-tokens and generate embeddings for each sub-token that depend on the surrounding context thereby allowing, for example, homonyms to get different representations.
 - While self-supervised representations were more common for language and graph based tasks, recent work of [Selfie](https://arxiv.org/pdf/1906.02940.pdf) learns embeddings for image patches, sub-spaces of the image, to be trained using Transformer architecture.

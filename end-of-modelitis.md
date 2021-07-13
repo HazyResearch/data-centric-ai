@@ -8,7 +8,7 @@ With the ability to train models on unlabelled data, research is scaling up both
 - These architecutres are still complex and expensive to use. Researchers missed the good-old-days of MLP layers. Exciting recent work has shown that even the Transformer can be replaced by a sequence of MLPs in [gMLP](https://arxiv.org/pdf/2105.08050.pdf) and [MLP-Mixer](https://arxiv.org/pdf/2105.01601.pdf).
 
 ## More Focus on the Data Being Fed
-As the goal is to fed as much knowledge to these commoditized models as possible, recent work has explored multi-modal applications that use both vision and text data.
+As the goal is to feed as much knowledge to these commoditized models as possible, recent work has explored multi-modal applications that use both vision and text data.
 - [Wu Dao 2.0](https://www.engadget.com/chinas-gigantic-multi-modal-ai-is-no-one-trick-pony-211414388.html) is the Chinese 1.75T parameter MoE model with multimodal capabilities.
 - [DALL-E](https://openai.com/blog/dall-e/) & [CLIP](https://openai.com/blog/clip/) are two other multi-modal models.
 

@@ -6,7 +6,7 @@ The central idea in data augmentation is to transform examples in the dataset in
 
 Early successes in augmentation such as [AlexNet](https://papers.nips.cc/paper/2012/file/c399862d3b9d6b76c8436e924a68c45b-Paper.pdf) focused on inducing invariances in an image classifier by generating examples that encouraged translational or rotational invariance. These examples made augmentation a de-facto part of pipelines for a wide-ranging tasks such as image, speech and text classification, machine translation, etc. 
 
-The choice of transformations used in augmentation is an important consideration, since it dictates the behavior and invariances learned by the model. While heuristic augmentations have remained popular, it was important to be able to control and program this augmentation pipeline carefully. [TANDA](https://arxiv.org/pdf/1709.01643.pdf.) initiated a study of the problem of programming augmentation pipelines by composing a selection of data transformations. This area  has seen rapid growth in recent years with both deeper theoretical understanding and practical implementations such as [AutoAugment](https://openaccess.thecvf.com/content_CVPR_2019/papers/Cubuk_AutoAugment_Learning_Augmentation_Strategies_From_Data_CVPR_2019_paper.pdf). A nascent line of work leverages conditional generative models to learn-rather than specify-these transformations, further extending this programming paradigm. 
+The choice of transformations used in augmentation is an important consideration, since it dictates the behavior and invariances learned by the model. While heuristic augmentations have remained popular, it was important to be able to control and program this augmentation pipeline carefully. [TANDA](https://arxiv.org/pdf/1709.01643.pdf) initiated a study of the problem of programming augmentation pipelines by composing a selection of data transformations. This area  has seen rapid growth in recent years with both deeper theoretical understanding and practical implementations such as [AutoAugment](https://openaccess.thecvf.com/content_CVPR_2019/papers/Cubuk_AutoAugment_Learning_Augmentation_Strategies_From_Data_CVPR_2019_paper.pdf). A nascent line of work leverages conditional generative models to learn-rather than specify-these transformations, further extending this programming paradigm. 
 
 This document provides a detailed breakdown of resources in data augmentation.
 
@@ -24,7 +24,7 @@ an integral part of text applications such as machine translation.
 
 - [Tangent Propagation](https://papers.nips.cc/paper/1991/file/65658fde58ab3c2b6e5132a39fae7cb9-Paper.pdf) expresses desired model invariances induced by a data augmentation as tangent constraints on the directional derivatives of the learned model
 - [Kernel Theory of Data Augmentation](http://proceedings.mlr.press/v97/dao19b/dao19b.pdf) connects the tangent propagation view of data augmentation to kernel-based methods.
-- [On the Generalization Effects of Linear Transformations in Data Augmentation](https://arxiv.org/abs/2005.00695) studies an over-parametrized linear regression setting and study the generalization effect of applying a familar of linear transformations in this setting.
+- [On the Generalization Effects of Linear Transformations in Data Augmentation](https://arxiv.org/abs/2005.00695) studies an over-parameterized linear regression setting and studies the generalization effect of applying a familar of linear transformations in this setting.
 
 <h2 id="augmentation-primitives">Augmentation Primitives</h2>
 
@@ -54,14 +54,14 @@ While these primitives have culminated in compelling performance gains, they can
 
 #### Text
 
-Heuristic transformations for text, typically involve paraphrasing text in order to produce more diverse samples.
+Heuristic transformations for text typically involve paraphrasing text in order to produce more diverse samples.
 
 - [Backtranslation](https://arxiv.org/abs/1511.06709) uses a round-trip translation from a source to target language and back in order to generate a paraphrase.
   Examples of use include [QANet](https://arxiv.org/abs/1804.09541).
 - Synonym substitution methods replace words with their synonyms such as in
   [Data Augmentation for Low-Resource Neural Machine Translation](https://www.aclweb.org/anthology/P17-2090/),
   [Contextual Augmentation: Data Augmentation by Words with Paradigmatic Relations](https://www.aclweb.org/anthology/N18-2072/),
-  [Model-Portability Experiments for Textual Temporal Analysis](https://www.aclweb.org/anthology/P11-2047/)
+  [Model-Portability Experiments for Textual Temporal Analysis](https://www.aclweb.org/anthology/P11-2047/),
   [That’s So Annoying!!!](https://www.aclweb.org/anthology/D15-1306/) and
   [Character-level Convolutional Networks for Text Classification](https://arxiv.org/pdf/1509.01626.pdf)
 
