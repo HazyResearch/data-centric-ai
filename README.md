@@ -5,12 +5,14 @@
 
 We're collecting (an admittedly opinionated) list of resources and progress made
 in data-centric AI, with exciting directions past, present and future. 
+[This blog talks about our journey to data-centric AI](https://hazyresearch.stanford.edu/data-centric-ai).
 
 While AI has been pretty focused on models, the real-world experience of those who put
 models into production is that the data often matters more. The goal of this repository
 is to consolidate this experience in a single place that can be accessed by anyone who
 wants to understand and contribute to this area.
 
+_We're only at the beginning, and you can help by contributing to this GitHub!_
 
 ## How Can I Help?
 
