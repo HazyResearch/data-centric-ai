@@ -128,6 +128,25 @@ Another way to improve data quality for ML/AI applications is via data cleaning.
 The central role of data makes the development and deployment of ML/AI applications an human-in-the-loop process. 
 This is a complex process in which human engineers could make mistakes, require guidance, or need to be warned when something unexpected happens. The goal of MLOps is to provide principled ways for lifecycle management, monitoring, and validation.
 
+<h1 id="privacy">Data Privacy  (Under Construction)</h1>
+
+[Data Privacy Area Page](data-privacy.md)
+
+_This area is a stub, you can help by improving it._
+
+
+<h1 id="dataflow">Data Flow  (Under Construction)</h1>
+
+[Data Flow Area Page](data-flow.md)
+
+_This area is a stub, you can help by improving it._
+
+<h1 id="mtl-mdl">Multi-Task and Multi-Domain Learning (Under Construction) </h1>
+
+[Multi-Task and Multi-Domain Learning Area Page](multi-task-multi-domain.md)
+
+_This area is a stub, you can help by improving it._
+
 
 <h1 id="emerging">Emerging Trends</h1>
 
