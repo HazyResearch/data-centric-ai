@@ -40,6 +40,9 @@ If you'd like to make contributions to this Github repository, please read our [
 6. [Robustness](#robustness)
 7. [Data Cleaning](#cleaning) (Under construction)
 8. [MLOps](#mlops) (Under construction)
+8. [Data Privacy](#privacy) (Under construction)
+8. [Data Flow](#dataflow) (Under construction)
+8. [Multi-Task & Multi-Domain Learning](#mtl-mdl) (Under construction)
 9. [Emerging Trends](#emerging)
 10. [Applications](#applications)
 11. [Awesome Lists](awesome-lists/README.md)
@@ -141,9 +144,9 @@ _This area is a stub, you can help by improving it._
 
 _This area is a stub, you can help by improving it._
 
-<h1 id="mtl-mdl">Multi-Task and Multi-Domain Learning (Under Construction) </h1>
+<h1 id="mtl-mdl">Multi-Task & Multi-Domain Learning (Under Construction) </h1>
 
-[Multi-Task and Multi-Domain Learning Area Page](multi-task-multi-domain.md)
+[Multi-Task & Multi-Domain Learning Area Page](multi-task-multi-domain.md)
 
 _This area is a stub, you can help by improving it._
 
