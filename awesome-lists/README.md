@@ -6,8 +6,8 @@ We want to gather interesting lists of resources and content that are related to
 
 
 1. [Workshops](workshops.md)
-2. [Courses](courses.md)
-3. [Startups](startups.md)
-4. [Tools](tools.md)
+2. [Courses](courses.md) (Under Construction)
+3. [Startups](startups.md) (Under Construction)
+4. [Tools](tools.md) (Under Construction)
 
 ---
