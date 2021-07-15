@@ -21,6 +21,7 @@ If you'd like to add a new area page, use the [Area Page Issue](https://github.c
   Add a few critical links (citations, paper links, blogs, videos, code, workshops,
   classes, tutorials, figures, pictures, recipes, tweets, books), and a short
   description for each sub-topic and how it relates to the section.
+- Please only include and focus on work that is data-centric: our goal is not to build a general ML resource!
 
 ### Contributing awesome lists
 
