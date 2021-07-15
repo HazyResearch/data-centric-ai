@@ -142,5 +142,27 @@ Data-centric AI is still growing, and we want to capture emerging trends as they
 Data-centric approaches have had a wide-ranging impact wherever machine learning is used and deployed, whether in academia, industry or other organizations. Impact spans modalities such as structured data, text, images, videos, graphs and others, while areas include text and image processing, medical imaging, computational biology, autonomous driving, etc.
 
 
-# About
-Thanks to [Kabir Goel](https://kabirgoel.com) for the header artwork.
+# Contributors
+
+This GitHub is maintained by [Karan Goel](https://krandiash.github.io) and [Laurel Orr](https://cs.stanford.edu/people/lorr1/) from [Hazy Research](https://hazyresearch.stanford.edu). Reach out to kgoel [at] cs [dot] stanford [dot] edu for questions, comments and feedback.
+
+
+The following individuals and organizations have contributed to the development of this GitHub so far,
+- [Kabir Goel](https://kabirgoel.com) created the header artwork.
+- Members of [Hazy Research](https://hazyresearch.stanford.edu) created the first version of this resource,
+    - [Michael Zhang](https://michaelzhang.xyz) (Robustness)
+    - [Mayee Chen](https://mayeechen.github.io) (Data Programming, Weak Supervision)
+    - [Maya Varma](https://maya-varma.com) (Computational Biology)
+    - [Sabri Eyuboglu](https://seyuboglu.com) (Computational Biology, Interactive ML)
+    - [Megan Lesczynski](http://www.mleszczy.com/) (Named Entity Linking)
+    - Avanika Narayan (Benchmarking)
+    - [Dan Fu](http://www.danfu.org/) (Contrastive Learning)
+    - [Arjun Desai](https://scholar.google.com/citations?user=0tusMC4AAAAJ&hl=en) (Medical Imaging)
+    - [Tri Dao](https://stanford.edu/~trid/) (Augmentation)
+    - [Khaled Saab](https://web.stanford.edu/~ksaab/) (Observational Supervision)
+    - [Sen Wu](https://stanford.edu/~senwu/) (Augmentation)
+    - [Piero Molino](https://w4nderlu.st/about) (Editing)
+    - [Beidi Chen](https://www.cs.rice.edu/~bc20/) (Sparsity)
+- [Braden Hancock](https://www.bradenhancock.com) from [Snorkel.ai](https://snorkel.ai) contributed to weak supervision
+- [Jared Dunnmon](https://jdunnmon.github.io) from the Defense Innovation Unit edited multiple sections
+- Alvin Ming and [Sharon Li](http://pages.cs.wisc.edu/~sharonli/) from U-Wisconsin contributed work in outlier detection

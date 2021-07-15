@@ -2,10 +2,12 @@
 
 We want this resource to grow with contributions from readers and data enthusiasts.
 Make a pull request if you want to add resources.
+All PRs will be reviewed and approved by the repository maintainers (Karan Goel, Laurel Orr) before merging.
 
 ### Editing existing area pages
 
-- For making edits to existing areas and area pages, submit a PR containing the relevant changes.
+- For making edits to existing areas and area pages, submit a PR containing the relevant changes. Many existing pages and areas
+ are stubs where we could use help!
 - We welcome changes
   such as missed subtopics, clarifying discussion, additional resources and links such as citations, paper links, blogs, videos, code, workshops,
   classes, tutorials, figures, pictures, recipes, tweets and books.
@@ -29,5 +31,8 @@ We want to gather interesting lists of resources and content that are related to
 - Use `h1` or `h2` headers for all major headings (other subheadings can be in standard markdown).
   So, use `<h1 id="sec:my-h1-section"></h1>` or `<h2 id="subsec:my-h2-section"></h2>` to tag sections
   instead of standard markdown hashes.
+
+### Add yourself as a contributor
+Once you've made a contribution, please add your name, organization and what you contributed to the list of contributors at the end of README.md.
 
 ---
