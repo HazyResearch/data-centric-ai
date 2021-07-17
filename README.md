@@ -131,6 +131,8 @@ Another way to improve data quality for ML/AI applications is via data cleaning.
 The central role of data makes the development and deployment of ML/AI applications an human-in-the-loop process. 
 This is a complex process in which human engineers could make mistakes, require guidance, or need to be warned when something unexpected happens. The goal of MLOps is to provide principled ways for lifecycle management, monitoring, and validation.
 
+Researchers have started tackling theses challenges by developing new techniques and building systems such as [TFX](https://arxiv.org/pdf/2010.02013.pdf) or [Ease.ML](http://cidrdb.org/cidr2021/papers/cidr2021_paper26.pdf) tailored to handle the entire lifecycle of a machine learning model both during development and in production. These systems typically constis of distinct components in charge of handling specific stages (e.g., pre- or post-training) or aspects (e.g., monitoring or debugging) of MLOps.
+
 <h1 id="privacy">Data Privacy  (Under Construction)</h1>
 
 [Data Privacy Area Page](data-privacy.md)
