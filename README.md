@@ -38,7 +38,7 @@ If you'd like to make contributions to this Github repository, please read our [
 4. [The End of Modelitis](#end_modelitis)
 5. [Fine-Grained Evaluation](#evaluation)
 6. [Robustness](#robustness)
-7. [Data Cleaning](#cleaning) (Under construction)
+7. [Data Cleaning](#cleaning)
 8. [MLOps](#mlops) (Under construction)
 8. [Data Privacy](#privacy) (Under construction)
 8. [Data Flow](#dataflow) (Under construction)
