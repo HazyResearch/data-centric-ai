@@ -18,39 +18,28 @@ The second approach is model class agnostic and tackles feasibility study of a M
 
 <h2 id="mlops-cicdct">CI/CD/CT</h2>
 
-Continuous integration (CI), continuous delivery (CD) and continuous testing (CT) are well established techniques in DevOps in order to ensure safe and faster lifecycles whilst continuously updating code in production. When adopting such systems to ML (e.g., by [Continuous Machine Learning](https://cml.dev/) in DVC), one has to be carefull to not be fooled by the inhertig randomness present in ML tests, nor to overfitt to a testset, if one plans on re-using the same dataset for testing the ML model multiple times. [Ease.ML/CI](https://mlsys.org/Conferences/2019/doc/2019/162.pdf) handles specific test conditions (e.g., the new model has to be better than the old by a fixed number of points) from theoretical perspective. It offeres strong statistical guarantees with reducing the samples complexity required as much as possible. The technical challenges for efficiently building these techniques into a CI system are described by [Karlaš et. al.](https://dl.acm.org/doi/abs/10.1145/3394486.3403290) This [blog post](https://ds3lab.ghost.io/ci/) further described the statistical and technical challenges and how they are approached.
+Continuous integration (CI), continuous delivery (CD) and continuous testing (CT) are well established techniques in DevOps in order to ensure safe and faster lifecycles whilst continuously updating code in production. When adopting such systems to ML (e.g., by [Continuous Machine Learning](https://cml.dev/) in DVC), one has to be carefull to not be fooled by the inhertig randomness present in ML tests, nor to overfitt to a testset, if one plans on re-using the same dataset for testing the ML model multiple times. [Ease.ML/CI](https://mlsys.org/Conferences/2019/doc/2019/162.pdf) handles both aspectes for specific test conditions (e.g., the new model has to be better than the old by a fixed number of points) from theoretical perspective. It offeres strong statistical guarantees with reducing the samples complexity required as much as possible. The technical challenges for efficiently building these techniques into a CI system are described by [Karlaš et. al.](https://dl.acm.org/doi/abs/10.1145/3394486.3403290) This [blog post](https://ds3lab.ghost.io/ci/) further described the statistical and technical challenges and how they are approached.
 
-<h2 id="mlops-deployment-model-managemen">Deployment & Model Management</h2>
+<h2 id="mlops-deployment-model-managemen">Deployment and Model Management</h2>
 
-_This section is not finished yet, missing:_
+There is typically not only a single model active being developed or active in production. Various online repositories such as [Hugging Face](https://huggingface.co/models), [PyTorch Hub](https://pytorch.org/hub/) or [TensorFlow Hub](https://tfhub.dev/) facilitate sharing of pre-trained models. More complex systems such as [ModelDB](https://dm-gatech.github.io/CS8803-Fall2018-DML-Papers/hilda-modeldb.pdf), [DVC](https://dvc.org/) or [MLFlow](https://cs.stanford.edu/~matei/papers/2018/ieee_mlflow.pdf) extend the repository functionality by further enabling version of models and dataset, tracking of experiments and efficient deployment into production.
 
-- [ModelDB](https://dm-gatech.github.io/CS8803-Fall2018-DML-Papers/hilda-modeldb.pdf)
-- [DVC](https://dvc.org/)
-- [MLFlow](https://cs.stanford.edu/~matei/papers/2018/ieee_mlflow.pdf)
+<h2 id="mlops-monitoring">Monitoring and Adaptation</h2>
 
-<h2 id="mlops-monitoring">Monitoring</h2>
+It is well known that the accuracy of active models typically diminishes over time. The main reason for this is typically a distribution shift between the new real-time test data and the data used to train the model originally. The most prominent remedy to this problem still represents a periodic (sometimes on a daily or even hourly basis) re-training using fresh training data. This is a very costly undertaken which can be prevented by having access to so called drift detectors (also called anomaly or outlier detectors). [MLDemon](https://arxiv.org/abs/2104.13621) models a human-in-the-loop approach to minimize the number of required verifications. [Klaise et. al.](https://arxiv.org/abs/2007.06299) suggest that outlier detectors should be coupled with explainable AI (XAI) techniques to help humans understand the predictions and potentional model drift.
 
-_This section is not finished yet, missing:_
-
-- [MLDemon](https://arxiv.org/abs/2104.13621)
-- [Klaise et. al.](https://arxiv.org/abs/2007.06299)
-- [Overton](https://www.cs.stanford.edu/~chrismre/papers/overton-tr.pdf)
-
-<h2 id="mlops-adaptation">Adapatation</h2>
-
-_This section is not finished yet, missing:_
-
-- [ModelCI-e](https://arxiv.org/pdf/2106.03122.pdf)
+In an ideal world, we would want an ML system in production to automaticaly adapt to changes in data distribution without the need of re-training from scratch. This area if known as continual learning (CL) or lifelong learning. Merging these algorithmic ideas into a working system is non-trivial as shown by [ModelCI-e](https://arxiv.org/pdf/2106.03122.pdf) and the related work cited therein.
 
 <h2 id="mlops-debugging">Debugging</h2>
 
-_This section is not finished yet, missing:_
+Debugging a ML model is likely to be required in any stages of MLOps. There are many approaches to debug, or likewise prevent ML failures to happen. We summarize the most prominent approaches next, noting that all ideas somehow relate to human-generated or -assisted tests.
 
-- [TFX Validation](https://mlsys.org/Conferences/2019/doc/2019/167.pdf)
-- [Deequ](https://ieeexplore.ieee.org/document/8731462)
-- [SliceLine](https://dl.acm.org/doi/10.1145/3448016.3457323)
-- [MLINSPECT](https://dl.acm.org/doi/abs/10.1145/3448016.3452759)
-- [Amazon SageMaker Debugger](https://proceedings.mlsys.org/paper/2021/file/d1f491a404d6854880943e5c3cd9ca25-Paper.pdf)
+- [TFX Validation](https://mlsys.org/Conferences/2019/doc/2019/167.pdf): The idea of this work is to generate a schema for the data. Failures in validating this schema either require the data to be fixed, or the schema to be changed.
+- [Deequ](https://ieeexplore.ieee.org/document/8731462): Enables unit-test for data via a declarative API by combinning common quality constraints with userdefined validation code.
+- [SliceLine](https://dl.acm.org/doi/10.1145/3448016.3457323): Finds problematic, potentially overlapping slices by exploiting various system specific aspects such as monotonicity properties and a linear-algebra-based enumeration algorithm on top of existing ML systems.
+- [MLINSPECT](https://dl.acm.org/doi/abs/10.1145/3448016.3452759): _tbd_.
+- [Amazon SageMaker Debugger](https://proceedings.mlsys.org/paper/2021/file/d1f491a404d6854880943e5c3cd9ca25-Paper.pdf): _tbd_.
+- [Checklist](https://homes.cs.washington.edu/~marcotcr/acl20_checklist.pdf): _tbd_.
 
 <h2 id="mlops-additional">Additional Resources</h2>
 
