@@ -117,7 +117,7 @@ Both Group DRO and GEORGE introduced approaches to handle subpopulation shift un
 
 Beyond subpopulation shift, robustness also features domain shift and adversarial perturbations. Under domain shift, we model test-time data as coming from a completely different domain from the training data. Under distribution shift with adversarial perturbations, test-time data may exhibit corruptions or imperceptible differences in input feature space that prevent trained ERM models from strongly generalizing to the test-time distributions. _These important sections are are still stubs. Please add your contributions!_
 
-<h1 id="cleaning">Data Cleaning  (Under Construction)</h1>
+<h1 id="cleaning">Data Cleaning</h1>
 
 [Data Cleaning Area Page](data-cleaning.md)
 
