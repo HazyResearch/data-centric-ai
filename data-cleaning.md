@@ -25,6 +25,7 @@ in mind.
 * [ActiveClean](https://dl.acm.org/doi/pdf/10.14778/2994509.2994514) VLDB 2016: leverages model convexity to treat cleaning as an active learning problem.
 * [CPClean](https://arxiv.org/pdf/2005.05117.pdf) VLDB 2021: leverages robustness of NN classifiers to local perturbations.
 * [Boost](https://arxiv.org/abs/1711.01299) and [Alpha](https://arxiv.org/abs/1904.11827)Clean: models data cleaning pipeline generation as an optimization problems, given a "data quality" function.
+* [Conformance Constraints](https://dl.acm.org/doi/10.1145/3448016.3452795) SIGMOD 21: learning constraints that should fail if inference over a test record may be untrustworthy.
 
 ## Application-Aware Data Cleaning
 
