@@ -3,7 +3,7 @@
 The central role of data makes the development and deployment of ML/AI applications an human-in-the-loop process. 
 This is a complex process in which human engineers could make mistakes, require guidance, or need to be warned when something unexpected happens. The goal of MLOps is to provide principled ways for lifecycle management, monitoring, and validation.
 
-Researchers have started tackling theses challenges by developing new techniques and building systems such as [TFX](https://arxiv.org/pdf/2010.02013.pdf) or [Ease.ML](http://cidrdb.org/cidr2021/papers/cidr2021_paper26.pdf) tailored to handle the entire lifecycle of a machine learning model both during development and in production. These systems typically constis of distinct components in charge of handling specific stages (e.g., pre- or post-training) or aspects (e.g., monitoring or debugging) of MLOps.
+Researchers have started tackling theses challenges by developing new techniques and building systems such as [TFX](https://arxiv.org/pdf/2010.02013.pdf), [Ease.ML](http://cidrdb.org/cidr2021/papers/cidr2021_paper26.pdf) or [Overton](https://www.cs.stanford.edu/~chrismre/papers/overton-tr.pdf) designed to handle the entire lifecycle of a machine learning model both during development and in production. These systems typically constis of distinct components in charge of handling specific stages (e.g., pre- or post-training) or aspects (e.g., monitoring or debugging) of MLOps.
 
 We provide a more detailed (incomplete) overview of some MLOps stages or aspects in the remainder of this area, noting that this field of research is relatively young and consits of many connections to other areas of data-centric AI. Additionally, notice that most sections are inspired by well-estiblished DevOps techniques one encounters when developing traditional software artifacts. Adopting these techniques to MLOps in a rigorous and statistical sound way is often non-trivial as one has the take into account the inherent randomness of ML tasks and its finite-sample data dependency.
 
@@ -15,17 +15,54 @@ The first one aims at inspecting the probability of success for a fixed class of
 
 The second approach is model class agnostic and tackles feasibility study of a ML project by estimating the Bayes error rate (BER) of the data distribution.
 
+_This section is not finished yet:_
+
+- Application to Website Fingerprinting
+- [Ease.ML/snoopy](http://www.vldb.org/pvldb/vol13/p2837-renggli.pdf) paper
 
 <h2 id="mlops-cicdct">CI/CD/CT</h2>
 
-Continuous integration (CI), continuous delivery (CD) and continuous testing (CT) are well established...
+Continuous integration (CI), continuous delivery (CD) and continuous testing (CT) are well established techniques in DevOps in order to ensure safe and faster lifecycles whilst continuously updating code in production.
+
+_This section is not finished yet:_
+
+- [Ease.ML/CI](https://mlsys.org/Conferences/2019/doc/2019/162.pdf) paper about the theory and [this](https://dl.acm.org/doi/abs/10.1145/3394486.3403290) companion about building the system and its challenges
+- [Continuous Machine Learning (CML)](https://cml.dev/), CI/CD in data version control (DVC)
+
+This [blog post](https://ds3lab.ghost.io/ci/) further described the technical challenges and how they are approached.
 
 <h2 id="mlops-deployment-model-managemen">Deployment & Model Management</h2>
 
+_This section is not finished yet:_
+
+- [ModelDB](https://senselab.med.yale.edu/modeldb/)
+- [DVC](https://dvc.org/)
+- [MLFlow](https://cs.stanford.edu/~matei/papers/2018/ieee_mlflow.pdf)
+
 <h2 id="mlops-monitoring">Monitoring</h2>
+
+_This section is not finished yet:_
+
+- [MLDemon](https://arxiv.org/abs/2104.13621)
+- [Klaise et. al.](https://arxiv.org/abs/2007.06299)
+- [Overton](https://www.cs.stanford.edu/~chrismre/papers/overton-tr.pdf)
 
 <h2 id="mlops-adaptation">Adapatation</h2>
 
-<h2 id="mlops-debuggin">Debugging</h2>
+_This section is not finished yet:_
 
-Data quality...
+- [ModelCI-e](https://arxiv.org/pdf/2106.03122.pdf)
+
+<h2 id="mlops-debugging">Debugging</h2>
+
+_This section is not finished yet:_
+
+- [TFX Validation](https://mlsys.org/Conferences/2019/doc/2019/167.pdf)
+- [Deequ](https://ieeexplore.ieee.org/document/8731462)
+- [SliceLine](https://dl.acm.org/doi/10.1145/3448016.3457323)
+- [MLINSPECT](https://dl.acm.org/doi/abs/10.1145/3448016.3452759)
+- [Amazon SageMaker Debugger](https://proceedings.mlsys.org/paper/2021/file/d1f491a404d6854880943e5c3cd9ca25-Paper.pdf)
+
+<h2 id="mlops-additional">Additional Resources</h2>
+
+The [Awesome MLOps GitHub repo](https://github.com/visenger/awesome-mlops) offeres an additional, complementary view of MLOps. It is more focues on best practices and tools, whereas we focus on a research and data-centric view of MLOps here.
