@@ -20,6 +20,10 @@ The second approach is model class agnostic and tackles feasibility study of a M
 
 Continuous integration (CI), continuous delivery (CD) and continuous testing (CT) are well established techniques in DevOps in order to ensure safe and faster lifecycles whilst continuously updating code in production. When adopting such systems to ML (e.g., by [Continuous Machine Learning](https://cml.dev/) in DVC), one has to be carefull to not be fooled by the inhertig randomness present in ML tests, nor to overfitt to a testset, if one plans on re-using the same dataset for testing the ML model multiple times. [Ease.ML/CI](https://mlsys.org/Conferences/2019/doc/2019/162.pdf) handles both aspectes for specific test conditions (e.g., the new model has to be better than the old by a fixed number of points) from theoretical perspective. It offeres strong statistical guarantees with reducing the samples complexity required as much as possible. The technical challenges for efficiently building these techniques into a CI system are described by [Karlaš et. al.](https://dl.acm.org/doi/abs/10.1145/3394486.3403290) This [blog post](https://ds3lab.ghost.io/ci/) further described the statistical and technical challenges and how they are approached.
 
+_Add more recent related work in this area._
+
+- [MLModelCI](https://arxiv.org/abs/2006.05096): Runtime (latency, throughput) performance
+
 <h2 id="mlops-deployment-model-managemen">Deployment and Model Management</h2>
 
 There is typically not only a single model active being developed or active in production. Various online repositories such as [Hugging Face](https://huggingface.co/models), [PyTorch Hub](https://pytorch.org/hub/) or [TensorFlow Hub](https://tfhub.dev/) facilitate sharing of pre-trained models. More complex systems such as [ModelDB](https://dm-gatech.github.io/CS8803-Fall2018-DML-Papers/hilda-modeldb.pdf), [DVC](https://dvc.org/) or [MLFlow](https://cs.stanford.edu/~matei/papers/2018/ieee_mlflow.pdf) extend the repository functionality by further enabling version of models and dataset, tracking of experiments and efficient deployment into production.
@@ -40,6 +44,7 @@ Debugging a ML model is likely to be required in any stages of MLOps. There are 
 - [MLINSPECT](https://dl.acm.org/doi/abs/10.1145/3448016.3452759): _tbd_.
 - [Amazon SageMaker Debugger](https://proceedings.mlsys.org/paper/2021/file/d1f491a404d6854880943e5c3cd9ca25-Paper.pdf): _tbd_.
 - [Checklist](https://homes.cs.washington.edu/~marcotcr/acl20_checklist.pdf): _tbd_.
+- [Model Assertion](https://arxiv.org/pdf/2003.01668.pdf): _tbd_.
 
 <h2 id="mlops-additional">Additional Resources</h2>
 
