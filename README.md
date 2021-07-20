@@ -190,5 +190,5 @@ The following individuals and organizations have contributed to the development 
 - [Braden Hancock](https://www.bradenhancock.com) from [Snorkel.ai](https://snorkel.ai) contributed to weak supervision
 - [Jared Dunnmon](https://jdunnmon.github.io) from the Defense Innovation Unit edited multiple sections
 - Alvin Ming and [Sharon Li](http://pages.cs.wisc.edu/~sharonli/) from U-Wisconsin contributed work in outlier detection
-- [Ce Zhang](https://scholar.google.ch/citations?user=GkXqbmMAAAAJ&hl=en) from ETH-Zurich added discussion for data cleaning and MLOps
+- [Ce Zhang](https://scholar.google.ch/citations?user=GkXqbmMAAAAJ&hl=en) and [Cedric Renggli](https://people.inf.ethz.ch/rengglic/).  from ETH-Zurich added discussion for data cleaning and MLOps
 - [Eugene Wu](http://www.cs.columbia.edu/~ewu/) from Columbia added discussion for data cleaning
