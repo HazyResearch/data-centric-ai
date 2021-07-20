@@ -25,7 +25,7 @@ When continuously testing ML models one has to be careful to not be fooled by th
 
 <h2 id="mlops-deployment-model-managemen">Deployment and Model Management</h2>
 
-There is typically not only a single model being developed or active in production. Various online repositories such as [Hugging Face](https://huggingface.co/models), [PyTorch Hub](https://pytorch.org/hub/) or [TensorFlow Hub](https://tfhub.dev/) facilitate sharing and reusing pre-trained models. Other systems such as [ModelDB](https://dm-gatech.github.io/CS8803-Fall2018-DML-Papers/hilda-modeldb.pdf), [DVC](https://dvc.org/) or [MLFlow](https://cs.stanford.edu/~matei/papers/2018/ieee_mlflow.pdf) extend the repository functionality by further enabling version of models and dataset, tracking of experiments and efficient deployment into production.
+There is typically not only a single model being developed or active in production. Various online repositories such as [Hugging Face](https://huggingface.co/models), [PyTorch Hub](https://pytorch.org/hub/) or [TensorFlow Hub](https://tfhub.dev/) facilitate sharing and reusing pre-trained models. Other systems such as [ModelDB](https://dm-gatech.github.io/CS8803-Fall2018-DML-Papers/hilda-modeldb.pdf), [DVC](https://dvc.org/) or [MLFlow](https://cs.stanford.edu/~matei/papers/2018/ieee_mlflow.pdf) extend the repository functionality by further enabling version of models and dataset, tracking of experiments and efficient deployment.
 
 <h2 id="mlops-monitoring">Monitoring and Adaptation</h2>
 
@@ -40,8 +40,8 @@ Debugging an ML model is likely to be required in any of the MLOps stages. There
 - [TFX Validation](https://mlsys.org/Conferences/2019/doc/2019/167.pdf): Generates and maintains a schema for the data. Failures in validating this schema either require the data to be fixed, or the schema to be changed.
 - [Deequ](https://ieeexplore.ieee.org/document/8731462): Enables unit-test for data via a declarative API by combining common quality constraints with user defined validation code.
 - [SliceLine](https://dl.acm.org/doi/10.1145/3448016.3457323): Finds problematic, potentially overlapping slices by exploiting various system specific aspects such as monotonicity properties and a linear-algebra-based enumeration algorithm on top of existing ML systems.
-- [MLINSPECT](https://dl.acm.org/doi/abs/10.1145/3448016.3452759): Detects data-distribution bugs by using linage-based annotations in a ML pipeline, which is modeled as a DAG of operations.
-- [Amazon SageMaker Debugger](https://proceedings.mlsys.org/paper/2021/file/d1f491a404d6854880943e5c3cd9ca25-Paper.pdf): Consists of an efficient tensor processing library along with built-in rules executed in dedicated Docker containers.
+- [MLINSPECT](https://dl.acm.org/doi/abs/10.1145/3448016.3452759): Detects data-distribution bugs by using linage-based annotations in a ML pipeline, which is modeled as a DAG.
+- [Amazon SageMaker Debugger](https://proceedings.mlsys.org/paper/2021/file/d1f491a404d6854880943e5c3cd9ca25-Paper.pdf): Consists of an efficient tensor processing library along with built-in rules executed in dedicated containers.
 - [Checklist](https://homes.cs.washington.edu/~marcotcr/acl20_checklist.pdf): Comprehensive behavioral testing of NLP models by modeling linguistic capabilities a NLP model should be able to capture.
 - [Model Assertion](https://arxiv.org/pdf/2003.01668.pdf): Abstraction for providing model assertions at runtime and during training in the form of arbitrary functions that can indicate when an error is likely to have occurred.
 
