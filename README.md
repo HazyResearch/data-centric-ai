@@ -39,13 +39,13 @@ If you'd like to make contributions to this Github repository, please read our [
 5. [Fine-Grained Evaluation](#evaluation)
 6. [Robustness](#robustness)
 7. [Data Cleaning](#cleaning)
-8. [MLOps](#mlops) (Under construction)
-8. [Data Privacy](#privacy) (Under construction)
-8. [Data Flow](#dataflow) (Under construction)
-8. [Multi-Task & Multi-Domain Learning](#mtl-mdl) (Under construction)
-9. [Emerging Trends](#emerging)
-10. [Applications](#applications)
-11. [Awesome Lists](awesome-lists/README.md)
+8. [MLOps](#mlops)
+9. [Data Privacy](#privacy) (Under construction)
+10. [Data Flow](#dataflow) (Under construction)
+11. [Multi-Task & Multi-Domain Learning](#mtl-mdl) (Under construction)
+12. [Emerging Trends](#emerging)
+13. [Applications](#applications)
+14. [Awesome Lists](awesome-lists/README.md)
 
 <h1 id="data-programming">Data Programming & Weak Supervision</h1>
 
@@ -124,12 +124,14 @@ Beyond subpopulation shift, robustness also features domain shift and adversaria
 Another way to improve data quality for ML/AI applications is via data cleaning. There is a diverse range of exciting work along this line to jointly understand data cleaning and machine learning. 
 
 
-<h1 id="mlops">MLOps  (Under Construction)</h1>
+<h1 id="mlops">MLOps</h1>
 
 [MLOps Area Page](mlops.md)
 
 The central role of data makes the development and deployment of ML/AI applications an human-in-the-loop process. 
 This is a complex process in which human engineers could make mistakes, require guidance, or need to be warned when something unexpected happens. The goal of MLOps is to provide principled ways for lifecycle management, monitoring, and validation.
+
+Researchers have started tackling these challenges by developing new techniques and building systems such as [TFX](https://arxiv.org/pdf/2010.02013.pdf), [Ease.ML](http://cidrdb.org/cidr2021/papers/cidr2021_paper26.pdf) or [Overton](https://www.cs.stanford.edu/~chrismre/papers/overton-tr.pdf) designed to handle the entire lifecycle of a machine learning model both during development and in production. These systems typically consist of distinct components in charge of handling specific stages (e.g., pre- or post-training) or aspects (e.g., monitoring or debugging) of MLOps.
 
 <h1 id="privacy">Data Privacy  (Under Construction)</h1>
 
