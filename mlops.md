@@ -43,7 +43,7 @@ Debugging a ML model is likely to be required in any stages of MLOps. There are 
 - [MLINSPECT](https://dl.acm.org/doi/abs/10.1145/3448016.3452759): Detects data-distribution bugs by using linage-based annotations in a ML pipline modeled as a DAG of operations.
 - [Amazon SageMaker Debugger](https://proceedings.mlsys.org/paper/2021/file/d1f491a404d6854880943e5c3cd9ca25-Paper.pdf): Debugger consisting of efficient tensor processing library along with built-in rules executed in dedicated Docker containers.
 - [Checklist](https://homes.cs.washington.edu/~marcotcr/acl20_checklist.pdf): Comprehensive behavioral testing of NLP models by modeling linguistic capabilities a NLP models should be able to capture.
-- [Model Assertion](https://arxiv.org/pdf/2003.01668.pdf): Abstraction for providing model assertion runtime and during training in the form of arbitrary functions that can indicate when an error is likely to have occurred.
+- [Model Assertion](https://arxiv.org/pdf/2003.01668.pdf): Abstraction for providing model assertions at runtime and during training in the form of arbitrary functions that can indicate when an error is likely to have occurred.
 
 <h2 id="mlops-additional">Additional Resources</h2>
 
