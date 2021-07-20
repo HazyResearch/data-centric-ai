@@ -18,15 +18,14 @@ The second approach is model class agnostic and tackles feasibility study of a M
 
 <h2 id="mlops-cicdct">CI/CD/CT</h2>
 
-Continuous integration (CI), continuous delivery (CD) and continuous testing (CT) are well established techniques in DevOps in order to ensure safe and faster lifecycles whilst continuously updating code in production. When adopting such systems to ML (e.g., by [Continuous Machine Learning](https://cml.dev/) in DVC), one has to be carefull to not be fooled by the inhertig randomness present in ML tests, nor to overfitt to a testset if one plans on re-using the same dataset for testing the ML model multiple times. [Ease.ML/CI](https://mlsys.org/Conferences/2019/doc/2019/162.pdf) handles both aspectes for specific test conditions (e.g., the new model has to be better than the old by a fixed number of points) from theoretical perspective. It offeres strong statistical guarantees with reducing the samples complexity required as much as possible. The technical challenges for efficiently building these techniques into a CI system are described by [Karlaš et. al.](https://dl.acm.org/doi/abs/10.1145/3394486.3403290) This [blog post](https://ds3lab.ghost.io/ci/) further described the statistical and technical challenges and how they are approached.
+Continuous integration (CI), continuous delivery (CD) and continuous testing (CT) are well established techniques in DevOps in order to ensure safe and faster lifecycles whilst continuously updating code in production.
+Various systems such as DVC's [Continyous Machine Learning (CML)](https://cml.dev/) or [MLModelCI](https://arxiv.org/abs/2006.05096) have been designed to efficiently handle the CI/CD parts. The key challenges from a ML specific viewpoint lie in runtime (latency and throughput) requirements when moving new models into production, which rely on many hyper-parameters such as batch-size and underlying hardware properties. 
 
-_Add more recent related work in this area._
-
-- [MLModelCI](https://arxiv.org/abs/2006.05096): Runtime (latency, throughput) performance
+When continously testing ML models one has to be carefull to not be fooled by the inhertig randomness of ML, nor to overfitt to a testset if one plans on re-using the same dataset for testing the ML model multiple times. [Ease.ML/CI](https://mlsys.org/Conferences/2019/doc/2019/162.pdf) handles both aspectes for specific test conditions (e.g., the new model has to be better than the old by a fixed number of points) from theoretical perspective. It offeres strong statistical guarantees with reducing the samples complexity required as much as possible. The technical challenges for efficiently building these techniques into a CI system are described by [Karlaš et. al.](https://dl.acm.org/doi/abs/10.1145/3394486.3403290) This [blog post](https://ds3lab.ghost.io/ci/) further described the statistical and technical challenges and how they are approached.
 
 <h2 id="mlops-deployment-model-managemen">Deployment and Model Management</h2>
 
-There is typically not only a single model being developed or active in production. Various online repositories such as [Hugging Face](https://huggingface.co/models), [PyTorch Hub](https://pytorch.org/hub/) or [TensorFlow Hub](https://tfhub.dev/) facilitate sharing and reusing pre-trained models. More complex systems such as [ModelDB](https://dm-gatech.github.io/CS8803-Fall2018-DML-Papers/hilda-modeldb.pdf), [DVC](https://dvc.org/) or [MLFlow](https://cs.stanford.edu/~matei/papers/2018/ieee_mlflow.pdf) extend the repository functionality by further enabling version of models and dataset, tracking of experiments and efficient deployment into production.
+There is typically not only a single model being developed or active in production. Various online repositories such as [Hugging Face](https://huggingface.co/models), [PyTorch Hub](https://pytorch.org/hub/) or [TensorFlow Hub](https://tfhub.dev/) facilitate sharing and reusing pre-trained models. Other systems such as [ModelDB](https://dm-gatech.github.io/CS8803-Fall2018-DML-Papers/hilda-modeldb.pdf), [DVC](https://dvc.org/) or [MLFlow](https://cs.stanford.edu/~matei/papers/2018/ieee_mlflow.pdf) extend the repository functionality by further enabling version of models and dataset, tracking of experiments and efficient deployment into production.
 
 <h2 id="mlops-monitoring">Monitoring and Adaptation</h2>
 
@@ -41,10 +40,10 @@ Debugging a ML model is likely to be required in any stages of MLOps. There are 
 - [TFX Validation](https://mlsys.org/Conferences/2019/doc/2019/167.pdf): The idea of this work is to generate a schema for the data. Failures in validating this schema either require the data to be fixed, or the schema to be changed.
 - [Deequ](https://ieeexplore.ieee.org/document/8731462): Enables unit-test for data via a declarative API by combinning common quality constraints with userdefined validation code.
 - [SliceLine](https://dl.acm.org/doi/10.1145/3448016.3457323): Finds problematic, potentially overlapping slices by exploiting various system specific aspects such as monotonicity properties and a linear-algebra-based enumeration algorithm on top of existing ML systems.
-- [MLINSPECT](https://dl.acm.org/doi/abs/10.1145/3448016.3452759): _tbd_.
-- [Amazon SageMaker Debugger](https://proceedings.mlsys.org/paper/2021/file/d1f491a404d6854880943e5c3cd9ca25-Paper.pdf): _tbd_.
-- [Checklist](https://homes.cs.washington.edu/~marcotcr/acl20_checklist.pdf): _tbd_.
-- [Model Assertion](https://arxiv.org/pdf/2003.01668.pdf): _tbd_.
+- [MLINSPECT](https://dl.acm.org/doi/abs/10.1145/3448016.3452759): Detects data-distribution bugs by using linage-based annotations in a ML pipline modeled as a DAG of operations.
+- [Amazon SageMaker Debugger](https://proceedings.mlsys.org/paper/2021/file/d1f491a404d6854880943e5c3cd9ca25-Paper.pdf): Debugger consisting of efficient tensor processing library along with built-in rules executed in dedicated Docker containers.
+- [Checklist](https://homes.cs.washington.edu/~marcotcr/acl20_checklist.pdf): Comprehensive behavioral testing of NLP models by modeling linguistic capabilities a NLP models should be able to capture.
+- [Model Assertion](https://arxiv.org/pdf/2003.01668.pdf): Abstraction for providing model assertion runtime and during training in the form of arbitrary functions that can indicate when an error is likely to have occurred.
 
 <h2 id="mlops-additional">Additional Resources</h2>
 
