@@ -2,7 +2,7 @@
 
 Two trends are determining the end of the "New Modelitis", the tendency of researchers and practitioners to focus on new model architectures with mostly marginal gains, rather than other, potentially more impactful, aspects of the machine learning pipeline, such as data quality and evaluation.
 
-Model building platforms like [Ludwig](https://eng.uber.com/introducing-ludwig/) and [Overton](https://www.cs.stanford.edu/~chrismre/papers/overton-tr.pdf) enforced commoditized architectures, and moved towards ML systems that can be created declaratively [Molino and Ré 2021](https://arxiv.org/abs/...). And they showed these commoditiy models were even better than their tuned predecessors!
+Model building platforms like [Ludwig](https://eng.uber.com/introducing-ludwig/) and [Overton](https://www.cs.stanford.edu/~chrismre/papers/overton-tr.pdf) enforced commoditized architectures, and moved towards ML systems that can be created declaratively [Molino and Ré 2021](https://arxiv.org/abs/2107.08148). And they showed these commoditiy models were even better than their tuned predecessors!
 
 With the ability to train models on unlabelled data, research is scaling up both data size and model size at an [impressive rate](https://medium.com/analytics-vidhya/openai-gpt-3-language-models-are-few-shot-learners-82531b3d3122). With access to such massive amounts of data, the question shifted from “how to construct the best model” to “how do you feed these models”.
 
