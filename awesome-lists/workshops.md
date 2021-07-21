@@ -2,7 +2,7 @@
 
 
 ## 2021
-
+- [SubSetML: Subset Selection in Machine Learning: From Theory to Practice](https://sites.google.com/view/icml-2021-subsetml/home), ICML
 - [Machine Learning for Data (ML4Data)](https://sites.google.com/view/ml4data), ICML
 - [Self-Supervised Learning for Reasoning and Perception](https://icml21ssl.github.io), ICML
 - [Uncertainty & Robustness in Deep Learning (UDL)](https://sites.google.com/view/udlworkshop2021/home), ICML
