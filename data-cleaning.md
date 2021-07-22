@@ -2,7 +2,7 @@ Under construction. Coming soon!
 
 ## Surveys
 
-* [IEEE Data Engineering Bulletin March 2021 Special Issue on Data Validation for ML](http://sites.computer.org/debull/A21mar/issue1.htm}
+* [IEEE Data Engineering Bulletin March 2021 Special Issue on Data Validation for ML](http://sites.computer.org/debull/A21mar/issue1.htm)
 * Xu Chu, Ihab F. Ilyas, Sanjay Krishnan, Jiannan Wang: Data Cleaning: Overview and Emerging Challenges. SIGMOD Conference 2016: 2201-2206
 
 
