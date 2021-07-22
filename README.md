@@ -40,12 +40,13 @@ If you'd like to make contributions to this Github repository, please read our [
 6. [Robustness](#robustness)
 7. [Data Cleaning](#cleaning)
 8. [MLOps](#mlops)
-9. [Data Privacy](#privacy) (Under construction)
-10. [Data Flow](#dataflow) (Under construction)
-11. [Multi-Task & Multi-Domain Learning](#mtl-mdl) (Under construction)
-12. [Emerging Trends](#emerging)
-13. [Applications](#applications)
-14. [Awesome Lists](awesome-lists/README.md)
+9. [Data Selection](#selection) (Under construction)
+10. [Data Privacy](#privacy) (Under construction)
+11. [Data Flow](#dataflow) (Under construction)
+12. [Multi-Task & Multi-Domain Learning](#mtl-mdl) (Under construction)
+13. [Emerging Trends](#emerging)
+14. [Applications](#applications)
+15. [Awesome Lists](awesome-lists/README.md)
 
 <h1 id="data-programming">Data Programming & Weak Supervision</h1>
 
@@ -132,6 +133,12 @@ The central role of data makes the development and deployment of ML/AI applicati
 This is a complex process in which human engineers could make mistakes, require guidance, or need to be warned when something unexpected happens. The goal of MLOps is to provide principled ways for lifecycle management, monitoring, and validation.
 
 Researchers have started tackling these challenges by developing new techniques and building systems such as [TFX](https://arxiv.org/pdf/2010.02013.pdf), [Ease.ML](http://cidrdb.org/cidr2021/papers/cidr2021_paper26.pdf) or [Overton](https://www.cs.stanford.edu/~chrismre/papers/overton-tr.pdf) designed to handle the entire lifecycle of a machine learning model both during development and in production. These systems typically consist of distinct components in charge of handling specific stages (e.g., pre- or post-training) or aspects (e.g., monitoring or debugging) of MLOps.
+
+<h1 id="selection">Data Selection  (Under Construction)</h1>
+
+[Data Selection Area Page](data-selection.md)
+
+_This area is a stub, you can help by improving it._
 
 <h1 id="privacy">Data Privacy  (Under Construction)</h1>
 
