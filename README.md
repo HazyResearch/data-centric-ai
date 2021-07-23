@@ -12,7 +12,8 @@ models into production is that the data often matters more. The goal of this rep
 is to consolidate this experience in a single place that can be accessed by anyone who
 wants to understand and contribute to this area.
 
-_We're only at the beginning, and you can help by contributing to this GitHub!_
+_We're only at the beginning, and you can help by contributing to this GitHub! [Thanks to all those who have
+contributed so far.](THANKS.md)_
 
 ## How Can I Help?
 
@@ -171,4 +172,3 @@ Data-centric AI is still growing, and we want to capture emerging trends as they
 [Applications Area Page](applications.md)
 
 Data-centric approaches have had a wide-ranging impact wherever machine learning is used and deployed, whether in academia, industry or other organizations. Impact spans modalities such as structured data, text, images, videos, graphs and others, while areas include text and image processing, medical imaging, computational biology, autonomous driving, etc.
-
