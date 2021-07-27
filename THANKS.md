@@ -14,5 +14,6 @@ The following individuals and organizations have contributed to the development 
 - [Ce Zhang](https://scholar.google.ch/citations?user=GkXqbmMAAAAJ&hl=en) and [Cedric Renggli](https://people.inf.ethz.ch/rengglic/) from ETH-Zurich added discussion for data cleaning and MLOps
 - [Eugene Wu](http://www.cs.columbia.edu/~ewu/) from Columbia added discussion for data cleaning
 - [Cody Coleman](http://www.codycoleman.com) from Stanford added discussion for data selection
+- [Michael Hedderich](https://michael-hedderich.de) from Saarland Informatics added discussion for data augmentation
 
 Thanks to everyone who has provided feedback on this resource, including Dan Hendrycks and Jacob Steinhardt at UC-Berkeley, James Zou, Matei Zaharia, Daniel Kang, Chelsea Finn from Stanford, Mike Cafarella from MIT, Ameet Talkwalkar from CMU.
