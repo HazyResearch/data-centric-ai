@@ -57,14 +57,16 @@ While these primitives have culminated in compelling performance gains, they can
 
 Heuristic transformations for text typically involve paraphrasing text in order to produce more diverse samples.
 
-- [Backtranslation](https://arxiv.org/abs/1511.06709) uses a round-trip translation from a source to target language and back in order to generate a paraphrase.
-  Examples of use include [QANet](https://arxiv.org/abs/1804.09541).
-- Synonym substitution methods replace words with their synonyms such as in
-  [Data Augmentation for Low-Resource Neural Machine Translation](https://www.aclweb.org/anthology/P17-2090/),
-  [Contextual Augmentation: Data Augmentation by Words with Paradigmatic Relations](https://www.aclweb.org/anthology/N18-2072/),
+- On a token level, synonym substitution methods replace words with their synonyms. Synonyms might be chosen based on
+   - a knowledge base such as a thesaurus: e.g. [Character-level Convolutional Networks for Text Classification](https://arxiv.org/pdf/1509.01626.pdf) and [An Analysis of Simple Data Augmentation for Named Entity Recognition](https://aclanthology.org/2020.coling-main.343/)
+   - neighbors in a word embedding space: e.g. [That’s So Annoying!!!](https://www.aclweb.org/anthology/D15-1306/) 
+   - probable words according to a language model that takes the sentence context into account: e.g. 
   [Model-Portability Experiments for Textual Temporal Analysis](https://www.aclweb.org/anthology/P11-2047/),
-  [That’s So Annoying!!!](https://www.aclweb.org/anthology/D15-1306/) and
-  [Character-level Convolutional Networks for Text Classification](https://arxiv.org/pdf/1509.01626.pdf)
+  [Data Augmentation for Low-Resource Neural Machine Translation](https://www.aclweb.org/anthology/P17-2090/) and
+  [Contextual Augmentation: Data Augmentation by Words with Paradigmatic Relations](https://www.aclweb.org/anthology/N18-2072/)
+- Sentence parts can be reordered by manipulating the syntax tree of a sentence: e.g. [Data augmentation via dependency tree morphing for low-resource languages](https://aclanthology.org/D18-1545/)
+- The whole sentence can be modified via [Backtranslation](https://aclanthology.org/P16-1009/). There a round-trip translation from a source to target language and back is used to generate a paraphrase. Examples of use include [QANet](https://arxiv.org/abs/1804.09541) and [Unsupervised Data Augmentation for Consistency Training](https://proceedings.neurips.cc/paper/2020/hash/44feb0096faa8326192570788b38c1d1-Abstract.html).
+
 
 [comment]: <> (- Noising)
 [comment]: <> (- Grammar induction)
