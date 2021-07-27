@@ -29,3 +29,75 @@ Subgroup information also does not need to be explicitly annotated or known. Sev
 - [Learning from Failure (LfF)](https://arxiv.org/abs/2007.02561) trains two models in tandem. Each model trains on the same data batches, where for each batch, datapoints that the first model gets incorrect are upweighted in the loss objective for the second model.
 - [Just Train Twice (JTT)]() trains an initial ERM model for a few epochs, identifies the datapoints this model gets incorrect after training, and trains a new model with ERM on the same dataset but with the incorrect points upsampled.
 - [Correct-N-Contrast (CNC)]() also trains an initial ERM model, but uses supervised contrastive learning to train a new model to learn similar representations for datapoints with the same class but different trained ERM model predictions.
+
+
+## Certified Robustness against Adversarial Perturbations
+
+Outside of subpopulation or domain shift, models based on standard training (i.e. empirical risk minimization (ERM)) are known to be vulnerable to carefully crafted adversarial perturbations. This vulnerability leads to security concerns for safety-critical AI applications such as autonomous vehicles (AV), where a malicious attacker can generate and add [imperceptible physical perturbations] (https://arxiv.org/abs/1707.08945) to the input data, leading to severe consequences (e.g., an AV that recognizes a stop sign as a speed limit sign and doesn't stop). 
+
+There has been an arms race between attacks and [defenses](https://robustbench.github.io/). Empirical defenses that claim to train robust models are often broken by subsequent adaptive attacks ([example](https://arxiv.org/abs/2002.08347)). Certified defenses guarantee a lower bound on the performance of a model under certain perturbation constraints (e.g., the perturbation magnitude is bounded by a certain norm distance).
+
+Certified robustness is jointly realized by both training and verification methods. For the common setting of a classification model against an Lp norm bounded attacker, as an example: the verification method takes individual data x0 from the test set with ground-truth label y0, and verifies the lower bound of the probability that for any perturbation \delta (||delta||_p <= eps), F(x0 + delta) = y0 always holds; the certified training method aims to train a model to improve such lower bounds.
+ 
+Existing methods on certified robustness can be divided into two groups: deterministic methods and probabilitic approaches.
+
+### Deterministic Approaches
+
+Deterministic approaches usually apply relaxations to the non-linear activation functions in neural networks for verification. Common relaxations include [interval bounds](https://arxiv.org/abs/1810.12715), [linear bounds](​​https://arxiv.org/abs/1711.00851), [Zonotopes](https://files.sri.inf.ethz.ch/website/papers/sp2018.pdf), [linear programming (LP)](https://arxiv.org/abs/1902.08722) relaxation, and [semidefinite programming (SDP)](https://arxiv.org/abs/2010.11645) relaxation, ranked in ascending order of tightness and descending order of scalability for large model size. Taking the interval bounds as an example, given an input perturbation [x0 - eps, x0 + eps], the method propagates the interval [l, u] as the possible value range for each neuron’s input and output layer by layer. Similarly, for linear bounds, we propagate the linear bound [l · x + b_l, u · x + b_u], where x is the (possibly perturbed) input. Finally, the model can be certified based on the confidence score bounds of each class in the final layer: if one can certify that the lower bound of the confidence score for the ground truth class is always higher than the upper bounds of other classes, the model is certifiably robust at input x0. To provide tighter certification, one can further [combine branch-and-bound strategy with these relaxations](https://arxiv.org/abs/2103.06624), where the branch-and-bound strategy splits the nonlinear ReLU to two states (<0 or >=0) thus linearizes some ReLUs, and then solve the resulting subproblems. The complete and precise verification has been proved [NP-complete](https://arxiv.org/abs/1702.01135) (even [const-ratio relaxation is also NP-complete](https://arxiv.org/abs/1804.09699)).
+
+The certified training methods for deterministic approaches usually leverage the bounds from verification methods: they compute an upper bound of worst-case empirical risk under perturbations from these verification methods, and either [directly minimizes the upper bound](https://arxiv.org/abs/1711.00851) or [minimizes its combination with standard clean loss](https://arxiv.org/abs/1906.06316).
+
+### Probabilistic Approaches
+
+Probabilistic approaches are usually based on [randomized smoothing](https://arxiv.org/abs/1902.02918). Since robustness issues can be due to the lack of smoothness, randomized smoothing takes the [majority voted class](https://arxiv.org/abs/1902.02918) (for classification) or [median/average](https://arxiv.org/abs/2007.03730) (for regression) over a set of smoothed input with noise added as the final prediction. 
+The choices of the smoothing noise distribution play a critical role in how much certified robustness we can obtain. Different noise distributions are suitable for defending against perturbations bounded by different Lp norms. [This work](https://arxiv.org/abs/2002.08118) systematically studies different noise distributions.
+
+The certified training methods for probabilistic approaches focus on improving the model’s prediction accuracy for noise corrupted inputs, where [standard noise augmented training](https://arxiv.org/abs/1902.02918), [adversarial training](https://arxiv.org/abs/1906.04584), [consistency regularization](https://arxiv.org/abs/2006.04062), and [certified radius maximization regularization](https://arxiv.org/abs/2001.02378) are popular methods.
+
+Compared with deterministic methods, the probabilistic approaches are more flexible as it does not require knowledge about detailed neural network structure. Indeed, the probabilistic approaches have been extended to defend against various threat models (as we will introduce later) or have been further improved to be deterministic (e.g., [against patch attack](https://arxiv.org/abs/2002.10733), [deterministic L1 robustness](https://arxiv.org/abs/2103.10834)). On the other hand, for the commonly used L-infinite norm, [an intrinsic barrier](https://arxiv.org/abs/2002.08118) of these methods has been shown, and it shows that the deterministic approaches are usually tighter under certain constraints.
+
+
+### Certified Robustness against Different Threat Models
+
+Besides Lp-norm bounded attacks, other (unrestricted) threat models may be more realistic in practice, and the certified robustness against these threat models is an ongoing hot topic. Here we list some important progresses.
+
+- [TSS: against semantic transformations](https://arxiv.org/abs/2002.12398)
+
+  TSS provides scalable certified robustness, including both certification and robust training methods, for common image transformations such as rotation, scaling, brightness change, construct change, blurring, and some of their combinations. TSS customizes the randomized smoothing for different transformations and significantly improves the certified robustness.
+
+- [Against vector field deformations](https://arxiv.org/abs/2009.09318)
+
+  An extension of linear relaxation provides certification against attacks that perform vector field deformations.
+
+- [Wasserstain smoothing](https://arxiv.org/abs/1910.10783): 
+
+  Alexander Levine and Soheil Feizi extend randomized smoothing to certifiably defend against Wasserstein distance bounded attacks.
+ 
+
+- [RAB](https://arxiv.org/abs/2003.08904), [DPA](https://arxiv.org/abs/2006.14768): against poisoning and backdoor attacks
+
+  In poisoning (backdoor) attacks, an attacker aims to manipulate the training dataset so as to either deteriorate the model performance on clean test dataset or mislead the model to be triggered by input with some specific backdoor patterns. The high-level idea of randomized smoothing, aggregating multiple model predictions, can also be applied to certifiably defend against poisoning or backdoor attacks. This time, the multiple model predictions come from multiple models trained with smoothed training dataset (RAB case) or different portions of training dataset (DPA case). 
+
+
+For a detailed overview of the field of certified robustness, we refer interested readers to a [survey](https://arxiv.org/abs/2009.04131). For the current state-of-the-art, please refer to this [leaderboard](https://github.com/AI-secure/Provable-Training-and-Verification-Approaches-Towards-Robust-Neural-Networks).
+
+### Certified Robustness in Different Learning Paradigms
+
+- Certified Robustness in Ensemble
+
+  Beyond single neural network models, there have also been efforts on improving the certified robustness via model ensemble, such as [RobBoost](https://arxiv.org/abs/1910.14655) and [DRT](https://arxiv.org/abs/2107.10873).
+
+  [DRT](https://arxiv.org/abs/2107.10873) connects the certifiably robust conditions of randomized smoothing with base models’ diversity in the ensemble - when the base models are diverse enough, the adversarial transferability between base models are limited, and aggregating the base models’ predictions can lead to higher certified robustness. 
+In addition, limiting the adversarial transferability between base models can also lead to higher empirical robustness against common attacks (e.g., [TRS](https://arxiv.org/abs/2104.00671) which provides the lower and upper bounds of adversarial transferability, and [DVERGE](https://arxiv.org/abs/2009.14720)). 
+
+- Certified Robustness in Reinforcement Learning
+
+  The certified robustness in reinforcement learning (RL) is a relatively open area. [CARRL](https://arxiv.org/abs/2004.06496) is inspired by linear relaxation based certified training and improves the empirical robustness of RL models against existing attacks. [CROP](https://arxiv.org/abs/2106.09292) systematically studies different certification criteria in RL and provides certification algorithms for each criterion correspondingly.
+
+- Certified Robustness in Federated Learning
+
+  Training-time attacks raise great concerns in federated learning (FL) since the local data and training process are entirely controlled by the local users. 
+[CRFL](https://arxiv.org/abs/2106.08283) extends randomized smoothing to model parameter smoothing and provides the first framework to train certifiably robust FL models against backdoors. Its certifications are on three levels: feature, sample and client. 
+
+  Another line of work is Byzantine-Robust FL where the adversarial behavior of users is modeled as Byzantine failure. Byzantine-Robust aggregation methods leverage different robust statistics, including [coordinate-wise median and trimmed mean](https://arxiv.org/abs/1803.01498), [geometric median of means](https://arxiv.org/abs/1705.05491), [approximate geometric median](https://arxiv.org/abs/1912.13445), [repeated median estimator](https://arxiv.org/abs/1912.11464) since median-based computations are more resistant to outliers than the default mean-based aggregation [FedAvg](https://arxiv.org/abs/1602.05629). These algorithms are provably robust with a focus on guaranteeing convergence rate under the Byzantine attackers.
+
