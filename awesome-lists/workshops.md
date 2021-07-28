@@ -22,7 +22,11 @@
 - [Workshop on MLOps Systems](https://mlops-systems.github.io/), MLSys
 - [Workshop on Data Management for End-to-end Machine Learning](http://deem-workshop.org/#), VLDB
 - [Workshop on Human-In-the-Loop Data Analytics](https://hilda.io/2020/), SIGMOD
+- [Evaluating Evaluation of AI Systems](http://eval.how/aaai-2020/), AAAI
+- [Data Excellence Workshop](http://eval.how/dew2020/index.html), HCOMP
+- [Workshop on Rigorous Evaluation of AI Systems](http://eval.how/reais-2020/index.html), HCOMP
 
 ## 2019
 
 - [The 2nd Learning from Limited Labeled Data (LLD) Workshop](https://lld-workshop.github.io/), ICLR
+- [Workshop on Rigorous Evaluation of AI Systems](http://eval.how/aaai/), HCOMP
