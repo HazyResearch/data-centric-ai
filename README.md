@@ -32,7 +32,7 @@ If you'd like to make contributions to this Github repository, please read our [
 
 
 # Table of Contents
-
+0. [Background](#background)
 1. [Data Programming & Weak Supervision](#data-programming)
 2. [Data Augmentation](#augmentation)
 3. [Self-Supervision](#self-supervision)
@@ -49,6 +49,15 @@ If you'd like to make contributions to this Github repository, please read our [
 14. [Applications](#applications)
 15. [Awesome Lists](awesome-lists/README.md)
 
+<h1 id="background">Background</h1>
+
+[Background](background.md)
+
+There's a lot of excitement around understanding how to put machine learning to work on real use-cases. 
+Data-Centric AI embodies a particular point of view around how this progress can happen: by focusing on making it easier for 
+practitioners to understand, program and iterate on datasets, instead of spending time on models. 
+
+
 <h1 id="data-programming">Data Programming & Weak Supervision</h1>
 
 [Data Programming & Weak Supervision Area Page](data-programming.md)
@@ -60,7 +69,7 @@ However, these were largely regarded by AI and AI/ML folks as ad hoc or isolated
 Data programming builds on a long line of work on parameter estimation in latent variable graphical models. Concretely, a generative model for the joint distribution of labeling functions and the unobserved (latent) true label is learned. This label model permits aggregation of diverse sources of signal, while allowing them to have varying accuracies and potential correlations.
 
 An overview of the weak supervision landscape can be found in this [Snorkel blog post](https://www.snorkel.org/blog/weak-supervision), including how it compares to other approaches to get more labeled data and the technical modeling challenges. 
-These [Stanford CS229 lecture notes](https://mayeechen.github.io/files/wslecturenotes.pdf) provide a theoretical summary of how graphical models are used in weak supervision.
+These [Stanford CS229 lecture notes](https://mayeechen.github.io/files/wslecturenotes.pdf) provide a theoretical summary of how graphical models are used in weak supervision. 
 
 <h1 id="augmentation">Data Augmentation</h1>
 
