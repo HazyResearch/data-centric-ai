@@ -56,10 +56,9 @@ The certified training methods for probabilistic approaches focus on improving t
 
 Compared with deterministic methods, the probabilistic approaches are more flexible as it does not require knowledge about detailed neural network structure. Indeed, the probabilistic approaches have been extended to defend against various threat models (as we will introduce later) or have been further improved to be deterministic (e.g., [against patch attack](https://arxiv.org/abs/2002.10733), [deterministic L1 robustness](https://arxiv.org/abs/2103.10834)). On the other hand, for the commonly used L-infinite norm, [an intrinsic barrier](https://arxiv.org/abs/2002.08118) of these methods has been shown, and it shows that the deterministic approaches are usually tighter under certain constraints.
 
-
 ### Certified Robustness against Different Threat Models
 
-Besides Lp-norm bounded attacks, other (unrestricted) threat models may be more realistic in practice, and the certified robustness against these threat models is an ongoing hot topic. Here we list some important progresses.
+Besides Lp-norm bounded attacks, other (unrestricted) threat models may be more realistic in practice, and the certified robustness against these threat models is an ongoing hot topic. Here we list some important progress.
 
 - [TSS: against semantic transformations](https://arxiv.org/abs/2002.12398)
 
@@ -69,7 +68,7 @@ Besides Lp-norm bounded attacks, other (unrestricted) threat models may be more 
 
   An extension of linear relaxation provides certification against attacks that perform vector field deformations.
 
-- [Wasserstain smoothing](https://arxiv.org/abs/1910.10783): 
+- [Wasserstein smoothing](https://arxiv.org/abs/1910.10783): 
 
   Alexander Levine and Soheil Feizi extend randomized smoothing to certifiably defend against Wasserstein distance bounded attacks.
  
@@ -101,3 +100,16 @@ In addition, limiting the adversarial transferability between base models can al
 
   Another line of work is Byzantine-Robust FL where the adversarial behavior of users is modeled as Byzantine failure. Byzantine-Robust aggregation methods leverage different robust statistics, including [coordinate-wise median and trimmed mean](https://arxiv.org/abs/1803.01498), [geometric median of means](https://arxiv.org/abs/1705.05491), [approximate geometric median](https://arxiv.org/abs/1912.13445), [repeated median estimator](https://arxiv.org/abs/1912.11464) since median-based computations are more resistant to outliers than the default mean-based aggregation [FedAvg](https://arxiv.org/abs/1602.05629). These algorithms are provably robust with a focus on guaranteeing convergence rate under the Byzantine attackers.
 
+## Robustness Through Simulated Data and Data Augmentation
+
+Since models can degrade in the face of unusual events, we need to train models on more unusual scenarios. However, because such scenarios are rare, acquiring enough real data is infeasible. Furthermore, the future presents novel scenarios unlike those in the past, and to anticipate the future models must be tested in unusual scenarios beyond what is included in data from the past. While the Internet is vast, it does not cover all rare events nor future events. Autonomous driving companies use a mixture of real data and simulated data because large fleets do not provide enough real data to cover myriad future events. Moreover, even platforms where millions of users upload images of animals only have images of about [17%](https://www.inaturalist.org/blog/42626-we-passed-300-000-species-observed-on-inaturalist
+) of all named species, demonstrating that even the Internet does not cover all visual concepts.
+To address the limitation that real data poorly represents unusual, extreme, or heavy tail scenarios, simulated data and data augmentation can help.
+
+When researchers test robustness to distribution shift, they may expose models to [corruptions](https://github.com/hendrycks/robustness/) such as snowfall or novel [object renditions](https://github.com/hendrycks/imagenet-r) such as cartoons. Some data augmentation techniques make models more robust to these types of distribution shifts:
+
+-	[AugMix](https://arxiv.org/abs/1912.02781) augments data by randomly composing simple augmentations such as rotations and translations, and then it takes a convex combination of these simple augmentations. These simple operations are enough to create examples that are diverse enough to teach models to be more robust to complicated corruptions such as snow or even object renditions. Consequently some forms data augmentation can provide enough variability and stressors that can teach models to generalize to distinct distribution shifts.
+
+-	[DeepAugment](https://arxiv.org/abs/2006.16241) uses neural networks to create more diverse and complicated data augmentations. Rather than perturb the image itself with primitives such as rotations, DeepAugment augments images by perturbing internal representations of deep networks that encode the image. The procedure is to feed an image through an image-to-image network (such as a denoising neural network) but perturb the hidden features of the network. As a consequence of perturbing the internal perturbations, the image that the model outputs is distorted and can serve as augmented data. This augmentation technique teaches models to generalize better to unseen corruption and rendition distribution shifts.
+
+Adversarial robustness can also be enhanced by data augmentation and simulated data. For example, AugMix can improve robustness to [unexpected adversarial attacks](https://arxiv.org/abs/1908.08016) more effectively than a 1000x increase in training data. Data augmentation, when carefully applied, can also [improve](https://arxiv.org/abs/2103.01946) l_infty adversarial robustness. Moreover, completely simulated data from diffusion models can markedly [boost adversarial robustness](https://arxiv.org/abs/2103.01946). These findings establish simulated data and data augmentation as a primary tool for improving model robustness.
