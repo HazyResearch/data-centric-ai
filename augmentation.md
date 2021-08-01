@@ -51,7 +51,7 @@ Recent work has hand-crafted more sophisticated primitives, such as
 - [CutMix](https://arxiv.org/abs/1905.04899.pdf)
 - [MixMatch](https://arxiv.org/pdf/1905.02249.pdf) and [ReMixMatch](https://arxiv.org/abs/1911.09785.pdf)
 
-While these primitives have culminated in compelling performance gains, they can often produce unnatural images and distort image semantics.
+While these primitives have culminated in compelling performance gains, they can often produce unnatural images and distort image semantics. However, data augmenation techniques such as [AugMix](https://arxiv.org/abs/1912.02781) can mix together various unnatural augmentations and lead to images that appear more natural.
 
 #### Text
 
@@ -103,6 +103,7 @@ One paradigm is to learn a semantically meaningful data representation, and mani
 - other methods look towards manifold traversal techniques such as
   [Deep Manifold Traversal: Changing Labels with Convolutional Features](https://arxiv.org/pdf/1511.06421.pdf),
   [Learning to disentangle factors of variation with manifold interaction](http://proceedings.mlr.press/v32/reed14.pdf)
+- other methods, such as [DeepAugment](https://arxiv.org/abs/2006.16241), simply use existing image-to-image models and manipulate embeddings randomly to produce diverse image outputs
 
 Another class of approaches relies on training conditional generative models, that learn a mapping between two or more data distributions.
 A prominent use case focuses on imbalanced datasets, where learned augmentations are used to generate examples for underrepresented classes or domains.
