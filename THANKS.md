@@ -15,5 +15,6 @@ The following individuals and organizations have contributed to the development 
 - [Eugene Wu](http://www.cs.columbia.edu/~ewu/) from Columbia added discussion for data cleaning
 - [Cody Coleman](http://www.codycoleman.com) from Stanford added discussion for data selection
 - [Michael Hedderich](https://michael-hedderich.de) from Saarland Informatics added discussion for data augmentation
+- [Dan Hendrycks](https://people.eecs.berkeley.edu/~hendrycks/) from UC-Berkeley added discussion around data augmentation and robustness.
 
-Thanks to everyone who has provided feedback on this resource, including Dan Hendrycks and Jacob Steinhardt at UC-Berkeley, James Zou, Matei Zaharia, Daniel Kang, Chelsea Finn from Stanford, Mike Cafarella from MIT, Ameet Talkwalkar from CMU.
+Thanks to everyone who has provided feedback on this resource, including Jacob Steinhardt at UC-Berkeley, James Zou, Matei Zaharia, Daniel Kang, Chelsea Finn from Stanford, Mike Cafarella from MIT, Ameet Talkwalkar from CMU.
