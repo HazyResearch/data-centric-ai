@@ -6,7 +6,7 @@ This GitHub is maintained by [Karan Goel](https://krandiash.github.io) and [Laur
 The following individuals and organizations have contributed to the development of this GitHub so far,
 - [Kabir Goel](https://kabirgoel.com) created the header artwork.
 - Members of [Hazy Research](https://hazyresearch.stanford.edu) created the first version of this resource, including
-[Michael Zhang](https://michaelzhang.xyz), [Mayee Chen](https://mayeechen.github.io), [Maya Varma](https://maya-varma.com),, [Sabri Eyuboglu](https://seyuboglu.com), [Megan Lesczynski](http://www.mleszczy.com/), Avanika Narayan, [Dan Fu](http://www.danfu.org/), [Arjun Desai](https://scholar.google.com/citations?user=0tusMC4AAAAJ&hl=en), [Tri Dao](https://stanford.edu/~trid/), [Khaled Saab](https://web.stanford.edu/~ksaab/), [Sen Wu](https://stanford.edu/~senwu/), [Beidi Chen](https://www.cs.rice.edu/~bc20/)
+[Michael Zhang](https://michaelzhang.xyz), [Mayee Chen](https://mayeechen.github.io), [Maya Varma](https://maya-varma.com), [Megan Lesczynski](http://www.mleszczy.com/), Avanika Narayan, [Dan Fu](http://www.danfu.org/), [Arjun Desai](https://scholar.google.com/citations?user=0tusMC4AAAAJ&hl=en), [Tri Dao](https://stanford.edu/~trid/), [Khaled Saab](https://web.stanford.edu/~ksaab/), [Sen Wu](https://stanford.edu/~senwu/), [Beidi Chen](https://www.cs.rice.edu/~bc20/)
 - [Piero Molino](https://w4nderlu.st/about) from [Predibase](https://predibase.com) added discussion around declarative machine learning
 - [Braden Hancock](https://www.bradenhancock.com) from [Snorkel.ai](https://snorkel.ai) contributed to weak supervision
 - [Jared Dunnmon](https://jdunnmon.github.io) from the Defense Innovation Unit edited multiple sections
@@ -16,5 +16,6 @@ The following individuals and organizations have contributed to the development 
 - [Cody Coleman](http://www.codycoleman.com) from Stanford added discussion for data selection
 - [Michael Hedderich](https://michael-hedderich.de) from Saarland Informatics added discussion for data augmentation
 - [Dan Hendrycks](https://people.eecs.berkeley.edu/~hendrycks/) from UC-Berkeley added discussion around data augmentation and robustness.
+- [Sabri Eyuboglu](https://seyuboglu.com) and [James Zou](https://www.james-zou.com) from Stanford added discussion around data deletion, valuation and augmentation
 
 Thanks to everyone who has provided feedback on this resource, including Jacob Steinhardt at UC-Berkeley, James Zou, Matei Zaharia, Daniel Kang, Chelsea Finn from Stanford, Mike Cafarella from MIT, Ameet Talkwalkar from CMU.
