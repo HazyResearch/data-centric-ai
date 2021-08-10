@@ -53,6 +53,8 @@ If you'd like to make contributions to this Github repository, please read our [
 
 [Background](background.md)
 
+_This area is a stub, you can help by improving it._
+
 There's a lot of excitement around understanding how to put machine learning to work on real use-cases. 
 Data-Centric AI embodies a particular point of view around how this progress can happen: by focusing on making it easier for 
 practitioners to understand, program and iterate on datasets, instead of spending time on models. 
