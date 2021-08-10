@@ -34,7 +34,7 @@ an integral part of text applications such as machine translation.
 A large body of work utilizes hand-crafted data augmentation primitives in order to improve
 model performance. These hand-crafted primitives are designed based on domain knowledge
 about data properties, e.g. rotating an image preserves the content of the image, and should
-typically not change the class label.
+typically not change the class label. 
 
 The next few sections provide a sampling of work across several different
 modalities (images, text, audio) that take this approach.
@@ -44,12 +44,12 @@ modalities (images, text, audio) that take this approach.
 Heuristic transformations are commonly used in image augmentations, such as rotations, flips or crops
 (e.g. [AlexNet](https://papers.nips.cc/paper/2012/file/c399862d3b9d6b76c8436e924a68c45b-Paper.pdf), [Inception](https://arxiv.org/abs/1409.4842.pdf)).
 
-Recent work has hand-crafted more sophisticated primitives, such as
+Recent work has proposed more sophisticated hand-crafted primitives:
 
-- [Cutout](https://arxiv.org/abs/1708.04552)
-- [Mixup](https://arxiv.org/pdf/1710.09412.pdf)
-- [CutMix](https://arxiv.org/abs/1905.04899.pdf)
-- [MixMatch](https://arxiv.org/pdf/1905.02249.pdf) and [ReMixMatch](https://arxiv.org/abs/1911.09785.pdf)
+- [Cutout](https://arxiv.org/abs/1708.04552) randomly masks patches of the input image during training. 
+- [Mixup](https://arxiv.org/pdf/1710.09412.pdf) augments a training dataset with convex combinations of training examples. There is substantial empirical [evidence](https://papers.nips.cc/paper/2019/file/36ad8b5f42db492827016448975cc22d-Paper.pdf) that Mixup can improve generalization and adversarial robustness. A recent [theoretical analysis](https://arxiv.org/abs/2010.04819) helps explain these gains, showing that the Mixup loss can be approximated by standard ERM loss with regularization terms.  
+- [CutMix](https://arxiv.org/abs/1905.04899.pdf) combines the two approaches above: instead of summing two input images (like Mixup), CutMix pastes a random patch from one image onto the other and updates the label to be weighted sum of the two image labels proportional to the size of the cutouts.
+- [MixMatch](https://arxiv.org/pdf/1905.02249.pdf) and [ReMixMatch](https://arxiv.org/abs/1911.09785.pdf) extend the utility of these techniques to semi-supervised settings.
 
 While these primitives have culminated in compelling performance gains, they can often produce unnatural images and distort image semantics. However, data augmenation techniques such as [AugMix](https://arxiv.org/abs/1912.02781) can mix together various unnatural augmentations and lead to images that appear more natural.
 
@@ -135,5 +135,5 @@ Several open questions remain in data augmentation and synthetic data generation
 
 <h2 id="augmentation-evenmore">Further Reading</h2>
 
-- the ["Automating the Art of Data Augmentation"](https://hazyresearch.stanford.edu/data-aug-part-1)
+- The ["Automating the Art of Data Augmentation"](https://hazyresearch.stanford.edu/data-aug-part-1)
   series of blog posts by [Sharon Li](http://pages.cs.wisc.edu/~sharonli/) provide an overview of data augmentation.

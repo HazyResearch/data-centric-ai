@@ -37,10 +37,9 @@ Automated methods for slice discovery include,
 
 - [SliceFinder](https://research.google/pubs/pub47966/) is an interactive framework
   for finding interpretable slices of data.
-- [SliceLine](https://mboehm7.github.io/resources/sigmod2021b_sliceline.pdf) uses a fast slice-enumeration
-  method to make the process of slice discovery efficient and parallelizable.
-- [GEORGE](https://arxiv.org/pdf/2011.12945.pdf), which uses standard approaches to cluster representations
-  of a deep model in order to discover underperforming subgroups of data.
+- [SliceLine](https://mboehm7.github.io/resources/sigmod2021b_sliceline.pdf) uses a fast slice-enumeration method to make the process of slice discovery efficient and parallelizable.
+- [GEORGE](https://arxiv.org/pdf/2011.12945.pdf) uses standard approaches to cluster representations of a deep model in order to discover underperforming subgroups of data.
+- [Multiaccuracy Audit](https://arxiv.org/abs/1805.12317) is a model-agnostic approach that searches for slices on which the model performs poorly by training a simple "auditor" model to predict the full model's residual from input features. This idea of fitting a simple model to predict the predictions of the full model is also used in the context of [explainable ML](https://arxiv.org/pdf/1910.07969.pdf).
 
 Future directions for slice discovery will continue to improve our understanding of how to find slices
 that are interpretable, task-relevant, error-prone and susceptible to distribution shift.
