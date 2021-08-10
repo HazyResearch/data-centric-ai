@@ -13,6 +13,7 @@ The following individuals and organizations have contributed to the development 
 - Alvin Ming and [Sharon Li](http://pages.cs.wisc.edu/~sharonli/) from U-Wisconsin contributed work in outlier detection
 - [Ce Zhang](https://scholar.google.ch/citations?user=GkXqbmMAAAAJ&hl=en) and [Cedric Renggli](https://people.inf.ethz.ch/rengglic/) from ETH-Zurich added discussion for data cleaning and MLOps
 - [Eugene Wu](http://www.cs.columbia.edu/~ewu/) from Columbia added discussion for data cleaning
+- [Bo Li](https://aisecure.github.io) from UIUC added discussion around adversarial robustness
 - [Cody Coleman](http://www.codycoleman.com) from Stanford added discussion for data selection
 - [Michael Hedderich](https://michael-hedderich.de) from Saarland Informatics added discussion for data augmentation
 - [Dan Hendrycks](https://people.eecs.berkeley.edu/~hendrycks/) from UC-Berkeley added discussion around data augmentation and robustness.
