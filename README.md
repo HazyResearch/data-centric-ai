@@ -47,7 +47,8 @@ If you'd like to make contributions to this Github repository, please read our [
 12. [Multi-Task & Multi-Domain Learning](#mtl-mdl) (Under construction)
 13. [Emerging Trends](#emerging)
 14. [Applications](#applications)
-15. [Awesome Lists](awesome-lists/README.md)
+15. [Case Studies](case-studies/README.md)
+16. [Awesome Lists](awesome-lists/README.md)
 
 <h1 id="background">Background</h1>
 

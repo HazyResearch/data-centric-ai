@@ -8,6 +8,7 @@ _This awesome list is a stub. You can help by improving it._
 
 <h2 id="platforms">Data-Centric Platforms</h2>
 
+- [Landing AI](https://landing.ai/platform/)
 - [Snorkel](https://snorkel.ai)
 
 <h2 id="mlops">ML Ops</h2>
