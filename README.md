@@ -149,17 +149,17 @@ This is a complex process in which human engineers could make mistakes, require 
 
 Researchers have started tackling these challenges by developing new techniques and building systems such as [TFX](https://arxiv.org/pdf/2010.02013.pdf), [Ease.ML](http://cidrdb.org/cidr2021/papers/cidr2021_paper26.pdf) or [Overton](https://www.cs.stanford.edu/~chrismre/papers/overton-tr.pdf) designed to handle the entire lifecycle of a machine learning model both during development and in production. These systems typically consist of distinct components in charge of handling specific stages (e.g., pre- or post-training) or aspects (e.g., monitoring or debugging) of MLOps.
 
-<h1 id="selection">Data Selection  (Under Construction)</h1>
+<h1 id="selection">Data Selection</h1>
 
 [Data Selection Area Page](data-selection.md)
 
-_This area is a stub, you can help by improving it._
+_This description is a stub, you can help by improving it._
 
 <h1 id="privacy">Data Privacy  (Under Construction)</h1>
 
 [Data Privacy Area Page](data-privacy.md)
 
-_This area is a stub, you can help by improving it._
+_This description is a stub, you can help by improving it._
 
 
 <h1 id="dataflow">Data Flow  (Under Construction)</h1>
