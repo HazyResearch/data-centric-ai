@@ -2,6 +2,7 @@
 
 
 ## 2021
+- [Data-Centric AI](https://neurips.cc/Conferences/2021/Schedule?showEvent=21860), NeurIPS
 - [SubSetML: Subset Selection in Machine Learning: From Theory to Practice](https://sites.google.com/view/icml-2021-subsetml/home), ICML
 - [Machine Learning for Data (ML4Data)](https://sites.google.com/view/ml4data), ICML
 - [Self-Supervised Learning for Reasoning and Perception](https://icml21ssl.github.io), ICML
