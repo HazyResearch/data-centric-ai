@@ -1,10 +1,10 @@
-## Structured Extractions in Gmail: From Heuristics to Learned  Extractors
+## Structured Extractions in Gmail: From Heuristics to Learned Extractors
 
-Extracting structured data from emails can enable several assistive experiences, such as reminding the user when a bill payment is due, answering queries about the location of a dentist appointment or updating users about when an online purchase is scheduled for delivery. Juicer is a privacy-safe extraction system over email serving more than a billion users worldwide [[2]][ref2].  The three key principles we followed when designing the system are: scale, simplicity, and privacy-safe.
+Extracting structured data from emails can enable several assistive experiences, such as reminding the user when a bill payment is due, answering queries about the location of a dentist appointment or updating users about when an online purchase is scheduled for delivery. Juicer is a privacy-safe extraction system over email serving more than a billion users worldwide ([Ying et al., 2018](https://research.google/pubs/pub46991/)).  The three key principles we followed when designing the system are: scale, simplicity, and privacy-safe.
 
-The extraction system was first built using hand-crafted rules, which is hard to maintain and scale. The recent advances in machine learning (ML) makes it possible to build a 'software 2.0' system which focuses on training models to learn from data instead of explicitly writing code for the required behavior. In the extraction system's case, we tried to use the extractions from the existing rule-based system as training data to learn ML models that in turn replace all the machinery for the rule-based system [[1]][ref1]. 
+The extraction system was first built using hand-crafted rules, which is hard to maintain and scale. The recent advances in machine learning (ML) makes it possible to build a 'software 2.0' system which focuses on training models to learn from data instead of explicitly writing code for the required behavior. In the extraction system's case, we tried to use the extractions from the existing rule-based system as training data to learn ML models that in turn replace all the machinery for the rule-based system ([Ying et al., 2020](https://research.google/pubs/pub48846/)). 
 
-The ML-based extraction system[[2]][ref2] consists of two kinds of classifiers: 1. a multi-label classifier that tells us which category the email belongs to and thus determines the sets of fields to extract; 2. a field classifier that finds the corresponding value for each field. For each field, a set of text spans with a certain type of annotation will be selected as the candidates. For example, the candidates for the event start time field are all the text spans that are annotated as time. Then the classifier picks one of these candidates as the field value.
+The ML-based extraction system ([Ying et al., 2018](https://research.google/pubs/pub46991/)) consists of two kinds of classifiers: 1. a multi-label classifier that tells us which category the email belongs to and thus determines the sets of fields to extract; 2. a field classifier that finds the corresponding value for each field. For each field, a set of text spans with a certain type of annotation will be selected as the candidates. For example, the candidates for the event start time field are all the text spans that are annotated as time. Then the classifier picks one of these candidates as the field value.
 
 ## Data Quality is the Key
 
@@ -21,7 +21,7 @@ After various data management on candidate, groundtruth and candidate-groundtrut
 By solving the challenges from data management in various stages, we built an ML-based extraction system with higher precision and recall to replace the hand-crafted rule based extraction system. The work further reinforces the argument that a critical ingredient of a real-world machine learning system is managing training data.
 
 
-## Reference
+## References
 
 1. [Sheng, Ying, et al. "Migrating a Privacy-Safe Information Extraction System to a Software 2.0 Design." (2020).][ref1]
 2. [Sheng, Ying, et al. "Anatomy of a privacy-safe large-scale information extraction system over email." Proceedings of the 24th ACM SIGKDD International Conference on Knowledge Discovery & Data Mining. 2018.][ref2]
