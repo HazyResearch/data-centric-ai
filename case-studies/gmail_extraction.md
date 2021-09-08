@@ -14,7 +14,7 @@ The biggest improvement came from managing data quality along 3 different aspect
 
 After various data management on candidate, groundtruth and candidate-groundtruth matching, we were able to produce high-quality training data and increase the extraction volume from 6% to  >100% of rule-based extractions with higher precision. See table below about precision and volume increase for Event and Purchase extraction tasks.
 
-![results](To be add)
+![results](https://github.com/oliviasheng/data-centric-ai/blob/patch-1/case-studies/gmail_extraction_case_study_result.png)
 
 ## Summary
 
