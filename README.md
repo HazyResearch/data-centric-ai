@@ -42,7 +42,7 @@ If you'd like to make contributions to this Github repository, please read our [
 7. [Data Cleaning](#cleaning)
 8. [MLOps](#mlops)
 9. [Data Selection](#selection)
-10. [Data Privacy](#privacy)
+10. [Data Privacy](#privacy) (Under construction)
 11. [Data Flow](#dataflow) (Under construction)
 12. [Multi-Task & Multi-Domain Learning](#mtl-mdl) (Under construction)
 13. [Emerging Trends](#emerging)
