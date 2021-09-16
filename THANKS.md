@@ -18,5 +18,9 @@ The following individuals and organizations have contributed to the development 
 - [Michael Hedderich](https://michael-hedderich.de) from Saarland Informatics added discussion for data augmentation
 - [Dan Hendrycks](https://people.eecs.berkeley.edu/~hendrycks/) from UC-Berkeley added discussion around data augmentation and robustness.
 - [Sabri Eyuboglu](https://seyuboglu.com) and [James Zou](https://www.james-zou.com) from Stanford added discussion around data deletion, valuation and augmentation
+- Ivan Zhou from Landing AI added a case study
+- Huaizheng Zhang from NTU added discussion to MLOps
+- Ying Sheng from Google added a case study for GMail
+- Rolando Garcia from UC-Berkeley added discussion on model debugging
 
 Thanks to everyone who has provided feedback on this resource, including Jacob Steinhardt at UC-Berkeley, James Zou, Matei Zaharia, Daniel Kang, Chelsea Finn from Stanford, Mike Cafarella from MIT, Ameet Talkwalkar from CMU.
