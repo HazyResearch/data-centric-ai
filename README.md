@@ -153,7 +153,12 @@ Researchers have started tackling these challenges by developing new techniques 
 
 [Data Selection Area Page](data-selection.md)
 
-_This description is a stub, you can help by improving it._
+Massive amounts of data enabled many of the successes of deep learning, but this big data brings its own problems. Working with massive datasets is cumbersome and expensive in terms of both computational resources and labeling. Data selection methods, such as active learning and core-set selection, can mitigate the pains of big data by selecting the most valuable examples to label or train on.
+
+While data selection has been a long-standing area in AI/ML, the scale and skew of modern, industrial datasets have pushed the field to more accurately value data and improve the scalability of selection methods. Recent works, such as ([Sener & Savarese](https://openreview.net/pdf?id=H1aIuk-RW) and [Ghorbani et al.](https://proceedings.mlr.press/v97/ghorbani19c/ghorbani19c.pdf)), take a more data-centric approach towards quantifying the contribution of each training example by focusing on diversity and representativeness rather than solely relying on model uncertainty. To help these methods scale, approaches, like [SVP](https://openreview.net/pdf?id=HJg2b0VYDr) and [SEALS](https://arxiv.org/pdf/2007.00077.pdf), present straightforward ways to reduce computational costs by up to three orders of magnitude, enabling web-scale active learning and data selection more broadly.
+
+These advances in label and computational efficiency make data selection applicable to modern datasets, allowing AI/ML to take a more data-centric view focused on quality rather than quantity.
+
 
 <h1 id="privacy">Data Privacy  (Under Construction)</h1>
 
