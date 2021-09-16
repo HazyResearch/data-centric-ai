@@ -39,9 +39,9 @@ It is well known that the accuracy of active models in production typically dimi
 
 In an ideal world, we would want an ML system in production to automatically adapt to changes in data distribution without the need of re-training from scratch. This area is known as continual learning (CL) or lifelong learning. Merging these algorithmic ideas into a working system is non-trivial as shown by [ModelCI-e](https://arxiv.org/pdf/2106.03122.pdf) and the related work cited therein.
 
-<h2 id="mlops-debugging">Logging and Debugging</h2>
+<h2 id="mlops-debugging">Debugging</h2>
 
-Debugging an ML model is likely to be necessary in any part of the MLOps stages. 
+For an ML application to be sustainable, support for debugging must exist. Debugging an ML model is likely to be necessary in any part of the MLOps stages. 
 There are many approaches to debug, or likewise prevent ML failures from happening.
 Unlike traditional forms of software, for which we rely on techniques like breakpoint-based cyclic debugging,
 bugs in model training rarely express themselves as localized failures that raise exceptions.
@@ -53,7 +53,9 @@ Increasingly more mature systems for logging in ML are available.
 In the event that the model developer may want to view or query more training data than they logged up-front, e.g. tensor histograms or images \& overlays,
 they may add [hindsight logging](http://www.vldb.org/pvldb/vol14/p682-garcia.pdf) statements to their code post-hoc and do a fast replay from model checkpoints.
 
-Next, we summarize the most prominent research, noting that all ideas somehow relate to human-generated or -assisted tests.
+A model is just one step of the ML pipeline. Many ML pipeline bugs lie outside of the modeling stage (e.g. in data cleaning or feature generation). ML pipelines cannot be sustainable or easily debugged without some end-to-end [observability](https://arxiv.org/abs/2108.13557), or visibility into all of the steps of the pipeline. Adopting the software mindset of observability, we posit that much of the work in ML observability lies around end-to-end logging and monitoring of inputs and outputs, as well as developing query interfaces for practitioners to be able to ask questions about their ML pipeline health.
+
+Next, we summarize prominent research directions in ML application sustainability:
 
 - [TFX Validation](https://mlsys.org/Conferences/2019/doc/2019/167.pdf) gnerates and maintains a schema for the data. Failures in validating this schema either require the data to be fixed, or the schema to be changed.
 - [Deequ](https://ieeexplore.ieee.org/document/8731462) enables unit-test for data via a declarative API by combining common quality constraints with user defined validation code.
@@ -62,7 +64,8 @@ Next, we summarize the most prominent research, noting that all ideas somehow re
 - [Amazon SageMaker Debugger](https://proceedings.mlsys.org/paper/2021/file/d1f491a404d6854880943e5c3cd9ca25-Paper.pdf) consists of an efficient tensor processing library along with built-in rules executed in dedicated containers.
 - [Checklist](https://homes.cs.washington.edu/~marcotcr/acl20_checklist.pdf) enables comprehensive behavioral testing of NLP models by modeling linguistic capabilities a NLP model should be able to capture.
 - [Model Assertion](https://arxiv.org/pdf/2003.01668.pdf) provides an abstraction for model assertions at runtime and during training in the form of arbitrary functions that can indicate when an error is likely to have occurred.
-- [FLOR](http://github.com/ucbrise/flor) Is a record-replay library designed for hindsight logging of model training.
+- [FLOR](https://github.com/ucbrise/flor) Is a record-replay library designed for hindsight logging of model training.
+- [mltrace](https://github.com/loglabs/mltrace) is an end-to-end observability system for ML pipelines.
 
 <h2 id="mlops-additional">Additional Resources</h2>
 
