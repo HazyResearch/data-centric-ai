@@ -7,6 +7,15 @@ Researchers have started tackling these challenges by developing new techniques 
 
 We provide a more detailed overview of prominent MLOps stages or aspects with a strong research-focus in the remainder of this area, noting that this field of research is relatively young and consists of many connections to other areas of data-centric AI. Additionally, notice that most sections are inspired by well-established DevOps techniques one encounters when developing traditional software artifacts. Adopting these techniques to MLOps in a rigorous and statistical sound way is often non-trivial as one has to take into account the inherent randomness of ML tasks and its finite-sample data dependency.
 
+For more details, we encourage users to read the [MLOps whitepaper](https://services.google.com/fh/files/misc/practitioners_guide_to_mlops_whitepaper.pdf) from Google. Below is a simplified but canonical MLOps workflow from the whitepaper. 
+
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/5894780/133565963-f757db23-f656-4e5a-9599-fa1195ce5ead.png" alt="drawing" width="750" />
+</p>
+
+
+
 <h2 id="mlops-data-acquisition-feasibility-study">Feasibility Study and Data Acquisition</h2>
 
 In DevOps practices, new projects typically are evaluated upon their probability of success via a feasibility study. Whilst performing such a task in the context of ML dev has some similarities such as the hardware and engineering availability, there are two different approaches to evaluate the feasibility of ML project with respect to its data.
