@@ -36,6 +36,12 @@ When continuously testing ML models one has to be careful to not be fooled by th
 
 There is typically not only a single model being developed or active in production. Various online repositories such as [Hugging Face](https://huggingface.co/models), [PyTorch Hub](https://pytorch.org/hub/) or [TensorFlow Hub](https://tfhub.dev/) facilitate sharing and reusing pre-trained models. Other systems such as [ModelDB](https://dm-gatech.github.io/CS8803-Fall2018-DML-Papers/hilda-modeldb.pdf), [DVC](https://dvc.org/) or [MLFlow](https://cs.stanford.edu/~matei/papers/2018/ieee_mlflow.pdf) extend the repository functionality by further enabling version of models and dataset, tracking of experiments and efficient deployment.
 
+Models may be deployed in the cloud to form prediction-serving systems.
+Intelligent applications or services may then poll the model for predictions.
+In this context of ML-as-a-service, the hosting platform must be able to 
+respond to a high volume of bursty requests with very low latency.
+[Clipper](https://www.usenix.org/system/files/conference/nsdi17/nsdi17-crankshaw.pdf) is an early example in this space. 
+
 <h2 id="mlops-monitoring">Monitoring and Adaptation</h2>
 
 It is well known that the accuracy of active models in production typically diminishes over time. The main reason for this lies in the distribution shift between the new real-time test data and the data used to train the model originally. The most prominent remedy to this problem still lies periodically (sometimes on a daily or even hourly basis) re-training models using fresh training data. This is a very costly undertaking which can be prevented by having access to so called drift detectors (also refered to as anomaly or outlier detectors). [MLDemon](https://arxiv.org/abs/2104.13621) models a human-in-the-loop approach to minimize the number of required verifications. [Klaise et. al.](https://arxiv.org/abs/2007.06299) suggest that outlier detectors should be coupled with explainable AI (XAI) techniques to help humans understand the predictions and potential distribution drift.
@@ -44,7 +50,21 @@ In an ideal world, we would want an ML system in production to automatically ada
 
 <h2 id="mlops-debugging">Debugging</h2>
 
-Debugging an ML model is likely to be required in any of the MLOps stages. There are many approaches to debug, or likewise prevent ML failures from happening. We summarize the most prominent research next, noting that all ideas somehow relate to human-generated or -assisted tests.
+For an ML application to be sustainable, support for debugging must exist. Debugging an ML model is likely to be necessary in any part of the MLOps stages. 
+There are many approaches to debug, or likewise prevent ML failures from happening.
+Unlike traditional forms of software, for which we rely on techniques like breakpoint-based cyclic debugging,
+bugs in model training rarely express themselves as localized failures that raise exceptions.
+Instead, a bug in model training is expressed in the loss or other metrics.
+Thus, model developers cannot pause a training run to query state. Instead, they must trace the value of 
+a stochastic variable over time: they must log training metrics.
+Increasingly more mature systems for logging in ML are available. 
+[TensorBoard](https://www.tensorflow.org/tensorboard) and [WandB](https://wandb.ai/site) are two examples.
+In the event that the model developer may want to view or query more training data than they logged up-front, e.g. tensor histograms or images \& overlays,
+they may add [hindsight logging](http://www.vldb.org/pvldb/vol14/p682-garcia.pdf) statements to their code post-hoc and do a fast replay from model checkpoints.
+
+A model is just one step of the ML pipeline. Many ML pipeline bugs lie outside of the modeling stage (e.g. in data cleaning or feature generation). ML pipelines cannot be sustainable or easily debugged without some end-to-end [observability](https://arxiv.org/abs/2108.13557), or visibility into all of the steps of the pipeline. Adopting the software mindset of observability, we posit that much of the work in ML observability lies around end-to-end logging and monitoring of inputs and outputs, as well as developing query interfaces for practitioners to be able to ask questions about their ML pipeline health.
+
+Next, we summarize prominent research directions in ML application sustainability:
 
 - [TFX Validation](https://mlsys.org/Conferences/2019/doc/2019/167.pdf) gnerates and maintains a schema for the data. Failures in validating this schema either require the data to be fixed, or the schema to be changed.
 - [Deequ](https://ieeexplore.ieee.org/document/8731462) enables unit-test for data via a declarative API by combining common quality constraints with user defined validation code.
@@ -53,6 +73,8 @@ Debugging an ML model is likely to be required in any of the MLOps stages. There
 - [Amazon SageMaker Debugger](https://proceedings.mlsys.org/paper/2021/file/d1f491a404d6854880943e5c3cd9ca25-Paper.pdf) consists of an efficient tensor processing library along with built-in rules executed in dedicated containers.
 - [Checklist](https://homes.cs.washington.edu/~marcotcr/acl20_checklist.pdf) enables comprehensive behavioral testing of NLP models by modeling linguistic capabilities a NLP model should be able to capture.
 - [Model Assertion](https://arxiv.org/pdf/2003.01668.pdf) provides an abstraction for model assertions at runtime and during training in the form of arbitrary functions that can indicate when an error is likely to have occurred.
+- [FLOR](https://github.com/ucbrise/flor) Is a record-replay library designed for hindsight logging of model training.
+- [mltrace](https://github.com/loglabs/mltrace) is an end-to-end observability system for ML pipelines.
 
 <h2 id="mlops-additional">Additional Resources</h2>
 
