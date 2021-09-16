@@ -7,7 +7,7 @@ Researchers have started tackling these challenges by developing new techniques 
 
 We provide a more detailed overview of prominent MLOps stages or aspects with a strong research-focus in the remainder of this area, noting that this field of research is relatively young and consists of many connections to other areas of data-centric AI. Additionally, notice that most sections are inspired by well-established DevOps techniques one encounters when developing traditional software artifacts. Adopting these techniques to MLOps in a rigorous and statistical sound way is often non-trivial as one has to take into account the inherent randomness of ML tasks and its finite-sample data dependency.
 
-For more details, we encourage users to read the [MLOps whitepaper](https://services.google.com/fh/files/misc/practitioners_guide_to_mlops_whitepaper.pdf) from Google. Below is a simplified but canonical MLOps workflow from the whitepaper. 
+Readers can refer to the [MLOps whitepaper](https://services.google.com/fh/files/misc/practitioners_guide_to_mlops_whitepaper.pdf) from Google for a broad overview of MLOps. A canonical MLOps workflow taken from the whitepaper is shown below.
 
 
 <p align="center">
