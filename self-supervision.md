@@ -23,6 +23,27 @@ As self-supervised embeddings are trained in a general-purpose manner, they are 
 - [Exploring the Limits of Transfer Learning with a Unified Text-to-Text Transformer](https://arxiv.org/pdf/1910.10683v1.pdf) and the tutorial of [Transfer Learning in Natural Language Processing](https://www.aclweb.org/anthology/N19-5004.pdf) give an overview of the different factors contributing to the success of transfer learning methods in natural language processing.
 - [A Mathematical Exploration of Why Language Models Help Solve Downstream Tasks](https://arxiv.org/pdf/2010.03648.pdf) seeks to explain why pretraining on next token prediction self-supervised tasks improves downstream performance.
 
+
+<h2 id="learning-with-structured-knowledge">Knowledge-Backed Systems</h2>
+While treating self-supervised models like BERT or GPT as black boxes and adapting them to downstream tasks has resulted in impressive performance gains, this paradigm presents three challenges:
+
+1. When these models are adapated, they must *implicity* learn knowledge related to the task. For example, when adapting to a downstream QA task, these pretrained models will learn implicit knowledge about facts and entities to answer questions. This makes interpretability and reasoning of knowledge sources difficult. When potentially managing private data sources with different regulations around its use, engineers need more transparency around what knowledge a model is learning and relying on.
+
+2. A common challenge with self-supervised training data is the long-tail on knowledge where rare entities and concepts are underrepresented in training data. Models often struggle to reason over rare concepts as the diversity of signals required to understand them is not represented in training data (and would be almost impossible to represent as the scale of such a training dataset would be enormous). Models need the ability to efficiently reason over the tail.
+
+3. As self-supervised models are often large and expensive to train, they are often treated as static artifacts. However, knowledge to constantly changing. For example, Wikipedia is updated every two weeks. Engineers need methods to easily and efficiently update models to handle dynamically changing data.
+
+A recent trend towards addressing these issues is what we call "knowledge-backed" systems (this aligns with the same notion of [Retrieval-Backed NLP Systems](https://ai.stanford.edu/blog/retrieval-based-NLP/)). In this paradigm, models are given **explicit** representations of knowledge and allowed to search and access this knowledge for a downstream task. One form this knowledge-backed pipeline presents itself is in retrieval NLP systems such as [REALM](https://arxiv.org/abs/2002.08909), [RAG](https://arxiv.org/abs/2005.11401), and [ColBERT](https://arxiv.org/abs/2007.00814). In this form, models are given access to encoded passages from knowledge sources such as Wikipedia and allowed to search over these passages. Another type of knowledge-backed system is one that leverages entity embeddings such as [KnowBERT](https://arxiv.org/abs/1909.04164), [E-BERT](https://arxiv.org/abs/1911.03681v2), or [TACRED-Bootleg](https://arxiv.org/abs/2010.10363). This first requires an entity-linking system to identify entities in a passage and generate entity representations for a downstream task. 
+
+We now discuss how knowledge-backed systems address each challenge above.
+
+**Lack of Transparency.**
+
+**Tail Reasoning.** One approach to improve tail performance is to leverage structural information relating to the type or relationships of entities in the sentence. This structural knowledge gives the model a generalizable pattern to learn rather than explicitly memorizing facts. For example, if a model performing relation extraction can reason over two entities that are married, it does not need to memorize which entities are married. The work of [Bootleg](https://hazyresearch.stanford.edu/bootleg/) even showed how structural knowledge can aid in the task of extracting rare entities from sentences, a precursor step to leveraging entities in downstream tasks.
+
+**Updating Kknowledge.**
+
+<!-- 
 <h2 id="learning-with-structured-knowledge">Learning with Structured Knowledge</h2>
 
 In a self-supervised regime, large, unlabeled datasets make it difficult for engineers to inject domain specific knowledge into the model. One approach to have this fine-grained control over a model, while keeping the model as simple as possible, is to inject (latent) metadata into the model. For example, works like [TEK](https://arxiv.org/pdf/2004.12006.pdf) inject entity descriptions for improved reading comprehension and QA.
@@ -31,7 +52,7 @@ The real benefit from knowledge injection is over the long tail of rare things (
 
 - The [Bootleg](https://hazyresearch.stanford.edu/bootleg/) system leverages structured data in the form of type and knowledge graph relations to improve Named Entity Disambiguation over 40 F1 points for rare entities.
 - This [zero-shot NED system](https://arxiv.org/pdf/1906.07348.pdf) uses entity descriptions to improve rare entity linking performance.
-- The word sense disambiguation model by [Belvins and Zettlemoyer](https://arxiv.org/pdf/2005.02590v1.pdf) use word glosses to improve performance for rare words.
+- The word sense disambiguation model by [Belvins and Zettlemoyer](https://arxiv.org/pdf/2005.02590v1.pdf) use word glosses to improve performance for rare words. -->
 
 <h2 id="contrastive-learning">Contrastive Learning</h2>
 
