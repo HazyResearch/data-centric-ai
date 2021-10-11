@@ -31,13 +31,15 @@ In observational supervision, we investigate how to extract the rich information
 
 Interesting works have collected observational signals such as:
 
-- Eye tracking data in medicine (chest x-ray [dataset](https://www.nature.com/articles/s41597-021-00863-5.pdf))
+- Eye tracking data in medicine:
+  - Chest X-Rays, dictation audio, bounding boxes, and gaze on 3,032 images by R. Lanfredi et al. [dataset](https://www.physionet.org/content/reflacx-xray-localization/1.0.0/) 
+  - Chest X-Rays, reports, dictation audio, and gaze on 1,083 images by A. Karargyris et al. [dataset](https://physionet.org/content/egd-cxr/1.0.0/)
+  - Two medical datasets on Chest X-Rays and brain MRI by K. Saab et al. [dataset](https://github.com/HazyResearch/observational/tree/main/gaze_data)
 - Eye tracking plus brain activity in NLP (Zuco [dataset](https://www.nature.com/articles/sdata2018291.pdf))
-- We have also collaborated with Stanford radiologists to curate an additional two medical datasets with eye tracking data [coming soon!].
+
 
 Critical papers in observational supervision:
 
 - Some of the pioneering work on using gaze data. N. Hollenstein and C. Zhang showed how to use gaze data to improve NLP models [paper](https://arxiv.org/pdf/1902.10068.pdf).
 - Improving zero-shot learning with gaze by N. Karasseli et al. [paper](https://openaccess.thecvf.com/content_cvpr_2017/papers/Karessli_Gaze_Embeddings_for_CVPR_2017_paper.pdf)
-- Improving sample complexity with gaze by K. Saab et al. [paper](https://openreview.net/pdf?id=r1gPtjcH_N)
-- Our recent work on supervising medical models from scratch [coming soon!]
+- Weak supervision and multi-task learning with gaze by K. Saab et al. [paper](https://web.stanford.edu/~ksaab/media/MICCAI_2021.pdf)
