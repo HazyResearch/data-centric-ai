@@ -5,3 +5,4 @@ We want to gather case studies with real-life applications of data-centric AI. P
 ## Table of Contents
 1. [Landing AI](landingai.md)
 2. [Gmail Extraction](gmail_extraction.md)
+3. [Snorkel AI](snorkelai.md)
