@@ -4,7 +4,7 @@
 </div>
 
 We're collecting (an admittedly opinionated) list of resources and progress made
-in data-centric AI, with exciting directions past, present and future. 
+in data-centric AI, with exciting directions past, present and future.
 [This blog talks about our journey to data-centric AI](https://hazyresearch.stanford.edu/data-centric-ai) and
 we articulate [why we're excited about data as a viewpoint for AI in this blog](https://hazyresearch.stanford.edu/what-data-centric-ai-is-not).
 
@@ -28,7 +28,7 @@ If you have ideas on how we can make this repository better, feel free to submit
 
 ### Contributing
 
-We want this resource to grow with contributions from readers and data enthusiasts. 
+We want this resource to grow with contributions from readers and data enthusiasts.
 If you'd like to make contributions to this Github repository, please read our [contributing guidelines](CONTRIBUTING.md).
 
 
@@ -57,9 +57,9 @@ If you'd like to make contributions to this Github repository, please read our [
 
 _This area is a stub, you can help by improving it._
 
-There's a lot of excitement around understanding how to put machine learning to work on real use-cases. 
-Data-Centric AI embodies a particular point of view around how this progress can happen: by focusing on making it easier for 
-practitioners to understand, program and iterate on datasets, instead of spending time on models. 
+There's a lot of excitement around understanding how to put machine learning to work on real use-cases.
+Data-Centric AI embodies a particular point of view around how this progress can happen: by focusing on making it easier for
+practitioners to understand, program and iterate on datasets, instead of spending time on models.
 
 
 <h1 id="data-programming">Data Programming & Weak Supervision</h1>
@@ -68,11 +68,11 @@ practitioners to understand, program and iterate on datasets, instead of spendin
 
 Many modern machine learning systems require large, labeled datasets to be successful, but producing such datasets is time-consuming and expensive. Instead, weaker sources of supervision, such as [crowdsourcing](https://papers.nips.cc/paper/2011/file/c667d53acd899a97a85de0c201ba99be-Paper.pdf), [distant supervision](https://www.aclweb.org/anthology/P09-1113.pdf), and domain experts' heuristics like [Hearst Patterns](https://people.ischool.berkeley.edu/~hearst/papers/coling92.pdf) have been used since the 90s.
 
-However, these were largely regarded by AI and AI/ML folks as ad hoc or isolated techniques. The effort to unify and combine these into a data centric viewpoint started in earnest with [data programming](https://arxiv.org/abs/1605.07723), embodied in [Snorkel](https://snorkel.ai/how-to-use-snorkel-to-build-ai-applications/), now an [open-source project](http://snorkel.org) and [thriving company](http://snorkel.ai). In the Snorkel approach, users specify multiple labeling functions that each represent a noisy estimate of the ground-truth label. Because these labeling functions vary in accuracy and coverage of the dataset, and may even be correlated, they are combined and denoised via a latent variable graphical model. The technical challenge is thus to learn accuracy and correlation parameters in this model, and to use them to infer the true label to be used for downstream tasks.
+However, these were largely regarded by AI and AI/ML folks as ad hoc or isolated techniques. The effort to unify and combine these into a data centric viewpoint started in earnest with [data programming](https://arxiv.org/abs/1605.07723) AKA [programmatic labeling](https://snorkel.ai/programmatic-labeling/), embodied in [Snorkel](https://snorkel.ai/how-to-use-snorkel-to-build-ai-applications/), now an [open-source project](http://snorkel.org) and [thriving company](http://snorkel.ai). In Snorkel's [data-centric AI](https://snorkel.ai/data-centric-ai-primer/) approach, users specify multiple labeling functions that each represent a noisy estimate of the ground-truth label. Because these labeling functions vary in accuracy and coverage of the dataset, and may even be correlated, they are combined and denoised via a latent variable graphical model. The technical challenge is thus to learn accuracy and correlation parameters in this model, and to use them to infer the true label to be used for downstream tasks.
 
 Data programming builds on a long line of work on parameter estimation in latent variable graphical models. Concretely, a generative model for the joint distribution of labeling functions and the unobserved (latent) true label is learned. This label model permits aggregation of diverse sources of signal, while allowing them to have varying accuracies and potential correlations.
 
-An overview of the weak supervision landscape can be found in this [Snorkel blog post](https://www.snorkel.org/blog/weak-supervision), including how it compares to other approaches to get more labeled data and the technical modeling challenges. 
+This Snorkel blog post contains an overview of [weak supervision](https://snorkel.ai/weak-supervision/), including how it compares to other approaches to get more labeled data and the technical modeling challenges.
 These [Stanford CS229 lecture notes](https://mayeechen.github.io/files/wslecturenotes.pdf) provide a theoretical summary of how graphical models are used in weak supervision. 
 
 <h1 id="augmentation">Data Augmentation</h1>
@@ -138,14 +138,14 @@ Beyond subpopulation shift, robustness also features domain shift and adversaria
 
 [Data Cleaning Area Page](data-cleaning.md)
 
-Another way to improve data quality for ML/AI applications is via data cleaning. There is a diverse range of exciting work along this line to jointly understand data cleaning and machine learning. 
+Another way to improve data quality for ML/AI applications is via data cleaning. There is a diverse range of exciting work along this line to jointly understand data cleaning and machine learning.
 
 
 <h1 id="mlops">MLOps</h1>
 
 [MLOps Area Page](mlops.md)
 
-The central role of data makes the development and deployment of ML/AI applications an human-in-the-loop process. 
+The central role of data makes the development and deployment of ML/AI applications an human-in-the-loop process.
 This is a complex process in which human engineers could make mistakes, require guidance, or need to be warned when something unexpected happens. The goal of MLOps is to provide principled ways for lifecycle management, monitoring, and validation.
 
 Researchers have started tackling these challenges by developing new techniques and building systems such as [TFX](https://arxiv.org/pdf/2010.02013.pdf), [Ease.ML](http://cidrdb.org/cidr2021/papers/cidr2021_paper26.pdf) or [Overton](https://www.cs.stanford.edu/~chrismre/papers/overton-tr.pdf) designed to handle the entire lifecycle of a machine learning model both during development and in production. These systems typically consist of distinct components in charge of handling specific stages (e.g., pre- or post-training) or aspects (e.g., monitoring or debugging) of MLOps.
