@@ -21,6 +21,11 @@ Named entity linking (NEL) is the task of linking ambiguous mentions in text to 
   - Radiologist reports (and more generally text) have been used to improve learned visual representations (e.g. [ConVIRT](https://arxiv.org/abs/2010.00747)) and to source weak labels in annotation-scarce settings (e.g. ([PET/CT](https://www-nature-com.stanford.idm.oclc.org/articles/s41467-021-22018-1)))
   - Auxiliary features from other rich, semi-structured data, such as [electronic health records (EHRs)](https://www-nature-com.stanford.idm.oclc.org/articles/s41746-020-00341-z), successfully complemented standard image representations
 
+- [Data Models for Dataset Drift Controls in Machine Learning With Images](https://arxiv.org/abs/2211.02578)
+   - Drift synthesis enables the controlled generation of physically faithful drift test cases. The experiments presented here show that the average decrease in model performance is ten to four times less severe than under post-hoc augmentation testing.
+   - The gradient connection between task and data models allows for drift forensics that can be used to specify performance-sensitive data models which should be avoided during deployment of a machine learning model.
+   - Drift adjustment opens up the possibility for processing adjustments in the face of drift. This can lead to speed up and stabilization of classifier training at a margin of up to 20% in validation accuracy.
+
 [comment]: <> (## Image Segmentation)
 
 [comment]: <> ([Sarah])
@@ -42,3 +47,8 @@ Named entity linking (NEL) is the task of linking ambiguous mentions in text to 
   - [AMELIE](https://stm.sciencemag.org/content/scitransmed/12/544/eaau9113.full.pdf) helps improve diagnosis of Mendelian disorders by integrating information from a patient’s phenotype and genotype and automatically identifying relevant references to literature.
   - [This](https://journals.plos.org/plosgenetics/article?id=10.1371/journal.pgen.1004754) article discusses the importance of creating effective feature selection methods to filter irrelevant features from large whole genome datasets. Other works (such as [this one](https://bmcbioinformatics.biomedcentral.com/articles/10.1186/s12859-020-03693-1) and [this one](https://www.worldscientific.com/doi/abs/10.1142/9789813279827_0024)) discuss approaches for identifying putative genetic variants by incorporating information from interaction networks or utilizing independent control datasets.
   - Approaches for extracting biological information from medical literature (such as [chemical-disease relation extraction](https://link.springer.com/article/10.1186/s13321-016-0165-z) and [genotype-phenotype association extraction](https://www.nature.com/articles/s41467-019-11026-x)) have benefitted from data programming techniques as well as the incorporation of weakly labeled data.
+
+<h2 id="remote-sensing">Remote Sensing</h2>
+- [Data Models](https://arxiv.org/abs/2211.02578)
+   - Tolerancing allows for for prospective validation of machine learning task model under physically faithful dataset drifts
+   - Differentiable data models allow the optimization of the data generating process
