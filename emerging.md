@@ -43,3 +43,13 @@ Critical papers in observational supervision:
 - Some of the pioneering work on using gaze data. N. Hollenstein and C. Zhang showed how to use gaze data to improve NLP models [paper](https://arxiv.org/pdf/1902.10068.pdf).
 - Improving zero-shot learning with gaze by N. Karasseli et al. [paper](https://openaccess.thecvf.com/content_cvpr_2017/papers/Karessli_Gaze_Embeddings_for_CVPR_2017_paper.pdf)
 - Weak supervision and multi-task learning with gaze by K. Saab et al. [paper](https://web.stanford.edu/~ksaab/media/MICCAI_2021.pdf)
+
+<h2 id="data-models">Data Models</h2>
+An explicit, differentiable data model can be specified using physics-informed and known operator learning. The gradient connection between data model and downstream task model opens up new opportunities for data-centric machine learning such as dataset drift synthesis, drift forensics as well as the optimization of the data generating process itself.
+
+Existing works:
+
+- Oala, L., Aversa, M., Nobis, G., Willis, K., Neuenschwander, Y., Buck, M., Matek, C., Extermann, J., Pomarico, E., Samek, W. and Murray-Smith, R., 2022. **Data Models for Dataset Drift Controls in Machine Learning With Images.** arXiv preprint arXiv:2211.02578. [paper](https://arxiv.org/abs/2211.02578) | [code](https://github.com/aiaudit-org/raw2logit) | [data](https://zenodo.org/record/5235536)
+- Maier, A., Köstler, H., Heisig, M., Krauss, P. and Yang, S.H., 2022. **Known operator learning and hybrid machine learning in medical imaging—a review of the past, the present, and the future.** Progress in Biomedical Engineering. [paper](https://iopscience.iop.org/article/10.1088/2516-1091/ac5b13/meta)
+- Raissi, M., Perdikaris, P. and Karniadakis, G.E., 2019. **Physics-informed neural networks: A deep learning framework for solving forward and inverse problems involving nonlinear partial differential equations.** Journal of Computational physics, 378, pp.686-707. [paper](https://www.sciencedirect.com/science/article/pii/S0021999118307125)
+- Wright, L.G., Onodera, T., Stein, M.M. et al. **Deep physical neural networks trained with backpropagation.** Nature 601, 549–555 (2022). [paper](https://doi.org/10.1038/s41586-021-04223-6)
