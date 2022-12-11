@@ -11,7 +11,7 @@
 - [Weakly Supervised Learning (WeaSuL)](https://weasul.github.io), ICLR
 - [Synthetic Data Generation](https://sdg-quality-privacy-bias.github.io), ICLR
 - [Self-Supervised Learning for Reasoning and Perception](https://icml21ssl.github.io), ICLR
-- [Workshop on Data Management for End-to-end Machine Learning](http://deem-workshop.org/#), VLDB
+- [Workshop on Data Management for End-to-end Machine Learning](http://deem-workshop.org/), SIGMOD
 - [Workshop on Human-In-the-Loop Data Analytics](https://hilda.io/), SIGMOD
 
 ## 2020
@@ -21,7 +21,7 @@
 - [Challenges in Deploying and Monitoring Machine Learning Systems](https://sites.google.com/view/deploymonitormlsystems), ICML
 - [Workshop on Dataset Curation and Security](https://securedata.lol/), NeurIPs
 - [Workshop on MLOps Systems](https://mlops-systems.github.io/), MLSys
-- [Workshop on Data Management for End-to-end Machine Learning](http://deem-workshop.org/#), VLDB
+- [Workshop on Data Management for End-to-end Machine Learning](http://deem-workshop.org/), SIGMOD
 - [Workshop on Human-In-the-Loop Data Analytics](https://hilda.io/2020/), SIGMOD
 - [Evaluating Evaluation of AI Systems](http://eval.how/aaai-2020/), AAAI
 - [Data Excellence Workshop](http://eval.how/dew2020/index.html), HCOMP
