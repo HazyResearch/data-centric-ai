@@ -10,6 +10,7 @@ _This awesome list is a stub. You can help by improving it._
 
 - [Landing AI](https://landing.ai/platform/)
 - [Snorkel](https://snorkel.ai)
+- [Dotphoton](https://www.dotphoton.com/)
 
 <h2 id="mlops">ML Ops</h2>
 
