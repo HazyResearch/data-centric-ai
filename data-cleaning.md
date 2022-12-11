@@ -44,4 +44,5 @@ This line of work is closely related to the area of query explanations (e.g., [W
 * Data Standardization: 
   * [DataPrep.Clean](https://docs.dataprep.ai/user_guide/clean/introduction.html)
   * [Great Expectations](https://greatexpectations.io/)
-* [Label Clean](https://pypi.org/project/cleanlab/)
+* Label clean:
+  * [Cleanlab](https://docs.cleanlab.ai/v1.0.1/index.html)
