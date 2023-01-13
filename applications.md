@@ -52,3 +52,10 @@ Named entity linking (NEL) is the task of linking ambiguous mentions in text to 
 - [Data Models](https://arxiv.org/abs/2211.02578)
    - Tolerancing allows for for prospective validation of machine learning task model under physically faithful dataset drifts
    - Differentiable data models allow the optimization of the data generating process
+  
+
+<h2 id="3D Object Detection">3D Object Detection</h2>
+
+- [Data centric 3d object detection service deployment framework](https://github.com/TinyDataML/Tiny3D)
+  - Doing Fine-grained data editing(denoise, simulation, filter, augmentation) on different size datasets or single data.
+  - Through data editing users can easily get a high accuracy and high speed 3d object detection service/competetion result in a Data-Centeric AI way.
