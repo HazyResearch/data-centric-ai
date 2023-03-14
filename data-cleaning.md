@@ -35,6 +35,7 @@ For instance, the application may use the model as part of an analytic query and
 * [From Cleaning before ML to Cleaning for ML](http://sites.computer.org/debull/A21mar/p24.pdf) DE Bulletin 2021: recent survey of cleaning for and using machine learning.
 * [Complaint-driven Training Data Debugging for Query 2.0](https://arxiv.org/pdf/2004.05722.pdf) SIGMOD 2020: leveraging downstream query outputs to identify erroneous training data errors as an influence analysis problem.
 * [Explaining Inference Queries with Bayesian Optimization](https://arxiv.org/abs/2102.0530://arxiv.org/abs/2102.05308) VLDB 2021: leveraging downstream query outputs to identify erroneous training data errors as a hyperparameter search problem.
+* [Entity Resolution On-Demand](https://www.vldb.org/pvldb/vol15/p1506-simonini.pdf) VLDB 2022: to evaluate SQL queries on dirty data while progressively returning results as if they were issued on cleaned data.
 
 This line of work is closely related to the area of query explanations (e.g., [Wu2013](http://sirrice.github.io/files/papers/scorpion-vldb13.pdf), [Roy2014](https://dl.acm.org/doi/abs/10.1145/2588555.2588578), [Abuzaid2019](https://cs.stanford.edu/~matei/papers/2019/vldb_macrobase_diff.pdf)) in that it uses errors in downstream results for data debugging..
 
