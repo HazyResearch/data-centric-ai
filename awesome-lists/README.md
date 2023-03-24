@@ -4,10 +4,10 @@ We want to gather interesting lists of resources and content that are related to
 
 ## Table of Contents
 
-
-1. [Workshops](workshops.md)
-2. [Courses](courses.md) (Under Construction)
-3. [Startups](startups.md) (Under Construction)
-4. [Tools](tools.md) (Under Construction)
+1. [Surveys/Perspectives](surveys_perspectives.md)
+2. [Workshops](workshops.md)
+3. [Courses](courses.md) (Under Construction)
+4. [Startups](startups.md) (Under Construction)
+5. [Tools](tools.md) (Under Construction)
 
 ---
