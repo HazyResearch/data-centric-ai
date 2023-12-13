@@ -12,6 +12,7 @@ These tools focus on identify errors in datasets, without taking the downstream 
 These include traditional constraint-based data cleaning methods, as well as those that _use_ machine learning to 
 detect and resolve data errors.
 
+* [DataFix](https://openreview.net/forum?id=lBhRTO2uWf) NeurIPS 2023: leverages adversarial learning to detect and correct distribution shifts between a reference and a query dataset. It detects shifts, localizes the specific features responsible for the shift, and corrects them efficiently.
 * [HoloClean](https://arxiv.org/pdf/1702.00820.pdf) functional dependencies, quantitative statistics, external information as a single factor-graph model.
 * [Raha](https://dl.acm.org/doi/abs/10.1145/3299869.3324956) uses a library of error detectors, and treats the output of each as a feature in a holistic detection model.  It then uses clustering and active learning to train the holistic model with few labels.
 * [Picket: Self-supervised Data Diagnostics for ML Pipelines](https://arxiv.org/abs/2006.04730): self-supervision to learn an error detection model.
